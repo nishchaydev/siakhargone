@@ -38,15 +38,15 @@ export function VirtualTourSection() {
             </p>
           </motion.div>
           
-          <motion.div 
-            className="relative aspect-video w-full max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden group cursor-pointer"
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            onClick={() => setIsVideoModalOpen(true)}
-          >
-            {virtualTourImage && (
+          {virtualTourImage && (
+            <motion.div 
+              className="relative aspect-video w-full max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden group cursor-pointer"
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              onClick={() => setIsVideoModalOpen(true)}
+            >
               <Image
                 src={virtualTourImage.imageUrl}
                 alt={virtualTourImage.description}
@@ -54,17 +54,17 @@ export function VirtualTourSection() {
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
-            )}
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <div
-                className="flex flex-col items-center text-white"
-                aria-label="Play campus reel video"
-              >
-                <PlayCircle className="h-24 w-24 text-white/80 transition-all duration-300 group-hover:text-white group-hover:scale-110" />
-                <span className="mt-2 text-lg font-semibold tracking-wider uppercase">Play Campus Reel</span>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div
+                  className="flex flex-col items-center text-white"
+                  aria-label="Play campus reel video"
+                >
+                  <PlayCircle className="h-24 w-24 text-white/80 transition-all duration-300 group-hover:text-white group-hover:scale-110" />
+                  <span className="mt-2 text-lg font-semibold tracking-wider uppercase">Play Campus Reel</span>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
 
           <motion.div className="mt-8 text-center" variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }}>
               <Button asChild size="lg" className="rounded-xl">
@@ -83,5 +83,3 @@ export function VirtualTourSection() {
     </>
   );
 }
-
-    
