@@ -10,6 +10,7 @@ import { FirebaseClientProvider } from '@/firebase/client-provider';
 import MobileCtaBar from '@/components/layout/MobileCtaBar';
 import ScrollToTop from '@/components/common/ScrollToTop';
 import SignatureBadge from "@/components/common/SignatureBadge";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
   subsets: ['latin'],
@@ -86,6 +87,7 @@ export default function RootLayout({
             <Toaster />
             <SignatureBadge />
         </FirebaseClientProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
