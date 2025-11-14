@@ -1,5 +1,6 @@
 
 import type { Testimonial, SchoolHighlight, AcademicTier, Job, GalleryImage } from '@/lib/definitions';
+import placeholderData from '@/lib/placeholder-images.json';
 
 export const fallbackTestimonials: Testimonial[] = [
     { id: 't1', name: 'Anjali Sharma', relation: 'Parent, Grade 8', quote: 'The holistic approach at SIA has been wonderful for my child\'s development. The teachers are caring and the environment is nurturing.', avatarUrl: 'https://picsum.photos/seed/parent1/100/100' },
@@ -103,19 +104,9 @@ export const fallbackJobs: Job[] = [
     }
 ];
 
-export const mockGalleryImages: GalleryImage[] = [
-    { id: "gallery-mock-1", imageUrl: "https://picsum.photos/seed/gallery1/400/500", imageHint: "students classroom" },
-    { id: "gallery-mock-2", imageUrl: "https://picsum.photos/seed/gallery2/400/300", imageHint: "school sports" },
-    { id: "gallery-mock-3", imageUrl: "https://picsum.photos/seed/gallery3/400/600", imageHint: "science lab" },
-    { id: "gallery-mock-4", imageUrl: "https://picsum.photos/seed/gallery4/400/500", imageHint: "school library" },
-    { id: "gallery-mock-5", imageUrl: "https://picsum.photos/seed/gallery5/400/300", imageHint: "art class" },
-    { id: "gallery-mock-6", imageUrl: "https://picsum.photos/seed/gallery6/400/600", imageHint: "school event" },
-    { id: "gallery-mock-7", imageUrl: "https://picsum.photos/seed/gallery7/400/500", imageHint: "graduation day" },
-    { id: "gallery-mock-8", imageUrl: "https://picsum.photos/seed/gallery8/400/400", imageHint: "campus life" },
-    { id: "gallery-mock-9", imageUrl: "https://picsum.photos/seed/gallery9/400/600", imageHint: "student life" },
-    { id: "gallery-mock-10", imageUrl: "https://picsum.photos/seed/gallery10/400/500", imageHint: "school activity" },
-    { id: "gallery-mock-11", imageUrl: "https://picsum.photos/seed/gallery11/400/400", imageHint: "classroom learning" },
-    { id: "gallery-mock-12", imageUrl: "https://picsum.photos/seed/gallery12/400/300", imageHint: "school building" },
-];
-
-    
+export const mockGalleryImages: GalleryImage[] = placeholderData.placeholderImages.map(image => ({
+    id: image.id,
+    imageUrl: image.imageUrl,
+    description: image.description,
+    imageHint: image.imageHint,
+}));
