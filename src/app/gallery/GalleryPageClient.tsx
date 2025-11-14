@@ -19,58 +19,80 @@ export default function GalleryPageClient() {
 
   return (
     <>
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto max-w-7xl px-4">
-          <motion.div 
-            className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4"
-            variants={{
-              visible: { transition: { staggerChildren: 0.1 } }
-            }}
-            initial="hidden"
-            animate="visible"
-          >
-            {isLoading && imagesToShow.length === 0 ? (
-              Array.from({ length: 12 }).map((_, i) => (
-                <Skeleton key={i} className="h-64 w-full mb-4 rounded-lg" />
-              ))
-            ) : (
-              imagesToShow.map((image) => (
-                <motion.div 
-                  key={image.id} 
-                  className="mb-4 break-inside-avoid"
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 }
-                  }}
-                  layoutId={`card-${image.id}`}
-                >
-                  <Card 
-                    className="overflow-hidden transition-shadow duration-300 hover:shadow-xl cursor-pointer"
-                    onClick={() => setSelectedImage(image)}
+      <div className="pt-[70px]">
+          <section className="bg-muted py-12">
+              <div className="container mx-auto max-w-7xl px-4 text-center">
+                  <motion.h1 
+                      className="text-4xl font-bold md:text-5xl font-headline"
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
                   >
-                    <CardContent className="p-0">
-                      <motion.div
-                        className="relative h-auto w-full aspect-auto"
-                        layoutId={`image-${image.id}`}
+                      Our Gallery
+                  </motion.h1>
+                  <motion.p 
+                      className="mt-2 text-lg text-muted-foreground"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                      Explore moments of learning, creativity, and joy at SIA Khargone.
+                  </motion.p>
+              </div>
+          </section>
+          <section className="py-16 md:py-24">
+            <div className="container mx-auto max-w-7xl px-4">
+              <motion.div 
+                className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4"
+                variants={{
+                  visible: { transition: { staggerChildren: 0.1 } }
+                }}
+                initial="hidden"
+                animate="visible"
+              >
+                {isLoading && imagesToShow.length === 0 ? (
+                  Array.from({ length: 12 }).map((_, i) => (
+                    <Skeleton key={i} className="h-64 w-full mb-4 rounded-lg" />
+                  ))
+                ) : (
+                  imagesToShow.map((image) => (
+                    <motion.div 
+                      key={image.id} 
+                      className="mb-4 break-inside-avoid"
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0 }
+                      }}
+                      layoutId={`card-${image.id}`}
+                    >
+                      <Card 
+                        className="overflow-hidden transition-shadow duration-300 hover:shadow-xl cursor-pointer"
+                        onClick={() => setSelectedImage(image)}
                       >
-                        <Image
-                          src={image.imageUrl}
-                          alt={image.description || 'Gallery image'}
-                          data-ai-hint={image.imageHint}
-                          width={400}
-                          height={500}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover w-full h-auto"
-                        />
-                      </motion.div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))
-            )}
-          </motion.div>
-        </div>
-      </section>
+                        <CardContent className="p-0">
+                          <motion.div
+                            className="relative h-auto w-full aspect-auto"
+                            layoutId={`image-${image.id}`}
+                          >
+                            <Image
+                              src={image.imageUrl}
+                              alt={image.description || 'Gallery image'}
+                              data-ai-hint={image.imageHint}
+                              width={400}
+                              height={500}
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="object-cover w-full h-auto"
+                            />
+                          </motion.div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))
+                )}
+              </motion.div>
+            </div>
+          </section>
+      </div>
 
       <AnimatePresence>
         {selectedImage && (
