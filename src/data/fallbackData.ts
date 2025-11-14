@@ -94,6 +94,22 @@ export const fallbackJobs: Job[] = [
         location: "Khargone",
         status: "Open"
     },
+    {
+        id: "job4",
+        title: "Physics Teacher (Senior Secondary)",
+        description: "We are looking for a qualified Physics teacher to inspire students in grades 11-12 with a deep understanding of the subject.",
+        department: "Academics",
+        location: "Khargone",
+        status: "Open"
+    },
+    {
+        id: "job5",
+        title: "Librarian",
+        description: "Seeking a knowledgeable and passionate Librarian to manage our library and foster a love of reading among students.",
+        department: "Administration",
+        location: "Khargone",
+        status: "Open"
+    },
      {
         id: "job3",
         title: "Admissions Counsellor",
