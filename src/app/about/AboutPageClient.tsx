@@ -196,33 +196,28 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                 </div>
             </div>
             <div className="space-y-4 md:order-1">
-                <div className="relative">
-                    <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
-                    {isLoading || !principalMessage ? (
-                        <div className="space-y-2">
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-4 w-3/4" />
+                {isLoading || !principalMessage ? (
+                    <div className="space-y-2">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                        <Skeleton className="h-6 w-48 mt-4" />
+                        <Skeleton className="h-4 w-32" />
+                    </div>
+                ) : (
+                    <>
+                        <div className="relative">
+                            <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
+                            <p className="text-lg text-muted-foreground italic z-10 relative">
+                                “{principalMessage.description}”
+                            </p>
                         </div>
-                    ) : (
-                        <p className="text-lg text-muted-foreground italic z-10 relative">
-                            “{principalMessage.description}”
-                        </p>
-                    )}
-                </div>
-                <div className="pt-2">
-                    {isLoading || !principalMessage ? (
-                        <>
-                            <Skeleton className="h-6 w-48 mb-2" />
-                            <Skeleton className="h-4 w-32" />
-                        </>
-                    ) : (
-                        <>
+                        <div className="pt-2">
                             <p className="font-bold text-lg text-primary">{principalMessage.title}</p>
                             <p className="text-muted-foreground">Principal, SIA Khargone</p>
-                        </>
-                    )}
-                </div>
+                        </div>
+                    </>
+                )}
             </div>
         </MotionDiv>
       </Section>
@@ -253,33 +248,28 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                 </div>
             </div>
             <div className="space-y-4">
-                <div className="relative">
-                    <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
-                    {isLoading || !chairmanMessage ? (
-                        <div className="space-y-2">
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-4 w-3/4" />
+                {isLoading || !chairmanMessage ? (
+                    <div className="space-y-2">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                        <Skeleton className="h-6 w-48 mt-4" />
+                        <Skeleton className="h-4 w-32" />
+                    </div>
+                ) : (
+                    <>
+                        <div className="relative">
+                            <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
+                            <p className="text-lg text-muted-foreground italic z-10 relative">
+                                “{chairmanMessage.description}”
+                            </p>
                         </div>
-                    ) : (
-                        <p className="text-lg text-muted-foreground italic z-10 relative">
-                            “{chairmanMessage.description}”
-                        </p>
-                    )}
-                </div>
-                <div className="pt-2">
-                    {isLoading || !chairmanMessage ? (
-                        <>
-                            <Skeleton className="h-6 w-48 mb-2" />
-                            <Skeleton className="h-4 w-32" />
-                        </>
-                    ) : (
-                        <>
+                        <div className="pt-2">
                             <p className="font-bold text-lg text-primary">{chairmanMessage.title}</p>
                             <p className="text-muted-foreground">Chairman, SIA Khargone</p>
-                        </>
-                    )}
-                </div>
+                        </div>
+                    </>
+                )}
             </div>
         </MotionDiv>
       </Section>
@@ -326,7 +316,3 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
     </>
   );
 }
-
-    
-
-    
