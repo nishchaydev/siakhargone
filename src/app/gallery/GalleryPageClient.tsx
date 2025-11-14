@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -8,14 +7,15 @@ import type { GalleryImage } from "@/lib/definitions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
 import { X } from "lucide-react";
-import { useCollection } from "@/firebase";
+import { useCollection } from "@/firebase/firestore/use-collection";
 import { mockGalleryImages } from "@/data/fallbackData";
 
 export default function GalleryPageClient() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const { data: galleryImages, isLoading } = useCollection<GalleryImage>('galleryItems');
 
-  const imagesToShow = isLoading ? [] : (galleryImages || mockGalleryImages);
+  const imagesToShow = isLoading ? mockGalleryImages : (galleryImages && galleryImages.length > 0 ? galleryImages : mockGalleryImages);
+
 
   return (
     <>
