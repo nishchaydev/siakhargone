@@ -182,14 +182,16 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                     {isLoading || !principalMessage ? (
                         <Skeleton className="w-full h-full" />
                     ) : (
-                        <Image
-                            src={principalMessage.linkUrl!}
-                            alt={principalMessage.title}
-                            width={400}
-                            height={400}
-                            className="w-full h-full object-cover"
-                            data-ai-hint="woman portrait"
-                        />
+                        principalMessage.linkUrl && (
+                            <Image
+                                src={principalMessage.linkUrl}
+                                alt={principalMessage.title}
+                                width={400}
+                                height={400}
+                                className="w-full h-full object-cover"
+                                data-ai-hint="woman portrait"
+                            />
+                        )
                     )}
                 </div>
             </div>
@@ -237,14 +239,16 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                     {isLoading || !chairmanMessage ? (
                         <Skeleton className="w-full h-full" />
                     ) : (
-                        <Image
-                            src={chairmanMessage.linkUrl!}
-                            alt={chairmanMessage.title}
-                            width={400}
-                            height={400}
-                            className="w-full h-full object-cover"
-                            data-ai-hint="man portrait suit"
-                        />
+                        chairmanMessage.linkUrl && (
+                            <Image
+                                src={chairmanMessage.linkUrl}
+                                alt={chairmanMessage.title}
+                                width={400}
+                                height={400}
+                                className="w-full h-full object-cover"
+                                data-ai-hint="man portrait suit"
+                            />
+                        )
                     )}
                 </div>
             </div>
@@ -322,5 +326,7 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
     </>
   );
 }
+
+    
 
     
