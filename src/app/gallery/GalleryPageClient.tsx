@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -9,12 +10,22 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { useCollection } from "@/firebase/firestore/use-collection";
 import { mockGalleryImages } from "@/data/fallbackData";
+import { useFirebase } from "@/firebase";
 
 export default function GalleryPageClient() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const { data: galleryImages, isLoading } = useCollection<GalleryImage>('galleryItems');
+  const { services } = useFirebase();
 
-  const imagesToShow = isLoading ? mockGalleryImages : (galleryImages && galleryImages.length > 0 ? galleryImages : mockGalleryImages);
+  // Conditionally fetch data only when services are available
+  const { data: galleryImages, isLoading: isCollectionLoading } = useCollection<GalleryImage>(
+    services ? 'galleryItems' : null
+  );
+
+  const isLoading = !services || isCollectionLoading;
+
+  const imagesToShow = isLoading
+    ? mockGalleryImages
+    : (galleryImages && galleryImages.length > 0 ? galleryImages : mockGalleryImages);
 
 
   return (
@@ -77,7 +88,7 @@ export default function GalleryPageClient() {
                             <Image
                               src={image.imageUrl}
                               alt={image.description || 'Gallery image'}
-                              data-ai-hint={image.imageHint}
+                              data-ai-hint={image.imageHint || 'school life'}
                               width={400}
                               height={500}
                               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
