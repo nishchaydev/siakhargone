@@ -1,0 +1,83 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 37 67% 97%; /* #FFFBF4 */
+    --foreground: 28 29% 12%; /* #2B2118 */
+    --card: 36 60% 98%; /* #FFF9F2 */
+    --card-foreground: 28 29% 12%;
+    --popover: 36 60% 98%;
+    --popover-foreground: 28 29% 12%;
+    --primary: 30 38% 39%; /* #8B5E3C */
+    --primary-foreground: 30 60% 98%;
+    --secondary: 30 20% 90%;
+    --secondary-foreground: 28 29% 12%;
+    --muted: 30 20% 90%;
+    --muted-foreground: 26 30% 28%; /* #5C4330 */
+    --accent: 41 90% 50%; /* #E4A11B */
+    --accent-foreground: 28 29% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 35 44% 83%; /* #E6D7C2 */
+    --input: 35 44% 83%;
+    --ring: 30 38% 39%;
+    --radius: 1.5rem; /* 24px */
+  }
+
+  .dark {
+    /* Define dark mode colors if needed, for now we will match light mode */
+    --background: 37 67% 97%;
+    --foreground: 28 29% 12%;
+    --card: 36 60% 98%;
+    --card-foreground: 28 29% 12%;
+    --popover: 36 60% 98%;
+    --popover-foreground: 28 29% 12%;
+    --primary: 30 38% 39%;
+    --primary-foreground: 30 60% 98%;
+    --secondary: 30 20% 90%;
+    --secondary-foreground: 28 29% 12%;
+    --muted: 30 20% 90%;
+    --muted-foreground: 26 30% 28%;
+    --accent: 41 90% 50%;
+    --accent-foreground: 28 29% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 35 44% 83%;
+    --input: 35 44% 83%;
+    --ring: 30 38% 39%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
+
+@layer components {
+    .title-underline {
+        @apply relative pb-2;
+    }
+    .title-underline::after {
+        content: '';
+        @apply absolute bottom-0 left-0 h-1 w-16 bg-accent;
+        transition: width 0.3s ease-in-out;
+    }
+    .group:hover .title-underline::after, .title-underline-hover:hover::after {
+        @apply w-24;
+    }
+    .sr-only {
+      @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+      clip: rect(0, 0, 0, 0);
+    }
+}

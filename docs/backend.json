@@ -1,0 +1,283 @@
+
+{
+  "entities": {
+    "SchoolHighlight": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "SchoolHighlight",
+      "type": "object",
+      "description": "Represents a highlighted section or achievement of the school on the dynamic homepage.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the school highlight."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the highlight."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the highlight."
+        },
+        "icon": {
+          "type": "string",
+          "description": "Name of the lucide-react icon for the highlight."
+        },
+        "linkUrl": {
+          "type": "string",
+          "description": "URL to a page with more details about the highlight.",
+          "format": "uri"
+        },
+        "order": {
+          "type": "number",
+          "description": "The order in which the highlight will be displayed on the homepage."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "icon",
+        "order"
+      ]
+    },
+    "Announcement": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Announcement",
+      "type": "object",
+      "description": "Represents a school announcement displayed on the homepage.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the announcement."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the announcement."
+        },
+        "content": {
+          "type": "string",
+          "description": "Detailed content of the announcement."
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of the announcement.",
+          "format": "date-time"
+        },
+        "isUrgent": {
+          "type": "boolean",
+          "description": "Indicates if the announcement is urgent and should be highlighted."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content",
+        "date"
+      ]
+    },
+    "GalleryItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "GalleryItem",
+      "type": "object",
+      "description": "Represents an item in the school's image gallery.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the gallery item."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the image in the gallery.",
+          "format": "uri"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the gallery item."
+        },
+        "eventDate": {
+          "type": "string",
+          "description": "Date when the event was held.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "imageUrl"
+      ]
+    },
+    "ChatbotResponse": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ChatbotResponse",
+      "type": "object",
+      "description": "Represents a response from the AI chatbot.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the chatbot response."
+        },
+        "intent": {
+          "type": "string",
+          "description": "The intent that triggers this response."
+        },
+        "response": {
+          "type": "string",
+          "description": "The chatbot's response to the user's query."
+        }
+      },
+      "required": [
+        "id",
+        "intent",
+        "response"
+      ]
+    },
+    "ContactFormSubmission": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactFormSubmission",
+      "type": "object",
+      "description": "Represents a submission from the contact form.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the contact form submission."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person submitting the form."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person submitting the form.",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the person submitting the form."
+        },
+        "message": {
+          "type": "string",
+          "description": "The query submitted in the contact form."
+        },
+        "submissionDate": {
+          "type": "string",
+          "description": "Date and time when the form was submitted.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "message",
+        "submissionDate"
+      ]
+    },
+    "AcademicTier": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AcademicTier",
+      "type": "object",
+      "description": "Represents a tier in the academic structure of the school.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the academic tier."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the academic tier."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the academic tier."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the image associated with the tier.",
+          "format": "uri"
+        },
+        "order": {
+          "type": "number",
+          "description": "The order in which the tier will be displayed."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "imageUrl",
+        "order"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/schoolHighlights/{schoolHighlightId}",
+        "definition": {
+          "entityName": "SchoolHighlight",
+          "schema": {
+            "$ref": "#/backend/entities/SchoolHighlight"
+          },
+          "description": "Stores school highlights to be displayed on the homepage."
+        }
+      },
+      {
+        "path": "/announcements/{announcementId}",
+        "definition": {
+          "entityName": "Announcement",
+          "schema": {
+            "$ref": "#/backend/entities/Announcement"
+          },
+          "description": "Stores school announcements displayed on the homepage."
+        }
+      },
+      {
+        "path": "/galleryItems/{galleryItemId}",
+        "definition": {
+          "entityName": "GalleryItem",
+          "schema": {
+            "$ref": "#/backend/entities/GalleryItem"
+          },
+          "description": "Stores gallery items for the school's image gallery."
+        }
+      },
+      {
+        "path": "/chatbotResponses/{chatbotResponseId}",
+        "definition": {
+          "entityName": "ChatbotResponse",
+          "schema": {
+            "$ref": "#/backend/entities/ChatbotResponse"
+          },
+          "description": "Stores chatbot responses for the AI chatbot."
+        }
+      },
+      {
+        "path": "/contactFormSubmissions/{contactFormSubmissionId}",
+        "definition": {
+          "entityName": "ContactFormSubmission",
+          "schema": {
+            "$ref": "#/backend/entities/ContactFormSubmission"
+          },
+          "description": "Stores contact form submissions."
+        }
+      },
+      {
+        "path": "/academics/{academicsId}",
+        "definition": {
+          "entityName": "AcademicTier",
+          "schema": {
+            "$ref": "#/backend/entities/AcademicTier"
+          },
+          "description": "Stores the content for different academic tiers."
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to support a dynamic school application. Separate collections are used for each entity type to maintain clarity and enforce uniform security rules within each collection. This includes new collections for 'academics' and 'schoolHighlights' to power the dynamic new homepage sections."
+  }
+}
