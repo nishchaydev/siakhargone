@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -21,7 +20,7 @@ const applicationSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number is required"),
-  resume: z.instanceof(FileList).refine(files => files.length > 0, "Resume is required"),
+  resume: z.any().refine(files => files?.length > 0, "Resume is required"),
 });
 
 type ApplicationFormValues = z.infer<typeof applicationSchema>;
@@ -122,7 +121,7 @@ export function ApplicationForm({ job, onSuccess }: ApplicationFormProps) {
       <div className="space-y-1">
         <Label htmlFor="resume">Resume (PDF)</Label>
         <Input id="resume" type="file" accept=".pdf" {...register("resume")} />
-        {errors.resume && <p className="text-destructive text-sm">{errors.resume.message}</p>}
+        {errors.resume && <p className="text-destructive text-sm">{typeof errors.resume.message === 'string' && errors.resume.message}</p>}
       </div>
       <Button type="submit" disabled={isLoading} className="w-full">
         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
