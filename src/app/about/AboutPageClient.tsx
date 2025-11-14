@@ -179,7 +179,7 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
         >
             <div className="md:order-2">
                 <div className="rounded-full shadow-lg overflow-hidden w-64 h-64 md:w-96 md:h-96 mx-auto">
-                    {isLoading ? (
+                    {isLoading || !principalMessage ? (
                         <Skeleton className="w-full h-full" />
                     ) : (
                         <Image
@@ -196,7 +196,7 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
             <div className="space-y-4 md:order-1">
                 <div className="relative">
                     <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
-                    {isLoading ? (
+                    {isLoading || !principalMessage ? (
                         <div className="space-y-2">
                             <Skeleton className="h-4 w-full" />
                             <Skeleton className="h-4 w-full" />
@@ -209,7 +209,7 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                     )}
                 </div>
                 <div className="pt-2">
-                    {isLoading ? (
+                    {isLoading || !principalMessage ? (
                         <>
                             <Skeleton className="h-6 w-48 mb-2" />
                             <Skeleton className="h-4 w-32" />
@@ -234,7 +234,7 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
         >
             <div>
                 <div className="rounded-full shadow-lg overflow-hidden w-64 h-64 md:w-96 md:h-96 mx-auto">
-                    {isLoading ? (
+                    {isLoading || !chairmanMessage ? (
                         <Skeleton className="w-full h-full" />
                     ) : (
                         <Image
@@ -251,7 +251,7 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
             <div className="space-y-4">
                 <div className="relative">
                     <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
-                    {isLoading ? (
+                    {isLoading || !chairmanMessage ? (
                         <div className="space-y-2">
                             <Skeleton className="h-4 w-full" />
                             <Skeleton className="h-4 w-full" />
@@ -264,7 +264,7 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                     )}
                 </div>
                 <div className="pt-2">
-                    {isLoading ? (
+                    {isLoading || !chairmanMessage ? (
                         <>
                             <Skeleton className="h-6 w-48 mb-2" />
                             <Skeleton className="h-4 w-32" />
@@ -322,3 +322,5 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
     </>
   );
 }
+
+    
