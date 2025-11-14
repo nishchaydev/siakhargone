@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -35,7 +34,11 @@ export default function CareersPageClient() {
   const { data: jobs, isLoading: isJobsLoading } = useCollection<Job>(services ? "jobs" : null);
 
   const isLoading = isServicesLoading || isJobsLoading;
-  const openPositions = isLoading ? [] : (jobs || fallbackJobs).filter(job => job.status === 'Open');
+  
+  // If jobs are loaded and the array is empty, use fallbackJobs. Otherwise, use jobs.
+  const jobsToDisplay = !isLoading && jobs && jobs.length > 0 ? jobs : fallbackJobs;
+  const openPositions = jobsToDisplay.filter(job => job.status === 'Open');
+
   const showLoading = isLoading && openPositions.length === 0;
 
   const handleApplySuccess = () => {
