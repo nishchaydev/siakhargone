@@ -3,11 +3,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Testimonial } from "@/lib/definitions";
-import Autoplay from "embla-carousel-autoplay";
 import { Quote } from "lucide-react";
 
 interface TestimonialsProps {
@@ -15,7 +13,30 @@ interface TestimonialsProps {
     isLoading: boolean;
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { type: "spring", stiffness: 100, damping: 10 }
+  },
+};
+
 export function Testimonials({ testimonials, isLoading }: TestimonialsProps) {
+
+  const displayTestimonials = testimonials.slice(0, 5);
 
   return (
     <section 
@@ -38,75 +59,72 @@ export function Testimonials({ testimonials, isLoading }: TestimonialsProps) {
           </p>
         </motion.div>
 
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          plugins={[
-            Autoplay({
-              delay: 5000,
-              stopOnInteraction: true,
-            }),
-          ]}
-          className="w-full max-w-4xl mx-auto"
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
-          <CarouselContent>
-            {isLoading ? (
-              Array.from({ length: 3 }).map((_, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/1">
-                  <div className="p-4">
-                     <Card className="h-full rounded-xl shadow-lg">
-                        <CardContent className="flex flex-col items-center justify-center p-6 text-center">
-                            <Skeleton className="w-8 h-8 rounded-full mb-4" />
-                            <div className="space-y-2 mb-6 flex-grow w-full">
-                                <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-3/4" />
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <Skeleton className="w-14 h-14 rounded-full" />
-                                <div className="space-y-2">
-                                    <Skeleton className="h-4 w-24" />
-                                    <Skeleton className="h-3 w-20" />
-                                </div>
-                            </div>
-                        </CardContent>
-                     </Card>
+          {isLoading ? (
+            Array.from({ length: 5 }).map((_, index) => (
+              <Card key={index} className={`
+                ${index === 3 ? 'lg:col-start-2' : ''}
+                ${index > 2 ? 'sm:col-span-1' : ''}
+                ${index === 0 ? 'sm:col-span-1 lg:row-span-1' : ''}
+                ${index === 1 ? 'sm:col-span-1 lg:row-span-1' : ''}
+                ${index === 2 ? 'sm:col-span-1 lg:row-span-1' : ''}
+              `}>
+                <CardContent className="flex flex-col items-center justify-center p-6 text-center h-full">
+                  <Skeleton className="w-8 h-8 rounded-full mb-4" />
+                  <div className="space-y-2 mb-6 flex-grow w-full">
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-3/4 mx-auto" />
                   </div>
-                </CarouselItem>
-              ))
-            ) : (
-              testimonials.map((testimonial) => (
-                <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/1">
-                  <div className="p-4">
-                    <Card className="h-full rounded-xl shadow-lg transform transition-transform hover:scale-105 bg-card">
-                      <CardContent className="flex flex-col items-center justify-center p-6 text-center">
-                        <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                        <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
-                        <div className="flex items-center gap-4">
-                          <Image
-                            src={testimonial.avatarUrl}
-                            alt={testimonial.name}
-                            width={56}
-                            height={56}
-                            className="rounded-full object-cover"
-                          />
-                          <div>
-                            <p className="font-semibold">{testimonial.name}</p>
-                            <p className="text-sm text-muted-foreground">{testimonial.relation}</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <div className="flex items-center gap-4">
+                    <Skeleton className="w-14 h-14 rounded-full" />
+                    <div className="space-y-2">
+                      <Skeleton className="h-4 w-24" />
+                      <Skeleton className="h-3 w-20" />
+                    </div>
                   </div>
-                </CarouselItem>
-              ))
-            )}
-          </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex" />
-          <CarouselNext className="hidden sm:flex" />
-        </Carousel>
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            displayTestimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                variants={itemVariants}
+                className={`
+                  ${index === 3 ? 'lg:col-start-2' : ''}
+                  ${index > 2 ? 'sm:col-span-1' : 'sm:col-span-1'}
+                  h-full
+                `}
+              >
+                <Card className="h-full rounded-xl shadow-lg transform transition-transform hover:scale-105 bg-card flex flex-col">
+                  <CardContent className="flex flex-col items-center justify-center p-8 text-center flex-grow">
+                    <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                    <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
+                    <div className="flex items-center gap-4">
+                      <Image
+                        src={testimonial.avatarUrl}
+                        alt={testimonial.name}
+                        width={56}
+                        height={56}
+                        className="rounded-full object-cover"
+                      />
+                      <div>
+                        <p className="font-semibold">{testimonial.name}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.relation}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))
+          )}
+        </motion.div>
       </div>
     </section>
   );

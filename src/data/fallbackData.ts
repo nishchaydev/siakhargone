@@ -6,6 +6,8 @@ export const fallbackTestimonials: Testimonial[] = [
     { id: 't1', name: 'Anjali Sharma', relation: 'Parent, Grade 8', quote: 'The holistic approach at SIA has been wonderful for my child\'s development. The teachers are caring and the environment is nurturing.', avatarUrl: 'https://picsum.photos/seed/parent1/100/100' },
     { id: 't2', name: 'Vikram Singh', relation: 'Parent, Grade 5', quote: 'I am impressed with the school\'s focus on both academics and extracurriculars. My son has discovered a love for sports here.', avatarUrl: 'https://picsum.photos/seed/parent2/100/100' },
     { id: 't3', name: 'Priya Mehta', relation: 'Parent, Grade 10', quote: 'The teachers at Sanskar International Academy are incredibly dedicated. They provide personalized attention that has made a huge difference for my daughter.', avatarUrl: 'https://picsum.photos/seed/parent3/100/100' },
+    { id: 't4', name: 'Rohan Gupta', relation: 'Parent, Grade 3', quote: 'The infrastructure and facilities are top-notch. My daughter loves the smart classrooms and the library. It\'s a great place for learning.', avatarUrl: 'https://picsum.photos/seed/parent4/100/100' },
+    { id: 't5', name: 'Sunita Kumar', relation: 'Parent, Grade 12', quote: 'The career counselling and support for senior students is exceptional. The school truly prepares them for the future.', avatarUrl: 'https://picsum.photos/seed/parent5/100/100' },
 ];
 
 export const fallbackHighlights: SchoolHighlight[] = [
