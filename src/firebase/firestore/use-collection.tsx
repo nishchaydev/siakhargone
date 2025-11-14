@@ -12,6 +12,7 @@ import {
   FirestoreError,
   QuerySnapshot,
   Query,
+  CollectionReference,
 } from 'firebase/firestore';
 import { useFirestore } from '@/firebase/provider';
 import { errorEmitter } from '@/firebase/error-emitter';
@@ -59,8 +60,17 @@ export function useCollection<T>(
     }
 
     const collectionRef = typeof target === 'string' ? collection(firestore, target) : target;
-    const collectionPath = typeof target === 'string' ? target : (collectionRef as Query).path;
     
+    // Safely get collection path
+    let collectionPath = '[unknown]';
+    if (typeof target === 'string') {
+        collectionPath = target;
+    } else if (target && (target as CollectionReference).path) {
+        // It might be a CollectionReference passed as a Query
+        collectionPath = (target as CollectionReference).path;
+    }
+
+
     const unsubscribe = onSnapshot(
       collectionRef,
       (snapshot: QuerySnapshot<DocumentData>) => {
