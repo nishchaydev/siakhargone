@@ -1,4 +1,3 @@
-
 'use client'
 import React from 'react'
 import Image from 'next/image'
@@ -28,7 +27,7 @@ const academicTiers: { icon: LucideIcon, title: string, description: string }[] 
 export function Academics() {
   return (
     <section className="relative w-full py-20 bg-muted/30">
-      {/* 🧒 Mocked Student Banner */}
+      {/* Mocked Student Banner */}
       <motion.div 
         className="relative w-full max-w-6xl mx-auto mb-12 rounded-2xl overflow-hidden shadow-lg"
         initial={{ opacity: 0, y: 20 }}
@@ -47,7 +46,7 @@ export function Academics() {
         />
       </motion.div>
 
-      {/* 📚 Section Title */}
+      {/* Section Title */}
       <div className="text-center mb-12 px-6">
         <h2 className="text-4xl md:text-5xl font-semibold text-primary font-headline">
           Our Academic Structure
@@ -57,7 +56,7 @@ export function Academics() {
         </p>
       </div>
 
-      {/* 🏫 Academic Levels */}
+      {/* Academic Levels */}
        <Carousel
           opts={{
             align: "start",
