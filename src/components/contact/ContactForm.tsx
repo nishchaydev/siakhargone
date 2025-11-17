@@ -73,21 +73,21 @@ export function ContactForm({ onFormSuccess }: ContactFormProps) {
     >
       <motion.div variants={itemVariants}>
         <Label htmlFor="name">Full Name</Label>
-        <Input id="name" name="name" placeholder="John Doe" required />
+        <Input id="name" name="name" placeholder="Ramesh Kumar" required />
         {state.errors?.name && (
           <p className="mt-1 text-xs text-destructive">{state.errors.name.join(", ")}</p>
         )}
       </motion.div>
       <motion.div variants={itemVariants}>
         <Label htmlFor="email">Email Address</Label>
-        <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+        <Input id="email" name="email" type="email" placeholder="ramesh@example.com" required />
         {state.errors?.email && (
           <p className="mt-1 text-xs text-destructive">{state.errors.email.join(", ")}</p>
         )}
       </motion.div>
       <motion.div variants={itemVariants}>
         <Label htmlFor="phone">Phone Number (Optional)</Label>
-        <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" />
+        <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" />
         {state.errors?.phone && (
           <p className="mt-1 text-xs text-destructive">{state.errors.phone.join(", ")}</p>
         )}
