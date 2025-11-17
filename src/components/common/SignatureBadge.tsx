@@ -16,7 +16,7 @@ export default function SignatureBadge() {
         "transition-all duration-300 select-none focus:outline-none focus:ring-2 focus:ring-offset-2 "
       }
     >
-      <span style={{lineHeight:1}}>{`Made with ❤️ by Nishchay`}</span>
+      <span style={{lineHeight:1}}>{`Made by Nishchay`}</span>
     </a>
   );
 }
