@@ -161,7 +161,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
             <Image
-              src="/images/logo.png"
+              src="/logosia.png"
               alt="Sia Khargone Logo"
               fill
               className="object-contain"
