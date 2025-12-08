@@ -23,19 +23,33 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
 
                     {/* Main Hero Block (Left - Large) */}
                     <div className="lg:col-span-8 relative shadow-2xl group bg-navy-dark overflow-hidden">
-                        {data.video?.includes("youtube.com") || data.video?.includes("youtu.be") ? (
-                            <iframe
-                                className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-90 blur-[1px]"
-                                src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1`}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                loading="eager"
+                        {/* Mobile Background Image (Replaces Video) */}
+                        <div className="absolute inset-0 w-full h-full md:hidden">
+                            <Image
+                                src={data.grid?.[0] || "https://picsum.photos/seed/hero-top/600/600"}
+                                alt="Hero Background"
+                                fill
+                                className="object-cover opacity-90"
+                                priority
                             />
-                        ) : (
-                            <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 blur-[1px]">
-                                <source src={data.video ?? "/media/hero-loop.mp4"} type="video/mp4" />
-                            </video>
-                        )}
+                        </div>
+
+                        {/* Desktop Video Background */}
+                        <div className="absolute inset-0 w-full h-full hidden md:block">
+                            {data.video?.includes("youtube.com") || data.video?.includes("youtu.be") ? (
+                                <iframe
+                                    className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-90 blur-[1px]"
+                                    src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1`}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    loading="eager"
+                                />
+                            ) : (
+                                <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 blur-[1px]">
+                                    <source src={data.video ?? "/media/hero-loop.mp4"} type="video/mp4" />
+                                </video>
+                            )}
+                        </div>
                         <div className="absolute inset-0 hero-overlay"></div>
                         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-background to-transparent opacity-90"></div>
 
@@ -58,7 +72,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
-                                className="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] drop-shadow-xl text-white"
+                                className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] drop-shadow-xl !text-white"
                                 style={{ textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
                             >
                                 {data.title}
@@ -68,7 +82,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.6 }}
-                                className="mt-8 text-lg md:text-xl text-white/90 max-w-lg mb-10 font-light leading-relaxed"
+                                className="mt-6 md:mt-8 text-base md:text-xl !text-white/90 max-w-lg mb-8 md:mb-10 font-light leading-relaxed"
                             >
                                 {data.subtitle}
                             </motion.p>
@@ -77,16 +91,16 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.6 }}
-                                className="flex flex-wrap items-center gap-6"
+                                className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 w-full"
                             >
-                                <a href={data.cta1Href} className="bg-gold text-navy-dark font-bold px-10 py-4 rounded-full shadow-lg hover:bg-white transition-all transform hover:-translate-y-1">
+                                <a href={data.cta1Href} className="bg-gold text-navy-dark font-bold px-8 py-3 md:px-10 md:py-4 rounded-full shadow-lg hover:bg-white transition-all transform hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">
                                     Enquire Now
                                 </a>
-                                <a href={data.cta2Href} className="flex items-center gap-4 text-white font-medium hover:text-gold transition-colors group">
-                                    <span className="w-14 h-14 rounded-full bg-gold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                        <Play className="w-6 h-6 fill-navy-dark text-navy-dark ml-1" />
+                                <a href={data.cta2Href} className="flex items-center gap-4 text-white font-medium hover:text-gold transition-colors group w-full sm:w-auto justify-center sm:justify-start">
+                                    <span className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                        <Play className="w-5 h-5 md:w-6 md:h-6 fill-navy-dark text-navy-dark ml-1" />
                                     </span>
-                                    <span className="text-lg">Watch Video</span>
+                                    <span className="text-base md:text-lg">Watch Video</span>
                                 </a>
                             </motion.div>
                         </div>
