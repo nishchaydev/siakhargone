@@ -8,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MotionDiv, MotionLi } from '@/components/common/Motion';
 import dynamic from 'next/dynamic';
-import type { SchoolHighlight } from "@/lib/definitions";
 
 const Stats = dynamic(() => import('@/components/home/Stats').then(mod => mod.Stats), {
     loading: () => <Skeleton className="h-[280px] w-full" />,
@@ -32,6 +31,13 @@ const fadeInUp = {
     viewport: { once: true, amount: 0.2 }
 };
 
+interface MessageData {
+    name: string;
+    role: string;
+    message: string;
+    image: string | null;
+}
+
 interface AchievementItem {
     icon: string;
     category: string;
@@ -40,15 +46,13 @@ interface AchievementItem {
 }
 
 interface AboutPageClientProps {
-    principalMessage: SchoolHighlight | null;
-    chairmanMessage: SchoolHighlight | null;
+    principalMessage: MessageData | null;
+    chairmanMessage: MessageData | null;
     achievementItems: AchievementItem[];
     schoolImage: {
-        id: string;
-        description: string;
-        imageUrl: string;
-        imageHint: string;
-    } | undefined;
+        src: string | null;
+        alt: string;
+    } | null;
     isLoading: boolean;
 }
 
@@ -77,13 +81,12 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                         </p>
                     </MotionDiv>
                     <MotionDiv variants={fadeInUp}>
-                        {schoolImage && (
+                        {schoolImage?.src && (
                             <Image
-                                src={schoolImage.imageUrl}
-                                alt="School building and grounds"
+                                src={schoolImage.src}
+                                alt={schoolImage.alt}
                                 width={600} height={400}
                                 className="rounded-lg shadow-lg"
-                                data-ai-hint={schoolImage.imageHint}
                                 priority
                             />
                         )}
@@ -182,14 +185,13 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                             {isLoading || !principalMessage ? (
                                 <Skeleton className="w-full h-full" />
                             ) : (
-                                principalMessage.linkUrl && (
+                                principalMessage.image && (
                                     <Image
-                                        src={principalMessage.linkUrl}
-                                        alt={principalMessage.title}
+                                        src={principalMessage.image}
+                                        alt={principalMessage.name}
                                         width={400}
                                         height={400}
                                         className="w-full h-full object-cover"
-                                        data-ai-hint="woman portrait"
                                     />
                                 )
                             )}
@@ -209,12 +211,12 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                                 <div className="relative">
                                     <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
                                     <p className="text-lg text-muted-foreground italic z-10 relative">
-                                        “{principalMessage.description}”
+                                        “{principalMessage.message}”
                                     </p>
                                 </div>
                                 <div className="pt-2">
-                                    <p className="font-bold text-lg text-primary">{principalMessage.title}</p>
-                                    <p className="text-muted-foreground">Principal, SIA Khargone</p>
+                                    <p className="font-bold text-lg text-primary">{principalMessage.name}</p>
+                                    <p className="text-muted-foreground">{principalMessage.role}</p>
                                 </div>
                             </>
                         )}
@@ -234,14 +236,13 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                             {isLoading || !chairmanMessage ? (
                                 <Skeleton className="w-full h-full" />
                             ) : (
-                                chairmanMessage.linkUrl && (
+                                chairmanMessage.image && (
                                     <Image
-                                        src={chairmanMessage.linkUrl}
-                                        alt={chairmanMessage.title}
+                                        src={chairmanMessage.image}
+                                        alt={chairmanMessage.name}
                                         width={400}
                                         height={400}
                                         className="w-full h-full object-cover"
-                                        data-ai-hint="man portrait suit"
                                     />
                                 )
                             )}
@@ -261,12 +262,12 @@ export default function AboutPageClient({ principalMessage, chairmanMessage, ach
                                 <div className="relative">
                                     <Quote className="absolute -top-4 -left-4 w-12 h-12 text-primary/10" />
                                     <p className="text-lg text-muted-foreground italic z-10 relative">
-                                        “{chairmanMessage.description}”
+                                        “{chairmanMessage.message}”
                                     </p>
                                 </div>
                                 <div className="pt-2">
-                                    <p className="font-bold text-lg text-primary">{chairmanMessage.title}</p>
-                                    <p className="text-muted-foreground">Chairman, SIA Khargone</p>
+                                    <p className="font-bold text-lg text-primary">{chairmanMessage.name}</p>
+                                    <p className="text-muted-foreground">{chairmanMessage.role}</p>
                                 </div>
                             </>
                         )}

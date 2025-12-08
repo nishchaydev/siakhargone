@@ -11,7 +11,9 @@ import { Briefcase, MapPin } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ApplicationForm } from "./ApplicationForm";
 
-import { fallbackJobs } from "@/data/fallbackData";
+// Local fallback data
+const fallbackJobs: Job[] = [];
+// import { fallbackJobs } from "@/data/fallbackData";
 import Image from "next/image";
 
 const containerVariants = {
