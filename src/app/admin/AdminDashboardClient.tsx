@@ -2,11 +2,11 @@
 "use client";
 
 import React from "react";
-import { useUser } from "@/firebase";
 
 export default function AdminDashboardClient() {
-  const { user } = useUser();
-  
+  // Mock user for admin dashboard view
+  const user = { displayName: 'Administrator' };
+
   return (
     <section className="p-8">
       <h2 className="text-3xl font-semibold text-gray-800 mb-4">

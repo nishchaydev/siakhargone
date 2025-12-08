@@ -13,7 +13,8 @@ import { GallerySection } from "@/components/home/GallerySection";
 import { VirtualTourSection } from "@/components/home/VirtualTourSection";
 import dynamic from 'next/dynamic';
 
-const Stats = dynamic(() => import('@/components/home/Stats').then(mod => mod.Stats));
+import { Stats } from "@/components/home/Stats";
+// const Stats = dynamic(() => import('@/components/home/Stats').then(mod => mod.Stats));
 const Testimonials = dynamic(() => import('@/components/home/Testimonials').then(mod => mod.Testimonials));
 const LocationSection = dynamic(() => import('@/components/home/LocationSection').then(mod => mod.LocationSection));
 

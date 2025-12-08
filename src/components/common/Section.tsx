@@ -40,8 +40,8 @@ export function Section({ id, title, subtitle, children, bgColor = 'bg-backgroun
       controls.start("visible");
     }
   }, [controls, inView]);
-  
-  const sectionPadding = isFirstSection ? "pt-16 md:pt-24 pb-16 md:pb-24" : "py-16 md:py-24";
+
+  const sectionPadding = isFirstSection ? "pt-20 md:pt-32 pb-24 md:pb-32" : "py-24 md:py-32";
 
   return (
     <motion.section
@@ -54,9 +54,9 @@ export function Section({ id, title, subtitle, children, bgColor = 'bg-backgroun
     >
       <div className="max-w-7xl mx-auto">
         {(title || subtitle) && (
-          <div className="text-center mb-12">
+          <div className="text-center mb-16 md:mb-20">
             {title && (
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline text-primary">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl font-headline text-primary">
                 {title}
               </h2>
             )}

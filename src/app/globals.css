@@ -1,30 +1,36 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 37 67% 97%; /* #FFFBF4 */
-    --foreground: 28 29% 12%; /* #2B2118 */
-    --card: 36 60% 98%; /* #FFF9F2 */
-    --card-foreground: 28 29% 12%;
-    --popover: 36 60% 98%;
-    --popover-foreground: 28 29% 12%;
-    --primary: 30 38% 39%; /* #8B5E3C */
-    --primary-foreground: 30 60% 98%;
-    --secondary: 30 20% 90%;
-    --secondary-foreground: 28 29% 12%;
-    --muted: 30 20% 90%;
-    --muted-foreground: 26 30% 28%; /* #5C4330 */
-    --accent: 41 90% 50%; /* #E4A11B */
-    --accent-foreground: 28 29% 12%;
+    --background: 0 0% 100%;
+    /* #FFFFFF - Keeping white as base, using bg-cream for sections */
+    --foreground: 217 55% 13%;
+    /* #0F1E34 (Royal Blue Dark) as text base */
+    --card: 0 0% 100%;
+    --card-foreground: 217 55% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 55% 13%;
+    --primary: 217 63% 28%;
+    /* #1A3C73 (Royal Blue) */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 46 65% 52%;
+    /* #D4AF37 (Gold) */
+    --secondary-foreground: 217 55% 13%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 46 65% 52%;
+    /* #D4AF37 (Gold) */
+    --accent-foreground: 217 55% 13%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 35 44% 83%; /* #E6D7C2 */
-    --input: 35 44% 83%;
-    --ring: 30 38% 39%;
-    --radius: 1.5rem; /* 24px */
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 26 91% 54%;
+    /* Orange ring */
+    --radius: 1.5rem;
+    /* 24px */
   }
 
   .dark {
@@ -55,29 +61,49 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  .section-alt {
+    @apply bg-gray-50;
+  }
+
+  /* Utility for extra spacing if not using Section component everywhere */
+  .section-spacing {
+    @apply py-24 md:py-32;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-headline;
   }
 }
 
 @layer components {
-    .title-underline {
-        @apply relative pb-2;
-    }
-    .title-underline::after {
-        content: '';
-        @apply absolute bottom-0 left-0 h-1 w-16 bg-accent;
-        transition: width 0.3s ease-in-out;
-    }
-    .group:hover .title-underline::after, .title-underline-hover:hover::after {
-        @apply w-24;
-    }
-    .sr-only {
-      @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
-      clip: rect(0, 0, 0, 0);
-    }
+  .title-underline {
+    @apply relative pb-2;
+  }
+
+  .title-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-1 w-16 bg-accent;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .group:hover .title-underline::after,
+  .title-underline-hover:hover::after {
+    @apply w-24;
+  }
+
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
 }

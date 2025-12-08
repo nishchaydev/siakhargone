@@ -1,9 +1,7 @@
-
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { Phone, Mail, MapPin, Facebook, Instagram, User, Briefcase } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, User, Youtube } from "lucide-react";
 import { motion } from "framer-motion";
 
 const footerVariants = {
@@ -26,8 +24,8 @@ const itemVariants = {
 
 export default function Footer() {
   return (
-    <motion.footer 
-      className="bg-[#2E1C11] text-[#FFFBF4]"
+    <motion.footer
+      className="bg-royalBlue-dark text-white"
       variants={footerVariants}
       initial="hidden"
       whileInView="visible"
@@ -36,8 +34,8 @@ export default function Footer() {
       <div className="container mx-auto max-w-7xl px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <motion.div variants={itemVariants} className="md:col-span-1">
-             <div className="flex items-center gap-3 mb-4">
-                <span className="text-xl font-bold text-white font-headline">Sanskar International Academy</span>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xl font-bold text-white font-headline">Sanskar International Academy</span>
             </div>
             <p className="text-sm text-gray-300">
               Where knowledge, values, and culture unite.
@@ -54,20 +52,20 @@ export default function Footer() {
               <li><Link href="/careers" className="text-gray-300 hover:text-accent transition-colors">Careers</Link></li>
             </ul>
           </motion.div>
-          
+
           <motion.div variants={itemVariants}>
             <h3 className="font-bold text-lg text-white mb-4">Contact</h3>
-             <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
-                <Phone className="h-5 w-5 mt-1 text-accent shrink-0"/>
+                <Phone className="h-5 w-5 mt-1 text-accent shrink-0" />
                 <a href="tel:+917049110104" className="text-gray-300 hover:text-accent transition-colors">+91 70491 10104</a>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="h-5 w-5 mt-1 text-accent shrink-0"/>
+                <Mail className="h-5 w-5 mt-1 text-accent shrink-0" />
                 <a href="mailto:info@siakhargone.in" className="text-gray-300 hover:text-accent transition-colors">info@siakhargone.in</a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 mt-1 text-accent shrink-0"/>
+                <MapPin className="h-5 w-5 mt-1 text-accent shrink-0" />
                 <span className="text-gray-300">Khargone, Madhya Pradesh</span>
               </li>
             </ul>
@@ -80,21 +78,25 @@ export default function Footer() {
                 <span className="sr-only">Follow us on Facebook</span>
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="https://instagram.com/siakhargone" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-accent transition-colors">
+              <a href="https://www.instagram.com/sanskarinternationalacademy/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-accent transition-colors">
                 <span className="sr-only">Follow us on Instagram</span>
                 <Instagram className="h-6 w-6" />
               </a>
+              <a href="https://www.youtube.com/@sanskarinternationalacademy02" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-accent transition-colors">
+                <span className="sr-only">Subscribe to our YouTube Channel</span>
+                <Youtube className="h-6 w-6" />
+              </a>
             </div>
           </motion.div>
-        </div>
 
-        <div className="mt-12 border-t border-primary/50 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-          <p>© {new Date().getFullYear()} Sanskar International Academy. All Rights Reserved.</p>
-          <div className="mt-4 md:mt-0">
-             <Link href="/admin" className="text-gray-400 hover:text-accent transition-colors flex items-center gap-2">
+          <div className="mt-12 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <p>© {new Date().getFullYear()} Sanskar International Academy. All Rights Reserved.</p>
+            <div className="mt-4 md:mt-0">
+              <Link href="/admin" className="text-gray-400 hover:text-accent transition-colors flex items-center gap-2">
                 <User className="h-4 w-4" />
                 Admin Login
               </Link>
+            </div>
           </div>
         </div>
       </div>
