@@ -55,7 +55,7 @@ export function AchievementsSection() {
       >
         {achievements.map((achievement, index) => (
           <motion.div key={index} variants={itemVariants}>
-            <Card className="flex flex-col h-full bg-white rounded-lg overflow-hidden shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div className="card-premium flex flex-col h-full transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <div className="relative w-full aspect-[4/3]">
                 <Image
                   src={achievement.image}
@@ -73,7 +73,7 @@ export function AchievementsSection() {
                   READ MORE
                 </Link>
               </CardContent>
-            </Card>
+            </div>
           </motion.div>
         ))}
       </motion.div>

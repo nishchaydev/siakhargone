@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -16,15 +15,13 @@ export default function GalleryPageClient() {
   // Use mock data directly since Firebase is removed
   const galleryImages = mockGalleryImages;
   const isLoading = false;
-
   const imagesToShow = galleryImages;
 
-
   return (
-    <>
+    <div className="bg-grain min-h-screen">
       <div className="pt-[70px]">
-        <section className="bg-muted py-12">
-          <div className="container mx-auto max-w-7xl px-4 text-center">
+        <section className="bg-cream py-20 text-center">
+          <div className="container mx-auto max-w-7xl px-4">
             <motion.h1
               className="text-4xl font-bold md:text-5xl font-headline"
               initial={{ opacity: 0, y: -20 }}
@@ -43,10 +40,10 @@ export default function GalleryPageClient() {
             </motion.p>
           </div>
         </section>
-        <section className="py-16 md:py-24">
+        <section className="py-28 md:py-32">
           <div className="container mx-auto max-w-7xl px-4">
             <motion.div
-              className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4"
+              className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4"
               variants={{
                 visible: { transition: { staggerChildren: 0.1 } }
               }}
@@ -61,7 +58,7 @@ export default function GalleryPageClient() {
                 imagesToShow.map((image) => (
                   <motion.div
                     key={image.id}
-                    className="mb-4 break-inside-avoid"
+                    className="mb-6 break-inside-avoid"
                     variants={{
                       hidden: { opacity: 0, y: 20 },
                       visible: { opacity: 1, y: 0 }
@@ -69,7 +66,7 @@ export default function GalleryPageClient() {
                     layoutId={`card-${image.id}`}
                   >
                     <Card
-                      className="overflow-hidden transition-shadow duration-300 hover:shadow-xl cursor-pointer"
+                      className="card-premium cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
                       onClick={() => setSelectedImage(image)}
                     >
                       <CardContent className="p-0">
@@ -145,6 +142,6 @@ export default function GalleryPageClient() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }

@@ -20,6 +20,7 @@ export default {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         headline: ['var(--font-playfair-display)', 'serif'],
+        display: ['var(--font-playfair-display)', 'serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -27,6 +28,12 @@ export default {
         royalBlue: {
           DEFAULT: "#1A3C73",
           dark: "#0F1E34",
+        },
+        "royal-blue": {
+          DEFAULT: "#1A3C73",
+        },
+        "royal-blue-dark": {
+          DEFAULT: "#0F1E34",
         },
         orange: {
           DEFAULT: "#F47A1F",

@@ -41,7 +41,7 @@ export function Section({ id, title, subtitle, children, bgColor = 'bg-backgroun
     }
   }, [controls, inView]);
 
-  const sectionPadding = isFirstSection ? "pt-20 md:pt-32 pb-24 md:pb-32" : "py-24 md:py-32";
+  const sectionPadding = isFirstSection ? "pt-32 md:pt-40 pb-28 md:pb-32" : "py-28 md:py-32";
 
   return (
     <motion.section

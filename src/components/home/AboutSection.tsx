@@ -15,9 +15,9 @@ const fadeInUp = {
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-16 md:py-24 bg-white">
+    <section id="about" className="py-28 md:py-32 bg-white">
       <div className="container mx-auto max-w-7xl px-4">
-        <motion.div 
+        <motion.div
           className="grid md:grid-cols-2 gap-12 items-center"
           initial="initial"
           whileInView="whileInView"
@@ -38,7 +38,7 @@ export function AboutSection() {
               About Sanskar International Academy
             </h2>
             <p className="text-lg text-muted-foreground">
-             Established with a dream to provide world-class education rooted in Indian values, Sanskar International Academy has grown into a nurturing space where young minds discover purpose, confidence, and compassion.
+              Established with a dream to provide world-class education rooted in Indian values, Sanskar International Academy has grown into a nurturing space where young minds discover purpose, confidence, and compassion.
             </p>
             <p className="text-muted-foreground">
               Our approach blends academics with experiential learning — combining classroom rigor with creativity, sportsmanship, and moral education. We aim to cultivate not just toppers, but thinkers and leaders guided by empathy and ethics.
@@ -55,4 +55,3 @@ export function AboutSection() {
   );
 }
 
-    

@@ -122,6 +122,21 @@ export const fallbackJobs: Job[] = [
     }
 ];
 
+export const fallbackHeroData = {
+    title: "Nurturing Values, Igniting Minds — SIA",
+    subtitle: "Where education meets excellence.",
+    sanskrit: "विद्या ददाति विनयंम्",
+    video: "/Video/children-running.mp4",
+    cta1Href: "/contact",
+    cta2Href: "/gallery",
+    grid: [
+        "https://picsum.photos/seed/hero1/600/400",
+        "https://picsum.photos/seed/hero2/600/400",
+        "https://picsum.photos/seed/hero3/600/400",
+        "https://picsum.photos/seed/hero4/600/400"
+    ]
+};
+
 export const mockGalleryImages: GalleryImage[] = placeholderData.placeholderImages.map(image => ({
     id: image.id,
     imageUrl: image.imageUrl,

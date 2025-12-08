@@ -1,44 +1,54 @@
 
-"use client";
 
-import { fallbackHighlights, fallbackTestimonials, fallbackPrincipalMessage, fallbackChairmanMessage } from "@/data/fallbackData";
-import { HeroSection } from "@/components/home/HeroSection";
-import { AboutSection } from "@/components/home/AboutSection";
-import { PrincipalMessage } from "@/components/home/PrincipalMessage";
-import { ChairmanMessage } from "@/components/home/ChairmanMessage";
+import { fallbackHighlights, fallbackTestimonials, fallbackPrincipalMessage, fallbackChairmanMessage, fallbackHeroData } from "@/data/fallbackData";
+import HeroSection from "@/components/sections/HeroSection";
+import { WhyChoose } from "@/components/home/WhyChoose";
+import { CampusFacilities } from "@/components/home/CampusFacilities";
+import { CTASection } from "@/components/home/CTASection";
 import { Academics } from "@/components/home/Academics";
-import { Highlights } from "@/components/home/Highlights";
-import { AchievementsSection } from "@/components/home/AchievementsSection";
 import { GallerySection } from "@/components/home/GallerySection";
-import { VirtualTourSection } from "@/components/home/VirtualTourSection";
-import dynamic from 'next/dynamic';
-
-import { Stats } from "@/components/home/Stats";
-// const Stats = dynamic(() => import('@/components/home/Stats').then(mod => mod.Stats));
+import { AchievementsSection } from "@/components/home/AchievementsSection";
 import { Testimonials } from "@/components/home/Testimonials";
-import { LocationSection } from "@/components/home/LocationSection";
 
 
-export default function Home() {
+// Data fetching function
+async function getHomepageData() {
+  const res = await fetch('http://localhost:3000/api/cms/homepage', { cache: 'no-store' });
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    console.error('Failed to fetch data');
+    return {
+      hero: fallbackHeroData,
+      stats: []
+    }
+  }
+  return res.json();
+}
+
+export default async function Home() {
   const principalMessage = fallbackPrincipalMessage[0];
   const chairmanMessage = fallbackChairmanMessage[0];
   const displayHighlights = fallbackHighlights;
   const displayTestimonials = fallbackTestimonials;
 
+  // Fetch data
+  let cmsData;
+  try {
+    cmsData = await getHomepageData();
+  } catch (e) {
+    cmsData = { hero: fallbackHeroData, stats: [] };
+  }
+
   return (
     <>
-      <HeroSection />
-      <AboutSection />
-      <PrincipalMessage principalMessage={principalMessage} />
-      <ChairmanMessage chairmanMessage={chairmanMessage} />
+      <HeroSection data={cmsData.hero} stats={cmsData.stats} />
+      <WhyChoose />
+      <CampusFacilities />
       <Academics />
-      <Highlights highlights={displayHighlights} isLoading={false} />
       <AchievementsSection />
-      <GallerySection />
-      <VirtualTourSection />
-      <Stats />
+      <GallerySection images={cmsData.gallery} />
       <Testimonials testimonials={displayTestimonials} isLoading={false} />
-      <LocationSection />
+      <CTASection />
     </>
   );
 }

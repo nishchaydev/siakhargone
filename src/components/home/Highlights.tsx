@@ -15,13 +15,13 @@ interface HighlightsProps {
 
 export function Highlights({ highlights, isLoading }: HighlightsProps) {
 
-  const displayData = highlights.filter(h => h.icon === 'carousel').sort((a,b) => (a.order || 0) - (b.order || 0));
+  const displayData = highlights.filter(h => h.icon === 'carousel').sort((a, b) => (a.order || 0) - (b.order || 0));
   const slides = [...displayData, ...displayData];
 
   return (
-    <section id="highlights" className="py-16 md:py-24 bg-white overflow-hidden">
+    <section id="highlights" className="py-28 md:py-32 bg-white overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,12 +34,12 @@ export function Highlights({ highlights, isLoading }: HighlightsProps) {
           </p>
         </motion.div>
 
-        <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="group"
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="group"
         >
           <div
             className="relative w-full overflow-hidden"
@@ -77,18 +77,18 @@ export function Highlights({ highlights, isLoading }: HighlightsProps) {
           </div>
         </motion.div>
 
-        <motion.div 
-            className="mt-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-            <Button asChild size="lg">
-                <Link href="/about#highlights">View All Highlights</Link>
-            </Button>
+          <Button asChild size="lg">
+            <Link href="/about#highlights">View All Highlights</Link>
+          </Button>
         </motion.div>
-        
+
       </div>
     </section>
   );

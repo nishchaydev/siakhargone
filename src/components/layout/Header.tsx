@@ -153,12 +153,12 @@ export default function Header() {
         "fixed top-0 left-0 right-0 z-50 transition-transform duration-300 backdrop-blur-md",
         isVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
-          ? "bg-royalBlue/95 border-b border-white/10 shadow-sm py-3"
-          : "bg-royalBlue text-white py-5"
+          ? "bg-royal-blue/95 border-b border-white/10 shadow-sm py-3"
+          : "bg-royal-blue text-white py-5"
       )}
     >
       <TopBar isTransparent={false} />
-      <div className="container mx-auto flex h-[70px] max-w-[1400px] items-center justify-between px-6">
+      <div className="container mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
             <Image
@@ -169,9 +169,10 @@ export default function Header() {
               priority
             />
           </div>
-          <span className={cn("font-bold font-headline text-xl", "text-white")}>
-            Sanskar International Academy
-          </span>
+          <div className="flex flex-col justify-center">
+            <span className="font-display font-bold text-2xl leading-none tracking-wide text-white">SANSKAR</span>
+            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/80">International School</span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
