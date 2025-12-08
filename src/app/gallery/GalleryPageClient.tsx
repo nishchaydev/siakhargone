@@ -3,142 +3,157 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import type { GalleryImage } from "@/lib/definitions";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useState } from "react";
-import { X } from "lucide-react";
-import { mockGalleryImages } from "@/data/fallbackData";
+import { useState, useMemo } from "react";
+import { X, Search } from "lucide-react";
 
-export default function GalleryPageClient() {
+// Types
+import { GalleryImage } from "@/lib/definitions";
+
+// Extend GalleryImage to support category if mapped, or we default to 'All'
+// We will assume the API maps 'description' or 'imageHint' to category, 
+// or we will infer it. Given the current Strapi setup, 'description' was mapped to 'albumName'.
+// So we can use 'description' as the Category.
+
+interface GalleryPageClientProps {
+  initialImages?: GalleryImage[];
+}
+
+const CATEGORIES = ["All", "Campus", "Classrooms", "Labs & Facilities", "Sports", "Events", "Celebrations"];
+
+export default function GalleryPageClient({ initialImages = [] }: GalleryPageClientProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [activeCategory, setActiveCategory] = useState("All");
 
-  // Use mock data directly since Firebase is removed
-  const galleryImages = mockGalleryImages;
-  const isLoading = false;
-  const imagesToShow = galleryImages;
+  // Filter logic
+  const filteredImages = useMemo(() => {
+    if (activeCategory === "All") return initialImages;
+    // We assume 'description' holds the Album Name (Category) based on previous mapping
+    return initialImages.filter(img =>
+      img.description?.toLowerCase().includes(activeCategory.toLowerCase()) ||
+      img.imageHint?.toLowerCase().includes(activeCategory.toLowerCase())
+    );
+  }, [activeCategory, initialImages]);
 
   return (
-    <div className="bg-grain min-h-screen">
-      <div className="pt-[70px]">
-        <section className="bg-cream py-20 text-center">
-          <div className="container mx-auto max-w-7xl px-4">
-            <motion.h1
-              className="text-4xl font-bold md:text-5xl font-headline"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Our Gallery
-            </motion.h1>
-            <motion.p
-              className="mt-2 text-lg text-muted-foreground"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Explore moments of learning, creativity, and joy at SIA Khargone.
-            </motion.p>
-          </div>
-        </section>
-        <section className="py-28 md:py-32">
-          <div className="container mx-auto max-w-7xl px-4">
-            <motion.div
-              className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4"
-              variants={{
-                visible: { transition: { staggerChildren: 0.1 } }
-              }}
-              initial="hidden"
-              animate="visible"
-            >
-              {isLoading && imagesToShow.length === 0 ? (
-                Array.from({ length: 12 }).map((_, i) => (
-                  <Skeleton key={i} className="h-64 w-full mb-4 rounded-lg" />
-                ))
-              ) : (
-                imagesToShow.map((image) => (
-                  <motion.div
-                    key={image.id}
-                    className="mb-6 break-inside-avoid"
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { opacity: 1, y: 0 }
-                    }}
-                    layoutId={`card-${image.id}`}
-                  >
-                    <Card
-                      className="card-premium cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
-                      onClick={() => setSelectedImage(image)}
-                    >
-                      <CardContent className="p-0">
-                        <motion.div
-                          className="relative h-auto w-full aspect-auto"
-                          layoutId={`image-${image.id}`}
-                        >
-                          <Image
-                            src={image.imageUrl}
-                            alt={image.description || 'Gallery image'}
-                            data-ai-hint={image.imageHint || 'school life'}
-                            width={400}
-                            height={500}
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="object-cover w-full h-auto"
-                          />
-                        </motion.div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))
-              )}
-            </motion.div>
-          </div>
-        </section>
-      </div>
+    <div className="bg-white min-h-screen font-sans">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
+        <div className="absolute inset-0 bg-navy/50 z-10" />
+        {/* Placeholder Hero Image - using the school image if available or a generic one */}
+        <Image
+          src="https://placehold.co/1920x1080/0C2E53/FFF?text=School+Gallery"
+          alt="School Gallery Hero"
+          fill
+          className="absolute inset-0 object-cover"
+        />
+        <div className="relative z-20 px-4">
+          <h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-4">School Gallery</h1>
+          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
+            Explore campus life, events, facilities, and the vibrant moments that define Sanskar International Academy.
+          </p>
+        </div>
+      </section>
 
+      {/* Filter Tabs */}
+      <section className="py-10 container mx-auto px-4 sticky top-[70px] z-30 bg-white/95 backdrop-blur shadow-sm">
+        <div className="flex flex-wrap justify-center gap-3">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${activeCategory === cat
+                  ? "bg-navy text-white shadow-md transform scale-105"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Gallery Grid */}
+      <section className="pb-20 container mx-auto px-4">
+        {filteredImages.length === 0 ? (
+          <div className="text-center py-20 text-gray-500">
+            <p>No photos found in this category.</p>
+          </div>
+        ) : (
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <AnimatePresence>
+              {filteredImages.map((image) => (
+                <motion.div
+                  layout
+                  key={image.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all"
+                  onClick={() => setSelectedImage(image)}
+                >
+                  <Image
+                    src={image.imageUrl}
+                    alt={image.description || "Gallery Image"}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-gold-accent/90 text-white p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <Search size={24} />
+                      <span className="sr-only">View</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* Load More Button (Mock) */}
+        <div className="text-center mt-12">
+          <button className="bg-navy text-white px-8 py-3 rounded-lg font-semibold hover:bg-navy-dark transition-colors flex items-center mx-auto gap-2">
+            Load More Photos
+            <span className="text-xl">↓</span>
+          </button>
+        </div>
+      </section>
+
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm"
             onClick={() => setSelectedImage(null)}
           >
+            <button className="absolute top-6 right-6 text-white hover:text-gold-accent transition-colors">
+              <X size={32} />
+            </button>
             <motion.div
-              className="relative max-w-4xl max-h-[90vh] w-full"
-              layoutId={`card-${selectedImage.id}`}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on image
+              layoutId={`image-${selectedImage.id}`} // Optional layoutId if mapped correctly
+              className="relative max-w-5xl w-full h-[80vh]"
+              onClick={(e) => e.stopPropagation()}
             >
-              <motion.div
-                className="relative aspect-video w-full"
-                layoutId={`image-${selectedImage.id}`}
-              >
-                <Image
-                  src={selectedImage.imageUrl}
-                  alt={selectedImage.description || 'Selected gallery image'}
-                  fill
-                  className="object-contain"
-                />
-              </motion.div>
+              <Image
+                src={selectedImage.imageUrl}
+                alt={selectedImage.description || "Selected"}
+                fill
+                className="object-contain"
+              />
               {selectedImage.description && (
-                <motion.p
-                  className="text-white text-center mt-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
+                <div className="absolute bottom-4 left-0 right-0 text-center text-white bg-black/50 p-2 rounded">
                   {selectedImage.description}
-                </motion.p>
+                </div>
               )}
             </motion.div>
-            <motion.button
-              className="absolute top-4 right-4 text-white/80 hover:text-white"
-              onClick={() => setSelectedImage(null)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <X size={32} />
-            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>

@@ -44,6 +44,10 @@ export default {
         cardBorder: {
           DEFAULT: 'rgba(0,0,0,0.06)',
         },
+        'royal-blue': '#0D2F81',
+        'gold-accent': '#D4B05D',
+        'light-gold': '#E2C67E',
+        'light-grey': '#F7F8FA',
 
 
 

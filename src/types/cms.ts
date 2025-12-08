@@ -1,72 +1,108 @@
-export type StrapiImage = {
-    url: string;
-    width: number;
-    height: number;
-    alternativeText?: string;
-};
+export interface StrapiImage {
+    data: {
+        attributes: {
+            url: string;
+            alternativeText?: string;
+            width: number;
+            height: number;
+        };
+    } | null;
+}
 
-export type HeroSection = {
-    title: string;
-    subtitle: string;
-    sanskrit: string;
-    video: StrapiImage | string; // URL string for mock, StrapiImage object for real
-    grid: (StrapiImage | string)[];
-    cta1Href: string;
-    cta2Href: string;
-};
+export interface StrapiResponse<T> {
+    data: {
+        id: number;
+        attributes: T;
+    };
+    meta: any;
+}
 
-export type StatItem = {
+export interface StrapiArrayResponse<T> {
+    data: {
+        id: number;
+        attributes: T;
+    }[];
+    meta: any;
+}
+
+export interface ComponentStats {
+    id: number;
     label: string;
     value: string;
-};
+}
 
-export type WhyChooseItem = {
+export interface ComponentBentoTile {
+    id: number;
     title: string;
-    desc: string;
-    icon: string;
-};
+    subtitle: string;
+    media: StrapiImage;
+}
 
-export type HomepageData = {
-    hero: HeroSection;
-    stats: StatItem[];
-    whyChoose: WhyChooseItem[];
-};
+// Content Types
+export interface Homepage {
+    heroTitle: string;
+    heroSubtitleHindi: string;
+    heroDescription: string;
+    heroVideo: StrapiImage;
+    stats: ComponentStats[];
+    bentoTiles: ComponentBentoTile[];
+}
 
-export type GalleryItem = {
-    title: string;
-    category: string;
-    caption?: string;
-    images: (StrapiImage | string)[];
-};
+export interface AboutPage {
+    heading: string;
+    description: string; // rich text
+    mainImage: StrapiImage;
+}
 
-export type NoticeItem = {
-    id: string;
-    title: string;
-    date: string;
-    content: string; // Rich text HTML/Markdown
-    attachments?: (StrapiImage | string)[];
-};
+export interface VisionMission {
+    vision: string;
+    mission: string;
+}
 
-export type FacultyItem = {
+export interface Message {
     name: string;
     designation: string;
-    bio: string;
-    subjects: string;
-    photo: StrapiImage | string;
-};
+    photo: StrapiImage;
+    messageText: string;
+}
 
-export type TestimonialItem = {
-    name: string;
-    relation: string;
-    text: string;
-    rating: number;
-    photo?: StrapiImage | string;
-    video?: StrapiImage | string;
-};
+export interface AcademicStage {
+    stageName: 'Pre-Primary' | 'Primary' | 'Secondary';
+    description: string;
+    image: StrapiImage;
+}
 
-export type AdmissionData = {
-    processSteps: { title: string; description: string }[];
-    prospectus?: StrapiImage | string;
-    feesPdf?: StrapiImage | string;
-    faqs: { question: string; answer: string }[];
-};
+export interface Album {
+    albumName: string;
+    description: string;
+    coverPhoto: StrapiImage;
+    photos: {
+        data: {
+            attributes: {
+                url: string;
+            };
+        }[];
+    };
+}
+
+export interface Certificate {
+    title: string;
+    pdfFile: {
+        data: {
+            attributes: {
+                url: string;
+            };
+        };
+    };
+}
+
+export interface DownloadItem {
+    title: string;
+    file: {
+        data: {
+            attributes: {
+                url: string;
+            };
+        };
+    };
+}
