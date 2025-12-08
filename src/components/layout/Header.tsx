@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import schoolLogo from "@/assets/school-logo.png";
 import * as React from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -161,7 +162,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
             <Image
-              src="/school-logo.png"
+              src={schoolLogo}
               alt="Sia Khargone Logo"
               fill
               className="object-contain"
