@@ -29,9 +29,10 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1`}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
+                                loading="eager"
                             />
                         ) : (
-                            <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 blur-[1px]">
+                            <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 blur-[1px]">
                                 <source src={data.video ?? "/media/hero-loop.mp4"} type="video/mp4" />
                             </video>
                         )}
@@ -56,9 +57,9 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.1 }}
-                                className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-xl"
-                                style={{ textShadow: "0 6px 24px rgba(12,46,83,0.35)" }}
+                                transition={{ duration: 0.5 }}
+                                className="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] drop-shadow-xl"
+                                style={{ textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
                             >
                                 {data.title}
                             </motion.h1>
@@ -67,7 +68,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.6 }}
-                                className="mt-6 text-lg md:text-xl text-white/90 max-w-lg mb-8"
+                                className="mt-8 text-lg md:text-xl text-white/90 max-w-lg mb-10 font-light leading-relaxed"
                             >
                                 {data.subtitle}
                             </motion.p>
@@ -76,16 +77,16 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.6 }}
-                                className="flex flex-wrap gap-4"
+                                className="flex flex-wrap items-center gap-6"
                             >
-                                <a href={data.cta1Href} className="bg-siaOrange text-white font-bold px-8 py-3.5 rounded-full shadow-lg hover:bg-siaOrange/90 transition-all transform hover:-translate-y-1">
+                                <a href={data.cta1Href} className="bg-gold text-navy-dark font-bold px-10 py-4 rounded-full shadow-lg hover:bg-white transition-all transform hover:-translate-y-1">
                                     Enquire Now
                                 </a>
-                                <a href={data.cta2Href} className="flex items-center gap-3 text-white font-medium hover:text-gold transition-colors px-4 py-3 group">
-                                    <span className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 group-hover:bg-gold grp-hover:border-gold transition-all duration-300">
-                                        <Play className="w-5 h-5 fill-white group-hover:fill-navy-dark transition-colors" />
+                                <a href={data.cta2Href} className="flex items-center gap-4 text-white font-medium hover:text-gold transition-colors group">
+                                    <span className="w-14 h-14 rounded-full bg-gold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                        <Play className="w-6 h-6 fill-navy-dark text-navy-dark ml-1" />
                                     </span>
-                                    Watch Video
+                                    <span className="text-lg">Watch Video</span>
                                 </a>
                             </motion.div>
                         </div>
@@ -100,6 +101,8 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 src={data.grid?.[0] || "https://picsum.photos/seed/hero-top/600/600"}
                                 alt="Students interacting"
                                 fill
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 33vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -114,6 +117,8 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 src={data.grid?.[2] || "https://picsum.photos/seed/hero-bot/600/600"}
                                 alt="Sports activity"
                                 fill
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 33vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
