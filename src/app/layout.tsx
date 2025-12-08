@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Chatbot from '@/components/chatbot/Chatbot';
-import { FirebaseClientProvider } from '@/firebase/client-provider';
+
 import MobileCtaBar from '@/components/layout/MobileCtaBar';
 import ScrollToTop from '@/components/common/ScrollToTop';
 import SignatureBadge from "@/components/common/SignatureBadge";
@@ -73,20 +73,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfairDisplay.variable} !scroll-smooth`}>
       <head>
-          <meta name="theme-color" content="#1E3A8A" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+        <meta name="theme-color" content="#1E3A8A" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       </head>
       <body className="bg-background text-foreground antialiased">
-        <FirebaseClientProvider>
-            <ScrollToTop />
-            <Header />
-            <main className="pt-[114px]">{children}</main>
-            <Footer />
-            <MobileCtaBar />
-            <Chatbot />
-            <Toaster />
-            <SignatureBadge />
-        </FirebaseClientProvider>
+        <ScrollToTop />
+        <Header />
+        <main className="pt-[114px]">{children}</main>
+        <Footer />
+        <MobileCtaBar />
+        <Chatbot />
+        <Toaster />
+        <SignatureBadge />
         <SpeedInsights />
       </body>
     </html>

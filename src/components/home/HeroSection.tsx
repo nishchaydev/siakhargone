@@ -9,10 +9,10 @@ export function HeroSection() {
     <HeroVideo
       cta={
         <>
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="text-lg px-8 py-6 h-auto shadow-xl hover:translate-y-[-2px] transition-all">
             <Link href="/admissions">Enquire Now</Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10 hover:text-white">
+          <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 h-auto border-2 border-white/80 bg-white/5 text-white hover:bg-white hover:text-royalBlue transition-all">
             <Link href="/virtual-tour">Virtual Tour</Link>
           </Button>
         </>

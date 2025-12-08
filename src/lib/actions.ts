@@ -1,10 +1,6 @@
-
 "use server";
 
 import { z } from "zod";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { initializeFirebase } from "@/firebase";
-import { FirestorePermissionError, errorEmitter } from "@/firebase";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -43,35 +39,11 @@ export async function handleContactForm(
     };
   }
 
-  try {
-    const { firestore } = initializeFirebase();
-    const submissionsCollection = collection(firestore, "contactFormSubmissions");
-    
-    const submissionData = {
-      ...validatedFields.data,
-      query: validatedFields.data.message, // Map message to query to match schema
-      submissionDate: serverTimestamp(),
-    };
+  // Mock successful submission
+  console.log("Contact form submitted (Mock):", validatedFields.data);
 
-    // Non-blocking write
-    addDoc(submissionsCollection, submissionData).catch(serverError => {
-       // Emit the error to the global handler instead of throwing
-      errorEmitter.emit('permission-error', new FirestorePermissionError({
-        path: submissionsCollection.path,
-        operation: 'create',
-        requestResourceData: submissionData,
-      }));
-    });
-
-    return {
-      message: "Thank you for your message! We will get back to you shortly.",
-      isSuccess: true,
-    };
-  } catch (error) {
-    console.error("Error submitting contact form:", error);
-    return {
-      message: "An unexpected error occurred. Please try again later.",
-      isSuccess: false,
-    };
-  }
+  return {
+    message: "Thank you for your message! We will get back to you shortly.",
+    isSuccess: true,
+  };
 }

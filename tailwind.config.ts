@@ -1,5 +1,5 @@
 
-import type {Config} from 'tailwindcss';
+import type { Config } from 'tailwindcss';
 
 export default {
   darkMode: ['class'],
@@ -24,6 +24,27 @@ export default {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        royalBlue: {
+          DEFAULT: "#1A3C73",
+          dark: "#0F1E34",
+        },
+        orange: {
+          DEFAULT: "#F47A1F",
+        },
+        gold: {
+          DEFAULT: "#D4AF37",
+        },
+        cream: {
+          DEFAULT: "#F8F5F2",
+        },
+        // Mapped legacy names to new palette
+        navy: {
+          DEFAULT: "#1A3C73",
+          dark: "#0F1E34",
+        },
+        yellow: {
+          DEFAULT: "#D4AF37",
+        },
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

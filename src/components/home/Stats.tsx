@@ -33,7 +33,7 @@ export function Stats() {
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
-    <section className="bg-primary text-primary-foreground py-16 md:py-24">
+    <section className="bg-primary text-primary-foreground py-24 md:py-32">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           className="text-center mb-12"
@@ -58,7 +58,7 @@ export function Stats() {
             return (
               <motion.div key={index} variants={itemVariants}>
                 <div className="flex justify-center mb-4">
-                  <motion.div 
+                  <motion.div
                     className="w-16 h-16 rounded-full bg-primary-foreground/10 flex items-center justify-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
