@@ -12,47 +12,47 @@ export const fallbackTestimonials: Testimonial[] = [
 
 export const fallbackHighlights: SchoolHighlight[] = [
     {
-      id: "highlight-carousel-1",
-      title: "Annual Day Success",
-      description: "Annual cultural celebration uniting students and families.",
-      linkUrl: "https://picsum.photos/seed/annual-day/1200/800",
-      icon: "carousel",
-      order: 1,
+        id: "highlight-carousel-1",
+        title: "Annual Day Success",
+        description: "Annual cultural celebration uniting students and families.",
+        linkUrl: "https://picsum.photos/seed/annual-day/1200/800",
+        icon: "carousel",
+        order: 1,
     },
     {
-      id: "highlight-carousel-2",
-      title: "Science & Innovation",
-      description: "Student-led projects and science fair winners.",
-      linkUrl: "https://picsum.photos/seed/science-fair/1200/800",
-      icon: "carousel",
-      order: 2,
+        id: "highlight-carousel-2",
+        title: "Science & Innovation",
+        description: "Student-led projects and science fair winners.",
+        linkUrl: "https://picsum.photos/seed/science-fair/1200/800",
+        icon: "carousel",
+        order: 2,
     },
     {
-      id: "highlight-carousel-3",
-      title: "Sports Excellence",
-      description: "District level champions in multiple sports.",
-      linkUrl: "https://picsum.photos/seed/sports-day/1200/800",
-      icon: "carousel",
-      order: 3,
+        id: "highlight-carousel-3",
+        title: "Sports Excellence",
+        description: "District level champions in multiple sports.",
+        linkUrl: "https://picsum.photos/seed/sports-day/1200/800",
+        icon: "carousel",
+        order: 3,
     },
 ];
 
 export const fallbackPrincipalMessage: SchoolHighlight[] = [{
-  id: "principal-message",
-  title: "Mrs. Kavita Sharma",
-  description: "At Sanskar International Academy, we believe education is not merely the transfer of knowledge — it is the awakening of wisdom. Every day, our classrooms hum with curiosity, kindness, and creativity. We nurture children to think independently, act responsibly, and dream fearlessly. Beyond textbooks and grades, we instill संस्कार — values that form the foundation of strong character and compassion.",
-  linkUrl: "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MjU3MzY3N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-  order: 1,
-  icon: 'message'
+    id: "principal-message",
+    title: "The Principal",
+    description: "At Sanskar International Academy, we believe education is not merely the transfer of knowledge — it is the awakening of wisdom. Every day, our classrooms hum with curiosity, kindness, and creativity. We nurture children to think independently, act responsibly, and dream fearlessly. Beyond textbooks and grades, we instill संस्कार — values that form the foundation of strong character and compassion.",
+    linkUrl: "",
+    order: 1,
+    icon: 'message'
 }];
 
 export const fallbackChairmanMessage: SchoolHighlight[] = [{
-  id: "chairman-message",
-  title: "Mr. Rakesh Verma",
-  description: "Education is the most powerful means to transform a generation. When knowledge is blended with discipline, empathy, and integrity — greatness follows naturally. Sanskar International Academy was founded with this belief — that true learning must shape both intellect and character. In an age of rapid change, our mission is to anchor young minds in timeless values while empowering them with modern skills.",
-  linkUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYW4lMjBwb3J0cmFpdCUyMHN1aXR8ZW58MHx8fHwxNzYyNTg2MzEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  order: 1,
-  icon: 'message'
+    id: "chairman-message",
+    title: "Mr. Praveen Asnande",
+    description: "Education is the most powerful means to transform a generation. When knowledge is blended with discipline, empathy, and integrity — greatness follows naturally. Sanskar International Academy was founded with this belief — that true learning must shape both intellect and character. In an age of rapid change, our mission is to anchor young minds in timeless values while empowering them with modern skills.",
+    linkUrl: "",
+    order: 1,
+    icon: 'message'
 }];
 
 export const fallbackAcademics: AcademicTier[] = [
@@ -112,7 +112,7 @@ export const fallbackJobs: Job[] = [
         location: "Khargone",
         status: "Open"
     },
-     {
+    {
         id: "job3",
         title: "Admissions Counsellor",
         description: "A friendly and organized individual to manage the student admission process from inquiry to enrollment.",
