@@ -58,7 +58,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
-                                className="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] drop-shadow-xl"
+                                className="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] drop-shadow-xl text-white"
                                 style={{ textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
                             >
                                 {data.title}
@@ -131,7 +131,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                 </div>
 
                 {/* Stats Bar */}
-                <div className="relative z-20 -mt-16 mx-auto w-[95%] card-premium p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100">
+                <div className="relative z-20 -mt-16 w-full card-premium rounded-none border-x-0 p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100">
                     {displayStats.map((stat: any, idx: number) => (
                         <div key={idx} className={`text-center ${idx > 0 ? "pl-8" : ""}`}>
                             <h3 className="text-3xl md:text-4xl font-display font-bold text-gold mb-1">{stat.value}</h3>

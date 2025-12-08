@@ -8,7 +8,7 @@ import { Calendar, Phone } from "lucide-react";
 
 export function CTASection() {
     return (
-        <section className="py-24 md:py-32 relative overflow-hidden bg-royal-blue">
+        <section className="py-24 md:py-32 relative overflow-hidden bg-navy">
             {/* Decorative Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
                 <div className="absolute -top-[50%] -left-[20%] w-[80%] h-[200%] bg-white rounded-[40%] rotate-12 blur-3xl"></div>
@@ -43,13 +43,13 @@ export function CTASection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                    <Button asChild size="lg" className="w-full sm:w-auto bg-gold hover:bg-gold-light text-royal-blue-dark font-bold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                    <Button asChild size="lg" className="w-full sm:w-auto bg-siaOrange hover:bg-orange-600 text-white font-bold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
                         <Link href="/admissions">
                             Apply Now
                         </Link>
                     </Button>
 
-                    <Button asChild size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-royal-blue font-semibold text-lg px-8 py-6 rounded-full transition-all">
+                    <Button asChild size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-navy font-semibold text-lg px-8 py-6 rounded-full transition-all">
                         <Link href="/contact">
                             <Calendar className="mr-2 h-5 w-5" /> Schedule a Visit
                         </Link>
