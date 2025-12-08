@@ -15,8 +15,8 @@ import dynamic from 'next/dynamic';
 
 import { Stats } from "@/components/home/Stats";
 // const Stats = dynamic(() => import('@/components/home/Stats').then(mod => mod.Stats));
-const Testimonials = dynamic(() => import('@/components/home/Testimonials').then(mod => mod.Testimonials));
-const LocationSection = dynamic(() => import('@/components/home/LocationSection').then(mod => mod.LocationSection));
+import { Testimonials } from "@/components/home/Testimonials";
+import { LocationSection } from "@/components/home/LocationSection";
 
 
 export default function Home() {

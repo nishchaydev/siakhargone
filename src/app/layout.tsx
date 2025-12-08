@@ -29,7 +29,7 @@ const playfairDisplay = Playfair_Display({
 const openGraphImage = 'https://firebasestorage.googleapis.com/v0/b/sia-khargone.appspot.com/o/og-banner.png?alt=media';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://siakhargone.web.app'),
+  metadataBase: new URL('https://siakhargone.vercel.app'), // Updated to likely Vercel domain
   title: {
     default: 'Sanskar International Academy | Khargone\'s Premier CBSE Institution',
     template: '%s | Sanskar International Academy',

@@ -3,8 +3,7 @@
 
 import { useState } from "react";
 // Auth disabled
-// import { useAuth } from "@/firebase";
-// import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+// Auth disabled - Admin interface is currently disabled during maintenance.
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
