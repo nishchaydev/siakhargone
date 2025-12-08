@@ -26,7 +26,7 @@ const academicTiers: { icon: LucideIcon, title: string, description: string }[] 
 
 export function Academics() {
   return (
-    <section className="relative w-full py-28 md:py-32 bg-cream bg-grain">
+    <section className="relative w-full section-xl bg-ivory bg-grain">
       {/* Mocked Student Banner */}
       <motion.div
         className="relative w-full max-w-6xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-md"
@@ -48,7 +48,7 @@ export function Academics() {
 
       {/* Section Title */}
       <div className="text-center mb-16 px-6">
-        <h2 className="text-4xl md:text-5xl font-semibold text-primary font-headline">
+        <h2 className="text-4xl md:text-5xl font-semibold text-navy font-headline">
           Our Academic Structure
         </h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -75,8 +75,8 @@ export function Academics() {
             const Icon = tier.icon;
             return (
               <CarouselItem key={tier.title} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
-                  <div className="bg-white/80 border border-white/20 rounded-3xl p-8 shadow-xl backdrop-blur-sm hover:shadow-2xl transition-all h-full text-center group-hover:-translate-y-1">
+                <div className="p-1 h-full">
+                  <div className="card-premium p-8 h-full text-center group">
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}

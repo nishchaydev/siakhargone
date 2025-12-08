@@ -16,42 +16,48 @@ export default {
         '2xl': '1400px',
       },
     },
+    fontFamily: {
+      display: ['Playfair Display', 'serif'],
+      body: ['Inter', 'sans-serif'],
+      hindi: ['Mukta', 'sans-serif'],
+      sans: ['Inter', 'sans-serif'], // Keep sans for default
+    },
     extend: {
-      fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        headline: ['var(--font-playfair-display)', 'serif'],
-        display: ['var(--font-playfair-display)', 'serif'],
-      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        royalBlue: {
-          DEFAULT: "#1A3C73",
-          dark: "#0F1E34",
+
+        // Strict Theme Palette
+        navy: {
+          DEFAULT: '#0C2E53',
+          dark: '#091E36',
         },
-        "royal-blue": {
-          DEFAULT: "#1A3C73",
-        },
-        "royal-blue-dark": {
-          DEFAULT: "#0F1E34",
-        },
-        orange: {
-          DEFAULT: "#F47A1F",
+        siaOrange: {
+          DEFAULT: '#FF7A1A',
         },
         gold: {
-          DEFAULT: "#D4AF37",
+          DEFAULT: '#D4AF37',
+        },
+        bgIvory: {
+          DEFAULT: '#F7F5F2',
+        },
+        cardBorder: {
+          DEFAULT: 'rgba(0,0,0,0.06)',
+        },
+
+        // Mapping for compatibility
+        royalBlue: {
+          DEFAULT: '#0C2E53',
+          dark: '#091E36',
+        },
+        orange: {
+          DEFAULT: '#FF7A1A',
         },
         cream: {
-          DEFAULT: "#F8F5F2",
+          DEFAULT: '#F7F5F2',
         },
-        // Mapped legacy names to new palette
-        navy: {
-          DEFAULT: "#1A3C73",
-          dark: "#0F1E34",
-        },
-        yellow: {
-          DEFAULT: "#D4AF37",
-        },
+
+        // Shadcn UI tokens
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -61,20 +67,20 @@ export default {
           foreground: 'hsl(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: '#0C2E53',
+          foreground: '#FFFFFF',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: '#D4AF37',
+          foreground: '#091E36',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: '#D4AF37',
+          foreground: '#091E36',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -82,7 +88,7 @@ export default {
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        ring: '#FF7A1A',
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',
@@ -92,37 +98,24 @@ export default {
         },
       },
       borderRadius: {
-        xl: "calc(var(--radius) + 4px)",
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        xl: '1rem',
+        '2xl': '1.5rem'
       },
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
         'fade-in-up': {
-          '0%': {
-            opacity: '0',
-            transform: 'translateY(20px)',
-          },
-          '100%': {
-            opacity: '1',
-            transform: 'translateY(0)',
-          },
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
       animation: {

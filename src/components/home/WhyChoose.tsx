@@ -50,7 +50,7 @@ export function WhyChoose() {
             id="why-choose"
             title="Why Choose SIA?"
             subtitle="Defining excellence in education through care and innovation."
-            bgColor="bg-cream"
+            bgColor="bg-ivory"
         >
             <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -63,7 +63,7 @@ export function WhyChoose() {
                     const Icon = feature.icon;
                     return (
                         <motion.div key={feature.title} variants={fadeInUp}>
-                            <Card className="text-center p-8 h-full card-premium hover:-translate-y-2 transition-transform duration-300">
+                            <Card className="text-center p-8 h-full card-premium">
                                 <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-2xl bg-royal-blue/10 text-royal-blue mb-6">
                                     <Icon className="h-8 w-8" />
                                 </div>
