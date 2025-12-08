@@ -1,5 +1,4 @@
 
-
 import { fallbackHighlights, fallbackTestimonials, fallbackPrincipalMessage, fallbackChairmanMessage, fallbackHeroData, fallbackStats } from "@/data/fallbackData";
 import HeroSection from "@/components/sections/HeroSection";
 import { WhyChoose } from "@/components/home/WhyChoose";
@@ -10,34 +9,25 @@ import { GallerySection } from "@/components/home/GallerySection";
 import { AchievementsSection } from "@/components/home/AchievementsSection";
 import { Testimonials } from "@/components/home/Testimonials";
 
-
-// Data fetching function
-async function getHomepageData() {
-  const res = await fetch('http://localhost:3000/api/cms/homepage', { cache: 'no-store' });
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    console.error('Failed to fetch data');
-    return {
-      hero: fallbackHeroData,
-      stats: []
-    }
-  }
-  return res.json();
-}
-
 export default async function Home() {
   const principalMessage = fallbackPrincipalMessage[0];
   const chairmanMessage = fallbackChairmanMessage[0];
   const displayHighlights = fallbackHighlights;
   const displayTestimonials = fallbackTestimonials;
 
-  // Fetch data
-  let cmsData;
-  try {
-    cmsData = await getHomepageData();
-  } catch (e) {
-    cmsData = { hero: fallbackHeroData, stats: fallbackStats };
-  }
+  // Use static data directly to avoid self-fetch overhead for better LCP/TTFB
+  const cmsData = {
+    hero: fallbackHeroData,
+    stats: fallbackStats,
+    gallery: [
+      "https://picsum.photos/seed/gallery1/600/600",
+      "https://picsum.photos/seed/gallery2/600/600",
+      "https://picsum.photos/seed/gallery3/600/600",
+      "https://picsum.photos/seed/gallery4/600/600",
+      "https://picsum.photos/seed/gallery5/600/600",
+      "https://picsum.photos/seed/gallery6/600/600"
+    ]
+  };
 
   return (
     <>
