@@ -153,8 +153,8 @@ export default function Header() {
         "fixed top-0 left-0 right-0 z-50 transition-transform duration-300 backdrop-blur-md",
         isVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
-          ? "bg-royal-blue/95 border-b border-white/10 shadow-sm py-3"
-          : "bg-royal-blue text-white py-5"
+          ? "bg-navy/95 border-b border-gold/20 shadow-sm py-3"
+          : "bg-navy text-white py-5 border-b border-transparent"
       )}
     >
       <TopBar isTransparent={false} />

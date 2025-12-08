@@ -15,7 +15,7 @@ const fadeInUp = {
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-28 md:py-32 bg-white">
+    <section id="about" className="section-xl bg-white">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           className="grid md:grid-cols-2 gap-12 items-center"

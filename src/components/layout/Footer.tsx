@@ -25,14 +25,14 @@ const itemVariants = {
 export default function Footer() {
   return (
     <motion.footer
-      className="bg-royal-blue pt-12" // Outer background to blend with hero if needed, or transparent
+      className="bg-navy pt-12" // Outer background
       variants={footerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
       {/* The Rounded Card Footer */}
-      <div className="bg-royal-blue-dark rounded-t-[3rem] border-t-4 border-gold text-white px-6 pt-16 pb-8 shadow-2xl mx-auto w-full">
+      <div className="bg-navy-dark rounded-t-[3rem] border-t-4 border-gold text-white px-6 pt-16 pb-8 shadow-2xl mx-auto w-full">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 

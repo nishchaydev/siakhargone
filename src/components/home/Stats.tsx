@@ -33,7 +33,7 @@ export function Stats() {
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
-    <section className="bg-primary text-primary-foreground py-24 md:py-32">
+    <section className="bg-navy text-white section-xl">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           className="text-center mb-12"
