@@ -9,25 +9,16 @@ import { GallerySection } from "@/components/home/GallerySection";
 import { AchievementsSection } from "@/components/home/AchievementsSection";
 import { Testimonials } from "@/components/home/Testimonials";
 
+import { getHomepageData } from "@/lib/cms";
+
 export default async function Home() {
   const principalMessage = fallbackPrincipalMessage[0];
   const chairmanMessage = fallbackChairmanMessage[0];
   const displayHighlights = fallbackHighlights;
   const displayTestimonials = fallbackTestimonials;
 
-  // Use static data directly to avoid self-fetch overhead for better LCP/TTFB
-  const cmsData = {
-    hero: fallbackHeroData,
-    stats: fallbackStats,
-    gallery: [
-      "https://picsum.photos/seed/gallery1/600/600",
-      "https://picsum.photos/seed/gallery2/600/600",
-      "https://picsum.photos/seed/gallery3/600/600",
-      "https://picsum.photos/seed/gallery4/600/600",
-      "https://picsum.photos/seed/gallery5/600/600",
-      "https://picsum.photos/seed/gallery6/600/600"
-    ]
-  };
+  // Use centralized CMS data logic
+  const cmsData = await getHomepageData();
 
   return (
     <>

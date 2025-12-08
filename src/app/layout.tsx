@@ -36,7 +36,7 @@ const mukta = Mukta({
 });
 
 
-const openGraphImage = 'https://firebasestorage.googleapis.com/v0/b/sia-khargone.appspot.com/o/og-banner.png?alt=media';
+const openGraphImage = '/logosia.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://siakhargone.vercel.app'), // Updated to likely Vercel domain
