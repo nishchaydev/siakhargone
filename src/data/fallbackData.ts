@@ -39,7 +39,7 @@ export const fallbackHighlights: SchoolHighlight[] = [
 
 export const fallbackPrincipalMessage: SchoolHighlight[] = [{
     id: "principal-message",
-    title: "The Principal",
+    title: "Mr. Shivam Jaiswal",
     description: "At Sanskar International Academy, we believe education is not merely the transfer of knowledge — it is the awakening of wisdom. Every day, our classrooms hum with curiosity, kindness, and creativity. We nurture children to think independently, act responsibly, and dream fearlessly. Beyond textbooks and grades, we instill संस्कार — values that form the foundation of strong character and compassion.",
     linkUrl: "",
     order: 1,
@@ -126,7 +126,7 @@ export const fallbackHeroData = {
     title: "Where Excellence Begins.",
     subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
     sanskrit: "विद्या ददाति विनयम्",
-    video: "/Video/children-running.mp4",
+    video: "/video/hero-main.mp4",
     cta1Href: "/admissions",
     cta2Href: "/gallery",
     grid: [
