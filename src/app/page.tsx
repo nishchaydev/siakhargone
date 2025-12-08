@@ -1,6 +1,6 @@
 
 
-import { fallbackHighlights, fallbackTestimonials, fallbackPrincipalMessage, fallbackChairmanMessage, fallbackHeroData } from "@/data/fallbackData";
+import { fallbackHighlights, fallbackTestimonials, fallbackPrincipalMessage, fallbackChairmanMessage, fallbackHeroData, fallbackStats } from "@/data/fallbackData";
 import HeroSection from "@/components/sections/HeroSection";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { CampusFacilities } from "@/components/home/CampusFacilities";
@@ -36,7 +36,7 @@ export default async function Home() {
   try {
     cmsData = await getHomepageData();
   } catch (e) {
-    cmsData = { hero: fallbackHeroData, stats: [] };
+    cmsData = { hero: fallbackHeroData, stats: fallbackStats };
   }
 
   return (
