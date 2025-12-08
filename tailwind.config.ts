@@ -45,17 +45,7 @@ export default {
           DEFAULT: 'rgba(0,0,0,0.06)',
         },
 
-        // Mapping for compatibility
-        royalBlue: {
-          DEFAULT: '#0C2E53',
-          dark: '#091E36',
-        },
-        orange: {
-          DEFAULT: '#FF7A1A',
-        },
-        cream: {
-          DEFAULT: '#F7F5F2',
-        },
+
 
         // Shadcn UI tokens
         card: {

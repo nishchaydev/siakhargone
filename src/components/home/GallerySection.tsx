@@ -22,7 +22,7 @@ export function GallerySection({ images = [] }: { images?: string[] }) {
     const finalImages = duplicatedImages(displayImages);
 
     return (
-        <section id="life" className="py-28 md:py-32 bg-white overflow-hidden">
+        <section id="life" className="section-xl bg-white">
             <div className="container mx-auto max-w-7xl px-4">
                 <motion.div
                     className="text-center mb-12"

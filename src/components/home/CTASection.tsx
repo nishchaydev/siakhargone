@@ -8,7 +8,7 @@ import { Calendar, Phone } from "lucide-react";
 
 export function CTASection() {
     return (
-        <section className="py-24 md:py-32 relative overflow-hidden bg-navy">
+        <section className="section-xl relative overflow-hidden bg-navy">
             {/* Decorative Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
                 <div className="absolute -top-[50%] -left-[20%] w-[80%] h-[200%] bg-white rounded-[40%] rotate-12 blur-3xl"></div>
