@@ -7,56 +7,24 @@ import { Button } from "@/components/ui/button";
 import type { GalleryImage } from "@/lib/definitions";
 import Image from "next/image";
 
-const mockGalleryImages: GalleryImage[] = [
-    {
-        id: "gallery-mock-1",
-        imageUrl: "https://picsum.photos/seed/gallery1/400/500",
-        imageHint: "students classroom"
-    },
-    {
-        id: "gallery-mock-2",
-        imageUrl: "https://picsum.photos/seed/gallery2/400/500",
-        imageHint: "school sports"
-    },
-    {
-        id: "gallery-mock-3",
-        imageUrl: "https://picsum.photos/seed/gallery3/400/500",
-        imageHint: "science lab"
-    },
-    {
-        id: "gallery-mock-4",
-        imageUrl: "https://picsum.photos/seed/gallery4/400/500",
-        imageHint: "school library"
-    },
-    {
-        id: "gallery-mock-5",
-        imageUrl: "https://picsum.photos/seed/gallery5/400/500",
-        imageHint: "art class"
-    },
-    {
-        id: "gallery-mock-6",
-        imageUrl: "https://picsum.photos/seed/gallery6/400/500",
-        imageHint: "school event"
-    },
-    {
-        id: "gallery-mock-7",
-        imageUrl: "https://picsum.photos/seed/gallery7/400/500",
-        imageHint: "graduation day"
-    },
-    {
-        id: "gallery-mock-8",
-        imageUrl: "https://picsum.photos/seed/gallery8/400/500",
-        imageHint: "campus life"
-    },
-];
+const duplicatedImages = (images: string[]) => [...images, ...images];
 
-const duplicatedImages = [...mockGalleryImages, ...mockGalleryImages];
+export function GallerySection({ images = [] }: { images?: string[] }) {
+    // Fallback if no images provided
+    const displayImages = images.length > 0 ? images : [
+        "https://picsum.photos/seed/gallery1/400/500",
+        "https://picsum.photos/seed/gallery2/400/500",
+        "https://picsum.photos/seed/gallery3/400/500",
+        "https://picsum.photos/seed/gallery4/400/500",
+        "https://picsum.photos/seed/gallery5/400/500"
+    ];
 
-export function GallerySection() {
+    const finalImages = duplicatedImages(displayImages);
+
     return (
-        <section id="life" className="py-16 md:py-24 bg-white overflow-hidden">
+        <section id="life" className="py-28 md:py-32 bg-white overflow-hidden">
             <div className="container mx-auto max-w-7xl px-4">
-                <motion.div 
+                <motion.div
                     className="text-center mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -68,42 +36,41 @@ export function GallerySection() {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7 }}
-                  className="w-full overflow-hidden relative"
-                  style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
+                    className="w-full overflow-hidden relative"
+                    style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
                 >
                     <motion.div
                         className="flex"
                         animate={{
                             x: ['-100%', '0%'],
                             transition: {
-                            ease: 'linear',
-                            duration: 40,
-                            repeat: Infinity,
+                                ease: 'linear',
+                                duration: 40,
+                                repeat: Infinity,
                             },
                         }}
                     >
-                       {duplicatedImages.map((image, index) => (
-                           <div key={`${image.id}-${index}`} className="flex-shrink-0 w-[300px] p-2">
+                        {finalImages.map((imageUrl, index) => (
+                            <div key={`gallery-${index}`} className="flex-shrink-0 w-[300px] p-2">
                                 <div className="group rounded-xl overflow-hidden relative aspect-[3/4]">
                                     <Image
-                                        src={image.imageUrl}
-                                        alt={image.description || 'Gallery image'}
-                                        data-ai-hint={image.imageHint || 'school life'}
+                                        src={imageUrl}
+                                        alt={`Gallery image ${index + 1}`}
                                         fill
                                         sizes="300px"
                                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                                     />
                                 </div>
-                           </div>
-                       ))}
+                            </div>
+                        ))}
                     </motion.div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="mt-12 text-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

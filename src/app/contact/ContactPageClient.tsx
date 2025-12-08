@@ -44,13 +44,13 @@ export default function ContactPageClient() {
 
   return (
     <>
-      <motion.div 
-        className="pt-[70px]"
-        initial={{ opacity: 0, y: 20 }} 
-        animate={{ opacity: 1, y: 0 }} 
+      <motion.div
+        className="pt-[70px] bg-grain min-h-screen"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <section className="py-16 md:py-24">
+        <section className="py-28 md:py-32">
           <div className="container mx-auto max-w-7xl px-4">
             <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
               <div>
@@ -59,7 +59,7 @@ export default function ContactPageClient() {
                   Have questions about admissions, curriculum, or anything else? We'd love to hear from you.
                 </p>
                 <div className="mt-8 space-y-6">
-                  <motion.div 
+                  <motion.div
                     className="flex items-start gap-4"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export default function ContactPageClient() {
                       <p className="text-muted-foreground">Gowadi, Khargone - Khandwa Hwy, Fata, Badgaon [Nagjhiri], Khargone, Madhya Pradesh 451001</p>
                     </div>
                   </motion.div>
-                  <motion.div 
+                  <motion.div
                     className="flex items-start gap-4"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ export default function ContactPageClient() {
                       <p className="text-muted-foreground">info@siakhargone.in</p>
                     </div>
                   </motion.div>
-                  <motion.div 
+                  <motion.div
                     className="flex items-start gap-4"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -103,10 +103,10 @@ export default function ContactPageClient() {
                   </motion.div>
                 </div>
               </div>
-              
+
               <motion.div whileHover={{ scale: 1.02, y: -5 }} transition={{ duration: 0.2 }}>
-                <Card 
-                  className="flex flex-col items-center justify-center text-center p-8 h-full cursor-pointer"
+                <Card
+                  className="card-premium flex flex-col items-center justify-center text-center p-8 h-full cursor-pointer hover:shadow-2xl"
                   onClick={() => setIsFormOpen(true)}
                   role="button"
                   tabIndex={0}
@@ -122,19 +122,19 @@ export default function ContactPageClient() {
           </div>
         </section>
 
-        <Section id="faq" title="Frequently Asked Questions" subtitle="Find quick answers to common questions." bgColor="bg-muted">
-            <div className="max-w-4xl mx-auto">
-                <Accordion type="single" collapsible className="w-full">
-                    {faqItems.map((item, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger className="text-lg font-semibold text-left">{item.question}</AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground prose">
-                                {item.answer}
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </div>
+        <Section id="faq" title="Frequently Asked Questions" subtitle="Find quick answers to common questions." bgColor="bg-cream">
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-lg font-semibold text-left">{item.question}</AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground prose">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </Section>
 
       </motion.div>
@@ -147,7 +147,7 @@ export default function ContactPageClient() {
                 Fill out the form below and we'll get back to you as soon as possible.
               </DialogDescription>
             </DialogHeader>
-            <ContactForm onFormSuccess={() => setIsFormOpen(false)}/>
+            <ContactForm onFormSuccess={() => setIsFormOpen(false)} />
           </DialogContent>
         </Dialog>
       )}

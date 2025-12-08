@@ -4,11 +4,11 @@
 import { motion } from "framer-motion";
 import { Section } from "@/components/common/Section";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { 
-  Sparkles, 
-  UserCheck, 
-  Globe, 
-  HeartHandshake, 
+import {
+  Sparkles,
+  UserCheck,
+  Globe,
+  HeartHandshake,
   Users,
   Lightbulb,
   Layers,
@@ -18,26 +18,26 @@ import {
 } from "lucide-react";
 
 interface Item {
-    icon: string;
-    title: string;
-    description: string;
+  icon: string;
+  title: string;
+  description: string;
 }
 
 interface LifeAtSiaPageClientProps {
-    whySiaItems: Item[];
-    methodologySteps: Item[];
+  whySiaItems: Item[];
+  methodologySteps: Item[];
 }
 
 const iconMap: { [key: string]: LucideIcon } = {
-    Sparkles, 
-    UserCheck, 
-    Globe, 
-    HeartHandshake, 
-    Users,
-    Lightbulb,
-    Layers,
-    FlaskConical,
-    MonitorSmartphone
+  Sparkles,
+  UserCheck,
+  Globe,
+  HeartHandshake,
+  Users,
+  Lightbulb,
+  Layers,
+  FlaskConical,
+  MonitorSmartphone
 };
 
 const containerVariants = {
@@ -55,7 +55,7 @@ const itemVariants = {
 
 export default function LifeAtSiaPageClient({ whySiaItems, methodologySteps }: LifeAtSiaPageClientProps) {
   return (
-    <>
+    <div className="bg-grain min-h-screen">
       <Section
         id="why-sia"
         title="Why Study at Sanskar International Academy"
@@ -75,11 +75,11 @@ export default function LifeAtSiaPageClient({ whySiaItems, methodologySteps }: L
               <motion.div key={item.title} variants={itemVariants}>
                 <Card className="h-full text-center hover:shadow-lg transition-shadow duration-300">
                   <CardHeader className="items-center">
-                    <motion.div 
-                        className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
+                    <motion.div
+                      className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
                     >
                       {Icon && <Icon className="h-8 w-8 hover:scale-110 transition-transform duration-300" />}
                     </motion.div>
@@ -103,8 +103,8 @@ export default function LifeAtSiaPageClient({ whySiaItems, methodologySteps }: L
       >
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            
-            <motion.div 
+
+            <motion.div
               className="space-y-12"
               variants={containerVariants}
               initial="hidden"
@@ -116,25 +116,25 @@ export default function LifeAtSiaPageClient({ whySiaItems, methodologySteps }: L
                 const isEven = index % 2 === 0;
 
                 return (
-                  <motion.div 
+                  <motion.div
                     key={step.title}
                     variants={itemVariants}
                     className="relative"
                   >
                     <div className={`md:flex items-center ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
                       <div className="md:w-5/12">
-                          <Card className="p-6 rounded-lg shadow-md">
-                            <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                            <p className="text-muted-foreground">{step.description}</p>
-                          </Card>
+                        <Card className="p-6 rounded-lg shadow-md">
+                          <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                          <p className="text-muted-foreground">{step.description}</p>
+                        </Card>
                       </div>
-                      
+
                       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:flex">
-                        <motion.div 
-                            className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
+                        <motion.div
+                          className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
                         >
                           {Icon && <Icon className="h-7 w-7 hover:scale-110 transition-transform duration-300" />}
                         </motion.div>
@@ -151,6 +151,6 @@ export default function LifeAtSiaPageClient({ whySiaItems, methodologySteps }: L
           </div>
         </div>
       </Section>
-    </>
+    </div>
   );
 }

@@ -16,13 +16,23 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  weight: ['400', '500', '600', '700'], // Added weights
 });
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '600', '700'], // Added 600
   display: 'swap',
   variable: '--font-playfair-display',
+});
+
+import { Mukta } from 'next/font/google'; // Import Mukta
+
+const mukta = Mukta({
+  subsets: ['latin', 'devanagari'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-mukta',
 });
 
 
@@ -71,12 +81,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfairDisplay.variable} !scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfairDisplay.variable} ${mukta.variable} !scroll-smooth`}>
       <head>
         <meta name="theme-color" content="#1E3A8A" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       </head>
-      <body className="bg-background text-foreground antialiased">
+      <body className="bg-background text-foreground antialiased bg-grain">
         <ScrollToTop />
         <Header />
         <main className="pt-[114px]">{children}</main>

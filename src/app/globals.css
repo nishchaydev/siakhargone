@@ -31,6 +31,11 @@
     /* Orange ring */
     --radius: 1.5rem;
     /* 24px */
+
+    /* Phase A Variables */
+    --color-royal: #1A3C73;
+    --color-accent: #D4AF37;
+    --bg-cream: #F8F5F2;
   }
 
   .dark {
@@ -65,6 +70,24 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    /* leading-relaxed */
+  }
+
+  .bg-grain {
+    position: relative;
+  }
+
+  .bg-grain::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
   }
 
   .section-alt {
@@ -73,7 +96,7 @@
 
   /* Utility for extra spacing if not using Section component everywhere */
   .section-spacing {
-    @apply py-24 md:py-32;
+    @apply py-20 md:py-24 max-w-7xl mx-auto px-6;
   }
 
   h1,
@@ -95,6 +118,24 @@
     content: '';
     @apply absolute bottom-0 left-0 h-1 w-16 bg-accent;
     transition: width 0.3s ease-in-out;
+  }
+
+  .card-premium {
+    @apply rounded-xl shadow-lg bg-white border backdrop-blur-sm relative overflow-hidden transition-all duration-300;
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .card-premium:hover {
+    transform: translateY(-2px);
+  }
+
+  .card-premium::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-gold opacity-80;
+  }
+
+  .font-hindi {
+    font-family: var(--font-mukta), sans-serif;
   }
 
   .group:hover .title-underline::after,

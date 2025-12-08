@@ -37,17 +37,17 @@ const disclosures = [
 ];
 
 const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.2, },
-  },
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.2, delayChildren: 0.2, },
+    },
 };
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  viewport: { once: true, amount: 0.3 }
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    viewport: { once: true, amount: 0.3 }
 };
 
 interface AdmissionsPageClientProps {
@@ -56,7 +56,7 @@ interface AdmissionsPageClientProps {
 
 export default function AdmissionsPageClient({ careerCounsellingImage }: AdmissionsPageClientProps) {
     return (
-        <div>
+        <div className="bg-grain min-h-screen">
             <Section id="career" title="Career Counselling" subtitle="Guiding students towards purposeful futures" isFirstSection={true}>
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <motion.div variants={fadeInUp} className="prose lg:prose-lg max-w-none text-muted-foreground">
@@ -65,11 +65,11 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                             From psychometric assessments to personalized guidance, students receive the clarity and confidence they need to choose the right path.
                         </p>
                         <ul className="space-y-3">
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary"/></div> Aptitude and personality assessments</li>
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary"/></div> One-on-one counselling and goal-setting</li>
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary"/></div> Internship and work experience programs</li>
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary"/></div> University and scholarship guidance</li>
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary"/></div> Soft skills and employability training</li>
+                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> Aptitude and personality assessments</li>
+                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> One-on-one counselling and goal-setting</li>
+                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> Internship and work experience programs</li>
+                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> University and scholarship guidance</li>
+                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> Soft skills and employability training</li>
                         </ul>
                     </motion.div>
                     <motion.div variants={fadeInUp}>
@@ -80,7 +80,7 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                 </div>
             </Section>
 
-            <Section id="process" title="Your Child’s Journey Begins Here" subtitle="Simple, transparent, and student-friendly" bgColor="bg-muted/50">
+            <Section id="process" title="Your Child’s Journey Begins Here" subtitle="Simple, transparent, and student-friendly" bgColor="bg-cream">
                 <p className="max-w-3xl mx-auto text-center text-muted-foreground mb-12">
                     Admissions at Sanskar International Academy are open to all students who value learning, discipline, and holistic growth. We welcome learners from diverse backgrounds and help them seamlessly integrate into our academic community.
                 </p>
@@ -99,7 +99,7 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                         ))}
                     </motion.div>
                 </div>
-                 <div className="text-center mt-12">
+                <div className="text-center mt-12">
                     <Button asChild size="lg">
                         <Link href="/contact">Enquire Now</Link>
                     </Button>
@@ -107,21 +107,21 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
             </Section>
 
             <Section id="tc" title="Student TC Search" subtitle="Find Transfer Certificates for previous students">
-                <Card className="max-w-2xl mx-auto p-6 md:p-8">
+                <Card className="max-w-2xl mx-auto p-6 md:p-8 card-premium">
                     <CardContent className="p-0">
                         <form className="flex flex-col sm:flex-row items-center gap-4">
                             <Input placeholder="Enter Student Scholar No." className="flex-grow" />
                             <Button type="submit" className="w-full sm:w-auto">Search</Button>
                         </form>
-                         <p className="text-sm text-muted-foreground mt-4 text-center">
+                        <p className="text-sm text-muted-foreground mt-4 text-center">
                             Enter the student's scholar number to find and download their Transfer Certificate.
                         </p>
                     </CardContent>
                 </Card>
             </Section>
 
-            <Section id="disclosure" title="Mandatory Disclosure" subtitle="In compliance with CBSE guidelines" bgColor="bg-muted/50">
-                <Card>
+            <Section id="disclosure" title="Mandatory Disclosure" subtitle="In compliance with CBSE guidelines" bgColor="bg-cream">
+                <Card className="card-premium overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -143,7 +143,7 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                         </TableBody>
                     </Table>
                 </Card>
-                 <p className="text-sm text-muted-foreground mt-4 text-center">
+                <p className="text-sm text-muted-foreground mt-4 text-center">
                     All documents are verified and updated periodically as per CBSE and state education board regulations.
                 </p>
             </Section>
