@@ -22,10 +22,19 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-1 min-h-[85vh]">
 
                     {/* Main Hero Block (Left - Large) */}
-                    <div className="lg:col-span-8 relative shadow-2xl group bg-royal-blue-dark">
-                        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 blur-[1px]">
-                            <source src={data.video ?? "/media/hero-loop.mp4"} type="video/mp4" />
-                        </video>
+                    <div className="lg:col-span-8 relative shadow-2xl group bg-royal-blue-dark overflow-hidden">
+                        {data.video?.includes("youtube.com") || data.video?.includes("youtu.be") ? (
+                            <iframe
+                                className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-90 blur-[1px]"
+                                src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1`}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        ) : (
+                            <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 blur-[1px]">
+                                <source src={data.video ?? "/media/hero-loop.mp4"} type="video/mp4" />
+                            </video>
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-r from-royal-blue-dark/70 via-royal-blue-dark/20 to-transparent"></div>
                         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-background to-transparent opacity-90"></div>
 

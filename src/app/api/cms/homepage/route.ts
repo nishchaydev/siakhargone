@@ -6,7 +6,7 @@ export async function GET() {
             title: "Where Excellence Begins.",
             subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
             sanskrit: "विद्या ददाति विनयम्",
-            video: "/video/hero-main.mp4",
+            video: "https://www.youtube.com/watch?v=HX0qY8BabGs",
             grid: [
                 "https://picsum.photos/seed/hero1/600/400",
                 "https://picsum.photos/seed/hero2/600/400",

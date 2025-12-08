@@ -126,7 +126,7 @@ export const fallbackHeroData = {
     title: "Where Excellence Begins.",
     subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
     sanskrit: "विद्या ददाति विनयम्",
-    video: "/video/hero-main.mp4",
+    video: "https://www.youtube.com/watch?v=HX0qY8BabGs",
     cta1Href: "/admissions",
     cta2Href: "/gallery",
     grid: [
