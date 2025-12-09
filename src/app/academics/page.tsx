@@ -1,15 +1,15 @@
-import { getAcademicStages } from "@/lib/content";
+import { loadAcademicStages } from "@/lib/content";
 import AcademicsPageClient from "./AcademicsPageClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function AcademicsPage() {
-  const academicStages = await getAcademicStages();
+  const academicStages = await loadAcademicStages();
 
   const curriculumHighlights = academicStages.map((stage: any) => ({
     icon: "BookOpen", // Default icon
     title: stage.title,
-    description: stage.description,
+    description: stage.description, // HTML from mammoth
     image: stage.images?.[0] || null
   }));
 
@@ -23,8 +23,8 @@ export default async function AcademicsPage() {
   return (
     <AcademicsPageClient
       curriculumHighlights={curriculumHighlights}
-      methodologyImage={null}
-      infrastructureImage={null}
+      methodologyImage={undefined}
+      infrastructureImage={undefined}
       infrastructureItems={infrastructureItems}
     />
   );

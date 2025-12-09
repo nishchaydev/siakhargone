@@ -1,9 +1,9 @@
-import { getCommitteeData } from "@/lib/content";
+import { loadCommittee } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 
 export default async function CommitteePage() {
-    const { content, documents } = await getCommitteeData();
+    const { content, documents } = await loadCommittee();
 
     return (
         <div className="container mx-auto py-20 px-4">
@@ -26,7 +26,8 @@ export default async function CommitteePage() {
                         {documents.map((doc: any, idx: number) => (
                             <a
                                 key={idx}
-                                href={doc.url}
+                                href={doc.fileUrl}
+
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center p-4 bg-white border rounded-lg hover:shadow-md transition-all"

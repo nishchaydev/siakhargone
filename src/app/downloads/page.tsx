@@ -1,10 +1,10 @@
-import { getDownloads } from "@/lib/content";
+import { loadDownloads } from "@/lib/content";
 import { FileText, Download } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function DownloadsPage() {
-    const downloads = await getDownloads();
+    const downloads = await loadDownloads();
 
     return (
         <div className="container mx-auto py-20 px-4">

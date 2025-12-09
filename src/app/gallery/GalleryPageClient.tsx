@@ -2,18 +2,11 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useState, useMemo } from "react";
 import { X, Search } from "lucide-react";
 
 // Types
 import { GalleryImage } from "@/lib/definitions";
-
-// Extend GalleryImage to support category if mapped, or we default to 'All'
-// We will assume the API maps 'description' or 'imageHint' to category, 
-// or we will infer it. Given the current Strapi setup, 'description' was mapped to 'albumName'.
-// So we can use 'description' as the Category.
 
 interface GalleryPageClientProps {
   initialImages?: GalleryImage[];
@@ -21,31 +14,38 @@ interface GalleryPageClientProps {
 }
 
 // Default categories if none provided, though we expect them from prop
-const DEFAULT_CATEGORIES = ["All"];
+const PAGE_SIZE = 9;
 
 export default function GalleryPageClient({ initialImages = [], categories = [] }: GalleryPageClientProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   // Merge default "All" with dynamic categories
   const categoryList = useMemo(() => ["All", ...categories], [categories]);
 
   // Filter logic
   const filteredImages = useMemo(() => {
+    setVisibleCount(PAGE_SIZE); // Reset count on filter change
     if (activeCategory === "All") return initialImages;
-    // We assume 'description' holds the Album Name (Category) based on previous mapping
     return initialImages.filter(img =>
       img.description?.toLowerCase().includes(activeCategory.toLowerCase()) ||
       img.imageHint?.toLowerCase().includes(activeCategory.toLowerCase())
     );
   }, [activeCategory, initialImages]);
 
+  const visibleImages = filteredImages.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredImages.length;
+
+  const loadMore = () => {
+    setVisibleCount(prev => prev + PAGE_SIZE);
+  };
+
   return (
     <div className="bg-white min-h-screen font-sans">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-navy/50 z-10" />
-        {/* Placeholder Hero Image - Removed per request */}
         <div className="absolute inset-0 bg-navy/90" />
         <div className="relative z-20 px-4">
           <h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-4">School Gallery</h1>
@@ -75,7 +75,7 @@ export default function GalleryPageClient({ initialImages = [], categories = [] 
 
       {/* Gallery Grid */}
       <section className="pb-20 container mx-auto px-4">
-        {filteredImages.length === 0 ? (
+        {visibleImages.length === 0 ? (
           <div className="text-center py-20 text-gray-500">
             <p>No photos found in this category.</p>
           </div>
@@ -85,7 +85,7 @@ export default function GalleryPageClient({ initialImages = [], categories = [] 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <AnimatePresence>
-              {filteredImages.map((image) => (
+              {visibleImages.map((image) => (
                 <motion.div
                   layout
                   key={image.id}
@@ -115,13 +115,18 @@ export default function GalleryPageClient({ initialImages = [], categories = [] 
           </motion.div>
         )}
 
-        {/* Load More Button (Mock) */}
-        <div className="text-center mt-12">
-          <button className="bg-navy text-white px-8 py-3 rounded-lg font-semibold hover:bg-navy-dark transition-colors flex items-center mx-auto gap-2">
-            Load More Photos
-            <span className="text-xl">↓</span>
-          </button>
-        </div>
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="text-center mt-12">
+            <button
+              onClick={loadMore}
+              className="bg-navy text-white px-8 py-3 rounded-lg font-semibold hover:bg-navy-dark transition-colors flex items-center mx-auto gap-2"
+            >
+              Load More Photos
+              <span className="text-xl">↓</span>
+            </button>
+          </div>
+        )}
       </section>
 
       {/* Lightbox */}
@@ -138,7 +143,7 @@ export default function GalleryPageClient({ initialImages = [], categories = [] 
               <X size={32} />
             </button>
             <motion.div
-              layoutId={`image-${selectedImage.id}`} // Optional layoutId if mapped correctly
+              layoutId={`image-${selectedImage.id}`}
               className="relative max-w-5xl w-full h-[80vh]"
               onClick={(e) => e.stopPropagation()}
             >
@@ -160,3 +165,4 @@ export default function GalleryPageClient({ initialImages = [], categories = [] 
     </div>
   );
 }
+

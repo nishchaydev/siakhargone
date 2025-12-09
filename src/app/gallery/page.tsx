@@ -1,21 +1,23 @@
-import { getAlbums } from "@/lib/content";
+import { loadAlbums } from "@/lib/content";
 import GalleryPageClient from "./GalleryPageClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function GalleryPage() {
-  const albums = await getAlbums();
+  const albums = await loadAlbums();
 
+  // Flatten images for the "All" view or keep them specific?
+  // Previous logic flattened them.
   const allImages = albums.flatMap(album =>
-    album.images.map(img => ({
-      id: img.imageUrl,
-      imageUrl: img.imageUrl,
-      description: album.title,
-      imageHint: album.title
+    album.photos.map(img => ({
+      id: img,
+      imageUrl: img,
+      description: album.albumName,
+      imageHint: album.albumName
     }))
   );
 
-  const categories = albums.map(a => a.title);
+  const categories = albums.map(a => a.albumName);
 
   return (
     <GalleryPageClient

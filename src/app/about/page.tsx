@@ -1,12 +1,12 @@
-import { getAboutPageData, getMessageData } from "@/lib/content";
+import { loadAboutData, loadMessage } from "@/lib/content";
 import AboutPageClient from "./AboutPageClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function AboutPage() {
-  const aboutData = await getAboutPageData();
-  const principalMessage = await getMessageData('principal-message');
-  const directorMessage = await getMessageData('director-message');
+  const aboutData = await loadAboutData();
+  const principalMessage = await loadMessage('principal-message');
+  const directorMessage = await loadMessage('director-message');
 
   // Home stats - Since we don't have local stats file yet, we'll pass empty or Mock for now to avoid crash?
   // Or we can check if "home" folder has anything. 
@@ -20,8 +20,9 @@ export default async function AboutPage() {
       achievementItems={[]}
       statItems={statItems}
       schoolImage={aboutData.schoolImage}
-      aboutContent={aboutData.mainDescription}
+      aboutContent={aboutData.content}
       isLoading={false}
     />
   );
 }
+

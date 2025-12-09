@@ -1,57 +1,39 @@
-
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Link as LinkIcon, MoveRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 import { Section } from "@/components/common/Section";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-const facilities = [
-    {
-        title: "Smart Classrooms",
-        description: "Tech-enabled learning spaces.",
-        image: "https://picsum.photos/seed/campus1/600/400",
-        className: "md:col-span-2 md:row-span-2",
-    },
-    {
-        title: "Sports Complex",
-        description: "Professional tracks & courts.",
-        image: "https://picsum.photos/seed/campus2/600/400",
-        className: "md:col-span-1 md:row-span-1",
-    },
-    {
-        title: "Science Labs",
-        description: "State-of-the-art equipment.",
-        image: "https://picsum.photos/seed/campus3/600/400",
-        className: "md:col-span-1 md:row-span-1",
-    },
-    {
-        title: "Library",
-        description: "A hub of knowledge.",
-        image: "https://picsum.photos/seed/campus4/600/400",
-        className: "md:col-span-2 md:row-span-1",
-    },
-];
 
 const fadeInScale = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
 };
 
-export function CampusFacilities() {
+export function CampusFacilities({ facilities = [] }: { facilities: any[] }) {
+    if (!facilities || facilities.length === 0) return null;
+
+    // Grid layout logic: Map index to span classes for that bento look
+    const getClass = (index: number) => {
+        const mod = index % 4; // Repeating pattern of 4
+        if (mod === 0) return "md:col-span-2 md:row-span-2";
+        if (mod === 3) return "md:col-span-2 md:row-span-1";
+        return "md:col-span-1 md:row-span-1";
+    };
+
     return (
         <Section
             id="campus"
             title="World-Class Campus"
             subtitle="An environment designed to inspire and empower."
         >
-            <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[600px]">
+            <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[280px] gap-6">
                 {facilities.map((item, index) => (
                     <motion.div
                         key={item.title}
-                        className={`relative group rounded-3xl overflow-hidden shadow-lg ${item.className}`}
+                        className={`relative group rounded-3xl overflow-hidden shadow-lg ${getClass(index)}`}
                         variants={fadeInScale}
                         initial="hidden"
                         whileInView="visible"

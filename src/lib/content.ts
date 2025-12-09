@@ -1,227 +1,230 @@
-import fs from 'fs/promises';
+import fs from 'fs';
 import path from 'path';
 import mammoth from 'mammoth';
 
-const CONTENT_DIR = path.join(process.cwd(), 'siakhargone-content');
+const ROOT = process.cwd();
+const PUBLIC_BASE = '/siakhargone-content';
 
-function getPublicUrl(filePath: string) {
-    const relativePath = path.relative(CONTENT_DIR, filePath).split(path.sep).join('/');
-    return `/siakhargone-content/${relativePath}`;
+// safe helpers
+function safeJoin(...parts: string[]) {
+    return path.join(...parts);
 }
 
-export async function getTextFromDocx(subDir: string): Promise<string> {
+export async function readDocxAsText(relPath: string): Promise<string | null> {
     try {
-        const dirPath = path.join(CONTENT_DIR, subDir);
-        const files = await fs.readdir(dirPath);
-        const docxFile = files.find(f => f.endsWith('.docx'));
-
-        if (!docxFile) return "";
-
-        const buffer = await fs.readFile(path.join(dirPath, docxFile));
+        const full = safeJoin(ROOT, relPath);
+        if (!fs.existsSync(full)) return null;
+        const buffer = fs.readFileSync(full);
         const result = await mammoth.convertToHtml({ buffer });
-        return result.value;
-    } catch (error) {
-        console.error(`Error reading docx from ${subDir}:`, error);
-        return "";
+        return (result && result.value) ? String(result.value).trim() : null;
+    } catch (e) {
+        console.error('readDocxAsText error', relPath, e);
+        return null;
     }
 }
 
-export async function getTextFile(subDir: string, filename: string): Promise<string> {
-    try {
-        const filePath = path.join(CONTENT_DIR, subDir, filename);
-        return await fs.readFile(filePath, 'utf-8');
-    } catch {
-        return "";
-    }
+export function listFolders(relDir: string) {
+    const dir = safeJoin(ROOT, relDir);
+    if (!fs.existsSync(dir)) return [];
+    return fs.readdirSync(dir, { withFileTypes: true })
+        .filter(d => d.isDirectory())
+        .map(d => d.name);
 }
 
-export async function getImagesFromFolder(subDir: string): Promise<string[]> {
-    try {
-        const dirPath = path.join(CONTENT_DIR, subDir);
-        try { await fs.access(dirPath); } catch { return []; }
+// Recursive list files helper
+function listFilesRecursive(dir: string, exts: string[], fileList: any[] = [], originalBase: string) {
+    if (!fs.existsSync(dir)) return fileList;
+    const files = fs.readdirSync(dir, { withFileTypes: true });
 
-        const files = await fs.readdir(dirPath);
-        const imageFiles = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f));
+    for (const file of files) {
+        const fullPath = path.join(dir, file.name);
+        if (file.isDirectory()) {
+            listFilesRecursive(fullPath, exts, fileList, originalBase);
+        } else {
+            if (exts.includes(path.extname(file.name).toLowerCase())) {
+                // Calculate relative path from ROOT to create public URL
+                const relativeToRoot = path.relative(path.join(ROOT, 'siakhargone-content'), fullPath);
+                // Windows fix
+                const urlPath = relativeToRoot.replace(/\\/g, '/');
 
-        return imageFiles.map(file => getPublicUrl(path.join(dirPath, file)));
-    } catch (error) {
-        console.error(`Error reading images from ${subDir}:`, error);
-        return [];
-    }
-}
-
-export async function getAboutPageData() {
-    const aboutText = await getTextFromDocx('about');
-    const images = await getImagesFromFolder('about');
-    const schoolImage = images.length > 0 ? { src: images[0], alt: "School Image" } : null;
-
-    return {
-        mainDescription: aboutText,
-        schoolImage
-    };
-}
-
-export async function getMessageData(folder: string) {
-    const message = await getTextFromDocx(folder);
-    const images = await getImagesFromFolder(folder);
-    const name = await getTextFile(folder, 'name.txt');
-    const role = await getTextFile(folder, 'role.txt');
-
-    return {
-        name: name.trim() || "Name Not Found",
-        role: role.trim() || "Role Not Found",
-        message,
-        image: images.length > 0 ? images[0] : null
-    };
-}
-
-export async function getAcademicStages() {
-    const dirPath = path.join(CONTENT_DIR, 'academic-stages');
-    try {
-        const entries = await fs.readdir(dirPath, { withFileTypes: true });
-        const stages = [];
-
-        for (const entry of entries) {
-            if (entry.isDirectory()) {
-                const stagePath = path.join('academic-stages', entry.name);
-                const description = await getTextFromDocx(stagePath);
-                const images = await getImagesFromFolder(stagePath);
-
-                stages.push({
-                    title: entry.name,
-                    description,
-                    images
+                fileList.push({
+                    name: file.name,
+                    url: `${PUBLIC_BASE}/${urlPath}`
                 });
             }
         }
-        return stages;
-    } catch (e) {
-        console.error("Error reading academic stages:", e);
-        return [];
     }
+    return fileList;
 }
 
-export async function getAlbums() {
-    const dirPath = path.join(CONTENT_DIR, 'albums');
-    try {
-        const entries = await fs.readdir(dirPath, { withFileTypes: true });
-        const albums = [];
+export function listFiles(relDir: string, exts = ['.jpg', '.jpeg', '.png', '.pdf', '.docx'], recursive = false) {
+    const dir = safeJoin(ROOT, relDir);
+    if (!fs.existsSync(dir)) return [];
 
-        for (const entry of entries) {
-            if (entry.isDirectory()) {
-                const albumPath = path.join('albums', entry.name);
-                const images = await getImagesFromFolder(albumPath);
-                if (images.length > 0) {
-                    albums.push({
-                        title: entry.name,
-                        coverImage: images[0],
-                        images: images.map(img => ({
-                            id: img,
-                            imageUrl: img,
-                            description: entry.name
-                        }))
-                    });
-                }
-            }
-        }
-        return albums;
-    } catch (e) {
-        console.error("Error reading albums", e);
-        return [];
+    if (recursive) {
+        return listFilesRecursive(dir, exts, [], relDir);
     }
-}
 
-export async function getCertificates() {
-    const dirPath = path.join(CONTENT_DIR, 'certificates');
-    try {
-        try { await fs.access(dirPath); } catch { return []; }
-        const entries = await fs.readdir(dirPath, { withFileTypes: true });
-        const certificates = [];
-
-        for (const entry of entries) {
-            if (entry.isDirectory()) {
-                const fullSubPath = path.join(dirPath, entry.name);
-                const subFiles = await fs.readdir(fullSubPath);
-                const pdfFile = subFiles.find(f => f.toLowerCase().endsWith('.pdf'));
-                if (pdfFile) {
-                    certificates.push({
-                        title: entry.name,
-                        pdfUrl: getPublicUrl(path.join(fullSubPath, pdfFile))
-                    });
-                }
-            }
-        }
-        return certificates;
-    } catch (e) { return []; }
-}
-
-export async function getDownloads() {
-    const dirPath = path.join(CONTENT_DIR, 'downloads');
-    try {
-        try { await fs.access(dirPath); } catch { return []; }
-        const entries = await fs.readdir(dirPath, { withFileTypes: true });
-        const downloads = [];
-
-        for (const entry of entries) {
-            if (entry.isDirectory()) { // Assuming downloads are in folders or strict check? 
-                // User prompt: "siakhargone-content/downloads/*" -> file or folder?
-                // Let's assume files directly OR folders. 
-                // If entry is file:
-                // Wait, `withFileTypes: true` -> entry.isFile()
-                // But previously I assumed folders. Let's support both properly.
-
-                // If it is a folder, look inside.
-                const subPath = path.join(dirPath, entry.name);
-                const subFiles = await fs.readdir(subPath);
-                const mainFile = subFiles.find(f => /\.(pdf|docx|jpg|png|jpeg)$/i.test(f));
-
-                let title = entry.name;
-                // check for title.txt
-                const titleFile = subFiles.find(f => f === 'title.txt');
-                if (titleFile) {
-                    title = await fs.readFile(path.join(subPath, 'title.txt'), 'utf-8');
-                }
-
-                if (mainFile) {
-                    downloads.push({
-                        title: title.trim(),
-                        fileUrl: getPublicUrl(path.join(subPath, mainFile))
-                    });
-                }
-            } else if (entry.isFile()) {
-                const ext = path.extname(entry.name).toLowerCase();
-                if (['.pdf', '.docx', '.jpg', '.png', '.jpeg'].includes(ext)) {
-                    downloads.push({
-                        title: entry.name.replace(ext, '').replace(/-/g, ' '),
-                        fileUrl: getPublicUrl(path.join(dirPath, entry.name))
-                    });
-                }
-            }
-        }
-        return downloads;
-    } catch (e) { return []; }
-}
-
-export async function getCommitteeData() {
-    const dirPath = path.join(CONTENT_DIR, 'School Managing committee');
-    try {
-        try { await fs.access(dirPath); } catch { return { content: "", documents: [] }; }
-
-        const files = await fs.readdir(dirPath);
-        const docxFile = files.find(f => f.endsWith('.docx'));
-
-        let content = "";
-        if (docxFile) {
-            const buffer = await fs.readFile(path.join(dirPath, docxFile));
-            const result = await mammoth.convertToHtml({ buffer });
-            content = result.value;
-        }
-
-        const pdfs = files.filter(f => f.endsWith('.pdf')).map(f => ({
-            title: f.replace('.pdf', ''),
-            url: getPublicUrl(path.join(dirPath, f))
+    return fs.readdirSync(dir)
+        .filter(f => exts.includes(path.extname(f).toLowerCase()))
+        .map(f => ({
+            name: f,
+            url: `${PUBLIC_BASE}/${path.posix.join(relDir.replace('siakhargone-content', '').replace(/\\/g, '/'), f).replace(/^\//, '')}`
         }));
+}
 
-        return { content, documents: pdfs };
-    } catch (e) { return { content: "", documents: [] }; }
+// helpers for common structures
+export async function loadAcademicStages() {
+    const base = 'siakhargone-content/academic-stages';
+    const folders = listFolders(base);
+    const stages = [];
+    for (const folder of folders) {
+        const folderRel = `${base}/${folder}`;
+        const textFile = fs.readdirSync(path.join(ROOT, folderRel)).find(f => f.endsWith('.docx'));
+        const description = textFile ? await readDocxAsText(`${folderRel}/${textFile}`) : null;
+        const images = listFiles(folderRel, ['.jpg', '.jpeg', '.png']);
+
+        stages.push({
+            slug: folder.replace(/\s+/g, '-').toLowerCase(),
+            title: folder,
+            description,
+            images: images.map(i => i.url)
+        });
+    }
+    return stages;
+}
+
+export async function loadAlbums() {
+    const base = 'siakhargone-content/albums';
+    const albums = [];
+    const folders = listFolders(base);
+    for (const folder of folders) {
+        const folderRel = `${base}/${folder}`;
+        // Recursive load for albums to catch nested folders
+        const images = listFiles(folderRel, ['.jpg', '.jpeg', '.png'], true);
+        const cover = images.length ? images[0].url : null;
+        albums.push({
+            albumName: folder,
+            coverPhoto: cover,
+            photos: images.map(i => i.url)
+        });
+    }
+    return albums;
+}
+
+export function loadCertificates() {
+    const base = 'siakhargone-content/certificates';
+    const folders = listFolders(base);
+    const certs = [];
+    for (const folder of folders) {
+        const folderRel = `${base}/${folder}`;
+        const pdf = listFiles(folderRel, ['.pdf'])[0];
+        if (pdf) certs.push({ title: folder, fileUrl: pdf.url });
+    }
+    return certs;
+}
+
+export function loadDownloads() {
+    const base = 'siakhargone-content/downloads';
+    let items = listFiles(base, ['.pdf', '.docx', '.jpg', '.png']);
+
+    const folders = listFolders(base);
+    for (const folder of folders) {
+        const folderRel = `${base}/${folder}`;
+        const subItems = listFiles(folderRel, ['.pdf', '.docx', '.jpg', '.png']);
+        if (subItems.length > 0) {
+            items.push({
+                name: folder,
+                url: subItems[0].url
+            });
+        }
+    }
+
+    return items.map(i => ({
+        title: i.name.replace(/\.[^/.]+$/, "").replace(/-/g, ' '),
+        fileUrl: i.url
+    }));
+}
+
+export async function loadCommittee() {
+    const base = 'siakhargone-content/School Managing committee';
+    const files = listFiles(base, ['.docx']);
+    const docx = files[0]?.name;
+    const content = docx ? await readDocxAsText(`${base}/${docx}`) : null;
+
+    const documents = listFiles(base, ['.pdf']).map(f => ({
+        title: f.name.replace('.pdf', ''),
+        fileUrl: f.url
+    }));
+
+    return { content, documents };
+}
+
+export async function loadAboutData() {
+    const base = 'siakhargone-content/about';
+    const files = listFiles(base, ['.docx']);
+    const docx = files[0]?.name;
+    const content = docx ? await readDocxAsText(`${base}/${docx}`) : null;
+    const images = listFiles(base, ['.jpg', '.png', '.jpeg']);
+    return {
+        content,
+        schoolImage: images[0] ? { src: images[0].url, alt: "School Image" } : null
+    };
+}
+
+export async function loadMessage(folderName: string) {
+    const base = `siakhargone-content/${folderName}`;
+    const files = listFiles(base, ['.docx']);
+    const result = {
+        message: "",
+        image: null as string | null,
+        name: "Name Not Found",
+        role: "Role Not Found"
+    };
+
+    if (files.length > 0 || listFolders(base).length === 0) {
+        if (!fs.existsSync(path.join(ROOT, base))) return result;
+    }
+
+    const docx = files[0]?.name;
+    const content = docx ? await readDocxAsText(`${base}/${docx}`) : null;
+    const images = listFiles(base, ['.jpg', '.png', '.jpeg']);
+
+    result.message = content || "";
+    result.image = images[0]?.url || null;
+
+    try {
+        const namePath = path.join(ROOT, base, 'name.txt');
+        if (fs.existsSync(namePath)) result.name = fs.readFileSync(namePath, 'utf-8').trim();
+
+        const rolePath = path.join(ROOT, base, 'role.txt');
+        if (fs.existsSync(rolePath)) result.role = fs.readFileSync(rolePath, 'utf-8').trim();
+    } catch { }
+
+    return result;
+}
+
+export async function loadHomeFacilities() {
+    const base = 'siakhargone-content/home-facilities';
+    const images = listFiles(base, ['.jpg', '.jpeg', '.png'], false);
+
+    const descriptions: Record<string, string> = {
+        "smart classrooms": "Tech-enabled learning spaces.",
+        "sports complex": "Professional tracks & courts.",
+        "science labs": "State-of-the-art equipment.",
+        "library": "A hub of knowledge.",
+        "computer lab": "Advanced computing resources.",
+        "auditorium": "Space for events and gatherings."
+    };
+
+    return images.map(img => {
+        const name = img.name.replace(/\.[^/.]+$/, "").replace(/-/g, ' ').toLowerCase();
+        const title = name.split(' ').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+        return {
+            title,
+            description: descriptions[name] || "World-class facility.",
+            image: img.url
+        };
+    });
 }

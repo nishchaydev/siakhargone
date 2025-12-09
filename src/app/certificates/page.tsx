@@ -1,9 +1,9 @@
-import { getCertificates } from "@/lib/content";
+import { loadCertificates } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 
 export default async function CertificatesPage() {
-    const certificates = await getCertificates();
+    const certificates = await loadCertificates();
 
     return (
         <div className="container mx-auto py-20 px-4">
@@ -12,15 +12,17 @@ export default async function CertificatesPage() {
                 {certificates.length > 0 ? (
                     certificates.map((cert: any, idx: number) => (
                         <div key={idx} className="bg-white p-6 rounded-xl shadow-md border hover:shadow-lg transition-all">
-                            <h3 className="text-xl font-bold mb-4">{cert.title}</h3>
-                            <a
-                                href={cert.pdfUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block bg-primary text-white px-4 py-2 rounded-md hover:bg-gold hover:text-navy transition-colors"
-                            >
-                                View Certificate
-                            </a>
+                            <div className="flex flex-col h-full justify-between">
+                                <h3 className="text-xl font-bold mb-4 line-clamp-2">{cert.title}</h3>
+                                <a
+                                    href={cert.fileUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-block bg-primary text-white px-4 py-2 rounded-md hover:bg-gold hover:text-navy transition-colors text-center"
+                                >
+                                    View Certificate
+                                </a>
+                            </div>
                         </div>
                     ))
                 ) : (
