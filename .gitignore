@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js build output
+/.next/
+/out/
+.next
+out
+
+# Production
+/build
+
+# Environment files
+.env*.local
+.env.production
+
+# Static content folder (too large for git)
+public/siakhargone-content/
+Public/siakhargone-content/
+public/sitemap.xml
+Public/sitemap.xml
+
+# Large media files
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Optimized originals (keep .webp only)
+public/siakhargone-content/**/*.jpg
+public/siakhargone-content/**/*.png
+
+# System files
+Thumbs.db
+.DS_Store
+*.tsbuildinfo
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://siakhargone.in
+
+# Sitemaps
+Sitemap: https://siakhargone.in/sitemap.xml
+Sitemap: https://siakhargone.in/server-sitemap.xml
