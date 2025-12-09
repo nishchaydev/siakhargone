@@ -124,26 +124,26 @@ async function seed() {
         });
     }
 
-    // 3️⃣ PRINCIPAL MESSAGE (Collection Type)
+    // 3️⃣ PRINCIPAL MESSAGE (Single Type)
     console.log('\n--- Processing PRINCIPAL MESSAGE ---');
-    // Use plural endpoint
     const pDoc = path.join(CONTENT_DIR, 'principal-message', "Principal's Message.docx");
     if (fs.existsSync(pDoc)) {
         const pText = await extractDocxToHtml(pDoc);
-        await createEntry('principal-messages', { // PLURAL
+        // Single Type: PUT /api/principal-message
+        await updateSingleType('principal-message', {
             name: "Principal – Sanskar International Academy",
             role: "Principal",
             message: pText
         });
     }
 
-    // 4️⃣ DIRECTOR MESSAGE (Collection Type)
+    // 4️⃣ DIRECTOR MESSAGE (Single Type)
     console.log('\n--- Processing DIRECTOR MESSAGE ---');
-    // Use plural endpoint
     const dDoc = path.join(CONTENT_DIR, 'director-message', "Director's Message.docx");
     if (fs.existsSync(dDoc)) {
         const dText = await extractDocxToHtml(dDoc);
-        await createEntry('director-messages', { // PLURAL
+        // Single Type: PUT /api/director-message
+        await updateSingleType('director-message', {
             name: "Director – Sanskar International Academy",
             role: "Director",
             message: dText
