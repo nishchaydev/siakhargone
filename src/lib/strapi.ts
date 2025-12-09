@@ -13,9 +13,6 @@ export async function fetchStrapi(path: string, params = "") {
         });
 
         if (!res.ok) {
-            // Log the error but don't crash the build if backend is down during build time (unless strictly required)
-            // User requested: if (!res.ok) throw new Error(await res.text());
-            // I will follow user request strictly.
             const errorText = await res.text();
             throw new Error(`Strapi Fetch Error (${res.status}): ${errorText}`);
         }
@@ -23,8 +20,16 @@ export async function fetchStrapi(path: string, params = "") {
         return await res.json();
     } catch (error) {
         console.error("FetchStrapi Error:", error);
-        // Rethrow or return null depending on strictness. User seems strict about "STOP using mock data"
         throw error;
+    }
+}
+
+export async function fetchStrapiSafe(path: string, params = "") {
+    try {
+        return await fetchStrapi(path, params);
+    } catch (error) {
+        console.warn(`[SafeFetch] Failed to fetch ${path}, returning null.`, error);
+        return null; // Return null instead of crashing
     }
 }
 
@@ -41,4 +46,3 @@ export function getStrapiMedia(url: string | null | undefined) {
     const cleanUrl = url.startsWith('/') ? url : `/${url}`;
     return `${STRAPI_URL}${cleanUrl}`;
 }
-

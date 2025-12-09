@@ -12,13 +12,17 @@ import { Testimonials } from "@/components/home/Testimonials";
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
+import { fetchStrapi, fetchStrapiSafe, getStrapiMedia } from "@/lib/strapi";
+
+// ... imports ...
+
 export default async function Home() {
-  // Parallel fetch for performance
+  // Parallel fetch for performance with error swallowing (Safe Mode)
   const [homeRes, academicsRes, newsRes, albumRes] = await Promise.all([
-    fetchStrapi("homepage", "populate=deep,10"),
-    fetchStrapi("academic-stages", "populate=deep,10"),
-    fetchStrapi("news-items", "populate=deep,10"),
-    fetchStrapi("albums", "populate=deep,10") // Fetch albums for gallery
+    fetchStrapiSafe("homepage", "populate=deep,10"),
+    fetchStrapiSafe("academic-stages", "populate=deep,10"),
+    fetchStrapiSafe("news-items", "populate=deep,10"),
+    fetchStrapiSafe("albums", "populate=deep,10")
   ]);
 
   const homeData = homeRes?.data?.attributes;

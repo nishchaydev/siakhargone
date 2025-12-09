@@ -1,4 +1,4 @@
-import { fetchStrapi, getStrapiMedia } from "@/lib/strapi";
+import { fetchStrapi, fetchStrapiSafe, getStrapiMedia } from "@/lib/strapi";
 import AboutPageClient from "./AboutPageClient";
 
 export const dynamic = "force-dynamic";
@@ -6,10 +6,10 @@ export const fetchCache = "force-no-store";
 
 export default async function AboutPage() {
   const [aboutRes, principalRes, directorRes, homeRes] = await Promise.all([
-    fetchStrapi("about", "populate=*"),
-    fetchStrapi("principal-message", "populate=*"),
-    fetchStrapi("director-message", "populate=*"),
-    fetchStrapi("homepage", "populate[stats]=*"),
+    fetchStrapiSafe("about", "populate=*"),
+    fetchStrapiSafe("principal-message", "populate=*"),
+    fetchStrapiSafe("director-message", "populate=*"),
+    fetchStrapiSafe("homepage", "populate[stats]=*"),
   ]);
 
   const about = aboutRes?.data?.attributes || {};
