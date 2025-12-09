@@ -1,7 +1,8 @@
 import { loadAboutData, loadMessage } from "@/lib/content";
 import AboutPageClient from "./AboutPageClient";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
 
 export default async function AboutPage() {
   const aboutData = await loadAboutData();

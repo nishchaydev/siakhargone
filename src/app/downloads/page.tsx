@@ -1,7 +1,8 @@
 import { loadDownloads } from "@/lib/content";
 import { FileText, Download } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
 
 export default async function DownloadsPage() {
     const downloads = await loadDownloads();

@@ -7,7 +7,8 @@ export const metadata: Metadata = {
   description: 'Join Sanskar International Academy. Learn about our admissions process, scholarships, and career support.',
 };
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
 
 export default async function AdmissionsPage() {
   const { documents: committeeDocs } = await loadCommittee();

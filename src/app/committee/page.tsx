@@ -1,6 +1,7 @@
 import { loadCommittee } from "@/lib/content";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
 
 export default async function CommitteePage() {
     const { content, documents } = await loadCommittee();

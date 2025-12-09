@@ -1,9 +1,17 @@
 import { loadAlbums } from "@/lib/content";
 import GalleryPageClient from "../GalleryPageClient";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+    const albums = await loadAlbums();
+    return albums.map((album) => ({
+        album: album.albumName,
+    }));
+}
 
 export default async function AlbumPage({ params }: { params: Promise<{ album: string }> }) {
+
     const { album } = await params;
     const decodedAlbum = decodeURIComponent(album);
     const albums = await loadAlbums();

@@ -1,7 +1,8 @@
 import { loadAlbums } from "@/lib/content";
 import GalleryPageClient from "./GalleryPageClient";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
 
 export default async function GalleryPage() {
   const albums = await loadAlbums();
