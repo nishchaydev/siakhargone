@@ -1,5 +1,8 @@
 
-import { fetchStrapi, getStrapiMedia } from "@/lib/strapi";
+
+
+
+
 import HeroSection from "@/components/sections/HeroSection";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { CampusFacilities } from "@/components/home/CampusFacilities";
@@ -8,37 +11,34 @@ import { Academics } from "@/components/home/Academics";
 import { GallerySection } from "@/components/home/GallerySection";
 import { AchievementsSection } from "@/components/home/AchievementsSection";
 import { Testimonials } from "@/components/home/Testimonials";
+import { albums } from "@/lib/static-data";
 
-export default async function Home() {
-  // 1. Fetch Homepage Data
-  const homeRes = await fetchStrapi("homepage?populate[heroVideo]=*&populate[stats]=*&populate[bentoTiles][populate]=media");
-  const homeData = homeRes?.data?.attributes;
+export default function Home() {
+  const galleryImages = albums[0]?.photos || [];
 
-  // 2. Fetch Gallery Album
-  const albumRes = await fetchStrapi("albums?populate[photos]=*&pagination[limit]=1");
-  const galleryImages = albumRes?.data?.[0]?.attributes?.photos?.data?.map((img: any) => getStrapiMedia(img.attributes.url)) || [];
-
-  // 3. Map to Component Props
   const cmsData = {
     hero: {
-      title: homeData?.heroTitle || "Where Excellence Begins.",
-      subtitle: homeData?.heroDescription || "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
-      sanskrit: homeData?.heroSubtitleHindi || "विद्या ददाति विनयम्",
-      video: getStrapiMedia(homeData?.heroVideo?.data?.attributes?.url),
-      grid: homeData?.bentoTiles?.map((tile: any) => getStrapiMedia(tile.media?.data?.attributes?.url)) || [],
+      title: "Where Excellence Begins.",
+      subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
+      sanskrit: "विद्या ददाति विनयम्",
+      video: "/video-poster.jpg", // Placeholder or use static-data value
+      grid: [
+        "/siakhargone-content/Photo For Uploads/Annual Function/DSC_2323.JPG",
+        "/siakhargone-content/Photo For Uploads/Annual Function/DSC_2342.JPG",
+        "/siakhargone-content/Photo For Uploads/Annual Function/DSC_2410.JPG",
+        "/siakhargone-content/Photo For Uploads/Annual Function/DSC_2419.JPG",
+      ],
       cta1Href: "/admissions",
       cta2Href: "/gallery"
     },
-    stats: homeData?.stats?.map((s: any) => ({
-      label: s.label,
-      value: s.value
-    })) || [],
+    stats: [
+      { label: "Students", value: "1500+" },
+      { label: "Teachers", value: "75+" },
+      { label: "Years of Excellence", value: "15+" },
+      { label: "Awards Won", value: "50+" }
+    ],
     gallery: galleryImages
   };
-
-  if (!homeData) {
-    console.warn("Strapi Homepage data missing. Is the server running and populated?");
-  }
 
   return (
     <>
@@ -53,3 +53,4 @@ export default async function Home() {
     </>
   );
 }
+

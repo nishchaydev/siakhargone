@@ -25,6 +25,7 @@
 *.pem
 
 # Local Environment Variables
+# **/siakhargone-content
 .env
 .env.local
 .env.development.local
