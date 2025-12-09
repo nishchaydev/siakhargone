@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base ShadCn Variables */
+    --background: 0 0% 100%;
+    --foreground: 217 55% 13%;
+    /* Navy Dark */
+    --card: 0 0% 100%;
+    --card-foreground: 217 55% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 55% 13%;
+    --primary: 211 74% 19%;
+    /* Navy #0C2E53 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 46 65% 52%;
+    /* Gold #D4AF37 */
+    --secondary-foreground: 211 74% 19%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 46 65% 52%;
+    /* Gold */
+    --accent-foreground: 211 74% 19%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 25 100% 55%;
+    /* SIA Orange #FF7A1A */
+    --radius: 0.5rem;
+
+    /* Semantic Theme Variables */
+    --color-navy: #0C2E53;
+    --color-navy-dark: #091E36;
+    --color-accent: #FF7A1A;
+    --color-gold: #D4AF37;
+    --bg-ivory: #F7F5F2;
+    --card-border: rgba(0, 0, 0, 0.06);
+  }
+
+  .dark {
+    /* Dark mode override (kept minimal as requested) */
+    --background: 211 74% 19%;
+    /* Navy */
+    --foreground: 0 0% 100%;
+    --card: 217 55% 13%;
+    /* Navy Dark */
+    --card-foreground: 0 0% 100%;
+    --popover: 217 55% 13%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 46 65% 52%;
+    /* Gold */
+    --primary-foreground: 211 74% 19%;
+    --secondary: 217 55% 13%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 55% 20%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 25 100% 55%;
+    /* Orange */
+    --accent-foreground: 211 74% 19%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 55% 20%;
+    --input: 217 55% 20%;
+    --ring: 46 65% 52%;
+  }
+
+  /* Typography Globals */
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display text-navy;
+    /* Use Playfair for all headings */
+  }
+
+  /* Hindi Font Class */
+  .hindi {
+    @apply font-hindi;
+  }
+}
+
+@layer utilities {
+
+  /* Consistent Section Spacing */
+  .section-xl {
+    @apply py-28 md:py-32 bg-background relative overflow-hidden;
+  }
+
+  /* Premium Card Style (Unified) */
+  .card-premium {
+    @apply rounded-xl shadow-md bg-white border border-cardBorder overflow-hidden transition-all duration-300;
+  }
+
+  .card-premium:hover {
+    @apply translate-y-[-6px] shadow-lg;
+  }
+
+  /* Hero Overlay */
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(12, 46, 83, 0.55), rgba(12, 46, 83, 0.45));
+  }
+
+  /* Utility for Ivory Backgrounds */
+  .bg-ivory {
+    @apply bg-bgIvory;
+  }
+}
