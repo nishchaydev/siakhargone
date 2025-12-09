@@ -39,7 +39,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                             {data.video?.includes("youtube.com") || data.video?.includes("youtu.be") ? (
                                 <iframe
                                     className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-90 blur-[1px]"
-                                    src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1`}
+                                    src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&hd=1&vq=hd1080`}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     loading="eager"
