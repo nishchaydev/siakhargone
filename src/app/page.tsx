@@ -1,5 +1,5 @@
 
-import { fetchStrapi, getStrapiMedia } from "@/lib/strapi";
+import { fetchStrapi, fetchStrapiSafe, getStrapiMedia } from "@/lib/strapi";
 import HeroSection from "@/components/sections/HeroSection";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { CampusFacilities } from "@/components/home/CampusFacilities";
@@ -12,7 +12,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-import { fetchStrapi, fetchStrapiSafe, getStrapiMedia } from "@/lib/strapi";
+
 
 // ... imports ...
 
