@@ -1,52 +1,43 @@
-
-import { fetchStrapi, getStrapiMedia } from "@/lib/strapi";
-import { FileText, Download } from "lucide-react";
-import { Section } from "@/components/common/Section";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { getCommitteeData } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-
-export const metadata = {
-    title: "School Managing Committee",
-    description: "View our Managing Committee members and documents.",
-};
 
 export default async function CommitteePage() {
-    const committeeRes = await fetchStrapi("school-managing-committees", "populate=deep,10");
-    const committees = committeeRes?.data || [];
+    const { content, documents } = await getCommitteeData();
 
     return (
-        <div className="min-h-screen bg-grain pt-[70px]">
-            <Section id="committee" title="School Managing Committee" subtitle="Governance and Leadership">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {committees.length === 0 ? (
-                        <p className="text-center col-span-full text-muted-foreground">No committee documents available.</p>
-                    ) : (
-                        committees.map((item: any) => {
-                            const fileUrl = getStrapiMedia(item.attributes.document?.data?.attributes?.url);
-                            return (
-                                <Card key={item.id} className="card-premium hover:shadow-lg transition-shadow">
-                                    <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                                        <div className="bg-primary/10 p-3 rounded-lg">
-                                            <FileText className="h-6 w-6 text-primary" />
-                                        </div>
-                                        <CardTitle className="text-lg">{item.attributes.title}</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <Button asChild className="w-full gap-2" variant="outline">
-                                            <a href={fileUrl || "#"} target="_blank" rel="noopener noreferrer" download>
-                                                <Download className="h-4 w-4" /> Download Document
-                                            </a>
-                                        </Button>
-                                    </CardContent>
-                                </Card>
-                            );
-                        })
-                    )}
+        <div className="container mx-auto py-20 px-4">
+            <h1 className="text-4xl font-bold mb-8 text-center text-navy font-display">School Managing Committee</h1>
+
+            {/* Render Docx Content */}
+            <div className="prose max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-sm mb-12">
+                {content ? (
+                    <div dangerouslySetInnerHTML={{ __html: content }} />
+                ) : (
+                    <p className="text-center text-muted-foreground">Committee details are currently being updated.</p>
+                )}
+            </div>
+
+            {/* Render Attached Documents if any */}
+            {documents.length > 0 && (
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-2xl font-bold mb-6">Related Documents</h2>
+                    <div className="grid gap-4">
+                        {documents.map((doc: any, idx: number) => (
+                            <a
+                                key={idx}
+                                href={doc.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center p-4 bg-white border rounded-lg hover:shadow-md transition-all"
+                            >
+                                <span className="font-medium flex-1">{doc.title}</span>
+                                <span className="text-primary text-sm font-bold">Download</span>
+                            </a>
+                        ))}
+                    </div>
                 </div>
-            </Section>
+            )}
         </div>
     );
 }
