@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import Image from "next/image";
+import { cloudinary } from "@/lib/cloudinary-images";
 
 export default function HeroSection({ data, stats }: { data: any, stats?: any[] }) {
     // Fallback if no stats provided
@@ -48,7 +49,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 </video>
                             ) : (
                                 /* Fallback to Image if no video */
-                                <Image src={data.grid?.[0] || "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp"}
+                                <Image src={data.grid?.[0] || "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"}
                                     alt="Hero Background"
                                     fill
                                     className="object-cover opacity-90"
@@ -116,7 +117,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
 
                         {/* Top Right - Students */}
                         <div className="relative h-[45%] overflow-hidden shadow-xl group bg-navy-dark">
-                            <Image src={data.grid?.[0] || "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp"}
+                            <Image src={data.grid?.[0] || "https://res.cloudinary.com/dkits80xk/image/upload/v1765349451/annual-function-3_b9mu3t.webp"}
                                 alt="Students interacting"
                                 fill
                                 priority
@@ -130,7 +131,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
 
                         {/* Bottom Right - Sports/Activity */}
                         <div className="relative h-[55%] overflow-hidden shadow-xl group bg-navy-dark">
-                            <Image src={data.grid?.[2] || "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2410.webp"}
+                            <Image src={data.grid?.[2] || cloudinary.mixPhotos[7]}
                                 alt="Sports activity"
                                 fill
                                 priority

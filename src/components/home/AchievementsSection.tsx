@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Section } from "@/components/common/Section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { cloudinary } from "@/lib/cloudinary-images";
 
 import { albums } from "@/lib/static-data";
 
@@ -19,21 +20,21 @@ const achievements = [
     date: "RECENT EVENT",
     title: taekwondo?.albumName || "District Level Taewando Competition",
     description: "Our students showcased outstanding skills and discipline at the District Level Taewando Competition.",
-    image: taekwondo?.coverPhoto || "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-5.webp",
+    image: taekwondo?.coverPhoto || cloudinary.districtLevelTaekwando[0],
     imageHint: "taewando competition"
   },
   {
     date: "ANNUAL EVENT",
     title: annualFunction?.albumName || "Annual Function Celebration",
     description: "A spectacular display of talent and culture by our students during the Annual Function.",
-    image: annualFunction?.coverPhoto || "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
+    image: annualFunction?.coverPhoto || cloudinary.annualFunction[3],
     imageHint: "annual function"
   },
   {
     date: "SPORTS",
     title: "Sports Achievements",
     description: "Celebrating the dedication and victory of our young athletes in various sports championships.",
-    image: sports?.coverPhoto || "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp",
+    image: sports?.coverPhoto || cloudinary.sportsAchievements[0],
     imageHint: "sports achievements"
   }
 ];

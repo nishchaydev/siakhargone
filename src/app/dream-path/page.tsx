@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import { cloudinary } from '@/lib/cloudinary-images';
 
 export const metadata: Metadata = {
     title: 'Dream Path - Sanskar International Academy',
@@ -22,14 +23,14 @@ export default function DreamPathPage() {
                 {/* Hero Section */}
                 <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
                     <Image alt="Graduation ceremony with students throwing caps in the air"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjznh7KzGJAOuzqBriyo7Xcdthn83c6LgCHU_G4gbH334hCPXk_YJWEw7fyLwFwRWWEbH5dBu7vOUYzpc0Z56QNPob_oLmTdT-8j_YsHu30I_Qeesa9vts9yxddTL8WvbpdHHoQKEJffOxOI29s3JpttcJqY0LfVC91ImB8I7ug3rnb0zkfc3bHkA7GYoGGnQypHiLD5kmBzmKXC9PpW0Seqjz1dAQwIqUoZXL76xDzezq3H9ZnVlXft54ESIpFuWR4GjKJR3w9TMA"
+                        src={cloudinary.infrastructure.building[1]}
                         fill
                         className="absolute inset-0 w-full h-full object-cover z-0"
                         priority unoptimized />
                     <div className="absolute inset-0 bg-black/50 z-10"></div>
                     <div className="relative z-20 px-6 text-white">
-                        <h1 className="font-display text-5xl md:text-7xl font-bold mb-4">Charting Futures:</h1>
-                        <h2 className="font-display text-4xl md:text-6xl font-bold">Your Dream Path Starts Here.</h2>
+                        <h1 className="font-display text-5xl md:text-7xl font-bold mb-4 text-amber-400">Charting Futures:</h1>
+                        <h2 className="font-display text-4xl md:text-6xl font-bold text-amber-400">Your Dream Path Starts Here.</h2>
                     </div>
                     <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white animate-bounce">
                         <span className="material-symbols-outlined text-4xl font-bold text-3xl">↓</span> {/* Fallback arrow if icon font missing */}

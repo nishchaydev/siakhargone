@@ -12,6 +12,7 @@ import { GallerySection } from "@/components/home/GallerySection";
 import { AchievementsSection } from "@/components/home/AchievementsSection";
 import { Testimonials } from "@/components/home/Testimonials";
 import { albums, testimonials } from "@/lib/static-data";
+import { cloudinary } from "@/lib/cloudinary-images";
 
 export default function Home() {
   // Curate homepage gallery images
@@ -23,7 +24,7 @@ export default function Home() {
   const womansDay = albums.find(a => a.albumName === "Woman_s Day Celebration")?.photos?.slice(0, 5) || [];
 
   const galleryImages = [
-    "/siakhargone-content/album/photo-for-uploads/main-photo.webp",
+    cloudinary.annualFunction[0], // main-photo replacement
     ...sessionStart,
     ...annualFunction,
     ...womansDay,
@@ -38,10 +39,10 @@ export default function Home() {
       sanskrit: "विद्या ददाति विनयम्",
       video: "https://www.youtube.com/watch?v=6-i18-xt8sI",
       grid: [
-        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp",
-        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2821.webp",
-        "/siakhargone-content/album/photo-for-uploads/rainy-day-plantation/girldrawing.webp",
-        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-2.webp",
+        cloudinary.infrastructure.building[1],
+        cloudinary.infrastructure.classrooms[0], // dsc_2821 replacement
+        cloudinary.rainyDay[2], // rainy-day-3
+        cloudinary.infrastructure.library[1], // library-2
       ],
       cta1Href: "/admissions",
       cta2Href: "/gallery"

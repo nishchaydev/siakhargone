@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { loadAcademicStages, loadAlbums } from '@/lib/content';
 import AcademicsPageClient from './AcademicsPageClient';
+import { cloudinary } from '@/lib/cloudinary-images';
 
 export const metadata: Metadata = {
   title: 'Academics',
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 const methodologyImage = {
   id: 'experiential-learning',
-  imageUrl: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-1.webp",
+  imageUrl: cloudinary.infrastructure.classrooms[0],
   description: "Interactive Learning Environment",
   imageHint: "Classroom"
 };

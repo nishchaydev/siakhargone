@@ -79,7 +79,7 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                             <Image src={schoolImage.src}
                                 alt={schoolImage.alt}
                                 width={600} height={400}
-                                className="rounded-lg shadow-lg w-full object-cover"
+                                className="rounded-full aspect-square shadow-lg w-full object-cover border-4 border-white dark:border-gray-800"
                                 priority unoptimized />
                         )}
                     </MotionDiv>
@@ -173,7 +173,7 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                     variants={fadeInUp}
                 >
                     <div className="md:order-2">
-                        <div className="rounded-2xl shadow-xl overflow-hidden aspect-[3/4] max-w-sm mx-auto">
+                        <div className="relative aspect-square rounded-full overflow-hidden shadow-xl border-4 border-white dark:border-gray-800 max-w-sm mx-auto">
                             {isLoading || !principalMessage ? (
                                 <Skeleton className="w-full h-full" />
                             ) : (

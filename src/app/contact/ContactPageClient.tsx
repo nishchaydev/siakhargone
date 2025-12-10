@@ -7,6 +7,19 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function ContactPageClient() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const phone = formData.get('phone') as string;
+    const studentClass = formData.get('class') as string;
+    const message = formData.get('message') as string;
+
+    const whatsappMessage = `*New Enquiry from Website*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Class:* ${studentClass}%0A*Message:* ${message}`;
+
+    window.open(`https://wa.me/917049110104?text=${whatsappMessage}`, '_blank');
+  };
+
   return (
     <>
       <div className="bg-cream min-h-screen pb-20">
@@ -91,15 +104,15 @@ export default function ContactPageClient() {
               <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gold/20 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-bl-full -mr-10 -mt-10" />
 
-                <form className="space-y-5 relative z-10">
+                <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-navy">Full Name</label>
-                    <input type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" />
+                    <input name="name" type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" required />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-navy">Phone Number</label>
-                    <input type="tel" placeholder="+91 000 000 0000" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" />
+                    <input name="phone" type="tel" placeholder="+91 000 000 0000" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" required />
                   </div>
 
                   <div className="space-y-2">
@@ -109,7 +122,7 @@ export default function ContactPageClient() {
 
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-navy">Student's Prospective Class</label>
-                    <select className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all appearance-none cursor-pointer">
+                    <select name="class" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all appearance-none cursor-pointer">
                       <option value="">Select a class</option>
                       <option value="nursery">Nursery</option>
                       <option value="kg1">KG 1</option>
@@ -131,7 +144,7 @@ export default function ContactPageClient() {
 
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-navy">Message</label>
-                    <textarea rows={4} placeholder="Your message..." className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all resize-none"></textarea>
+                    <textarea name="message" rows={4} placeholder="Your message..." className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all resize-none"></textarea>
                   </div>
 
                   <Button className="w-full bg-navy hover:bg-navy-light text-white font-bold py-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-lg mt-4">
@@ -146,7 +159,7 @@ export default function ContactPageClient() {
         {/* Visit Our Campus Section */}
         <section className="relative py-24 overflow-hidden mt-12">
           <div className="absolute inset-0 bg-navy-dark z-0">
-            <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp"
+            <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"
               alt="Campus Background"
               fill
               className="object-cover opacity-20 mix-blend-overlay" unoptimized />

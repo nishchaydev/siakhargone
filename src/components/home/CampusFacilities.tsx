@@ -9,29 +9,32 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
+
+import { cloudinary } from "@/lib/cloudinary-images";
+
 const facilities = [
     {
         title: "Smart Classrooms",
         description: "Tech-enabled learning spaces.",
-        image: "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/lab-computer-1.webp",
+        image: cloudinary.lab.computer[0], // lab-computer-1
         className: "md:col-span-2 md:row-span-2",
     },
     {
         title: "Sports Complex",
         description: "Professional tracks & courts.",
-        image: "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp",
+        image: cloudinary.sportsAchievements[0], // sports-achievements-1
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Science Labs",
         description: "State-of-the-art equipment.",
-        image: "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/lab-chemistry-1.webp",
+        image: cloudinary.lab.chemistry[0], // lab-chemistry-1
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Library",
         description: "A hub of knowledge.",
-        image: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-1.webp",
+        image: cloudinary.infrastructure.library[0], // infrastructure-library-1
         className: "md:col-span-2 md:row-span-1",
     },
 ];

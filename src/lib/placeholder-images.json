@@ -1,94 +1,13 @@
 {
-  "placeholderImages": [
-    {
-      "id": "hero-carousel-1",
-      "description": "Students collaborating in a modern smart classroom",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/infrastructure-classroom-1.webp",
-      "imageHint": "students in classroom"
-    },
-    {
-      "id": "hero-carousel-2",
-      "description": "Students engaging in sports activities",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp",
-      "imageHint": "students playing sports"
-    },
-    {
-      "id": "hero-carousel-3",
-      "description": "State-of-the-art science laboratory",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/biology-lab/lab-biology-1.webp",
-      "imageHint": "science lab"
-    },
-    {
-      "id": "school-building",
-      "description": "Sanskar International Academy School Building",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp",
-      "imageHint": "school building exterior"
-    },
-    {
-      "id": "principal-portrait",
-      "description": "Principal of Sanskar International Academy",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
-      "imageHint": "principal portrait"
-    },
-    {
-      "id": "chairman-portrait",
-      "description": "Chairman of Sanskar International Academy",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2410.webp",
-      "imageHint": "chairman portrait"
-    },
-    {
-      "id": "virtual-tour-thumbnail",
-      "description": "Video thumbnail for campus virtual tour",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-1.webp",
-      "imageHint": "campus video thumbnail"
-    },
-    {
-      "id": "sports-infrastructure",
-      "description": "Sprawling sports complex and playground",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-2.webp",
-      "imageHint": "sports complex"
-    },
-    {
-      "id": "student-leadership",
-      "description": "Student council members",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2342.webp",
-      "imageHint": "student leaders"
-    },
-    {
-      "id": "career-counselling",
-      "description": "Career counselling session",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/infrastructure-classroom-2.webp",
-      "imageHint": "counselling session"
-    },
-    {
-      "id": "methodology-learning",
-      "description": "Students engaged in active learning",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/lab-chemistry-1.webp",
-      "imageHint": "active learning"
-    },
-    {
-      "id": "infrastructure-school",
-      "description": "Modern school infrastructure",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-1.webp",
-      "imageHint": "modern infrastructure"
-    },
-    {
-      "id": "highlight-carousel-1",
-      "description": "Cultural Event / Annual Day",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/annualfunction.webp",
-      "imageHint": "cultural event"
-    },
-    {
-      "id": "highlight-carousel-2",
-      "description": "Sports Meet",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-4.webp",
-      "imageHint": "school sports"
-    },
-    {
-      "id": "highlight-carousel-3",
-      "description": "Science / Innovation Lab",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/physics-lab/lab-physics-1.webp",
-      "imageHint": "science lab"
-    }
-  ]
+  "grid": [
+    "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/classroom-1_k9z4s9.webp",
+    "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp",
+    "https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-1_xmyfg2.webp"
+  ],
+  "video": "https://res.cloudinary.com/dkits80xk/video/upload/v1765306917/hero-video_lfe9p3.mp4",
+  "title": "Welcome to Sanskar International Academy",
+  "subtitle": "Empowering students to achieve excellence in academics and life.",
+  "sanskrit": "Sa Vidya Ya Vimuktaye",
+  "cta1Href": "/admissions",
+  "cta2Href": "#video"
 }

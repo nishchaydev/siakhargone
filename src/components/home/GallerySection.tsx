@@ -6,17 +6,18 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import type { GalleryImage } from "@/lib/definitions";
 import Image from "next/image";
+import { cloudinary } from "@/lib/cloudinary-images";
 
 const duplicatedImages = (images: string[]) => [...images, ...images];
 
 export function GallerySection({ images = [] }: { images?: string[] }) {
     // Fallback if no images provided
     const displayImages = images.length > 0 ? images : [
-        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
-        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2342.webp",
-        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2410.webp",
-        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2419.webp",
-        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2431.webp"
+        cloudinary.annualFunction[3], // annual-function-3
+        cloudinary.infrastructure.building[1], // Fallback/Placeholder
+        cloudinary.sportsAchievements[0], // Fallback
+        cloudinary.mixPhotos[0], // Fallback
+        cloudinary.mixPhotos[1]  // Fallback
     ];
 
     const finalImages = duplicatedImages(displayImages);
