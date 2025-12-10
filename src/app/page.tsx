@@ -60,9 +60,9 @@ export default function Home() {
       cta2Href: "/gallery"
     },
     stats: [
-      { label: "Students", value: "1500+" },
-      { label: "Teachers", value: "75+" },
-      { label: "Years of Excellence", value: "15+" },
+      { label: "Students", value: "1100+" },
+      { label: "Teachers", value: "50+" },
+      { label: "Years of Experience", value: "10+" },
       { label: "Awards Won", value: "50+" }
     ],
     gallery: galleryImages

@@ -9,10 +9,10 @@ import { cloudinary } from "@/lib/cloudinary-images";
 export default function HeroSection({ data, stats }: { data: any, stats?: any[] }) {
     // Fallback if no stats provided
     const displayStats = stats || [
-        { value: "2500+", label: "Students" },
-        { value: "100%", label: "Results" },
-        { value: "50+", label: "Awards" },
-        { value: "30+", label: "Sports & Activities" }
+        { value: "1100+", label: "Students" },
+        { value: "50+", label: "Teachers" },
+        { value: "10+", label: "Years of Experience" },
+        { value: "50+", label: "Awards" }
     ];
 
     return (

@@ -41,7 +41,7 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <div className="flex flex-col">
                   <span className="font-display font-bold text-3xl leading-none tracking-wide text-white">SANSKAR</span>
-                  <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-white/60">International School</span>
+                  <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-white/60">International Academy</span>
                 </div>
               </div>
               <p className="text-white/70 text-sm leading-relaxed max-w-xs">

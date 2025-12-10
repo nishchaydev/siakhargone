@@ -169,7 +169,7 @@ export default function Header() {
           </div>
           <div className="flex flex-col justify-center">
             <span className="font-display font-bold text-2xl leading-none tracking-wide text-white">SANSKAR</span>
-            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/80">International School</span>
+            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/80">International Academy</span>
           </div>
         </Link>
 
