@@ -129,7 +129,26 @@ export const downloads: any[] = [
     // Empty as no files were clearly identified in downloads/itemX folders
 ];
 
-export const committeeContent = `<p>SCHOOL MANAGING COMMITTEE</p><p>2024-25</p><table><tr><td><p><strong>S. No.</strong></p></td><td><p><strong>Name of Committee Member</strong></p></td><td><p><strong>Designation</strong></p></td></tr><tr><td><p>1</p></td><td><p>Mr. Pushpendra Patel</p></td><td><p>Chairperson</p></td></tr><tr><td><p>2</p></td><td><p>Mr. Praveen Asnade</p></td><td><p>Vice-Chairperson</p></td></tr><tr><td><p>3</p></td><td><p>Mr. Sanjay Yadav</p></td><td><p>Pro-Vice Chairperson</p></td></tr><tr><td><p>4</p></td><td><p>Mr. Shivam Jaiswal</p></td><td><p>Member Secretary</p></td></tr><tr><td><p>5</p></td><td><p>Mrs. Vandana Panwar</p></td><td><p>Board Representative</p></td></tr><tr><td><p>6</p></td><td><p>Mrs Bhawna Patel</p></td><td><p>Board Representative</p></td></tr><tr><td><p>7</p></td><td><p>Mr. Rameshchandra Jha</p></td><td><p>Teacher Representative from other school</p></td></tr><tr><td><p>8</p></td><td><p>Mr. Ritesh Bhawsar</p></td><td><p>Teacher Representative from other school</p></td></tr><tr><td><p>9</p></td><td><p>Mrs Pratibha Bhawsar</p></td><td><p>Teacher Representative</p></td></tr><tr><td><p>10</p></td><td><p>Mrs. Reena Patel</p></td><td><p>Teacher Representative</p></td></tr><tr><td><p>11</p></td><td><p>Mrs Kirti Choudhary</p></td><td><p>Parent Representative</p></td></tr><tr><td><p>12</p></td><td><p>Mrs. Bindu Hariom Kushwah</p></td><td><p>Parent Representative</p></td></tr><tr><td><p>13</p></td><td><p>Mrs. Vaishali Asnade</p></td><td><p>Member</p></td></tr><tr><td><p>14</p></td><td><p>Mrs Anita Kushwah</p></td><td><p>Member</p></td></tr><tr><td><p>15</p></td><td><p>Mr Hariram Solanki</p></td><td><p>Member</p></td></tr><tr><td><p>16</p></td><td><p>Mr Yogesh Kushwah</p></td><td><p>Member</p></td></tr></table><p>Principal</p>`;
+export const committeeMembers = [
+    { sn: 1, name: "Mr. Pushpendra Patel", designation: "Chairperson" },
+    { sn: 2, name: "Mr. Praveen Asnade", designation: "Vice-Chairperson" },
+    { sn: 3, name: "Mr. Sanjay Yadav", designation: "Pro-Vice Chairperson" },
+    { sn: 4, name: "Mr. Shivam Jaiswal", designation: "Member Secretary" },
+    { sn: 5, name: "Mrs. Vandana Panwar", designation: "Board Representative" },
+    { sn: 6, name: "Mrs Bhawna Patel", designation: "Board Representative" },
+    { sn: 7, name: "Mr. Rameshchandra Jha", designation: "Teacher Representative from other school" },
+    { sn: 8, name: "Mr. Ritesh Bhawsar", designation: "Teacher Representative from other school" },
+    { sn: 9, name: "Mrs Pratibha Bhawsar", designation: "Teacher Representative" },
+    { sn: 10, name: "Mrs. Reena Patel", designation: "Teacher Representative" },
+    { sn: 11, name: "Mrs Kirti Choudhary", designation: "Parent Representative" },
+    { sn: 12, name: "Mrs. Bindu Hariom Kushwah", designation: "Parent Representative" },
+    { sn: 13, name: "Mrs. Vaishali Asnade", designation: "Member" },
+    { sn: 14, name: "Mrs Anita Kushwah", designation: "Member" },
+    { sn: 15, name: "Mr Hariram Solanki", designation: "Member" },
+    { sn: 16, name: "Mr Yogesh Kushwah", designation: "Member" }
+];
+
+export const committeeContent = ""; // Deprecated, kept for temporary type compatibility if needed
 
 export const committeeDocuments: any[] = [];
 

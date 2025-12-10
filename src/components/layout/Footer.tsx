@@ -67,7 +67,6 @@ export default function Footer() {
                 <li><Link href="/gallery" className="hover:text-gold transition-colors block">Gallery</Link></li>
                 <li><Link href="/academics" className="hover:text-gold transition-colors block">Academics</Link></li>
                 <li><Link href="/life-at-sia" className="hover:text-gold transition-colors block">Life at SIA</Link></li>
-                <li><Link href="/admin" className="hover:text-gold transition-colors flex items-center gap-2">Admin Login</Link></li>
               </ul>
             </motion.div>
 
@@ -97,9 +96,9 @@ export default function Footer() {
 
               {/* Socials */}
               <div className="flex gap-4 mt-8">
-                <a href="#" className="bg-white text-royal-blue-dark p-2 rounded-full hover:bg-gold hover:text-white transition-all"><Facebook className="h-5 w-5" /></a>
-                <a href="#" className="bg-white text-royal-blue-dark p-2 rounded-full hover:bg-gold hover:text-white transition-all"><Instagram className="h-5 w-5" /></a>
-                <a href="#" className="bg-white text-royal-blue-dark p-2 rounded-full hover:bg-gold hover:text-white transition-all"><Youtube className="h-5 w-5" /></a>
+                <a href="https://www.facebook.com/siakhargone/" target="_blank" rel="noopener noreferrer" className="bg-white text-navy p-2 rounded-full hover:bg-gold hover:text-white transition-all flex items-center justify-center"><Facebook className="h-5 w-5" /></a>
+                <a href="https://www.instagram.com/sanskarinternationalacademy/?hl=en" target="_blank" rel="noopener noreferrer" className="bg-white text-navy p-2 rounded-full hover:bg-gold hover:text-white transition-all flex items-center justify-center"><Instagram className="h-5 w-5" /></a>
+                <a href="https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw" target="_blank" rel="noopener noreferrer" className="bg-white text-navy p-2 rounded-full hover:bg-gold hover:text-white transition-all flex items-center justify-center"><Youtube className="h-5 w-5" /></a>
               </div>
             </motion.div>
           </div>
@@ -110,6 +109,8 @@ export default function Footer() {
             <div className="flex gap-6 mt-4 md:mt-0">
               <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Note</Link>
               <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
+              <div className="hidden md:block w-px h-4 bg-white/20"></div>
+              <a href="https://bynn.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors text-white/40">Built & Managed by BYN Agency</a>
             </div>
           </div>
         </div>

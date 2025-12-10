@@ -9,7 +9,6 @@ import Chatbot from '@/components/chatbot/Chatbot';
 
 import MobileCtaBar from '@/components/layout/MobileCtaBar';
 import ScrollToTop from '@/components/common/ScrollToTop';
-import SignatureBadge from "@/components/common/SignatureBadge";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
@@ -94,7 +93,6 @@ export default function RootLayout({
         <MobileCtaBar />
         <Chatbot />
         <Toaster />
-        <SignatureBadge />
         <SpeedInsights />
       </body>
     </html>

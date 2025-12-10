@@ -25,16 +25,6 @@ const steps = [
     { number: 4, title: "Admission Confirmation", description: "On selection, parents complete the fee payment and receive confirmation from the administration." },
 ];
 
-const disclosures = [
-    { category: "Affiliation Documents", link: "#" },
-    { category: "Trust / Society Registration", link: "#" },
-    { category: "Building Safety Certificate", link: "#" },
-    { category: "Fire Safety Certificate", link: "#" },
-    { category: "Water, Health, and Sanitation", link: "#" },
-    { category: "Annual Academic Calendar", link: "#" },
-    { category: "Fee Structure", link: "#" },
-    { category: "Management Committee", link: "#" },
-];
 
 const staggerContainer = {
     hidden: { opacity: 0 },
@@ -109,31 +99,24 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
 
 
             <Section id="disclosure" title="Mandatory Disclosure" subtitle="In compliance with CBSE guidelines" bgColor="bg-cream">
-                <Card className="card-premium overflow-hidden">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Category</TableHead>
-                                <TableHead className="text-right">Details / View Link</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {disclosures.map((item) => (
-                                <TableRow key={item.category} className="hover:bg-muted/80">
-                                    <TableCell className="font-medium">{item.category}</TableCell>
-                                    <TableCell className="text-right">
-                                        <Button asChild variant="link">
-                                            <Link href={item.link}>View</Link>
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                <Card className="card-premium p-8 text-center max-w-3xl mx-auto">
+                    <div className="flex justify-center mb-6">
+                        <div className="p-4 bg-navy/5 rounded-full">
+                            <Check className="h-8 w-8 text-navy" />
+                        </div>
+                    </div>
+                    <CardContent className="p-0 space-y-6">
+                        <h3 className="text-xl font-bold font-headline text-navy">Transparency & Compliance</h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                            We maintain complete transparency in our operations. All mandatory disclosure documents,
+                            including affiliation certificates, safety clearances, and committee details,
+                            are available for public viewing throughout the year.
+                        </p>
+                        <Button asChild size="lg" className="bg-navy hover:bg-navy-dark text-white">
+                            <Link href="/mandatory-disclosure">View All Disclosure Documents</Link>
+                        </Button>
+                    </CardContent>
                 </Card>
-                <p className="text-sm text-muted-foreground mt-4 text-center">
-                    All documents are verified and updated periodically as per CBSE and state education board regulations.
-                </p>
             </Section>
         </div>
     );

@@ -51,7 +51,7 @@ export default async function AboutPage() {
         aboutContent={aboutData?.content || ""}
         principalMessage={principalMessage}
         chairmanMessage={chairmanMessage}
-        committeeContent={committee?.content || ""}
+        committeeMembers={committee?.members || []}
         achievementItems={achievementItems}
         schoolImage={schoolImage}
         isLoading={isLoading}

@@ -103,7 +103,7 @@ export default function LifeAtSiaPage() {
                             <p className="text-gray-600 text-lg leading-relaxed mb-6">
                                 Our classrooms and labs are equipped with the latest technology to facilitate a modern, interactive learning experience. From digital smart boards to fully-equipped science labs, we provide the tools for students to excel academically and develop critical thinking skills.
                             </p>
-                            <a href="#" className="text-gold-accent font-semibold hover:text-navy transition-colors flex items-center gap-2">
+                            <a href="/academics" className="text-gold-accent font-semibold hover:text-navy transition-colors flex items-center gap-2">
                                 Explore Academics <span>→</span>
                             </a>
                         </div>
@@ -116,8 +116,8 @@ export default function LifeAtSiaPage() {
                             <p className="text-gray-600 text-lg leading-relaxed mb-6">
                                 We believe in nurturing well-rounded individuals. Our extensive sports facilities, performing arts studios, and creative spaces encourage students to pursue their passions, develop new skills, and maintain a healthy, balanced lifestyle outside the classroom.
                             </p>
-                            <a href="#" className="text-gold-accent font-semibold hover:text-navy transition-colors flex items-center gap-2">
-                                Discover Life at SIA <span>→</span>
+                            <a href="/beyond-school" className="text-gold-accent font-semibold hover:text-navy transition-colors flex items-center gap-2">
+                                Explore Co-Curricular <span>→</span>
                             </a>
                         </div>
                         <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">

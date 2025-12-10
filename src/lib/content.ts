@@ -3,7 +3,7 @@ import {
     albums,
     certificates,
     downloads,
-    committeeContent,
+    committeeMembers,
     committeeDocuments,
     messages,
     aboutData,
@@ -41,7 +41,7 @@ export function loadDownloads() {
 }
 
 export async function loadCommittee() {
-    return { content: committeeContent, documents: committeeDocuments };
+    return { members: committeeMembers, documents: committeeDocuments };
 }
 
 export async function loadAboutData() {

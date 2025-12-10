@@ -9,12 +9,9 @@ export const mandatoryDisclosure = {
     },
 
     placeholders: {
-        nocCertificate: "coming-soon",
         recognitionCertificate: "coming-soon",
-        societyRegistration: "coming-soon",
         sanitationCertificate: "coming-soon",
         staffList: "coming-soon",
-        ptaList: "coming-soon",
         studentStrength: "coming-soon",
     }
 };
@@ -48,5 +45,25 @@ export const pdfLinks = {
     highSchoolAffiliation: {
         preview: "https://drive.google.com/file/d/1UoCf8o_0YFdi7GK3e2a3DisaX65Pd_8G/preview",
         download: "https://drive.google.com/uc?export=download&id=1UoCf8o_0YFdi7GK3e2a3DisaX65Pd_8G",
+    },
+
+    societyRegistration: {
+        preview: "https://drive.google.com/file/d/1U545ANWNwIBcMVYplTzd0_uc-DEkCZ3g/preview",
+        download: "https://drive.google.com/uc?export=download&id=1U545ANWNwIBcMVYplTzd0_uc-DEkCZ3g",
+    },
+
+    ptaList: {
+        preview: "https://drive.google.com/file/d/1XutQRFohgdzLQMgPOyXckWy23-KISJsm/preview",
+        download: "https://drive.google.com/uc?export=download&id=1XutQRFohgdzLQMgPOyXckWy23-KISJsm",
+    },
+
+    nocCertificate: {
+        preview: "https://drive.google.com/file/d/1np5LkiL1vZD97yXR1uVcBLUzGUubbNMX/preview",
+        download: "https://drive.google.com/uc?export=download&id=1np5LkiL1vZD97yXR1uVcBLUzGUubbNMX",
+    },
+
+    cbseAffiliation: {
+        preview: "https://drive.google.com/file/d/1MQXpIy3ePRQoqJbHB8REtEj1dCt1Tnx9/preview",
+        download: "https://drive.google.com/uc?export=download&id=1MQXpIy3ePRQoqJbHB8REtEj1dCt1Tnx9",
     },
 };
