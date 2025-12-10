@@ -25,16 +25,17 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                     {/* Main Hero Block (Left - Large) */}
                     <div className="lg:col-span-8 relative shadow-2xl group bg-navy-dark overflow-hidden">
                         {/* Mobile Background Image (Replaces Video) */}
-                        <div className="absolute inset-0 w-full h-full md:hidden">
-                            <Image src={data.grid?.[0] || "https://picsum.photos/seed/hero-top/600/600"}
+                        <div className="absolute inset-0 w-full h-full md:hidden bg-navy-dark">
+                            <Image src={data.grid?.[0] || cloudinary.infrastructure.building[1]}
                                 alt="Hero Background"
                                 fill
                                 className="object-cover opacity-90"
-                                priority unoptimized />
+                                priority
+                                unoptimized />
                         </div>
 
                         {/* Desktop Background: Video or Image */}
-                        <div className="absolute inset-0 w-full h-full hidden md:block">
+                        <div className="absolute inset-0 w-full h-full hidden md:block bg-navy-dark">
                             {data.video && (data.video.includes("youtube.com") || data.video.includes("youtu.be")) ? (
                                 <iframe
                                     className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-90 blur-[1px]"
@@ -49,7 +50,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 </video>
                             ) : (
                                 /* Fallback to Image if no video */
-                                <Image src={data.grid?.[0] || "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"}
+                                <Image src={data.grid?.[0] || cloudinary.infrastructure.building[1]}
                                     alt="Hero Background"
                                     fill
                                     className="object-cover opacity-90"
@@ -120,7 +121,6 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                             <Image src={data.grid?.[0] || "https://res.cloudinary.com/dkits80xk/image/upload/v1765349451/annual-function-3_b9mu3t.webp"}
                                 alt="Students interacting"
                                 fill
-                                priority
                                 sizes="(max-width: 1024px) 100vw, 33vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" unoptimized />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -134,7 +134,6 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                             <Image src={data.grid?.[2] || cloudinary.mixPhotos[7]}
                                 alt="Sports activity"
                                 fill
-                                priority
                                 sizes="(max-width: 1024px) 100vw, 33vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>

@@ -13,6 +13,29 @@ const nextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com' }
     ],
   },
+  async headers() {
+    return [
+      {
+        source: '/:all*(svg|jpg|png|webp|avif|mp4|woff2)',
+        locale: false,
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ],
+      },
+      {
+        source: '/_next/image(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ],
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;

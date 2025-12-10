@@ -4,13 +4,25 @@
 
 
 import HeroSection from "@/components/sections/HeroSection";
-import { WhyChoose } from "@/components/home/WhyChoose";
-import { CampusFacilities } from "@/components/home/CampusFacilities";
-import { CTASection } from "@/components/home/CTASection";
-import { Academics } from "@/components/home/Academics";
-import { GallerySection } from "@/components/home/GallerySection";
-import { AchievementsSection } from "@/components/home/AchievementsSection";
-import { Testimonials } from "@/components/home/Testimonials";
+import dynamic from 'next/dynamic';
+import HeroSection from "@/components/sections/HeroSection";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Lazy Load Non-Critical Components
+const WhyChoose = dynamic(() => import("@/components/home/WhyChoose").then(mod => mod.WhyChoose), {
+  loading: () => <div className="py-20"><Skeleton className="h-[400px] w-full max-w-7xl mx-auto rounded-xl" /></div>
+});
+const CampusFacilities = dynamic(() => import("@/components/home/CampusFacilities").then(mod => mod.CampusFacilities), {
+  loading: () => <div className="py-20"><Skeleton className="h-[300px] w-full max-w-7xl mx-auto" /></div>
+});
+const CTASection = dynamic(() => import("@/components/home/CTASection").then(mod => mod.CTASection));
+const Academics = dynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
+const GallerySection = dynamic(() => import("@/components/home/GallerySection").then(mod => mod.GallerySection), {
+  loading: () => <div className="py-20 text-center">Loading Gallery...</div>
+});
+const AchievementsSection = dynamic(() => import("@/components/home/AchievementsSection").then(mod => mod.AchievementsSection));
+const Testimonials = dynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
+
 import { albums, testimonials } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
 

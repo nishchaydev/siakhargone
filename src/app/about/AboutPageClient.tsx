@@ -73,6 +73,12 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                 <div className="grid md:grid-cols-2 gap-12 items-start relative">
                     <MotionDiv variants={fadeInUp} className="prose lg:prose-lg max-w-none text-muted-foreground">
                         <div dangerouslySetInnerHTML={{ __html: aboutContent }} />
+
+                        <div className="mt-6 p-4 bg-amber-50 border-l-4 border-gold rounded-r-lg">
+                            <p className="text-navy font-medium">
+                                Looking for the top-rated education in the city? <a href="/best-school-in-khargone" className="text-royal-blue underline hover:text-gold transition-colors">See why SIA is rated the Best School in Khargone.</a>
+                            </p>
+                        </div>
                     </MotionDiv>
                     <MotionDiv variants={fadeInUp} className="sticky top-24">
                         {schoolImage?.src && (

@@ -35,13 +35,13 @@ const mukta = Mukta({
 });
 
 
-const openGraphImage = '/logosia.png';
+const openGraphImage = 'https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png';
 
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://siakhargone.in'),
   title: {
-    default: 'SanskAR International School – Best CBSE School in Khandwa Road, Khargone',
+    default: 'Sanskar International School – Best CBSE School in Khandwa Road, Khargone',
     template: '%s | Sanskar International Academy',
   },
   description: 'One of Khargone\'s top CBSE schools offering modern education, sports, arts, and academics for holistic child development.',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://siakhargone.in',
-    title: 'SanskAR International School – Best CBSE School in Khandwa Road, Khargone',
+    title: 'Sanskar International School – Best CBSE School in Khandwa Road, Khargone',
     description: 'One of Khargone\'s top CBSE schools offering modern education, sports, arts, and academics for holistic child development.',
     siteName: 'Sanskar International Academy',
     images: [{

@@ -30,7 +30,7 @@ export default function BestSchoolInKhargonePage() {
             <section className="relative h-[60vh] flex items-center justify-center text-center text-white">
                 <Image
                     src={cloudinary.infrastructure.building[1]}
-                    alt="Best School in Khargone - Sanskar International Academy Campus"
+                    alt="Best CBSE School in Khargone - Sanskar International Academy Campus Building"
                     fill
                     className="object-cover"
                     priority
@@ -77,7 +77,7 @@ export default function BestSchoolInKhargonePage() {
                     <div className="relative h-80 w-full rounded-2xl overflow-hidden shadow-xl">
                         <Image
                             src={cloudinary.infrastructure.classrooms[0]}
-                            alt="Smart Classroom at Best CBSE School Khargone"
+                            alt="Modern Smart Classroom at Top CBSE School Khargone"
                             fill
                             className="object-cover"
                             unoptimized
@@ -97,21 +97,21 @@ export default function BestSchoolInKhargonePage() {
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="bg-white p-8 rounded-xl shadow-md border-b-4 border-gold">
                             <BookOpen className="h-10 w-10 text-royal-blue mb-4" />
-                            <h3 className="text-xl font-bold mb-3 text-navy">Academic Excellence</h3>
+                            <h3 className="text-xl font-bold mb-3 text-navy">Academic Excellence (CBSE)</h3>
                             <p className="text-gray-600">
                                 Our CBSE curriculum is designed to challenge students and prepare them for competitive exams like JEE, NEET, and Olympiads right from school level.
                             </p>
                         </div>
                         <div className="bg-white p-8 rounded-xl shadow-md border-b-4 border-gold">
                             <Trophy className="h-10 w-10 text-royal-blue mb-4" />
-                            <h3 className="text-xl font-bold mb-3 text-navy">Co-curricular Strength</h3>
+                            <h3 className="text-xl font-bold mb-3 text-navy">Sports & Co-curriculars</h3>
                             <p className="text-gray-600">
                                 From state-level sports champions to national art winners, SIA students excel beyond textbooks. We offer Music, Dance, Drama, and Sports.
                             </p>
                         </div>
                         <div className="bg-white p-8 rounded-xl shadow-md border-b-4 border-gold">
                             <Users className="h-10 w-10 text-royal-blue mb-4" />
-                            <h3 className="text-xl font-bold mb-3 text-navy">Personal Mentorship</h3>
+                            <h3 className="text-xl font-bold mb-3 text-navy">Mentorship in Khargone</h3>
                             <p className="text-gray-600">
                                 With a healthy low teacher-student ratio, every child gets personal attention. We believe every student is unique and talented.
                             </p>
@@ -232,18 +232,40 @@ export default function BestSchoolInKhargonePage() {
                 </div>
             </section>
 
-            {/* JSON-LD Schema for FAQs */}
+
+            {/* JSON-LD Schema for FAQs & Page Specifics */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "FAQPage",
-                        "mainEntity": [
-                            { "@type": "Question", "name": "Why is SIA considered the best school in Khargone?", "acceptedAnswer": { "@type": "Answer", "text": "SIA offers a unique blend of academic excellence (CBSE curriculum), state-of-the-art infrastructure, and holistic development." } },
-                            { "@type": "Question", "name": "Does the school provide transportation facilities?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we have a fleet of GPS-enabled buses covering all major routes in Khargone." } },
-                            { "@type": "Question", "name": "What is the admission process for 2025-26?", "acceptedAnswer": { "@type": "Answer", "text": "Admissions are simple and transparent. Fill the enquiry form online or visit our campus." } },
-                            { "@type": "Question", "name": "Are there opportunities for sports and extracurriculars?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we have professional coaches for sports and clubs for Music, Dance, and Robotics." } }
+                        "@graph": [
+                            {
+                                "@type": "WebPage",
+                                "@id": "https://siakhargone.in/best-school-in-khargone",
+                                "url": "https://siakhargone.in/best-school-in-khargone",
+                                "name": "Best School in Khargone - Sanskar International Academy",
+                                "description": "Why SIA is the top CBSE school in Khargone. Compare facilities, academics, and results.",
+                                "datePublished": "2024-01-15",
+                                "dateModified": new Date().toISOString().split('T')[0],
+                                "isPartOf": { "@id": "https://siakhargone.in/#website" },
+                                "breadcrumb": {
+                                    "@type": "BreadcrumbList",
+                                    "itemListElement": [
+                                        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://siakhargone.in/" },
+                                        { "@type": "ListItem", "position": 2, "name": "Best School in Khargone", "item": "https://siakhargone.in/best-school-in-khargone" }
+                                    ]
+                                }
+                            },
+                            {
+                                "@type": "FAQPage",
+                                "mainEntity": [
+                                    { "@type": "Question", "name": "Why is SIA considered the best school in Khargone?", "acceptedAnswer": { "@type": "Answer", "text": "SIA offers a unique blend of academic excellence (CBSE curriculum), state-of-the-art infrastructure (smart labs, digital libraries), and holistic development (sports, arts, leadership) that is unmatched in the region." } },
+                                    { "@type": "Question", "name": "Does the school provide transportation facilities?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we have a fleet of GPS-enabled buses covering all major routes in Khargone and nearby tehsils, ensuring safe and comfortable travel for students." } },
+                                    { "@type": "Question", "name": "What is the admission process for 2025-26?", "acceptedAnswer": { "@type": "Answer", "text": "Admissions are simple and transparent. You can fill out the enquiry form online or visit our campus. Selection is based on merit and interaction for higher grades." } },
+                                    { "@type": "Question", "name": "Are there opportunities for sports and extracurriculars?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely! We have professional coaches for Cricket, Football, Basketball, and Skating, along with dedicated clubs for Music, Dance, Drama, and Robotics." } }
+                                ]
+                            }
                         ]
                     })
                 }}
