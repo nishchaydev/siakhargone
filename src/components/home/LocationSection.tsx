@@ -18,7 +18,7 @@ export function LocationSection() {
   return (
     <section id="contact" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto max-w-7xl px-4">
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
           variants={fadeInUp}
           initial="initial"
@@ -26,38 +26,38 @@ export function LocationSection() {
           viewport={{ once: true, amount: 0.2 }}
         >
           <div className="space-y-6">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline text-primary">Find Us</h2>
-              <p className="text-lg text-muted-foreground">
-                Visit Sanskar International Academy — conveniently located on Khargone–Khandwa Highway.
-              </p>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline text-primary">Find Us</h2>
+            <p className="text-lg text-muted-foreground">
+              Visit Sanskar International Academy — conveniently located on Khargone–Khandwa Highway.
+            </p>
 
-              <div className="space-y-4">
-                 <div className="flex items-start gap-4 text-muted-foreground">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><MapPin className="h-5 w-5 text-primary"/></div>
-                    <span>{address}</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-muted-foreground">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><Phone className="h-5 w-5 text-primary"/></div>
-                    <a href="tel:07049110104" className="hover:text-primary transition-colors">070491 10104</a>
-                  </div>
-                  <div className="flex items-center gap-4 text-muted-foreground">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><Mail className="h-5 w-5 text-primary"/></div>
-                    <a href="mailto:info@siakhargone.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">info@siakhargone.in</a>
-                  </div>
-                  <div className="flex items-center gap-4 text-muted-foreground">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><Clock className="h-5 w-5 text-primary"/></div>
-                    <span>Open till 5 PM</span>
-                  </div>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 text-muted-foreground">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><MapPin className="h-5 w-5 text-primary" /></div>
+                <span>{address}</span>
               </div>
+              <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><Phone className="h-5 w-5 text-primary" /></div>
+                <a href="tel:07049110104" className="hover:text-primary transition-colors">070491 10104</a>
+              </div>
+              <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><Mail className="h-5 w-5 text-primary" /></div>
+                <a href="mailto:siakhargone@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">siakhargone@gmail.com</a>
+              </div>
+              <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><Clock className="h-5 w-5 text-primary" /></div>
+                <span>Open till 5 PM</span>
+              </div>
+            </div>
 
-            <Button 
-                asChild 
-                size="lg" 
-                className="w-full sm:w-auto bg-accent text-black hover:bg-accent/90"
+            <Button
+              asChild
+              size="lg"
+              className="w-full sm:w-auto bg-accent text-black hover:bg-accent/90"
             >
-              <a 
+              <a
                 href={directionsUrl}
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 Get Directions
@@ -65,7 +65,7 @@ export function LocationSection() {
             </Button>
           </div>
 
-           <div className="md:col-span-1">
+          <div className="md:col-span-1">
             <div className="aspect-video w-full overflow-hidden rounded-2xl shadow-lg">
               <iframe
                 loading="lazy"

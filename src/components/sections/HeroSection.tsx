@@ -116,23 +116,10 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                     {/* Right Side Stack */}
                     <div className="hidden lg:flex lg:col-span-4 flex-col gap-1">
 
-                        {/* Top Right - Students */}
+                        {/* Top Right - Sanskar Beyond Academics (New Image) */}
                         <div className="relative h-[45%] overflow-hidden shadow-xl group bg-navy-dark">
-                            <Image src={data.grid?.[0] || "https://res.cloudinary.com/dkits80xk/image/upload/v1765349451/annual-function-3_b9mu3t.webp"}
-                                alt="Students interacting"
-                                fill
-                                sizes="(max-width: 1024px) 100vw, 33vw"
-                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" unoptimized />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div className="absolute bottom-6 left-6 text-white">
-                                <p className="font-display text-xl">Holistic Growth</p>
-                            </div>
-                        </div>
-
-                        {/* Bottom Right - Sports/Activity */}
-                        <div className="relative h-[55%] overflow-hidden shadow-xl group bg-navy-dark">
-                            <Image src={data.grid?.[2] || cloudinary.mixPhotos[7]}
-                                alt="Sports activity"
+                            <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349472/national-youth-day-2_xqxmhr.webp"
+                                alt="Sanskar Beyond Academics"
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 33vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
@@ -140,6 +127,19 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                             <div className="absolute top-6 right-6 text-white text-right">
                                 <p className="font-handwriting text-3xl text-gold mb-1">Sanskar</p>
                                 <p className="font-display text-2xl font-bold">Beyond Academics</p>
+                            </div>
+                        </div>
+
+                        {/* Bottom Right - Holistic Growth (Moved Down) */}
+                        <div className="relative h-[55%] overflow-hidden shadow-xl group bg-navy-dark">
+                            <Image src={data.grid?.[0] || "https://res.cloudinary.com/dkits80xk/image/upload/v1765349451/annual-function-3_b9mu3t.webp"}
+                                alt="Holistic Growth Student Interaction"
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 33vw"
+                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" unoptimized />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div className="absolute bottom-6 left-6 text-white">
+                                <p className="font-display text-xl">Holistic Growth</p>
                             </div>
                         </div>
                     </div>

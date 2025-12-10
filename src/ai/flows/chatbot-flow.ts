@@ -13,7 +13,7 @@ import { type FlowMessage } from '@/lib/definitions';
 
 export async function chatbotFlow(history: FlowMessage[]): Promise<string> {
     const staticResponse = "This is just a prototype. This function will be available on the full webpage.\nContact - nishchaydev@outlook.com";
-    
+
     // To re-enable the AI, comment out the line above and uncomment the code below.
     // You will need to ensure your API key is configured in your deployment environment.
     /*
@@ -32,7 +32,7 @@ export async function chatbotFlow(history: FlowMessage[]): Promise<string> {
             - School Name: Sanskar International Academy (SIA), Khargone
             - Mission: To provide a stimulating learning environment which maximizes individual potential and ensures that students are well-equipped to meet the challenges of life.
             - Vision: To be a center for excellence in education which, in keeping with the rich heritage of India, will stress the simultaneous development of Spirit, Mind, and Body.
-            - Contact: Phone - 070491 10104, Email - info@siakhargone.in, Address - Gowadi, Khargone - Khandwa Hwy, Fata, Badgaon [Nagjhiri], Khargone, Madhya Pradesh 451001.
+            - Contact: Phone - 070491 10104, Email - siakhargone@gmail.com, Address - Gowadi, Khargone - Khandwa Hwy, Fata, Badgaon [Nagjhiri], Khargone, Madhya Pradesh 451001.
             - Admission Process: The admission process is simple. Interested parents should fill out the contact form on the website to start the application. The admissions team will then guide them through the next steps.
             - Facilities: The school offers state-of-the-art facilities including modern classrooms, science labs, a large library, sports grounds, and a virtual tour is available on the website.
             `

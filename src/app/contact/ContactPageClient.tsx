@@ -74,7 +74,7 @@ export default function ContactPageClient() {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-navy uppercase tracking-wider">Email Address</p>
-                        <p className="text-gray-700 font-medium">info@siakhargone.in</p>
+                        <p className="text-gray-700 font-medium">siakhargone@gmail.com</p>
                       </div>
                     </div>
 
