@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     default: 'Sanskar International Academy | Khargone\'s Premier CBSE School',
     template: '%s | Sanskar International Academy',
   },
-  description: 'Join Sanskar International Academy (SIA), Khargone\'s leading CBSE institution offering world-class education, modern facilities, and holistic development for students.',
+  description: 'Sanskar International Academy (SIA), Khargone — a premier CBSE school offering holistic education, academic excellence, and values-driven learning.',
   keywords: ['Sanskar International Academy', 'SIA Khargone', 'CBSE School Khargone', 'Best School in Khargone', 'International School MP', 'Education', 'Admissions'],
   authors: [{ name: 'Sanskar International Academy' }],
   alternates: {
@@ -89,26 +89,44 @@ export const metadata: Metadata = {
 };
 
 const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'School',
-  name: 'Sanskar International Academy',
-  url: 'https://siakhargone.in',
-  logo: 'https://siakhargone.in/logosia.png',
-  image: 'https://siakhargone.in/logosia.png',
-  description: 'Premier CBSE school of Khargone offering holistic education and state-of-the-art facilities.',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'SIA Campus',
-    addressLocality: 'Khargone',
-    addressRegion: 'Madhya Pradesh',
-    postalCode: '451001',
-    addressCountry: 'IN'
-  },
-  telephone: '+917049110104',
-  sameAs: [
-    'https://www.facebook.com/siakhargone/',
-    'https://www.instagram.com/sanskarinternationalacademy/',
-    'https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw'
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "School",
+      "name": "Sanskar International Academy",
+      "url": "https://siakhargone.in",
+      "logo": "https://siakhargone.in/logo.png",
+      "image": "https://siakhargone.in/logosia.png",
+      "description": "Sanskar International Academy, Khargone — a premier CBSE school offering holistic education, academic excellence, and values-driven learning.",
+      "telephone": "+91 70491 10105",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Gowadi Fata, Khandwa Road, Badgaon",
+        "addressLocality": "Khargone",
+        "addressRegion": "Madhya Pradesh",
+        "postalCode": "451001",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.facebook.com/siakhargone/",
+        "https://www.instagram.com/sanskarinternationalacademy/",
+        "https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "url": "https://siakhargone.in",
+      "logo": "https://siakhargone.in/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://siakhargone.in",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://siakhargone.in/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
   ]
 };
 
