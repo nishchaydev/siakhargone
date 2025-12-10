@@ -23,7 +23,7 @@ export default function Home() {
   const womansDay = albums.find(a => a.albumName === "Woman_s Day Celebration")?.photos?.slice(0, 5) || [];
 
   const galleryImages = [
-    "/siakhargone-content/Album/Photo For Uploads/Main photo.webp",
+    "/siakhargone-content/album/photo-for-uploads/main-photo.webp",
     ...sessionStart,
     ...annualFunction,
     ...womansDay,
@@ -36,12 +36,12 @@ export default function Home() {
       title: "Where Excellence Begins.",
       subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
       sanskrit: "विद्या ददाति विनयम्",
-      // video: "https://www.youtube.com/watch?v=6-i18-xt8sI", // Disabled to show School Building Image
+      video: "https://www.youtube.com/watch?v=6-i18-xt8sI",
       grid: [
-        "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp",
-        "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2821.webp",
-        "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/Girldrawing.webp",
-        "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/Girldrawing.webp",
+        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
+        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2821.webp",
+        "/siakhargone-content/album/photo-for-uploads/rainy-day-plantation/girldrawing.webp",
+        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8727.webp",
       ],
       cta1Href: "/admissions",
       cta2Href: "/gallery"

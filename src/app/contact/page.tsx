@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description: 'Reach out to Sanskar International Academy, Khargone. Visit, call, or email us today.',
 };
 
-// const heroImage = "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp";
-const heroImage = { imageUrl: "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp", description: "School Building", imageHint: "school building" };
+// const heroImage = "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp";
+const heroImage = { imageUrl: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp", description: "School Building", imageHint: "school building" };
 
 export default function ContactPage() {
   return (
@@ -18,14 +18,12 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative h-64 w-full pt-[70px]">
         {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
+          <Image src={heroImage.imageUrl}
             alt={heroImage.description}
             data-ai-hint={heroImage.imageHint}
             fill
             className="object-cover"
-            priority
-          />
+            priority unoptimized />
         )}
         <div className="absolute inset-0 bg-primary/70" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">

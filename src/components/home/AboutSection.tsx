@@ -24,14 +24,12 @@ export function AboutSection() {
           variants={fadeInUp}
         >
           <div className="rounded-xl shadow-lg overflow-hidden">
-            <Image
-              src="https://lh3.googleusercontent.com/p/AF1QipPL_YnIfsCr8SR3s-btHLm7dxt-cXXqRILbumEw=s1360-w1360-h1020-rw"
+            <Image src="https://lh3.googleusercontent.com/p/AF1QipPL_YnIfsCr8SR3s-btHLm7dxt-cXXqRILbumEw=s1360-w1360-h1020-rw"
               alt="Sanskar International Academy Campus"
               width={800}
               height={600}
               className="w-full h-auto object-cover"
-              data-ai-hint="school campus"
-            />
+              data-ai-hint="school campus" unoptimized />
           </div>
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline text-primary">

@@ -24,15 +24,13 @@ export default function HeroVideo({
   return (
     <section className="relative w-full h-[85vh] md:h-screen flex items-center overflow-hidden bg-gray-900 py-32">
       {/* Optimized Image Background */}
-      <Image
-        src={poster}
+      <Image src={poster}
         alt="Sanskar International Academy campus"
         fill
         className="object-cover z-0"
         priority
         sizes="100vw"
-        data-ai-hint="school campus"
-      />
+        data-ai-hint="school campus" unoptimized />
 
       {/* New Gradient Overlay */}
       <div

@@ -58,13 +58,11 @@ export function Highlights({ highlights, isLoading }: HighlightsProps) {
               {slides.map((slide, index) => (
                 <div key={slide.id + index} className="relative flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-2">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                    <Image
-                      src={slide.linkUrl!}
+                    <Image src={slide.linkUrl!}
                       alt={slide.title}
                       data-ai-hint={slide.icon}
                       fill
-                      className="object-cover object-center"
-                    />
+                      className="object-cover object-center" unoptimized />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-6 text-white">
                       <h3 className="text-2xl font-bold">{slide.title}</h3>

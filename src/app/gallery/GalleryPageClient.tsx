@@ -41,12 +41,10 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
       <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-navy/50 z-10" />
         {/* Placeholder Hero Image - using the school image if available or a generic one */}
-        <Image
-          src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/image.png"
+        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/image.png"
           alt="School Gallery Hero"
           fill
-          className="absolute inset-0 object-cover"
-        />
+          className="absolute inset-0 object-cover" unoptimized />
         <div className="relative z-20 px-4">
           <h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-4">School Gallery</h1>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
@@ -96,12 +94,10 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
                   className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all"
                   onClick={() => setSelectedImage(image)}
                 >
-                  <Image
-                    src={image.imageUrl}
+                  <Image src={image.imageUrl}
                     alt={image.description || "Gallery Image"}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                    className="object-cover transition-transform duration-500 group-hover:scale-110" unoptimized />
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="bg-gold-accent/90 text-white p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -142,12 +138,10 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
               className="relative max-w-5xl w-full h-[80vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
-                src={selectedImage.imageUrl}
+              <Image src={selectedImage.imageUrl}
                 alt={selectedImage.description || "Selected"}
                 fill
-                className="object-contain"
-              />
+                className="object-contain" unoptimized />
               {selectedImage.description && (
                 <div className="absolute bottom-4 left-0 right-0 text-center text-white bg-black/50 p-2 rounded">
                   {selectedImage.description}

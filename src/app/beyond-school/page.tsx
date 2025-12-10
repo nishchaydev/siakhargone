@@ -65,15 +65,13 @@ export default function BeyondSchoolPage() {
                 </div>
                 <div>
                     {sportsImage && (
-                    <Image 
-                        src={sportsImage.imageUrl} 
+                    <Image src={sportsImage.imageUrl} 
                         alt={sportsImage.description}
                         data-ai-hint={sportsImage.imageHint}
                         width={600}
                         height={400}
                         className="rounded-lg shadow-xl"
-                        priority
-                    />
+                        priority unoptimized />
                     )}
                 </div>
             </div>

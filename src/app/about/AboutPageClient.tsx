@@ -76,13 +76,11 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                     </MotionDiv>
                     <MotionDiv variants={fadeInUp} className="sticky top-24">
                         {schoolImage?.src && (
-                            <Image
-                                src={schoolImage.src}
+                            <Image src={schoolImage.src}
                                 alt={schoolImage.alt}
                                 width={600} height={400}
                                 className="rounded-lg shadow-lg w-full object-cover"
-                                priority
-                            />
+                                priority unoptimized />
                         )}
                     </MotionDiv>
                 </div>
@@ -180,13 +178,11 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                                 <Skeleton className="w-full h-full" />
                             ) : (
                                 principalMessage.image && (
-                                    <Image
-                                        src={principalMessage.image}
+                                    <Image src={principalMessage.image}
                                         alt={principalMessage.name}
                                         width={400}
                                         height={533}
-                                        className="w-full h-full object-cover"
-                                    />
+                                        className="w-full h-full object-cover" unoptimized />
                                 )
                             )}
                         </div>
@@ -232,13 +228,11 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                                 <Skeleton className="w-full h-full" />
                             ) : (
                                 chairmanMessage.image && (
-                                    <Image
-                                        src={chairmanMessage.image}
+                                    <Image src={chairmanMessage.image}
                                         alt={chairmanMessage.name}
                                         width={400}
                                         height={533}
-                                        className="w-full h-full object-cover scale-110 transform"
-                                    />
+                                        className="w-full h-full object-cover scale-110 transform" unoptimized />
                                 )
                             )}
                         </div>

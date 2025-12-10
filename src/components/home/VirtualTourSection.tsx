@@ -47,13 +47,11 @@ export function VirtualTourSection() {
               viewport={{ once: true }}
               onClick={() => setIsVideoModalOpen(true)}
             >
-              <Image
-                src={virtualTourImage.imageUrl}
+              <Image src={virtualTourImage.imageUrl}
                 alt={virtualTourImage.description}
                 data-ai-hint={virtualTourImage.imageHint}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
+                className="object-cover transition-transform duration-300 group-hover:scale-105" unoptimized />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <div
                   className="flex flex-col items-center text-white"

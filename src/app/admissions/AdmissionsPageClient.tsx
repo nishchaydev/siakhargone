@@ -74,7 +74,7 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                     </motion.div>
                     <motion.div variants={fadeInUp}>
                         {careerCounsellingImage && (
-                            <Image src={careerCounsellingImage.imageUrl} alt={careerCounsellingImage.description} width={600} height={400} className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-500" data-ai-hint={careerCounsellingImage.imageHint} priority />
+                            <Image src={careerCounsellingImage.imageUrl} alt={careerCounsellingImage.description} width={600} height={400} className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-500" data-ai-hint={careerCounsellingImage.imageHint} priority unoptimized />
                         )}
                     </motion.div>
                 </div>

@@ -30,140 +30,140 @@ export const albums = [
     {
         "albumName": "Annual Function",
         "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/Annualfunction.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/Annualfunction2.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC9008.webp"
+            "/siakhargone-content/album/photo-for-uploads/annual-function/annualfunction.webp",
+            "/siakhargone-content/album/photo-for-uploads/annual-function/annualfunction2.webp",
+            "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
+            "/siakhargone-content/album/photo-for-uploads/annual-function/_dsc9008.webp"
         ]
     },
     {
         "albumName": "Sports & Achivements",
         "category": "Sports",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/1.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/1.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/16.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/2.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/5.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/GOP_3169.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/IMG-20220723-WA0008.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/IMG-20220808-WA0006.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/IMG-20221007-WA0012.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/_DSC8481.webp"
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/16.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/2.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/5.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/gop_3169.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/img-20220723-wa0008.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/img-20220808-wa0006.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/img-20221007-wa0012.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/_dsc8481.webp"
         ]
     },
     {
         "albumName": "District Level Taekwando",
         "category": "Sports",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando7.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando7.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando5.webp",
-            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando6.webp",
-            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando7.webp",
-            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando8.webp",
-            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando9.webp",
-            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando10.webp",
-            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando11.webp"
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando5.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando6.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando7.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando8.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando9.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando10.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando11.webp"
         ]
     },
     {
         "albumName": "National Youth Day",
         "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_103938.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/national-youth-day/img_20230112_103938.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_095610.webp",
-            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_095635.webp",
-            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_103938.webp",
-            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_104617.webp"
+            "/siakhargone-content/album/photo-for-uploads/national-youth-day/img_20230112_095610.webp",
+            "/siakhargone-content/album/photo-for-uploads/national-youth-day/img_20230112_095635.webp",
+            "/siakhargone-content/album/photo-for-uploads/national-youth-day/img_20230112_103938.webp",
+            "/siakhargone-content/album/photo-for-uploads/national-youth-day/img_20230112_104617.webp"
         ]
     },
     {
         "albumName": "Holi Celebration",
         "category": "Celebrations",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi1.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi1.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi1.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi2.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi3.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi4.webp"
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi1.webp",
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi2.webp",
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi3.webp",
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi4.webp"
         ]
     },
     {
         "albumName": "PTM",
         "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/PTM/PTM MAIN.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/ptm/ptm-main.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/PTM/PTM MAIN.webp"
+            "/siakhargone-content/album/photo-for-uploads/ptm/ptm-main.webp"
         ]
     },
     {
         "albumName": "Rainy Day & Plantation",
         "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5554.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/rainy-day-plantation/dsc_5554.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5534.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5554.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/Girldrawing.webp"
+            "/siakhargone-content/album/photo-for-uploads/rainy-day-plantation/dsc_5534.webp",
+            "/siakhargone-content/album/photo-for-uploads/rainy-day-plantation/dsc_5554.webp",
+            "/siakhargone-content/album/photo-for-uploads/rainy-day-plantation/girldrawing.webp"
         ]
     },
     {
         "albumName": "Session Start",
         "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9093.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/session-start/img_9093.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9093.webp"
+            "/siakhargone-content/album/photo-for-uploads/session-start/img_9093.webp"
         ]
     },
     {
         "albumName": "Campus Life",
         "category": "Campus",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Mix Photos/09.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Mix Photos/all house photos.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Mix Photos/Weightlifting.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/DSC_5875.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Sports 4.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Sports Ground 1.webp"
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
+            "/siakhargone-content/album/photo-for-uploads/mix-photos/09.webp",
+            "/siakhargone-content/album/photo-for-uploads/mix-photos/all-house-photos.webp",
+            "/siakhargone-content/album/photo-for-uploads/mix-photos/weightlifting.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/dsc_5875.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/sports-4.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/sports-ground-1.webp"
         ]
     },
     {
         "albumName": "Classrooms",
         "category": "Classrooms",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (1).webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (1).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (2).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (3).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (5).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (6).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (8).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (9).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (11).webp"
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-2.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-3.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-5.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-6.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-8.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-9.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-11.webp"
         ]
     },
     {
         "albumName": "Library",
         "category": "Labs & Facilities",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8726.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8726.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8727.webp"
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8727.webp"
         ]
     },
     {
         "albumName": "Labs & Facilities",
         "category": "Labs & Facilities",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Lab/Computer/Computer Lab.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/lab/computer/computer-lab.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Computer/Computer Lab.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Chemistry/Chemistry Lab 1.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Biology/Biolab 1.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Physics/Physics Lab 1.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Maths/Maths Lab.webp"
+            "/siakhargone-content/album/photo-for-uploads/lab/computer/computer-lab.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/biology/biolab-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/physics/physics-lab-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/maths/maths-lab.webp"
         ]
     }
 ];
@@ -190,13 +190,13 @@ export const committeeDocuments: any[] = [];
 export const messages = {
     'principal-message': {
         message: `<p>Welcome to our vibrant school community! At <strong>Sanskar International Academy</strong>, we believe that education nurtures responsible, confident, and compassionate individuals ready for a changing world.</p><p>Our dedicated teachers create an inspiring environment, balancing academics with creativity, leadership, and character building. We value the strong partnership between school and parents in guiding children to become lifelong learners.</p><p>Our commitment remains constant: to provide quality education and strong moral values. I invite you to explore our website and join us in creating a bright future for every child.</p>`,
-        image: "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9078.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/session-start/img_9078.webp",
         name: "Mr. Shivam Jaiswal",
         role: "Principal"
     },
     'director-message': {
         message: `<p>It is my pleasure to welcome you to our official website. At <strong>Sanskar International Academy</strong>, education is about academic excellence and nurturing confident individuals prepared for the future.</p><p>We strive to create a learning environment where curiosity is encouraged and values are strengthened. Our focus is on fostering critical thinking, creativity, and holistic development.</p><p>By integrating modern technology and building strong community partnerships, we aim to provide an inspiring educational journey. We look forward to your continued support in shaping a successful future for our students.</p>`,
-        image: "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/GOP_3169.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/sports-achivements/gop_3169.webp",
         name: "Mr. Praveen Asnade",
         role: "Managing Director"
     }
@@ -218,7 +218,7 @@ export const aboutData = {
         </div>
     </div>
     `,
-    schoolImage: { src: "/siakhargone-content/Album/Photo For Uploads/Mix Photos/School Building.webp", alt: "Sanskar International Academy Campus" }
+    schoolImage: { src: "/siakhargone-content/album/photo-for-uploads/mix-photos/school-building.webp", alt: "Sanskar International Academy Campus" }
 };
 
 // Home facilities - can be added here if needed, but previously was dynamic listing from 'home-facilities'
@@ -232,20 +232,20 @@ export const testimonials = [
         quote: "Sanskar International Academy has provided my child with a perfect balance of academics and co-curricular activities. The teachers are incredibly supportive and dedicated.",
         name: "Mrs. Anjali Sharma",
         relation: "Parent of Class 8 Student",
-        avatarUrl: "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2342.webp"
+        avatarUrl: "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2342.webp"
     },
     {
         id: "2",
         quote: "The infrastructure and facilities are top-notch. My son loves the computer lab and sports complex. It's truly a world-class environment for learning.",
         name: "Mr. Rajesh Patel",
         relation: "Parent of Class 5 Student",
-        avatarUrl: "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2410.webp"
+        avatarUrl: "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2410.webp"
     },
     {
         id: "3",
         quote: "I am impressed by the school's focus on values and holistic development. It's not just about grades; it's about building character.",
         name: "Mrs. Sunita Verma",
         relation: "Parent of Class 10 Student",
-        avatarUrl: "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2419.webp"
+        avatarUrl: "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2419.webp"
     }
 ];

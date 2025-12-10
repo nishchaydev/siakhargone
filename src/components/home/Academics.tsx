@@ -35,15 +35,13 @@ export function Academics() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <Image
-          src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp"
+        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp"
           alt="Sanskar International Academy Campus"
           width={1600}
           height={700}
           className="w-full h-[450px] object-cover"
           data-ai-hint="school campus"
-          priority
-        />
+          priority unoptimized />
       </motion.div>
 
       {/* Section Title */}

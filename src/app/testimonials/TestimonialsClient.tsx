@@ -124,12 +124,10 @@ export default function TestimonialsClient() {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative w-16 h-16 shrink-0">
-                  <Image
-                    src={testimonial.image}
+                  <Image src={testimonial.image}
                     alt={testimonial.name}
                     fill
-                    className="rounded-full object-cover border-2 border-gold-accent"
-                  />
+                    className="rounded-full object-cover border-2 border-gold-accent" unoptimized />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 text-lg flex items-center gap-2">

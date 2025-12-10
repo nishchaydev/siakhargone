@@ -146,14 +146,12 @@ export default function AcademicsPageClient({
                         transition={{ duration: 0.6 }}
                     >
                         {methodologyImage && (
-                            <Image
-                                src={methodologyImage.imageUrl}
+                            <Image src={methodologyImage.imageUrl}
                                 alt={methodologyImage.description}
                                 data-ai-hint={methodologyImage.imageHint}
                                 width={500}
                                 height={350}
-                                className="rounded-lg shadow-lg w-full h-auto object-cover"
-                            />
+                                className="rounded-lg shadow-lg w-full h-auto object-cover" unoptimized />
                         )}
                     </motion.div>
                 </div>
@@ -215,13 +213,11 @@ export default function AcademicsPageClient({
                                 {infrastructurePhotos.map((photo, index) => (
                                     <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                                         <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg group">
-                                            <Image
-                                                src={photo}
+                                            <Image src={photo}
                                                 alt={`Infrastructure ${index + 1}`}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                            />
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" unoptimized />
                                         </div>
                                     </CarouselItem>
                                 ))}

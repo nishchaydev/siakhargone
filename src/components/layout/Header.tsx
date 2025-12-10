@@ -161,13 +161,11 @@ export default function Header() {
       <div className="container mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
-            <Image
-              src={schoolLogo}
+            <Image src={schoolLogo}
               alt="Sia Khargone Logo"
               fill
               className="object-contain"
-              priority
-            />
+              priority unoptimized />
           </div>
           <div className="flex flex-col justify-center">
             <span className="font-display font-bold text-2xl leading-none tracking-wide text-white">SANSKAR</span>

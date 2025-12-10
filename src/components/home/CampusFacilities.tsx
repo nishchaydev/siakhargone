@@ -12,25 +12,25 @@ const facilities = [
     {
         title: "Smart Classrooms",
         description: "Tech-enabled learning spaces.",
-        image: "/siakhargone-content/Album/Photo For Uploads/Lab/Computer/Computer Lab.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/lab/computer/computer-lab.webp",
         className: "md:col-span-2 md:row-span-2",
     },
     {
         title: "Sports Complex",
         description: "Professional tracks & courts.",
-        image: "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/1.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Science Labs",
         description: "State-of-the-art equipment.",
-        image: "/siakhargone-content/Album/Photo For Uploads/Lab/Chemistry/Chemistry Lab 1.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Library",
         description: "A hub of knowledge.",
-        image: "/siakhargone-content/Album/Photo For Uploads/Library/lab1.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/library/lab1.webp",
         className: "md:col-span-2 md:row-span-1",
     },
 ];
@@ -58,12 +58,10 @@ export function CampusFacilities() {
                         viewport={{ once: true }}
                         whileHover={{ scale: 1.02 }}
                     >
-                        <Image
-                            src={item.image}
+                        <Image src={item.image}
                             alt={item.title}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                            className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute bottom-0 left-0 p-6 md:p-8">
                             <h3 className="text-2xl font-bold font-display text-yellow-400 drop-shadow-md">{item.title}</h3>

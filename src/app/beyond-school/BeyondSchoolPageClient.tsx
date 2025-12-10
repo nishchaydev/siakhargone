@@ -113,14 +113,12 @@ export default function BeyondSchoolPageClient({ coCurricularItems, scholarshipI
             transition={{ duration: 0.6 }}
           >
             {leadershipImage && (
-              <Image
-                src={leadershipImage.imageUrl}
+              <Image src={leadershipImage.imageUrl}
                 alt={leadershipImage.description}
                 data-ai-hint={leadershipImage.imageHint}
                 width={600}
                 height={400}
-                className="rounded-lg shadow-xl"
-              />
+                className="rounded-lg shadow-xl" unoptimized />
             )}
           </motion.div>
           <motion.div

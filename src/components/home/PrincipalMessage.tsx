@@ -35,14 +35,12 @@ export function PrincipalMessage({ principalMessage }: PrincipalMessageProps) {
                 {isLoading ? (
                   <Skeleton className="w-full h-full" />
                 ) : (
-                  <Image
-                    src={principalMessage.linkUrl}
+                  <Image src={principalMessage.linkUrl}
                     alt={principalMessage.title}
                     width={400}
                     height={400}
                     className="w-full h-full object-cover"
-                    data-ai-hint="principal portrait"
-                  />
+                    data-ai-hint="principal portrait" unoptimized />
                 )}
               </div>
             </div>

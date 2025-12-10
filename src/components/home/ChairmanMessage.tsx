@@ -35,14 +35,12 @@ export function ChairmanMessage({ chairmanMessage }: ChairmanMessageProps) {
                 {isLoading ? (
                   <Skeleton className="w-full h-full" />
                 ) : (
-                  <Image
-                    src={chairmanMessage.linkUrl}
+                  <Image src={chairmanMessage.linkUrl}
                     alt={chairmanMessage.title}
                     width={400}
                     height={400}
                     className="w-full h-full object-cover"
-                    data-ai-hint="director portrait"
-                  />
+                    data-ai-hint="director portrait" unoptimized />
                 )}
               </div>
             </div>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const methodologyImage = {
   id: 'experiential-learning',
-  imageUrl: "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (1).webp",
+  imageUrl: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
   description: "Interactive Learning Environment",
   imageHint: "Classroom"
 };

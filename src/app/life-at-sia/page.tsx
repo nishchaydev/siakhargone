@@ -15,13 +15,11 @@ export default function LifeAtSiaPage() {
 
             {/* Hero Section */}
             <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center overflow-hidden">
-                <Image
-                    src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp" // Campus image
+                <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp" // Campus image
                     alt="SIA Campus Aerial View"
                     fill
                     className="absolute inset-0 w-full h-full object-cover"
-                    priority
-                />
+                    priority unoptimized />
                 <div className="absolute inset-0 bg-black/40 z-10" />
                 <div className="relative z-20 container mx-auto px-6 text-white">
                     <h1 className="font-display text-5xl md:text-7xl font-bold mb-6">World-Class Campus & Facilities</h1>
@@ -45,32 +43,30 @@ export default function LifeAtSiaPage() {
                         {
                             title: "Science & Tech Labs",
                             desc: "State-of-the-art labs for hands-on exploration in physics, chemistry, biology, and computer science.",
-                            img: "/siakhargone-content/Album/Photo For Uploads/Lab/Chemistry/Chemistry Lab 1.webp",
+                            img: "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
                         },
                         {
                             title: "Sports Complex",
                             desc: "International standard facilities for a wide range of sports, fostering teamwork and physical well-being.",
-                            img: "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/1.webp",
+                            img: "/siakhargone-content/album/photo-for-uploads/sports-achivements/1.webp",
                         },
                         {
                             title: "Smart Classrooms",
                             desc: "Technology-enabled classrooms that make learning interactive, engaging, and highly effective.",
-                            img: "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (1).webp",
+                            img: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
                         },
                         {
                             title: "Performing Arts Center",
                             desc: "Dedicated spaces for music, dance, and drama, allowing students to explore their creative talents.",
-                            img: "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp",
+                            img: "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
                         },
                     ].map((feature, idx) => (
                         <div key={idx} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group">
                             <div className="relative h-48 overflow-hidden">
-                                <Image
-                                    src={feature.img}
+                                <Image src={feature.img}
                                     alt={feature.title}
                                     fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />
                             </div>
                             <div className="p-6">
                                 <h3 className="font-display text-xl font-bold text-royal-blue mb-2">{feature.title}</h3>
@@ -92,13 +88,13 @@ export default function LifeAtSiaPage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8726.webp" alt="Library" fill className="object-cover" />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp" alt="Library" fill className="object-cover" unoptimized />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="/siakhargone-content/Album/Photo For Uploads/Lab/Biology/Biolab 1.webp" alt="Lab microscope" fill className="object-cover" />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/lab/biology/biolab-1.webp" alt="Lab microscope" fill className="object-cover" unoptimized />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (2).webp" alt="Student writing" fill className="object-cover" />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-2.webp" alt="Student writing" fill className="object-cover" unoptimized />
                             </div>
                         </div>
                         <div>
@@ -125,13 +121,13 @@ export default function LifeAtSiaPage() {
                         </div>
                         <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/16.webp" alt="Sports Area" fill className="object-cover" />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/sports-achievements/16.webp" alt="Sports Area" fill className="object-cover" unoptimized />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/2.webp" alt="Sports Activity" fill className="object-cover" />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/sports-achievements/2.webp" alt="Sports Activity" fill className="object-cover" unoptimized />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2441.webp" alt="Cultural Activity" fill className="object-cover" />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2441.webp" alt="Cultural Activity" fill className="object-cover" unoptimized />
                             </div>
                         </div>
                     </div>

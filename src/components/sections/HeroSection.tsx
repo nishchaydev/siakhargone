@@ -25,13 +25,11 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                     <div className="lg:col-span-8 relative shadow-2xl group bg-navy-dark overflow-hidden">
                         {/* Mobile Background Image (Replaces Video) */}
                         <div className="absolute inset-0 w-full h-full md:hidden">
-                            <Image
-                                src={data.grid?.[0] || "https://picsum.photos/seed/hero-top/600/600"}
+                            <Image src={data.grid?.[0] || "https://picsum.photos/seed/hero-top/600/600"}
                                 alt="Hero Background"
                                 fill
                                 className="object-cover opacity-90"
-                                priority
-                            />
+                                priority unoptimized />
                         </div>
 
                         {/* Desktop Background: Video or Image */}
@@ -50,13 +48,11 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 </video>
                             ) : (
                                 /* Fallback to Image if no video */
-                                <Image
-                                    src={data.grid?.[0] || "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp"}
+                                <Image src={data.grid?.[0] || "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp"}
                                     alt="Hero Background"
                                     fill
                                     className="object-cover opacity-90"
-                                    priority
-                                />
+                                    priority unoptimized />
                             )}
                         </div>
                         <div className="absolute inset-0 hero-overlay"></div>
@@ -116,18 +112,16 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                     </div>
 
                     {/* Right Side Stack */}
-                    <div className="lg:col-span-4 flex flex-col gap-1">
+                    <div className="hidden lg:flex lg:col-span-4 flex-col gap-1">
 
                         {/* Top Right - Students */}
                         <div className="relative h-[45%] overflow-hidden shadow-xl group bg-navy-dark">
-                            <Image
-                                src={data.grid?.[0] || "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp"}
+                            <Image src={data.grid?.[0] || "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp"}
                                 alt="Students interacting"
                                 fill
                                 priority
                                 sizes="(max-width: 1024px) 100vw, 33vw"
-                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
-                            />
+                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" unoptimized />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             <div className="absolute bottom-6 left-6 text-white">
                                 <p className="font-display text-xl">Holistic Growth</p>
@@ -136,14 +130,12 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
 
                         {/* Bottom Right - Sports/Activity */}
                         <div className="relative h-[55%] overflow-hidden shadow-xl group bg-navy-dark">
-                            <Image
-                                src={data.grid?.[2] || "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2410.webp"}
+                            <Image src={data.grid?.[2] || "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2410.webp"}
                                 alt="Sports activity"
                                 fill
                                 priority
                                 sizes="(max-width: 1024px) 100vw, 33vw"
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
+                                className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             <div className="absolute top-6 right-6 text-white text-right">
                                 <p className="font-handwriting text-3xl text-gold mb-1">Sanskar</p>

@@ -82,13 +82,11 @@ export function Testimonials({ testimonials, isLoading }: TestimonialsProps) {
                         <Quote className="w-8 h-8 text-primary/30 mb-4" />
                         <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
                         <div className="flex items-center gap-4">
-                          <Image
-                            src={testimonial.avatarUrl}
+                          <Image src={testimonial.avatarUrl}
                             alt={testimonial.name}
                             width={56}
                             height={56}
-                            className="rounded-full object-cover"
-                          />
+                            className="rounded-full object-cover" unoptimized />
                           <div>
                             <p className="font-semibold">{testimonial.name}</p>
                             <p className="text-sm text-muted-foreground">{testimonial.relation}</p>

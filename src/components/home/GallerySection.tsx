@@ -12,11 +12,11 @@ const duplicatedImages = (images: string[]) => [...images, ...images];
 export function GallerySection({ images = [] }: { images?: string[] }) {
     // Fallback if no images provided
     const displayImages = images.length > 0 ? images : [
-        "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp",
-        "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2342.webp",
-        "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2410.webp",
-        "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2419.webp",
-        "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2431.webp"
+        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
+        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2342.webp",
+        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2410.webp",
+        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2419.webp",
+        "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2431.webp"
     ];
 
     const finalImages = duplicatedImages(displayImages);
@@ -59,13 +59,11 @@ export function GallerySection({ images = [] }: { images?: string[] }) {
                         {finalImages.map((imageUrl, index) => (
                             <div key={`gallery-${index}`} className="flex-shrink-0 w-[300px] p-2">
                                 <div className="group rounded-xl overflow-hidden relative aspect-[3/4]">
-                                    <Image
-                                        src={imageUrl}
+                                    <Image src={imageUrl}
                                         alt={`Gallery image ${index + 1}`}
                                         fill
                                         sizes="300px"
-                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                    />
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105" unoptimized />
                                 </div>
                             </div>
                         ))}
