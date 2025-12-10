@@ -32,107 +32,10 @@ export const albums = [
         "category": "Events",
         "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Main photo.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Annual Function/Annualfunction.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Annual Function/Annualfunction2.webp",
             "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2342.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2410.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2419.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2431.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2436.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2441.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2444.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2761.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2767.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2821.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8544.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8665.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8806.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8887.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8894.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8895.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8948.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8949.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8983.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC8984.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC9001.webp",
             "/siakhargone-content/Album/Photo For Uploads/Annual Function/_DSC9008.webp"
-        ]
-    },
-    {
-        "albumName": "Activities Photo",
-        "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p11.webp",
-        "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/AActivity_p10.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p11.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p12.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p13.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p14.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p15.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p16.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p17.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p19.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p3.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p4.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p5.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p6.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p7.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p8.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Activities Photo/Activity_p9.webp"
-        ]
-    },
-    {
-        "albumName": "PTM",
-        "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/PTM/ptm1.webp",
-        "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm1.webp",
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm2.webp",
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm3.webp",
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm4.webp",
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm5.webp",
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm6.webp",
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm7.webp",
-            "/siakhargone-content/Album/Photo For Uploads/PTM/ptm8.webp"
-        ]
-    },
-    {
-        "albumName": "Woman_s Day Celebration",
-        "category": "Celebrations",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Woman_s Day Celebration/IMG_4917.webp",
-        "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Woman_s Day Celebration/IMG_4917.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Woman_s Day Celebration/IMG_4924.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Woman_s Day Celebration/IMG_4943.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Woman_s Day Celebration/IMG_4957.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Woman_s Day Celebration/IMG_4964.webp"
-        ]
-    },
-    {
-        "albumName": "Rainy Day & Plantation",
-        "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5468.webp",
-        "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5468.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5502.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5531.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5534.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5537.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5548.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5554.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5562.webp"
-        ]
-    },
-    {
-        "albumName": "Session Start",
-        "category": "Events",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9078.webp",
-        "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9078.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9092.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9093.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9127.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9510.webp"
         ]
     },
     {
@@ -152,29 +55,79 @@ export const albums = [
         ]
     },
     {
-        "albumName": "Vidhyarambh Sanskar",
-        "category": "Celebrations",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Vidhyarambh Sanskar/IMG_6376.webp",
+        "albumName": "District Level Taekwando",
+        "category": "Sports",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando7.webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Vidhyarambh Sanskar/IMG_6376.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Vidhyarambh Sanskar/IMG_6379.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Vidhyarambh Sanskar/IMG_6402.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Vidhyarambh Sanskar/IMG_6416.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Vidhyarambh Sanskar/IMG_6439.webp"
+            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando5.webp",
+            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando6.webp",
+            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando7.webp",
+            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando8.webp",
+            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando9.webp",
+            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando10.webp",
+            "/siakhargone-content/Album/Photo For Uploads/District Level Taekwando Competition/taekwando11.webp"
+        ]
+    },
+    {
+        "albumName": "National Youth Day",
+        "category": "Events",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_103938.webp",
+        "photos": [
+            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_095610.webp",
+            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_095635.webp",
+            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_103938.webp",
+            "/siakhargone-content/Album/Photo For Uploads/National Youth Day/IMG_20230112_104617.webp"
+        ]
+    },
+    {
+        "albumName": "Holi Celebration",
+        "category": "Celebrations",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi1.webp",
+        "photos": [
+            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi1.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi2.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi3.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Holi Celebration/holi4.webp"
+        ]
+    },
+    {
+        "albumName": "PTM",
+        "category": "Events",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/PTM/PTM MAIN.webp",
+        "photos": [
+            "/siakhargone-content/Album/Photo For Uploads/PTM/PTM MAIN.webp"
+        ]
+    },
+    {
+        "albumName": "Rainy Day & Plantation",
+        "category": "Events",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5554.webp",
+        "photos": [
+            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5534.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/DSC_5554.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Rainy Day & Plantation/Girldrawing.webp"
+        ]
+    },
+    {
+        "albumName": "Session Start",
+        "category": "Events",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9093.webp",
+        "photos": [
+            "/siakhargone-content/Album/Photo For Uploads/Session Start/IMG_9093.webp"
         ]
     },
     {
         "albumName": "Campus Life",
         "category": "Campus",
-        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/office.webp",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp",
         "photos": [
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/main gate (1).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/main gate (2).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/main gate (3).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/main gate (4).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/office.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp",
+            "/siakhargone-content/Album/Photo For Uploads/Mix Photos/09.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Mix Photos/all house photos.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Mix Photos/Weightlifting.webp",
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/DSC_5875.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/DSC_5877.webp"
+            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Sports 4.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Sports Ground 1.webp"
         ]
     },
     {
@@ -185,16 +138,20 @@ export const albums = [
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (1).webp",
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (2).webp",
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (3).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (4).webp",
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (5).webp",
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (6).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (7).webp",
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (8).webp",
             "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (9).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (10).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (11).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/kindergarten (1).webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/kindergarten (2).webp"
+            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (11).webp"
+        ]
+    },
+    {
+        "albumName": "Library",
+        "category": "Labs & Facilities",
+        "coverPhoto": "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8726.webp",
+        "photos": [
+            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8726.webp",
+            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8727.webp"
         ]
     },
     {
@@ -206,13 +163,7 @@ export const albums = [
             "/siakhargone-content/Album/Photo For Uploads/Lab/Chemistry/Chemistry Lab 1.webp",
             "/siakhargone-content/Album/Photo For Uploads/Lab/Biology/Biolab 1.webp",
             "/siakhargone-content/Album/Photo For Uploads/Lab/Physics/Physics Lab 1.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Physics/Physics Lab 2.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Physics/Physics Lab 3.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Physics/Physics Lab 4.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8726.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8727.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Maths/Maths Lab.webp",
-            "/siakhargone-content/Album/Photo For Uploads/Lab/Maths/Maths Lab 2.webp"
+            "/siakhargone-content/Album/Photo For Uploads/Lab/Maths/Maths Lab.webp"
         ]
     }
 ];

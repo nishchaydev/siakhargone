@@ -16,7 +16,7 @@ export default function LifeAtSiaPage() {
             {/* Hero Section */}
             <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center overflow-hidden">
                 <Image
-                    src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=2938&auto=format&fit=crop" // Campus image
+                    src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp" // Campus image
                     alt="SIA Campus Aerial View"
                     fill
                     className="absolute inset-0 w-full h-full object-cover"
@@ -45,22 +45,22 @@ export default function LifeAtSiaPage() {
                         {
                             title: "Science & Tech Labs",
                             desc: "State-of-the-art labs for hands-on exploration in physics, chemistry, biology, and computer science.",
-                            img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800",
+                            img: "/siakhargone-content/Album/Photo For Uploads/Lab/Chemistry/Chemistry Lab 1.webp",
                         },
                         {
                             title: "Sports Complex",
                             desc: "International standard facilities for a wide range of sports, fostering teamwork and physical well-being.",
-                            img: "https://images.unsplash.com/photo-1577416412292-7661e371927c?auto=format&fit=crop&q=80&w=800",
+                            img: "/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/1.webp",
                         },
                         {
                             title: "Smart Classrooms",
                             desc: "Technology-enabled classrooms that make learning interactive, engaging, and highly effective.",
-                            img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800",
+                            img: "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (1).webp",
                         },
                         {
                             title: "Performing Arts Center",
                             desc: "Dedicated spaces for music, dance, and drama, allowing students to explore their creative talents.",
-                            img: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&q=80&w=800",
+                            img: "/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2323.webp",
                         },
                     ].map((feature, idx) => (
                         <div key={idx} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group">
@@ -92,13 +92,13 @@ export default function LifeAtSiaPage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" alt="Library" fill className="object-cover" />
+                                <Image src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Library Photos/_MG_8726.webp" alt="Library" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://images.unsplash.com/photo-1581093458791-9f302e6d8359?auto=format&fit=crop&q=80&w=600" alt="Lab microscope" fill className="object-cover" />
+                                <Image src="/siakhargone-content/Album/Photo For Uploads/Lab/Biology/Biolab 1.webp" alt="Lab microscope" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=600" alt="Student writing" fill className="object-cover" />
+                                <Image src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/classroom (2).webp" alt="Student writing" fill className="object-cover" />
                             </div>
                         </div>
                         <div>
@@ -125,13 +125,13 @@ export default function LifeAtSiaPage() {
                         </div>
                         <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?auto=format&fit=crop&q=80&w=1200" alt="Swimming Pool" fill className="object-cover" />
+                                <Image src="/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/16.webp" alt="Sports Area" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=600" alt="Basketball" fill className="object-cover" />
+                                <Image src="/siakhargone-content/Album/Photo For Uploads/Sports & Achivements/2.webp" alt="Sports Activity" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&q=80&w=600" alt="Music room" fill className="object-cover" />
+                                <Image src="/siakhargone-content/Album/Photo For Uploads/Annual Function/DSC_2441.webp" alt="Cultural Activity" fill className="object-cover" />
                             </div>
                         </div>
                     </div>

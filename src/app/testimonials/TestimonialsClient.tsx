@@ -12,7 +12,7 @@ const TESTIMONIALS = [
     name: "Anjali Sharma",
     role: "Parent of Aarav, Grade 5",
     category: "Parents",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+    image: "https://ui-avatars.com/api/?name=Anjali+Sharma&background=random",
     rating: 5,
     text: "The holistic development approach at SIA is truly remarkable. My child has not only excelled academically but has also grown into a confident and compassionate individual. The teachers are incredibly supportive."
   },
@@ -21,7 +21,7 @@ const TESTIMONIALS = [
     name: "Rajesh Kumar",
     role: "Parent of Priya, Grade 10",
     category: "Parents",
-    image: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&q=80&w=200",
+    image: "https://ui-avatars.com/api/?name=Rajesh+Kumar&background=random",
     rating: 5,
     text: "SIA's focus on technology integration and preparing students for the future is what impressed us the most. The infrastructure is world-class, and the safe, secure campus gives us peace of mind."
   },
@@ -30,7 +30,7 @@ const TESTIMONIALS = [
     name: "Dr. A.P.J. Abdul Kalam",
     role: "Former President of India (Guest Visit)",
     category: "VIP",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/A._P._J._Abdul_Kalam.jpg/480px-A._P._J._Abdul_Kalam.jpg", // Simplified placeholder or use generic VIP
+    image: "https://ui-avatars.com/api/?name=APJ+Abdul+Kalam&background=random",
     rating: 5,
     text: "It was a delight to interact with the bright young minds at Sanskar International Academy. Their curiosity and enthusiasm for science give me great hope for the future of our nation."
   },
@@ -39,7 +39,7 @@ const TESTIMONIALS = [
     name: "Sunita Singh",
     role: "Parent of Rohan, Grade 2",
     category: "Parents",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+    image: "https://ui-avatars.com/api/?name=Sunita+Singh&background=random",
     rating: 4,
     text: "The personalized mentorship has been a game-changer for our son. The faculty takes a genuine interest in each student's progress. The sports facilities are excellent too."
   },
@@ -48,7 +48,7 @@ const TESTIMONIALS = [
     name: "Vikram Patel",
     role: "Parent of Isha, Grade 8",
     category: "Parents",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+    image: "https://ui-avatars.com/api/?name=Vikram+Patel&background=random",
     rating: 5,
     text: "The global curriculum and world-class faculty at Sanskar International Academy provide an unparalleled learning environment. My daughter is thriving and is always excited to go to school."
   },
@@ -57,7 +57,7 @@ const TESTIMONIALS = [
     name: "Meera Desai",
     role: "Parent of Arjun, Pre-Primary",
     category: "Parents",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+    image: "https://ui-avatars.com/api/?name=Meera+Desai&background=random",
     rating: 5,
     text: "As a new parent to the school, the admission process was smooth and the staff was extremely helpful. The pre-primary program is fantastic, focusing on play-based learning in a nurturing atmosphere."
   },
@@ -66,7 +66,7 @@ const TESTIMONIALS = [
     name: "Harish Iyer",
     role: "Class of 2018",
     category: "Alumni",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+    image: "https://ui-avatars.com/api/?name=Harish+Iyer&background=random",
     rating: 5,
     text: "The career counseling and university placement support are exceptional. SIA has prepared me not just for exams, but for life beyond school. We couldn't be happier with my choice."
   },
@@ -75,7 +75,7 @@ const TESTIMONIALS = [
     name: "Hon. Minister of Education",
     role: "Chief Guest, Annual Day 2023",
     category: "VIP",
-    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=200",
+    image: "https://ui-avatars.com/api/?name=Minister+Education&background=random",
     rating: 5,
     text: "Detailed attention to value-based education along with academic excellence makes this institution stand out. A truly commendable effort by the management."
   }

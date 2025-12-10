@@ -34,9 +34,9 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                             />
                         </div>
 
-                        {/* Desktop Video Background */}
+                        {/* Desktop Background: Video or Image */}
                         <div className="absolute inset-0 w-full h-full hidden md:block">
-                            {data.video?.includes("youtube.com") || data.video?.includes("youtu.be") ? (
+                            {data.video && (data.video.includes("youtube.com") || data.video.includes("youtu.be")) ? (
                                 <iframe
                                     className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-90 blur-[1px]"
                                     src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&hd=1&vq=hd1080`}
@@ -44,10 +44,19 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                     allowFullScreen
                                     loading="eager"
                                 />
-                            ) : (
+                            ) : data.video && !data.video.includes("http") ? (
                                 <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 blur-[1px]">
-                                    <source src={data.video ?? "/media/hero-loop.mp4"} type="video/mp4" />
+                                    <source src={data.video} type="video/mp4" />
                                 </video>
+                            ) : (
+                                /* Fallback to Image if no video */
+                                <Image
+                                    src={data.grid?.[0] || "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp"}
+                                    alt="Hero Background"
+                                    fill
+                                    className="object-cover opacity-90"
+                                    priority
+                                />
                             )}
                         </div>
                         <div className="absolute inset-0 hero-overlay"></div>

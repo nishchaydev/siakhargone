@@ -36,7 +36,7 @@ export function Academics() {
         transition={{ duration: 0.5 }}
       >
         <Image
-          src="/siakhargone-content/Album/Photo For Uploads/Mix Photos/School Building.webp"
+          src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp"
           alt="Sanskar International Academy Campus"
           width={1600}
           height={700}

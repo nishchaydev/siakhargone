@@ -47,7 +47,7 @@ export default function CareersPageClient() {
     <div className="bg-grain min-h-screen">
       <section className="relative h-64 md:h-80 w-full">
         <Image
-          src="https://images.unsplash.com/photo-1521790797524-b2497295b8a0?q=80&w=2070&auto=format&fit=crop"
+          src="/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp"
           alt="Team collaborating in an office"
           fill
           className="object-cover"

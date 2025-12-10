@@ -9,7 +9,8 @@ export const metadata: Metadata = {
   description: 'Reach out to Sanskar International Academy, Khargone. Visit, call, or email us today.',
 };
 
-const heroImage = data.placeholderImages.find(img => img.id === 'contact-hero');
+// const heroImage = "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp";
+const heroImage = { imageUrl: "/siakhargone-content/Album/Photo For Uploads/Infrastructure Photos/Building Photos/building photos (2).webp", description: "School Building", imageHint: "school building" };
 
 export default function ContactPage() {
   return (
