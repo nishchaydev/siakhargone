@@ -5,7 +5,7 @@
 
 import HeroSection from "@/components/sections/HeroSection";
 import dynamic from 'next/dynamic';
-import HeroSection from "@/components/sections/HeroSection";
+
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Lazy Load Non-Critical Components
