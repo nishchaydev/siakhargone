@@ -3,7 +3,7 @@
     {
       "id": "hero-carousel-1",
       "description": "Students collaborating in a modern smart classroom",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/classroom-3.webp",
       "imageHint": "students in classroom"
     },
     {
@@ -57,7 +57,7 @@
     {
       "id": "career-counselling",
       "description": "Career counselling session",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-2.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/classroom-6.webp",
       "imageHint": "counselling session"
     },
     {
@@ -75,44 +75,20 @@
     {
       "id": "highlight-carousel-1",
       "description": "Cultural Event / Annual Day",
-      "imageUrl": "https://images.unsplash.com/photo-1761124739303-0f63772ed166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjdWx0dXJhbCUyMGV2ZW50fGVufDB8fHx8MTc2MjQ5MjczNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/annualfunction.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "highlight-carousel-2",
       "description": "Sports Meet",
-      "imageUrl": "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzY2hvb2wlMjBzcG9ydHN8ZW58MHx8fHwxNzYyNTg2Njc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/5.webp",
       "imageHint": "school sports"
     },
     {
       "id": "highlight-carousel-3",
       "description": "Science / Innovation Lab",
-      "imageUrl": "https://images.unsplash.com/photo-1602052577122-f73b9710adba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY2llbmNlJTIwbGFifGVufDB8fHx8MTc2MjUzMzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/physics-lab/physics-lab-1.webp",
       "imageHint": "science lab"
-    },
-    {
-      "id": "principal-portrait",
-      "description": "Principal",
-      "imageUrl": "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MjU3MzY3N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "woman portrait"
-    },
-    {
-      "id": "chairman-portrait",
-      "description": "Chairman Praveen Asanade",
-      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYW4lMjBwb3J0cmFpdCUyMHN1aXR8ZW58MHx8fHwxNzYyNTg2MzEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "man portrait suit"
-    },
-    {
-      "id": "sports-infrastructure",
-      "description": "Sports Infrastructure",
-      "imageUrl": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1",
-      "imageHint": "gym fitness"
-    },
-    {
-      "id": "student-leadership",
-      "description": "Student Leadership",
-      "imageUrl": "https://images.unsplash.com/photo-1584697964403-959b6d3d5a84",
-      "imageHint": "students presentation"
     }
   ]
 }
