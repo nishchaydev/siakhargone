@@ -19,7 +19,7 @@ const achievements = [
     date: "RECENT EVENT",
     title: taekwondo?.albumName || "District Level Taewando Competition",
     description: "Our students showcased outstanding skills and discipline at the District Level Taewando Competition.",
-    image: taekwondo?.coverPhoto || "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando7.webp",
+    image: taekwondo?.coverPhoto || "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-5.webp",
     imageHint: "taewando competition"
   },
   {
@@ -33,7 +33,7 @@ const achievements = [
     date: "SPORTS",
     title: "Sports Achievements",
     description: "Celebrating the dedication and victory of our young athletes in various sports championships.",
-    image: sports?.coverPhoto || "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
+    image: sports?.coverPhoto || "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp",
     imageHint: "sports achievements"
   }
 ];

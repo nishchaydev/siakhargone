@@ -3,25 +3,25 @@
     {
       "id": "hero-carousel-1",
       "description": "Students collaborating in a modern smart classroom",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/classroom-3.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/infrastructure-classroom-1.webp",
       "imageHint": "students in classroom"
     },
     {
       "id": "hero-carousel-2",
       "description": "Students engaging in sports activities",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp",
       "imageHint": "students playing sports"
     },
     {
       "id": "hero-carousel-3",
       "description": "State-of-the-art science laboratory",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/biology-lab/biolab-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/biology-lab/lab-biology-1.webp",
       "imageHint": "science lab"
     },
     {
       "id": "school-building",
       "description": "Sanskar International Academy School Building",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp",
       "imageHint": "school building exterior"
     },
     {
@@ -39,13 +39,13 @@
     {
       "id": "virtual-tour-thumbnail",
       "description": "Video thumbnail for campus virtual tour",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-1.webp",
       "imageHint": "campus video thumbnail"
     },
     {
       "id": "sports-infrastructure",
       "description": "Sprawling sports complex and playground",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/16.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-2.webp",
       "imageHint": "sports complex"
     },
     {
@@ -57,19 +57,19 @@
     {
       "id": "career-counselling",
       "description": "Career counselling session",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/classroom-6.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/infrastructure-classroom-2.webp",
       "imageHint": "counselling session"
     },
     {
       "id": "methodology-learning",
       "description": "Students engaged in active learning",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/chemistry-lab-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/lab-chemistry-1.webp",
       "imageHint": "active learning"
     },
     {
       "id": "infrastructure-school",
       "description": "Modern school infrastructure",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-1.webp",
       "imageHint": "modern infrastructure"
     },
     {
@@ -81,13 +81,13 @@
     {
       "id": "highlight-carousel-2",
       "description": "Sports Meet",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/5.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-4.webp",
       "imageHint": "school sports"
     },
     {
       "id": "highlight-carousel-3",
       "description": "Science / Innovation Lab",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/physics-lab/physics-lab-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/physics-lab/lab-physics-1.webp",
       "imageHint": "science lab"
     }
   ]

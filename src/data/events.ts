@@ -5,7 +5,7 @@ export const events = [
         title: "Annual Sports Day",
         date: "2024-12-25",
         description: "Annual sports day celebration with various competitions.",
-        image: "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp"
+        image: "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp"
     },
     {
         id: 2,

@@ -41,7 +41,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
       <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-navy/50 z-10" />
         {/* Placeholder Hero Image - using the school image if available or a generic one */}
-        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp"
+        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp"
           alt="School Gallery Hero"
           fill
           className="absolute inset-0 object-cover" unoptimized />

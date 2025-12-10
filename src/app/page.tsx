@@ -38,10 +38,10 @@ export default function Home() {
       sanskrit: "विद्या ददाति विनयम्",
       video: "https://www.youtube.com/watch?v=6-i18-xt8sI",
       grid: [
-        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
+        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp",
         "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2821.webp",
         "/siakhargone-content/album/photo-for-uploads/rainy-day-plantation/girldrawing.webp",
-        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8727.webp",
+        "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-2.webp",
       ],
       cta1Href: "/admissions",
       cta2Href: "/gallery"

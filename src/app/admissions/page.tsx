@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const careerCounsellingImage = {
   id: 'career-counselling',
-  imageUrl: "/siakhargone-content/album/photo-for-uploads/ptm/ptm-main.webp",
+  imageUrl: "/siakhargone-content/album/photo-for-uploads/ptm/ptm-1.webp",
   description: "Career Counselling Session",
   imageHint: "Counselling"
 };

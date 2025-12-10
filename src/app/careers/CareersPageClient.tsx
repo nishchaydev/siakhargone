@@ -46,7 +46,7 @@ export default function CareersPageClient() {
   return (
     <div className="bg-grain min-h-screen">
       <section className="relative h-64 md:h-80 w-full">
-        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp"
+        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp"
           alt="Team collaborating in an office"
           fill
           className="object-cover"

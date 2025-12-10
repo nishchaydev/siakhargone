@@ -48,7 +48,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 </video>
                             ) : (
                                 /* Fallback to Image if no video */
-                                <Image src={data.grid?.[0] || "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp"}
+                                <Image src={data.grid?.[0] || "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp"}
                                     alt="Hero Background"
                                     fill
                                     className="object-cover opacity-90"

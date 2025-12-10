@@ -35,7 +35,7 @@ export function Academics() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp"
+        <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp"
           alt="Sanskar International Academy Campus"
           width={1600}
           height={700}

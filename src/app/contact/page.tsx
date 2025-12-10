@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description: 'Reach out to Sanskar International Academy, Khargone. Visit, call, or email us today.',
 };
 
-// const heroImage = "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp";
-const heroImage = { imageUrl: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp", description: "School Building", imageHint: "school building" };
+// const heroImage = "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp";
+const heroImage = { imageUrl: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp", description: "School Building", imageHint: "school building" };
 
 export default function ContactPage() {
   return (

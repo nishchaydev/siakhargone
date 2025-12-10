@@ -41,12 +41,12 @@ export const albums = [
     {
         "albumName": "Sports & Achivements",
         "category": "Sports",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
-            "/siakhargone-content/album/photo-for-uploads/sports-achievements/16.webp",
-            "/siakhargone-content/album/photo-for-uploads/sports-achievements/2.webp",
-            "/siakhargone-content/album/photo-for-uploads/sports-achievements/5.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-2.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-3.webp",
+            "/siakhargone-content/album/photo-for-uploads/sports-achievements/sports-achievements-4.webp",
             "/siakhargone-content/album/photo-for-uploads/sports-achievements/gop_3169.webp",
             "/siakhargone-content/album/photo-for-uploads/sports-achievements/img-20220723-wa0008.webp",
             "/siakhargone-content/album/photo-for-uploads/sports-achievements/img-20220808-wa0006.webp",
@@ -57,15 +57,15 @@ export const albums = [
     {
         "albumName": "District Level Taekwando",
         "category": "Sports",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando7.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-5.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando5.webp",
-            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando6.webp",
-            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando7.webp",
-            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando8.webp",
-            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando9.webp",
-            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando10.webp",
-            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando11.webp"
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-3.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-4.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-5.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-6.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-7.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/district-level-taekwando-competition/taekwando-2.webp"
         ]
     },
     {
@@ -82,20 +82,20 @@ export const albums = [
     {
         "albumName": "Holi Celebration",
         "category": "Celebrations",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi1.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi-1.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi1.webp",
-            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi2.webp",
-            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi3.webp",
-            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi4.webp"
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi-2.webp",
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi-3.webp",
+            "/siakhargone-content/album/photo-for-uploads/holi-celebration/holi-4.webp"
         ]
     },
     {
         "albumName": "PTM",
         "category": "Events",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/ptm/ptm-main.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/ptm/ptm-1.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/ptm/ptm-main.webp"
+            "/siakhargone-content/album/photo-for-uploads/ptm/ptm-1.webp"
         ]
     },
     {
@@ -119,11 +119,11 @@ export const albums = [
     {
         "albumName": "Campus Life",
         "category": "Campus",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
-            "/siakhargone-content/album/photo-for-uploads/mix-photos/09.webp",
-            "/siakhargone-content/album/photo-for-uploads/mix-photos/all-house-photos.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp",
+            "/siakhargone-content/album/photo-for-uploads/mix-photos/mix-photos-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/mix-photos/mix-photos-9.webp",
             "/siakhargone-content/album/photo-for-uploads/mix-photos/weightlifting.webp",
             "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/dsc_5875.webp",
             "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/sports-4.webp",
@@ -133,31 +133,31 @@ export const albums = [
     {
         "albumName": "Classrooms",
         "category": "Classrooms",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/classroom-3.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/infrastructure-classroom-1.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/classroom-3.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/classroom-6.webp"
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/infrastructure-classroom-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/class-room-photos/infrastructure-classroom-2.webp"
         ]
     },
     {
         "albumName": "Library",
         "category": "Labs & Facilities",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-1.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8727.webp"
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/infrastructure-library-2.webp"
         ]
     },
     {
         "albumName": "Labs & Facilities",
         "category": "Labs & Facilities",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/computer-lab.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/lab-computer-1.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/computer-lab.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/chemistry-lab-1.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/biology-lab/biolab-1.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/physics-lab/physics-lab-1.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/maths-lab/maths-lab.webp"
+            "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/lab-computer-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/lab-chemistry-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/biology-lab/lab-biology-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/physics-lab/lab-physics-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/maths-lab/lab-math-2.webp"
         ]
     }
 ];

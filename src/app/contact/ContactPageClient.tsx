@@ -146,7 +146,7 @@ export default function ContactPageClient() {
         {/* Visit Our Campus Section */}
         <section className="relative py-24 overflow-hidden mt-12">
           <div className="absolute inset-0 bg-navy-dark z-0">
-            <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp"
+            <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/infrastructure-building-2.webp"
               alt="Campus Background"
               fill
               className="object-cover opacity-20 mix-blend-overlay" unoptimized />
