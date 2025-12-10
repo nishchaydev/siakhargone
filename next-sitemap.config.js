@@ -1,15 +1,24 @@
+
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: process.env.SITE_URL || 'https://siakhargone.in',
+    siteUrl: "https://siakhargone.in",
     generateRobotsTxt: true,
+    exclude: [
+        "/admin",
+        "/admin/*",
+        "/admin/login",
+        "/admin/dashboard",
+    ],
     robotsTxtOptions: {
         additionalSitemaps: [
-            'https://siakhargone.in/server-sitemap.xml',
+            'https://siakhargone.in/sitemap.xml',
+        ],
+        policies: [
+            {
+                userAgent: '*',
+                allow: '/',
+                disallow: ['/admin/', '/admin/login', '/admin/dashboard'],
+            },
         ],
     },
-    exclude: ['/server-sitemap.xml'],
-    generateIndexSitemap: false,
-    changefreq: 'monthly',
-    priority: 0.7,
-    sitemapSize: 5000,
 };

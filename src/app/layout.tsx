@@ -37,42 +37,81 @@ const mukta = Mukta({
 
 const openGraphImage = '/logosia.png';
 
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://siakhargone.vercel.app'), // Updated to likely Vercel domain
+  metadataBase: new URL('https://siakhargone.in'),
   title: {
-    default: 'Sanskar International Academy | Khargone\'s Premier CBSE Institution',
+    default: 'Sanskar International Academy | Khargone\'s Premier CBSE School',
     template: '%s | Sanskar International Academy',
   },
-  description: 'Empowering young minds through quality education, values, and global exposure. Explore Sanskar International Academy, Khargone\'s Premier CBSE Institution.',
-  keywords: ['Sanskar International Academy', 'Khargone', 'CBSE', 'school', 'education', 'admissions', 'academics', 'international school'],
+  description: 'Join Sanskar International Academy (SIA), Khargone\'s leading CBSE institution offering world-class education, modern facilities, and holistic development for students.',
+  keywords: ['Sanskar International Academy', 'SIA Khargone', 'CBSE School Khargone', 'Best School in Khargone', 'International School MP', 'Education', 'Admissions'],
   authors: [{ name: 'Sanskar International Academy' }],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
-    url: 'https://siakhargone.web.app/',
-    title: 'Sanskar International Academy',
-    description: 'Empowering learners through education, discipline, and innovation.',
-    images: [openGraphImage],
+    url: 'https://siakhargone.in',
+    title: 'Sanskar International Academy | Excellence in Education',
+    description: 'Empowering young minds through quality education, values, and global exposure at Khargone\'s premier CBSE school.',
+    siteName: 'Sanskar International Academy',
+    images: [{
+      url: openGraphImage,
+      width: 1200,
+      height: 630,
+      alt: 'Sanskar International Academy Campus',
+    }],
+    locale: 'en_IN',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Sanskar International Academy',
-    description: 'Excellence in education. Character in action.',
+    description: 'Khargone\'s Premier CBSE School. Admissions Open.',
     images: [openGraphImage],
   },
-  alternates: {
-    canonical: 'https://siakhargone.web.app/',
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'SIA Khargone',
-  },
   icons: {
-    icon: '/favicon/favicon.ico',
-    shortcut: '/favicon/favicon-16x16.png',
-    apple: '/images/logo.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/logosia.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'School',
+  name: 'Sanskar International Academy',
+  url: 'https://siakhargone.in',
+  logo: 'https://siakhargone.in/logosia.png',
+  image: 'https://siakhargone.in/logosia.png',
+  description: 'Premier CBSE school of Khargone offering holistic education and state-of-the-art facilities.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'SIA Campus',
+    addressLocality: 'Khargone',
+    addressRegion: 'Madhya Pradesh',
+    postalCode: '451001',
+    addressCountry: 'IN'
+  },
+  telephone: '+917049110104',
+  sameAs: [
+    'https://www.facebook.com/siakhargone/',
+    'https://www.instagram.com/sanskarinternationalacademy/',
+    'https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw'
+  ]
+};
+
 
 export default function RootLayout({
   children,
@@ -88,6 +127,10 @@ export default function RootLayout({
       <body className="bg-background text-foreground antialiased bg-grain">
         <ScrollToTop />
         <Header />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <main className="pt-[114px]">{children}</main>
         <Footer />
         <MobileCtaBar />
