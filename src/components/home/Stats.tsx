@@ -34,7 +34,7 @@ export function Stats() {
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
-    <section className="bg-navy text-white section-xl">
+    <section className="bg-navy text-white py-20 md:py-28 relative overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           className="text-center mb-12"

@@ -6,11 +6,13 @@ import { cloudinary } from '@/lib/cloudinary-images';
 import BeyondSchoolPageClient from './BeyondSchoolPageClient';
 
 const sportsImage = {
+  id: 'sports-infrastructure',
   imageUrl: cloudinary.infrastructure.indoreGames[0],
   description: "Sports Infrastructure",
   imageHint: "sports"
 };
 const leadershipImage = {
+  id: 'student-leadership',
   imageUrl: cloudinary.mixPhotos[5],
   description: "Student Leadership",
   imageHint: "leadership"
