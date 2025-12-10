@@ -133,16 +133,16 @@ export const albums = [
     {
         "albumName": "Classrooms",
         "category": "Classrooms",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-1.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-2.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-3.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-5.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-6.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-8.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-9.webp",
-            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-11.webp"
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-2.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-3.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-5.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-6.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-8.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-9.webp",
+            "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-11.webp"
         ]
     },
     {
@@ -157,13 +157,13 @@ export const albums = [
     {
         "albumName": "Labs & Facilities",
         "category": "Labs & Facilities",
-        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/lab/computer/computer-lab.webp",
+        "coverPhoto": "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/computer-lab.webp",
         "photos": [
-            "/siakhargone-content/album/photo-for-uploads/lab/computer/computer-lab.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/biology/biolab-1.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/physics/physics-lab-1.webp",
-            "/siakhargone-content/album/photo-for-uploads/lab/maths/maths-lab.webp"
+            "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/computer-lab.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/chemistry-lab-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/biology-lab/biolab-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/physics-lab/physics-lab-1.webp",
+            "/siakhargone-content/album/photo-for-uploads/lab/maths-lab/maths-lab.webp"
         ]
     }
 ];

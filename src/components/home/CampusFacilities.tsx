@@ -13,7 +13,7 @@ const facilities = [
     {
         title: "Smart Classrooms",
         description: "Tech-enabled learning spaces.",
-        image: "/siakhargone-content/album/photo-for-uploads/lab/computer/computer-lab.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/lab/computer-lab/computer-lab.webp",
         className: "md:col-span-2 md:row-span-2",
     },
     {
@@ -25,13 +25,13 @@ const facilities = [
     {
         title: "Science Labs",
         description: "State-of-the-art equipment.",
-        image: "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/chemistry-lab-1.webp",
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Library",
         description: "A hub of knowledge.",
-        image: "/siakhargone-content/album/photo-for-uploads/library/lab1.webp",
+        image: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp",
         className: "md:col-span-2 md:row-span-1",
     },
 ];

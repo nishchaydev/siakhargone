@@ -43,7 +43,7 @@ export default function LifeAtSiaPage() {
                         {
                             title: "Science & Tech Labs",
                             desc: "State-of-the-art labs for hands-on exploration in physics, chemistry, biology, and computer science.",
-                            img: "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
+                            img: "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/chemistry-lab-1.webp",
                         },
                         {
                             title: "Sports Complex",
@@ -53,7 +53,7 @@ export default function LifeAtSiaPage() {
                         {
                             title: "Smart Classrooms",
                             desc: "Technology-enabled classrooms that make learning interactive, engaging, and highly effective.",
-                            img: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
+                            img: "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-1.webp",
                         },
                         {
                             title: "Performing Arts Center",
@@ -91,10 +91,10 @@ export default function LifeAtSiaPage() {
                                 <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp" alt="Library" fill className="object-cover" unoptimized />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="/siakhargone-content/album/photo-for-uploads/lab/biology/biolab-1.webp" alt="Lab microscope" fill className="object-cover" unoptimized />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/lab/biology-lab/biolab-1.webp" alt="Lab microscope" fill className="object-cover" unoptimized />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-2.webp" alt="Student writing" fill className="object-cover" unoptimized />
+                                <Image src="/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-2.webp" alt="Student writing" fill className="object-cover" unoptimized />
                             </div>
                         </div>
                         <div>

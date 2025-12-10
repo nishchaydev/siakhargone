@@ -3,7 +3,7 @@
     {
       "id": "hero-carousel-1",
       "description": "Students collaborating in a modern smart classroom",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-1.webp",
       "imageHint": "students in classroom"
     },
     {
@@ -15,7 +15,7 @@
     {
       "id": "hero-carousel-3",
       "description": "State-of-the-art science laboratory",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/biology/biolab-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/biology-lab/biolab-1.webp",
       "imageHint": "science lab"
     },
     {
@@ -57,13 +57,13 @@
     {
       "id": "career-counselling",
       "description": "Career counselling session",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-2.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-photos/classroom-2.webp",
       "imageHint": "counselling session"
     },
     {
       "id": "methodology-learning",
       "description": "Students engaged in active learning",
-      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/chemistry-lab/chemistry-lab-1.webp",
       "imageHint": "active learning"
     },
     {
