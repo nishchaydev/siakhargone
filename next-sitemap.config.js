@@ -6,5 +6,7 @@ module.exports = {
         "/admin/*",
         "/admin/login",
         "/admin/dashboard",
+        "/certificates",
+        "/downloads",
     ],
 };

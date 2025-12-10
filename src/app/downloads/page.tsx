@@ -9,6 +9,10 @@ import { Button } from "@/components/ui/button";
 export const metadata = {
     title: "Downloads",
     description: "Download important documents, forms, and resources.",
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default async function DownloadsPage() {

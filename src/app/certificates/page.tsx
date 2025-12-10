@@ -9,6 +9,10 @@ import { Button } from "@/components/ui/button";
 export const metadata = {
     title: "Certificates",
     description: "View our school's recognitions and affiliations.",
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default async function CertificatesPage() {
