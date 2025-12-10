@@ -1,52 +1,76 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-background",
-      "description": "Still fallback if video doesn’t load",
-      "imageUrl": "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBjYW1wdXN8ZW58MHx8fHwxNzYyNTQxNzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "school campus"
+      "id": "hero-carousel-1",
+      "description": "Students collaborating in a modern smart classroom",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-1.webp",
+      "imageHint": "students in classroom"
     },
     {
-      "id": "about-school",
-      "description": "A vibrant picture of the school building or campus.",
-      "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipPL_YnIfsCr8SR3s-btHLm7dxt-cXXqRILbumEw=s1360-w1360-h1020-rw",
-      "imageHint": "school building"
+      "id": "hero-carousel-2",
+      "description": "Students engaging in sports activities",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
+      "imageHint": "students playing sports"
     },
     {
-      "id": "experiential-learning",
-      "description": "A teacher mentoring students in a collaborative setting.",
-      "imageUrl": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf",
-      "imageHint": "teacher students"
+      "id": "hero-carousel-3",
+      "description": "State-of-the-art science laboratory",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/biology/biolab-1.webp",
+      "imageHint": "science lab"
     },
     {
-      "id": "career-counselling",
-      "description": "A teacher mentoring students in a collaborative setting for career guidance.",
-      "imageUrl": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf",
-      "imageHint": "career guidance"
+      "id": "school-building",
+      "description": "Sanskar International Academy School Building",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-2.webp",
+      "imageHint": "school building exterior"
     },
     {
-      "id": "campus-infrastructure",
-      "description": "A wide shot of modern school campus infrastructure.",
-      "imageUrl": "https://images.unsplash.com/photo-1571260899304-425eee4c7efc",
-      "imageHint": "campus infrastructure"
+      "id": "principal-portrait",
+      "description": "Principal of Sanskar International Academy",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2323.webp",
+      "imageHint": "principal portrait"
     },
     {
-      "id": "admissions-hero",
-      "description": "A welcoming entrance to a school.",
-      "imageUrl": "https://images.unsplash.com/photo-1550805010-03f6217d7ffd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzY2hvb2wlMjBlbnRyYW5jZXxlbnwwfHx8fDE3NjI1NjY5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "school entrance"
+      "id": "chairman-portrait",
+      "description": "Chairman of Sanskar International Academy",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2410.webp",
+      "imageHint": "chairman portrait"
     },
     {
       "id": "virtual-tour-thumbnail",
-      "description": "A thumbnail of a school building for the virtual tour section.",
-      "imageUrl": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzY2hvb2x8ZW58MHx8fHwxNzYyNTM1Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "modern school"
+      "description": "Video thumbnail for campus virtual tour",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/library-photos/_mg_8726.webp",
+      "imageHint": "campus video thumbnail"
     },
     {
-      "id": "contact-hero",
-      "description": "An office front desk.",
-      "imageUrl": "https://images.unsplash.com/photo-1582653547187-2bb73b2d7b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyZWNlcHRpb24lMjBkZXNrfGVufDB8fHx8MTc2MjUzMzk3MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "reception desk"
+      "id": "sports-infrastructure",
+      "description": "Sprawling sports complex and playground",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/sports-achievements/16.webp",
+      "imageHint": "sports complex"
+    },
+    {
+      "id": "student-leadership",
+      "description": "Student council members",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/annual-function/dsc_2342.webp",
+      "imageHint": "student leaders"
+    },
+    {
+      "id": "career-counselling",
+      "description": "Career counselling session",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/classroom-2.webp",
+      "imageHint": "counselling session"
+    },
+    {
+      "id": "methodology-learning",
+      "description": "Students engaged in active learning",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/lab/chemistry/chemistry-lab-1.webp",
+      "imageHint": "active learning"
+    },
+    {
+      "id": "infrastructure-school",
+      "description": "Modern school infrastructure",
+      "imageUrl": "/siakhargone-content/album/photo-for-uploads/infrastructure-photos/building-photos/building-photos-1.webp",
+      "imageHint": "modern infrastructure"
     },
     {
       "id": "highlight-carousel-1",

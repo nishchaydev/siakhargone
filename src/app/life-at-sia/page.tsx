@@ -48,7 +48,7 @@ export default function LifeAtSiaPage() {
                         {
                             title: "Sports Complex",
                             desc: "International standard facilities for a wide range of sports, fostering teamwork and physical well-being.",
-                            img: "/siakhargone-content/album/photo-for-uploads/sports-achivements/1.webp",
+                            img: "/siakhargone-content/album/photo-for-uploads/sports-achievements/1.webp",
                         },
                         {
                             title: "Smart Classrooms",
