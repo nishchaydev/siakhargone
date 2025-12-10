@@ -4,8 +4,8 @@ import AdmissionsPageClient from './AdmissionsPageClient';
 import data from '@/lib/placeholder-images.json';
 
 export const metadata: Metadata = {
-  title: 'Admissions',
-  description: 'Join Sanskar International Academy. Learn about our admissions process, scholarships, and career support.',
+  title: 'Admissions Open 2025-26 - Apply Online',
+  description: 'Secure your child\'s future at Sanskar International Academy. View admission process, eligibility, and scholarship details. Apply online today.',
 };
 
 const careerCounsellingImage = {

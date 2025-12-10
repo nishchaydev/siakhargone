@@ -4,8 +4,8 @@ import AcademicsPageClient from './AcademicsPageClient';
 import { cloudinary } from '@/lib/cloudinary-images';
 
 export const metadata: Metadata = {
-  title: 'Academics',
-  description: 'Explore our curriculum, infrastructure, and modern learning methodology.',
+  title: 'Academics - CBSE Curriculum & Methodology',
+  description: 'Explore our comprehensive CBSE curriculum, advanced science labs, smart classrooms, and innovative teaching methodology designed for student success.',
 };
 
 const methodologyImage = {

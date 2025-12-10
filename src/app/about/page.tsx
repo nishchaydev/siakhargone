@@ -3,8 +3,8 @@ import { loadAboutData, loadMessage, loadCommittee } from '@/lib/content';
 import AboutPageClient from './AboutPageClient';
 
 export const metadata: Metadata = {
-  title: 'About',
-  description: 'Discover our vision, leadership, and commitment to holistic education.',
+  title: 'About Us - Vision & Leadership',
+  description: 'Discover the vision, mission, and leadership behind Sanskar International Academy. Meet our principal and learn about our commitment to holistic education.',
 };
 
 const achievementItems = [

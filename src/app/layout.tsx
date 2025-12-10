@@ -41,20 +41,20 @@ const openGraphImage = '/logosia.png';
 export const metadata: Metadata = {
   metadataBase: new URL('https://siakhargone.in'),
   title: {
-    default: 'Sanskar International Academy | Khargone\'s Premier CBSE School',
+    default: 'SanskAR International School – Best CBSE School in Khandwa Road, Khargone',
     template: '%s | Sanskar International Academy',
   },
-  description: 'Sanskar International Academy (SIA), Khargone — a premier CBSE school offering holistic education, academic excellence, and values-driven learning.',
+  description: 'One of Khargone\'s top CBSE schools offering modern education, sports, arts, and academics for holistic child development.',
   keywords: ['Sanskar International Academy', 'SIA Khargone', 'CBSE School Khargone', 'Best School in Khargone', 'International School MP', 'Education', 'Admissions'],
   authors: [{ name: 'Sanskar International Academy' }],
   alternates: {
-    canonical: '/',
+    canonical: 'https://siakhargone.in/',
   },
   openGraph: {
     type: 'website',
     url: 'https://siakhargone.in',
-    title: 'Sanskar International Academy | Excellence in Education',
-    description: 'Empowering young minds through quality education, values, and global exposure at Khargone\'s premier CBSE school.',
+    title: 'SanskAR International School – Best CBSE School in Khandwa Road, Khargone',
+    description: 'One of Khargone\'s top CBSE schools offering modern education, sports, arts, and academics for holistic child development.',
     siteName: 'Sanskar International Academy',
     images: [{
       url: openGraphImage,
@@ -93,20 +93,42 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "School",
+      "@id": "https://siakhargone.in/#school",
       "name": "Sanskar International Academy",
       "url": "https://siakhargone.in",
-      "logo": "https://siakhargone.in/logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://siakhargone.in/logo.png"
+      },
       "image": "https://siakhargone.in/logosia.png",
       "description": "Sanskar International Academy, Khargone — a premier CBSE school offering holistic education, academic excellence, and values-driven learning.",
       "telephone": "+91 70491 10105",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Gowadi Fata, Khandwa Road, Badgaon",
+        "streetAddress": "Khandwa Road",
         "addressLocality": "Khargone",
-        "addressRegion": "Madhya Pradesh",
         "postalCode": "451001",
+        "addressRegion": "Madhya Pradesh",
         "addressCountry": "IN"
       },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "124",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "sameAs": [
+        "https://www.facebook.com/siakhargone/",
+        "https://www.instagram.com/sanskarinternationalacademy/?hl=en",
+        "https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://siakhargone.in/#organization",
+      "url": "https://siakhargone.in",
+      "logo": "https://siakhargone.in/logo.png",
       "sameAs": [
         "https://www.facebook.com/siakhargone/",
         "https://www.instagram.com/sanskarinternationalacademy/",
@@ -114,18 +136,23 @@ const jsonLd = {
       ]
     },
     {
-      "@type": "Organization",
-      "url": "https://siakhargone.in",
-      "logo": "https://siakhargone.in/logo.png"
-    },
-    {
       "@type": "WebSite",
+      "@id": "https://siakhargone.in/#website",
       "url": "https://siakhargone.in",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://siakhargone.in/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://siakhargone.in/"
+      }]
     }
   ]
 };

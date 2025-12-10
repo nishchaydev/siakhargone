@@ -34,6 +34,12 @@ const scholarshipItems = [
   { icon: "Globe", text: "Social Leadership Fellowships" },
 ];
 
+
+export const metadata: Metadata = {
+  title: 'Beyond School - Sports, Arts & Co-Curricular Activities',
+  description: 'Discover our holistic development programs including sports, performing arts, student leadership, and community service initiatives.',
+};
+
 export default function BeyondSchoolPage() {
   return (
     <div>

@@ -6,8 +6,8 @@ import data from '@/lib/placeholder-images.json';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Reach out to Sanskar International Academy, Khargone. Visit, call, or email us today.',
+  title: 'Contact Us - Admissions & Enquiry',
+  description: 'Get in touch with Sanskar International Academy. Visit our campus in Khargone, call us for admissions, or drop an email query.',
 };
 
 // const heroImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp";

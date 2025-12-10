@@ -67,6 +67,7 @@ export default function Footer() {
                 <li><Link href="/gallery" className="hover:text-gold transition-colors block">Gallery</Link></li>
                 <li><Link href="/academics" className="hover:text-gold transition-colors block">Academics</Link></li>
                 <li><Link href="/life-at-sia" className="hover:text-gold transition-colors block">Life at SIA</Link></li>
+                <li><Link href="/best-school-in-khargone" className="text-gold/80 hover:text-gold transition-colors block font-bold text-xs mt-2 uppercase tracking-wider">Why SIA is #1?</Link></li>
               </ul>
             </motion.div>
 
