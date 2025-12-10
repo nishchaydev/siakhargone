@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function TermsPage() {
     return (
-        <main className="bg-gray-50 min-h-screen">
+        <div className="bg-gray-50 min-h-screen">
             <Section id="terms" title="Terms of Service" subtitle="Last Updated: December 2024">
                 <div className="prose prose-lg max-w-4xl mx-auto text-gray-700">
                     <p>
@@ -47,6 +47,6 @@ export default function TermsPage() {
                     </p>
                 </div>
             </Section>
-        </main>
+        </div>
     );
 }

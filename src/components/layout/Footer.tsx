@@ -106,7 +106,7 @@ export default function Footer() {
           {/* Bottom Bar */}
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-white/50">
             <p>© {new Date().getFullYear()} SIA Khargone. All Rights Reserved.</p>
-            <div className="flex gap-6 mt-4 md:mt-0">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-4 md:mt-0 w-full md:w-auto">
               <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Note</Link>
               <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
               <div className="hidden md:block w-px h-4 bg-white/20"></div>
