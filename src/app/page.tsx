@@ -12,15 +12,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 const WhyChoose = dynamic(() => import("@/components/home/WhyChoose").then(mod => mod.WhyChoose), {
   loading: () => <div className="py-20"><Skeleton className="h-[400px] w-full max-w-7xl mx-auto rounded-xl" /></div>
 });
-const CampusFacilities = dynamic(() => import("@/components/home/CampusFacilities").then(mod => mod.CampusFacilities), {
-  loading: () => <div className="py-20"><Skeleton className="h-[300px] w-full max-w-7xl mx-auto" /></div>
-});
+const PrincipalMessage = dynamic(() => import("@/components/home/PrincipalMessage").then(mod => mod.PrincipalMessage));
+const LatestNews = dynamic(() => import("@/components/home/LatestNews").then(mod => mod.LatestNews));
+
 const CTASection = dynamic(() => import("@/components/home/CTASection").then(mod => mod.CTASection));
 const Academics = dynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
-const GallerySection = dynamic(() => import("@/components/home/GallerySection").then(mod => mod.GallerySection), {
-  loading: () => <div className="py-20 text-center">Loading Gallery...</div>
-});
-const AchievementsSection = dynamic(() => import("@/components/home/AchievementsSection").then(mod => mod.AchievementsSection));
+const StudentAchievers = dynamic(() => import("@/components/home/StudentAchievers").then(mod => mod.StudentAchievers));
+const LifeAtSIA = dynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
+// const AchievementsSection = dynamic(() => import("@/components/home/AchievementsSection").then(mod => mod.AchievementsSection)); // Deprecated
 const Testimonials = dynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
 
 import { albums, testimonials } from "@/lib/static-data";
@@ -72,10 +71,11 @@ export default function Home() {
     <>
       <HeroSection data={cmsData.hero} stats={cmsData.stats} />
       <WhyChoose />
-      <CampusFacilities />
+      <PrincipalMessage />
       <Academics />
-      <AchievementsSection />
-      <GallerySection images={cmsData.gallery} />
+      <StudentAchievers />
+      <LatestNews />
+      <LifeAtSIA />
       <Testimonials testimonials={testimonials} isLoading={false} />
       <CTASection />
     </>

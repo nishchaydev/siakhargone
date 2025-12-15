@@ -1,0 +1,92 @@
+
+> nextn@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.9
+   - Environments: .env.local, .env.production
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 8.2s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/37) ...
+   Generating static pages (9/37) 
+   Generating static pages (18/37) 
+   Generating static pages (27/37) 
+ ✓ Generating static pages (37/37)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      13 kB         180 kB
+├ ○ /_not-found                            162 B         102 kB
+├ ○ /about                               5.52 kB         161 kB
+├ ○ /academics                           25.8 kB         190 kB
+├ ○ /admin                                 162 B         102 kB
+├ ○ /admin-school-portal/dashboard       4.59 kB         117 kB
+├ ƒ /admin-school-portal/gallery         43.5 kB         161 kB
+├ ○ /admin-school-portal/login           3.67 kB         112 kB
+├ ○ /admin-school-portal/news            1.77 kB         117 kB
+├ ○ /admin-school-portal/notices         4.52 kB         120 kB
+├ ○ /admin/dashboard                       627 B         102 kB
+├ ○ /admin/login                         4.27 kB         113 kB
+├ ○ /admissions                          30.7 kB         204 kB
+├ ƒ /api/admin/careers                     162 B         102 kB
+├ ƒ /api/admin/gallery                     162 B         102 kB
+├ ƒ /api/admin/login                       162 B         102 kB
+├ ƒ /api/admin/news                        162 B         102 kB
+├ ƒ /api/admin/notices                     162 B         102 kB
+├ ○ /best-school-in-khargone             4.73 kB         163 kB
+├ ○ /beyond-school                       3.29 kB         158 kB
+├ ○ /careers                             9.31 kB         161 kB
+├ ○ /certificates                        2.15 kB         149 kB
+├ ○ /contact                             5.87 kB         162 kB
+├ ○ /downloads                             162 B         102 kB
+├ ○ /dream-path                            169 B         107 kB
+├ ○ /gallery                             5.13 kB         150 kB
+├ ○ /life-at-sia                           169 B         107 kB
+├ ○ /mandatory-disclosure                  162 B         102 kB
+├ ○ /manifest.webmanifest                  162 B         102 kB
+├ ○ /privacy                             2.15 kB         149 kB
+├ ○ /robots.txt                            162 B         102 kB
+├ ○ /sitemap.xml                           162 B         102 kB
+├ ○ /terms                               2.15 kB         149 kB
+├ ○ /testimonials                        5.37 kB         150 kB
+└ ○ /virtual-tour                        2.57 kB         149 kB
++ First Load JS shared by all             101 kB
+  ├ chunks/1255-de0c1abd22c7cccd.js      45.2 kB
+  ├ chunks/4bd1b696-182b6b13bdad92e3.js  54.2 kB
+  └ other shared chunks (total)          2.01 kB
+
+
+ƒ Middleware                             33.1 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> nextn@0.1.0 postbuild
+> next-sitemap
+
+✨ [next-sitemap] Loading next-sitemap config: file:///N:/PROGRAMS/GIT%20and%20GITHUB/github%20Desktop/siakhargone/next-sitemap.config.js
+✅ [next-sitemap] Generation completed
+┌───────────────┬────────┐
+│ (index)       │ Values │
+├───────────────┼────────┤
+│ indexSitemaps │ 1      │
+│ sitemaps      │ 1      │
+└───────────────┴────────┘
+-----------------------------------------------------
+ SITEMAP INDICES 
+-----------------------------------------------------
+
+   ○ https://siakhargone.in/sitemap.xml
+
+
+-----------------------------------------------------
+ SITEMAPS 
+-----------------------------------------------------
+
+   ○ https://siakhargone.in/sitemap-0.xml
+
+

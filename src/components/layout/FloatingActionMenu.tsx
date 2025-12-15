@@ -43,10 +43,10 @@ export default function FloatingActionMenu() {
     const toggleMenu = () => setIsOpen(!isOpen);
 
     return (
-        <div className="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-4">
+        <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-4">
             <AnimatePresence>
                 {isOpen && (
-                    <div className="flex flex-col-reverse gap-3 mb-2 ml-1">
+                    <div className="flex flex-col-reverse gap-3 mb-2 mr-1 items-end">
                         {actions.map((action, index) => (
                             <motion.div
                                 key={action.label}

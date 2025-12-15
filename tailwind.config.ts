@@ -38,6 +38,8 @@ export default {
         gold: {
           DEFAULT: '#D4AF37',
         },
+        ivory: '#F7F5F2',
+        cream: '#FFFDD0',
         bgIvory: {
           DEFAULT: '#F7F5F2',
         },

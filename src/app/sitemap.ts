@@ -2,7 +2,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://siakhargone.vercel.app';
+    const baseUrl = 'https://siakhargone.in';
 
     // Core pages
     const routes = [

@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/admin', '/api/'],
         },
-        sitemap: 'https://siakhargone.vercel.app/sitemap.xml',
+        sitemap: 'https://siakhargone.in/sitemap.xml',
     };
 }

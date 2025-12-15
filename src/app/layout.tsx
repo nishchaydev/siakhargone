@@ -7,7 +7,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Chatbot from '@/components/chatbot/Chatbot';
 
-import MobileCtaBar from '@/components/layout/MobileCtaBar';
 import FloatingActionMenu from '@/components/layout/FloatingActionMenu';
 import ScrollToTop from '@/components/common/ScrollToTop';
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -180,7 +179,6 @@ export default function RootLayout({
         />
         <main className="pt-[114px]">{children}</main>
         <Footer />
-        <MobileCtaBar />
         <Chatbot />
         <FloatingActionMenu />
         <Toaster />
