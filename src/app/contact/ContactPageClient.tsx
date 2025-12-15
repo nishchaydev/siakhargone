@@ -66,7 +66,6 @@ export default function ContactPageClient() {
       // Optional: Reset form
       // Optional: Reset form
       form.reset();
-      // alert("Enquiry Sent! We will contact you soon.");
       setIsSuccess(true);
 
     } catch (error) {
