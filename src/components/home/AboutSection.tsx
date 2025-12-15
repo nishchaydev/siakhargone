@@ -29,7 +29,7 @@ export function AboutSection() {
               width={800}
               height={600}
               className="w-full h-auto object-cover"
-              data-ai-hint="school campus" unoptimized />
+              data-ai-hint="school campus" />
           </div>
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline text-primary">

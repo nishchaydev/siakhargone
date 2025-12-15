@@ -70,7 +70,7 @@ export default function BeyondSchoolPage() {
                 width={600}
                 height={400}
                 className="rounded-lg shadow-xl"
-                priority unoptimized />
+                priority />
             )}
           </div>
         </div>

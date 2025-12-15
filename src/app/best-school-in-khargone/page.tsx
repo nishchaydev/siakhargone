@@ -34,7 +34,6 @@ export default function BestSchoolInKhargonePage() {
                     fill
                     className="object-cover"
                     priority
-                    unoptimized
                 />
                 <div className="absolute inset-0 bg-navy/80" />
                 <div className="relative z-10 container mx-auto px-4">
@@ -80,7 +79,6 @@ export default function BestSchoolInKhargonePage() {
                             alt="Modern Smart Classroom at Top CBSE School Khargone"
                             fill
                             className="object-cover"
-                            unoptimized
                         />
                     </div>
                 </div>
@@ -131,7 +129,7 @@ export default function BestSchoolInKhargonePage() {
                     ].map((fac, idx) => (
                         <div key={idx} className="group">
                             <div className="relative h-48 w-full rounded-xl overflow-hidden mb-3">
-                                <Image src={fac.img} alt={fac.name} fill className="object-cover group-hover:scale-105 transition-transform" unoptimized />
+                                <Image src={fac.img} alt={fac.name} fill className="object-cover group-hover:scale-105 transition-transform" />
                             </div>
                             <h4 className="font-bold text-navy">{fac.name}</h4>
                         </div>

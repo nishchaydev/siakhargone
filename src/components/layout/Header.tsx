@@ -31,6 +31,15 @@ import { useState, useEffect } from "react";
 import TopBar from "./TopBar";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { ListItem } from "./ListItem";
+import { AnnouncementMarquee } from "./AnnouncementMarquee";
+import type { Announcement } from "@/lib/definitions";
+
+const mockAnnouncements: Announcement[] = [
+  { id: "1", title: "📢 Admissions Open for Session 2025-26! Apply Now for Nursery to Class XI.", content: "Admissions Open", date: "2024-12-15", isUrgent: true },
+  { id: "2", title: "🏆 Annual Sports Day is coming soon. Parents are invited to join us!", content: "Sports Day", date: "2024-12-10" },
+  { id: "3", title: "📅 Winter Break will be announced shortly.", content: "Winter Break", date: "2024-12-12" }
+];
+
 import {
   Accordion,
   AccordionContent,
@@ -157,6 +166,7 @@ export default function Header() {
           : "bg-navy text-white py-5 border-b border-transparent"
       )}
     >
+      <AnnouncementMarquee announcements={mockAnnouncements} isLoading={false} />
       <TopBar isTransparent={false} />
       <div className="container mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
@@ -165,8 +175,9 @@ export default function Header() {
               alt="Sia Khargone Logo"
               fill
               className="object-contain"
-              priority unoptimized />
+              priority />
           </div>
+
           <div className="flex flex-col justify-center">
             <span className="font-display font-bold text-2xl leading-none tracking-wide text-white">SANSKAR</span>
             <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/80">International Academy</span>

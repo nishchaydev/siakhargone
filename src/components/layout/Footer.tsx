@@ -90,7 +90,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="font-medium text-white">Location</p>
-                    <span>Khargone, Madhya Pradesh</span>
+                    <span>Gowadi Fata , Khargone - Khandwa Hwy,Badgaon [Nagjhiri]</span>
                   </div>
                 </li>
               </ul>

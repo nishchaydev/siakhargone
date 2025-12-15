@@ -1,7 +1,7 @@
 
 "use client";
 
-import type { Metadata } from 'next';
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Section } from "@/components/common/Section";
@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Baby, BookOpen, School, FlaskConical, Library, MonitorSmartphone, Palette, LucideIcon } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { AcademicCalendar } from "@/components/home/AcademicCalendar";
 
 interface ImagePlaceholder {
     id: string;
@@ -90,8 +91,9 @@ export default function AcademicsPageClient({
                         {curriculumHighlights.map((card, index) => {
                             const Icon = iconMap[card.icon];
                             return (
-                                <motion.div key={card.title} variants={fadeInUp}>
-                                    <Card className="text-center p-8 h-full card-premium hover:-translate-y-2 transition-all duration-300">
+                                <motion.div key={card.title} variants={fadeInUp} whileHover={{ y: -10, scale: 1.02 }} className="h-full">
+                                    <Card className="text-center p-8 h-full card-premium hover:shadow-2xl hover:border-gold/30 transition-all duration-300 relative overflow-hidden group">
+                                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                         <motion.div
                                             className="flex justify-center mb-4"
                                             initial={{ opacity: 0, y: 20 }}
@@ -112,49 +114,8 @@ export default function AcademicsPageClient({
                 </div>
             </Section>
 
-            <Section
-                id="methodology"
-                title="Methodology"
-                subtitle="Nurturing independent thinkers through experiential learning"
-                bgColor="bg-muted/50"
-            >
-                <div className="grid md:grid-cols-5 gap-12 items-center">
-                    <motion.div
-                        className="md:col-span-3 prose lg:prose-lg max-w-none text-muted-foreground"
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <p>
-                            At Sanskar International Academy, we go beyond traditional instruction. Our
-                            <strong>student-centered approach</strong> focuses on active learning, inquiry, and creativity.
-                            Teachers act as mentors, guiding students to think critically and explore solutions to real-world problems.
-                        </p>
-                        <ul className="list-disc pl-5 space-y-2 mt-4">
-                            <li>Project-based learning with real-world applications.</li>
-                            <li>Collaborative classroom discussions and peer learning.</li>
-                            <li>Technology-enhanced lessons through smart classrooms.</li>
-                            <li>Continuous assessment and constructive feedback system.</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        className="md:col-span-2"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        {methodologyImage && (
-                            <Image src={methodologyImage.imageUrl}
-                                alt={methodologyImage.description}
-                                data-ai-hint={methodologyImage.imageHint}
-                                width={500}
-                                height={350}
-                                className="rounded-lg shadow-lg w-full h-auto object-cover" unoptimized />
-                        )}
-                    </motion.div>
-                </div>
+            <Section id="calendar" title="Academic Calendar" subtitle="Stay updated with upcoming events and holidays" bgColor="bg-white">
+                <AcademicCalendar />
             </Section>
 
             <Section id="infrastructure" title="Academic Infrastructure" subtitle="Spaces designed to inspire learning and innovation">
@@ -168,8 +129,8 @@ export default function AcademicsPageClient({
                     {infrastructureItems.map((item, index) => {
                         const Icon = iconMap[item.icon];
                         return (
-                            <motion.div key={item.title} variants={fadeInUp}>
-                                <Card className="p-6 text-center h-full card-premium flex flex-col items-center hover:-translate-y-1 transition-transform">
+                            <motion.div key={item.title} variants={fadeInUp} whileHover={{ y: -5, scale: 1.02 }} className="h-full">
+                                <Card className="p-6 text-center h-full card-premium flex flex-col items-center hover:shadow-xl hover:border-primary/20 transition-all duration-300 group">
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
@@ -217,7 +178,7 @@ export default function AcademicsPageClient({
                                                 alt={`Infrastructure ${index + 1}`}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" unoptimized />
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                                         </div>
                                     </CarouselItem>
                                 ))}

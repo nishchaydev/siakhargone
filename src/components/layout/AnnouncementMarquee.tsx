@@ -12,8 +12,8 @@ interface AnnouncementMarqueeProps {
 export function AnnouncementMarquee({ announcements, isLoading }: AnnouncementMarqueeProps) {
   if (isLoading) {
     return (
-      <div className="bg-primary text-primary-foreground text-sm py-2 text-center">
-        Loading announcements...
+      <div className="bg-primary text-primary-foreground text-[10px] uppercase tracking-wider py-1 text-center">
+        Loading...
       </div>
     );
   }
@@ -22,29 +22,36 @@ export function AnnouncementMarquee({ announcements, isLoading }: AnnouncementMa
     return null;
   }
 
-  const marqueeContent = announcements.map(a => a.title).join(" | ");
+  // Combine titles with a separator
+  const content = announcements.map(a => a.title).join("   ✦   ");
 
   return (
-    <div className="bg-primary text-primary-foreground text-sm overflow-hidden whitespace-nowrap">
+    <div className="bg-navy-dark text-white text-[10px] md:text-xs uppercase tracking-widest font-medium overflow-hidden whitespace-nowrap border-b border-white/5 relative z-50">
       <motion.div
         className="py-2 inline-block"
-        animate={{ x: ["0%", "-100%"] }}
+        animate={{ x: ["0%", "-50%"] }} // Animate to -50% assuming double content
         transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 40,
-            ease: "linear",
-          },
+          repeat: Infinity,
+          repeatType: "loop",
+          duration: 40, // Slower
+          ease: "linear",
         }}
       >
-        {/* Render content twice for seamless loop */}
-        <span className="mx-8 flex items-center gap-2">
-          <Megaphone className="h-4 w-4" /> {marqueeContent}
-        </span>
-        <span className="mx-8 flex items-center gap-2">
-          <Megaphone className="h-4 w-4" /> {marqueeContent}
-        </span>
+        <div className="flex items-center">
+          {/* Render content sufficiently enough to loop smoothly */}
+          <span className="mx-4 flex items-center gap-2">
+            {content}
+          </span>
+          <span className="mx-4 flex items-center gap-2">
+            ✦   {content}
+          </span>
+          <span className="mx-4 flex items-center gap-2">
+            ✦   {content}
+          </span>
+          <span className="mx-4 flex items-center gap-2">
+            ✦   {content}
+          </span>
+        </div>
       </motion.div>
     </div>
   );

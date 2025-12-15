@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import type { GalleryImage } from "@/lib/definitions";
 import Image from "next/image";
 import { cloudinary } from "@/lib/cloudinary-images";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import { useState } from "react";
 
 const duplicatedImages = (images: string[]) => [...images, ...images];
 
@@ -21,6 +24,7 @@ export function GallerySection({ images = [] }: { images?: string[] }) {
     ];
 
     const finalImages = duplicatedImages(displayImages);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
 
     return (
         <section id="life" className="section-xl bg-white">
@@ -58,18 +62,29 @@ export function GallerySection({ images = [] }: { images?: string[] }) {
                         }}
                     >
                         {finalImages.map((imageUrl, index) => (
-                            <div key={`gallery-${index}`} className="flex-shrink-0 w-[300px] p-2">
-                                <div className="group rounded-xl overflow-hidden relative aspect-[3/4]">
+                            <div key={`gallery-${index}`} className="flex-shrink-0 w-[300px] p-2" onClick={() => setLightboxOpen(true)}>
+                                <div className="group rounded-xl overflow-hidden relative aspect-[3/4] cursor-pointer">
                                     <Image src={imageUrl}
                                         alt={`Gallery image ${index + 1}`}
                                         fill
                                         sizes="300px"
-                                        className="object-cover transition-transform duration-300 group-hover:scale-105" unoptimized />
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        <div className="bg-white/90 p-2 rounded-full">
+                                            <span className="text-navy font-bold text-xs">View</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         ))}
                     </motion.div>
                 </motion.div>
+
+                <Lightbox
+                    open={lightboxOpen}
+                    close={() => setLightboxOpen(false)}
+                    slides={finalImages.map(src => ({ src }))}
+                />
 
                 <motion.div
                     className="mt-12 text-center"

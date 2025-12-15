@@ -11,7 +11,7 @@ const fadeInUp = {
 };
 
 export function LocationSection() {
-  const address = "Gowadi, Khargone - Khandwa Hwy, Fata, Badgaon [Nagjhiri], Khargone, Madhya Pradesh 451001";
+  const address = "Gowadi Fata , Khargone - Khandwa Hwy,Badgaon [Nagjhiri], Khargone, Madhya Pradesh 451001";
   const directionsUrl = "https://goo.gl/maps/k4CSy8U8q7m2eKhy5";
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.6612052127647!2d75.60170977515855!3d21.82034108005473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3961053259f0d7bb%3A0xe3c27790e7a85b43!2sSanskar%20International%20Academy!5e0!3m2!1sen!2sin!4v1731048922031!5m2!1sen!2sin";
 

@@ -8,6 +8,7 @@ import Footer from '@/components/layout/Footer';
 import Chatbot from '@/components/chatbot/Chatbot';
 
 import MobileCtaBar from '@/components/layout/MobileCtaBar';
+import FloatingActionMenu from '@/components/layout/FloatingActionMenu';
 import ScrollToTop from '@/components/common/ScrollToTop';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -71,9 +72,9 @@ export const metadata: Metadata = {
     images: [openGraphImage],
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/logosia.png',
+    icon: '/favicon/favicon.ico',
+    shortcut: '/favicon/favicon.ico',
+    apple: '/favicon/apple-touch-icon.png',
   },
   robots: {
     index: true,
@@ -98,14 +99,14 @@ const jsonLd = {
       "url": "https://siakhargone.in",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://siakhargone.in/logo.png"
+        "url": "https://siakhargone.in/school-logo.png"
       },
-      "image": "https://siakhargone.in/logosia.png",
+      "image": "https://siakhargone.in/school-logo.png",
       "description": "Sanskar International Academy, Khargone — a premier CBSE school offering holistic education, academic excellence, and values-driven learning.",
       "telephone": "+91 70491 10105",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Khandwa Road",
+        "streetAddress": "Gowadi Fata , Khargone - Khandwa Hwy,Badgaon [Nagjhiri]",
         "addressLocality": "Khargone",
         "postalCode": "451001",
         "addressRegion": "Madhya Pradesh",
@@ -128,7 +129,7 @@ const jsonLd = {
       "@type": "Organization",
       "@id": "https://siakhargone.in/#organization",
       "url": "https://siakhargone.in",
-      "logo": "https://siakhargone.in/logo.png",
+      "logo": "https://siakhargone.in/school-logo.png",
       "sameAs": [
         "https://www.facebook.com/siakhargone/",
         "https://www.instagram.com/sanskarinternationalacademy/",
@@ -167,6 +168,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfairDisplay.variable} ${mukta.variable} !scroll-smooth`}>
       <head>
         <meta name="theme-color" content="#1E3A8A" />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       </head>
       <body className="bg-background text-foreground antialiased bg-grain">
@@ -180,6 +182,7 @@ export default function RootLayout({
         <Footer />
         <MobileCtaBar />
         <Chatbot />
+        <FloatingActionMenu />
         <Toaster />
         <SpeedInsights />
       </body>

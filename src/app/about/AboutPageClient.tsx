@@ -86,7 +86,7 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                                 alt={schoolImage.alt}
                                 width={600} height={400}
                                 className="rounded-full aspect-square shadow-lg w-full object-cover border-4 border-white dark:border-gray-800"
-                                priority unoptimized />
+                                priority />
                         )}
                     </MotionDiv>
                 </div>
@@ -188,7 +188,7 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                                         alt={principalMessage.name}
                                         width={400}
                                         height={533}
-                                        className="w-full h-full object-cover" unoptimized />
+                                        className="w-full h-full object-cover" />
                                 )
                             )}
                         </div>
@@ -238,7 +238,7 @@ export default function AboutPageClient({ aboutContent, principalMessage, chairm
                                         alt={chairmanMessage.name}
                                         width={400}
                                         height={533}
-                                        className="w-full h-full object-cover scale-110 transform" unoptimized />
+                                        className="w-full h-full object-cover scale-110 transform" />
                                 )
                             )}
                         </div>

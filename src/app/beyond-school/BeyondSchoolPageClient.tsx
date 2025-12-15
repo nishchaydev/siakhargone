@@ -118,7 +118,7 @@ export default function BeyondSchoolPageClient({ coCurricularItems, scholarshipI
                 data-ai-hint={leadershipImage.imageHint}
                 width={600}
                 height={400}
-                className="rounded-lg shadow-xl" unoptimized />
+                className="rounded-lg shadow-xl" />
             )}
           </motion.div>
           <motion.div

@@ -49,7 +49,7 @@ export default function Home() {
       title: "Where Excellence Begins.",
       subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
       sanskrit: "विद्या ददाति विनयम्",
-      video: "https://www.youtube.com/watch?v=6-i18-xt8sI",
+      video: "https://www.youtube.com/watch?v=6-i18-xt8sI", // Restored background video
       grid: [
         cloudinary.infrastructure.building[1],
         cloudinary.infrastructure.classrooms[0], // dsc_2821 replacement
@@ -57,7 +57,7 @@ export default function Home() {
         cloudinary.infrastructure.library[1], // library-2
       ],
       cta1Href: "/admissions",
-      cta2Href: "/gallery"
+      cta2Href: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6"
     },
     stats: [
       { label: "Students", value: "1100+" },

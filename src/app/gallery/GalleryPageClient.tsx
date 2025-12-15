@@ -45,7 +45,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
         <Image src={cloudinary.infrastructure.building[1]}
           alt="School Gallery Hero"
           fill
-          className="absolute inset-0 object-cover" unoptimized />
+          className="absolute inset-0 object-cover" />
         <div className="relative z-20 px-4">
           <h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-4">School Gallery</h1>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
@@ -98,7 +98,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
                   <Image src={image.imageUrl}
                     alt={image.description || "Gallery Image"}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110" unoptimized />
+                    className="object-cover transition-transform duration-500 group-hover:scale-110" />
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="bg-gold-accent/90 text-white p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -142,7 +142,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
               <Image src={selectedImage.imageUrl}
                 alt={selectedImage.description || "Selected"}
                 fill
-                className="object-contain" unoptimized />
+                className="object-contain" />
               {selectedImage.description && (
                 <div className="absolute bottom-4 left-0 right-0 text-center text-white bg-black/50 p-2 rounded">
                   {selectedImage.description}

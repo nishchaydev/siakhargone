@@ -40,7 +40,7 @@ export function ChairmanMessage({ chairmanMessage }: ChairmanMessageProps) {
                     width={400}
                     height={400}
                     className="w-full h-full object-cover"
-                    data-ai-hint="director portrait" unoptimized />
+                    data-ai-hint="director portrait" />
                 )}
               </div>
             </div>

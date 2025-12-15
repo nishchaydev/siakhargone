@@ -41,7 +41,7 @@ export function Academics() {
           height={700}
           className="w-full h-[450px] object-cover"
           data-ai-hint="school campus"
-          priority unoptimized />
+          priority />
       </motion.div>
 
       {/* Section Title */}

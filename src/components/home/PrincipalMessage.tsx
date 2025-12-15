@@ -40,7 +40,7 @@ export function PrincipalMessage({ principalMessage }: PrincipalMessageProps) {
                     width={400}
                     height={400}
                     className="w-full h-full object-cover"
-                    data-ai-hint="principal portrait" unoptimized />
+                    data-ai-hint="principal portrait" />
                 )}
               </div>
             </div>

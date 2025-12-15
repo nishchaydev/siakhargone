@@ -30,7 +30,7 @@ export default function HeroVideo({
         className="object-cover z-0"
         priority
         sizes="100vw"
-        data-ai-hint="school campus" unoptimized />
+        data-ai-hint="school campus" />
 
       {/* New Gradient Overlay */}
       <div

@@ -5,19 +5,76 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import React from "react";
+import confetti from "canvas-confetti";
 
 export default function ContactPageClient() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // -------------------------------------------------------------------------
+  // 🔴 PASTE YOUR GOOGLE WEP APP URL HERE (Same one as Admissions)
+  // -------------------------------------------------------------------------
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_3P0A5riBZOD9QZvZU1tYPSrDeg4onMhrbQG4UxGqTEPsdq63qe1wvNsoBCNtUqmlAA/exec";
+
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isSuccess, setIsSuccess] = React.useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get('name') as string;
-    const phone = formData.get('phone') as string;
-    const studentClass = formData.get('class') as string;
-    const message = formData.get('message') as string;
+    const form = e.currentTarget; // Capture form reference before async operation
+    setIsSubmitting(true);
 
-    const whatsappMessage = `*New Enquiry from Website*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Class:* ${studentClass}%0A*Message:* ${message}`;
+    const formData = new FormData(form);
 
-    window.open(`https://wa.me/917049110104?text=${whatsappMessage}`, '_blank');
+    // Mapping Contact fields to Admission Script keys
+    const submissionData = {
+      type: "enquiry",
+      studentName: "Enquiry: " + (formData.get('name') as string), // Prefix to distinguish
+      grade: formData.get('class') as string,
+      dob: "N/A", // Not asked in contact form
+      parentName: formData.get('name') as string,
+      phone: formData.get('phone') as string,
+      email: (formData.get('email') as string) || "N/A",
+      message: formData.get('message') as string // Sent, but might not be saved unless script is updated. 
+      // Note: To save Message, user should add column H "Message" and update script to: sheet.appendRow([..., data.message])
+    };
+
+    try {
+      if (GOOGLE_SCRIPT_URL) {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(submissionData),
+        });
+      } else {
+        await new Promise(resolve => setTimeout(resolve, 1500)); // Simulating
+        console.log("Contact Form Data:", submissionData);
+      }
+
+      // Success Feedback
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+      const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+      const interval: any = setInterval(function () {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+        const particleCount = 50 * (timeLeft / duration);
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+      }, 250);
+
+      // Optional: Reset form
+      // Optional: Reset form
+      form.reset();
+      // alert("Enquiry Sent! We will contact you soon.");
+      setIsSuccess(true);
+
+    } catch (error) {
+      console.error("Error submitting form", error);
+      alert("Something went wrong. Please call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -101,56 +158,79 @@ export default function ContactPageClient() {
             >
               <h2 className="text-3xl md:text-3xl font-display font-medium text-gold-accent">Send an Enquiry</h2>
 
-              <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gold/20 relative overflow-hidden">
+              <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gold/20 relative overflow-hidden h-full flex flex-col justify-center">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-bl-full -mr-10 -mt-10" />
 
-                <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-navy">Full Name</label>
-                    <input name="name" type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" required />
-                  </div>
+                {isSuccess ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center space-y-6 py-10"
+                  >
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                      <div className="text-4xl">✨</div>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-navy mb-2">Enquiry Sent!</h3>
+                      <p className="text-gray-600">Thank you for contacting us. We will get back to you shortly.</p>
+                    </div>
+                    <Button
+                      onClick={() => setIsSuccess(false)}
+                      variant="outline"
+                      className="mt-4"
+                    >
+                      Send Another Message
+                    </Button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-navy">Full Name</label>
+                      <input name="name" type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" required />
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-navy">Phone Number</label>
-                    <input name="phone" type="tel" placeholder="+91 000 000 0000" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" required />
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-navy">Phone Number</label>
+                      <input name="phone" type="tel" placeholder="+91 000 000 0000" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" required />
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-navy">Email Address</label>
-                    <input type="email" placeholder="you@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" />
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-navy">Email Address</label>
+                      <input type="email" placeholder="you@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" />
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-navy">Student's Prospective Class</label>
-                    <select name="class" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all appearance-none cursor-pointer">
-                      <option value="">Select a class</option>
-                      <option value="nursery">Nursery</option>
-                      <option value="kg1">KG 1</option>
-                      <option value="kg2">KG 2</option>
-                      <option value="1">Class 1</option>
-                      <option value="2">Class 2</option>
-                      <option value="3">Class 3</option>
-                      <option value="4">Class 4</option>
-                      <option value="5">Class 5</option>
-                      <option value="6">Class 6</option>
-                      <option value="7">Class 7</option>
-                      <option value="8">Class 8</option>
-                      <option value="9">Class 9</option>
-                      <option value="10">Class 10</option>
-                      <option value="11">Class 11</option>
-                      <option value="12">Class 12</option>
-                    </select>
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-navy">Student's Prospective Class</label>
+                      <select name="class" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all appearance-none cursor-pointer">
+                        <option value="">Select a class</option>
+                        <option value="nursery">Nursery</option>
+                        <option value="kg1">KG 1</option>
+                        <option value="kg2">KG 2</option>
+                        <option value="1">Class 1</option>
+                        <option value="2">Class 2</option>
+                        <option value="3">Class 3</option>
+                        <option value="4">Class 4</option>
+                        <option value="5">Class 5</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                      </select>
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-navy">Message</label>
-                    <textarea name="message" rows={4} placeholder="Your message..." className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all resize-none"></textarea>
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-navy">Message</label>
+                      <textarea name="message" rows={4} placeholder="Your message..." className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all resize-none"></textarea>
+                    </div>
 
-                  <Button className="w-full bg-navy hover:bg-navy-light text-white font-bold py-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-lg mt-4">
-                    Submit Enquiry
-                  </Button>
-                </form>
+                    <Button className="w-full bg-navy hover:bg-navy-light text-white font-bold py-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-lg mt-4" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending..." : "Submit Enquiry"}
+                    </Button>
+                  </form>
+                )}
               </div>
             </motion.div>
           </div>
@@ -162,7 +242,7 @@ export default function ContactPageClient() {
             <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"
               alt="Campus Background"
               fill
-              className="object-cover opacity-20 mix-blend-overlay" unoptimized />
+              className="object-cover opacity-20 mix-blend-overlay" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/90 to-transparent" />
           </div>
 

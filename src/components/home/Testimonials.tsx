@@ -86,7 +86,7 @@ export function Testimonials({ testimonials, isLoading }: TestimonialsProps) {
                             alt={testimonial.name}
                             width={56}
                             height={56}
-                            className="rounded-full object-cover" unoptimized />
+                            className="rounded-full object-cover" />
                           <div>
                             <p className="font-semibold">{testimonial.name}</p>
                             <p className="text-sm text-muted-foreground">{testimonial.relation}</p>

@@ -52,7 +52,7 @@ export default function CareersPageClient() {
           fill
           className="object-cover"
           data-ai-hint="team collaboration"
-          priority unoptimized />
+          priority />
         <div className="absolute inset-0 bg-primary/70" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground p-4">
           <motion.h1

@@ -75,7 +75,7 @@ export function AchievementsSection() {
                   alt={achievement.title}
                   fill
                   className="object-cover"
-                  data-ai-hint={achievement.imageHint} unoptimized />
+                  data-ai-hint={achievement.imageHint} />
               </div>
               <CardContent className="p-6 flex flex-col flex-grow">
                 <p className="text-muted-foreground text-xs uppercase tracking-wider mb-2">{achievement.date}</p>
@@ -106,7 +106,6 @@ export function AchievementsSection() {
                   alt={selectedItem.title}
                   fill
                   className="object-cover"
-                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 text-white">

@@ -66,7 +66,7 @@ export function CampusFacilities() {
                         <Image src={item.image}
                             alt={item.title}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+                            className="object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute bottom-0 left-0 p-6 md:p-8">
                             <h3 className="text-2xl font-bold font-display text-yellow-400 drop-shadow-md">{item.title}</h3>
@@ -92,7 +92,7 @@ export function CampusFacilities() {
                                     <Image src={item.image}
                                         alt={item.title}
                                         fill
-                                        className="object-cover" unoptimized />
+                                        className="object-cover" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                                     <div className="absolute bottom-0 left-0 p-6">
                                         <h3 className="text-2xl font-bold font-display text-yellow-400 drop-shadow-md">{item.title}</h3>

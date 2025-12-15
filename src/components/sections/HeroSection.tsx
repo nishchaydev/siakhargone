@@ -1,9 +1,9 @@
-
 "use client";
 
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { cloudinary } from "@/lib/cloudinary-images";
 
 export default function HeroSection({ data, stats }: { data: any, stats?: any[] }) {
@@ -14,6 +14,8 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
         { value: "10+", label: "Years of Experience" },
         { value: "50+", label: "Awards" }
     ];
+
+    const isExternal = (url: string) => url?.startsWith('http') || url?.startsWith('//');
 
     return (
         <section className="relative w-full bg-navy py-0">
@@ -31,7 +33,8 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 fill
                                 className="object-cover opacity-90"
                                 priority
-                                unoptimized />
+                                sizes="100vw"
+                            />
                         </div>
 
                         {/* Desktop Background: Video or Image */}
@@ -39,7 +42,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                             {data.video && (data.video.includes("youtube.com") || data.video.includes("youtu.be")) ? (
                                 <iframe
                                     className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-90 blur-[1px]"
-                                    src={`https://www.youtube.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&hd=1&vq=hd1080`}
+                                    src={`https://www.youtube-nocookie.com/embed/${data.video.split('v=')[1]?.split('&')[0]}?autoplay=1&mute=1&controls=0&loop=1&playlist=${data.video.split('v=')[1]?.split('&')[0]}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&start=1`}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     loading="eager"
@@ -54,7 +57,9 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                     alt="Hero Background"
                                     fill
                                     className="object-cover opacity-90"
-                                    priority unoptimized />
+                                    priority
+                                    sizes="100vw"
+                                />
                             )}
                         </div>
                         <div className="absolute inset-0 hero-overlay"></div>
@@ -100,15 +105,25 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 transition={{ delay: 0.4, duration: 0.6 }}
                                 className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 w-full"
                             >
-                                <a href={data.cta1Href} className="bg-gold text-navy-dark font-bold px-8 py-3 md:px-10 md:py-4 rounded-full shadow-lg hover:bg-white transition-all transform hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base">
+                                <Link
+                                    href={data.cta1Href}
+                                    target={isExternal(data.cta1Href) ? "_blank" : undefined}
+                                    rel={isExternal(data.cta1Href) ? "noopener noreferrer" : undefined}
+                                    className="bg-gold text-navy-dark font-bold px-8 py-3 md:px-10 md:py-4 rounded-full shadow-lg hover:bg-white transition-all transform hover:-translate-y-1 w-full sm:w-auto text-center text-sm md:text-base"
+                                >
                                     Enquire Now
-                                </a>
-                                <a href={data.cta2Href} className="flex items-center gap-4 text-white font-medium hover:text-gold transition-colors group w-full sm:w-auto justify-center sm:justify-start">
+                                </Link>
+                                <Link
+                                    href={data.cta2Href}
+                                    target={isExternal(data.cta2Href) ? "_blank" : undefined}
+                                    rel={isExternal(data.cta2Href) ? "noopener noreferrer" : undefined}
+                                    className="flex items-center gap-4 text-white font-medium hover:text-gold transition-colors group w-full sm:w-auto justify-center sm:justify-start"
+                                >
                                     <span className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                                         <Play className="w-5 h-5 md:w-6 md:h-6 fill-navy-dark text-navy-dark ml-1" />
                                     </span>
                                     <span className="text-base md:text-lg">Watch Video</span>
-                                </a>
+                                </Link>
                             </motion.div>
                         </div>
                     </div>
@@ -122,7 +137,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 alt="Sanskar Beyond Academics"
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 33vw"
-                                className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+                                className="object-cover transition-transform duration-700 group-hover:scale-110" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             <div className="absolute top-6 right-6 text-white text-right">
                                 <p className="font-handwriting text-3xl text-gold mb-1">Sanskar</p>
@@ -136,7 +151,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 alt="Holistic Growth Student Interaction"
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 33vw"
-                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" unoptimized />
+                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             <div className="absolute bottom-6 left-6 text-white">
                                 <p className="font-display text-xl">Holistic Growth</p>

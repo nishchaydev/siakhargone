@@ -26,7 +26,7 @@ export default function DreamPathPage() {
                         src={cloudinary.infrastructure.building[1]}
                         fill
                         className="absolute inset-0 w-full h-full object-cover z-0"
-                        priority unoptimized />
+                        priority />
                     <div className="absolute inset-0 bg-black/50 z-10"></div>
                     <div className="relative z-20 px-6 text-white">
                         <h1 className="font-display text-5xl md:text-7xl font-bold mb-4 text-amber-400">Charting Futures:</h1>
@@ -52,7 +52,7 @@ export default function DreamPathPage() {
                                         <Image alt="Portrait of a male lawyer"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuApUsn93bWYdUwiWA60e22YOrXzuTuVMGVf9snitdiJyKBIHQbkT_FOI3TeGM1QBZ51kiVQbls7GX7YjnskFJb-McwvfQLYDDOOYcv_q8iegfipWImuM5OiVAFHuEjDyGIdHNvbyu6mzMsznPbZVXrdWR4UE4CQf5sZ7KzaDXsCxuScKIbKHvcjFCAqQ0WuCCAt1aEN5T742kRcwJ_xLDONa1NixM3doOgSDEqJJsLWqmTm8E3adYyR3F8DpEbEuXm_eunq240xTbiF"
                                             fill
-                                            className="rounded-full object-cover" unoptimized />
+                                            className="rounded-full object-cover" />
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg text-gray-900">Adv. Rohan Verma</p>
@@ -66,7 +66,7 @@ export default function DreamPathPage() {
                             <Image alt="A young law student studying in a grand library"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlciHA36AA0bjz1b3u8jH_BT6BCC5y0pO81SH7iu0atQQaBrcSpG2DmPvJ-pVLBvwoxlK_VpIO4RBxajEh_VXVDBqbBgOT3r9soqGI0Ky5WWISzilyMpCv-AEpnkzy0nS4oT48Zu5oOnzaAu2Jdd03JSUA9pA-Bq-dcUwyh_2Jmnsowu6pDDseCstcVxjUmK5lfqZjdbDdZ44JCxlQMVMADrqNzf4u00C6d8BuBnBYo3wP-GUqiGUDHL72-kJyFViRundbLmfLQlWl"
                                 fill
-                                className="rounded-xl object-cover shadow-2xl" unoptimized />
+                                className="rounded-xl object-cover shadow-2xl" />
                         </div>
                     </section>
 
@@ -76,7 +76,7 @@ export default function DreamPathPage() {
                             <Image alt="A female doctor smiling warmly in a hospital setting"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTlz4BZwi40myYbA_BIKTmHaZSa_t3Gw0W79jdAFJ1-owczhZnhU4g4IrZL8EMK-ZXD4iyX4tf9p5nUil8rAzF1G0o4GSkiT65SsrUR6jhCLGH7ua98Hp4ekQxSCrkWMn2Cj5UPXKkK7VoPo-W3Nu9d2c8G8B8XBUZ_vh5Knu6N3VBy0P04RGZcSCC6aLOS3tnA_lgkFfRwNTWZlTYVzjVCJOQ0kKcnndf9OQBFkeYVXPhr6h-_45Pt3zkHMZ7QUFmGy7rAWk4ZjZK"
                                 fill
-                                className="rounded-xl object-cover shadow-2xl" unoptimized />
+                                className="rounded-xl object-cover shadow-2xl" />
                         </div>
                         <div>
                             <h2 className="font-display text-4xl md:text-5xl font-bold text-royal-blue mb-6">The Doctor</h2>
@@ -90,7 +90,7 @@ export default function DreamPathPage() {
                                         <Image alt="Portrait of a female surgeon"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRFiGukG2kYx5ahV9TKvM4i218QELXgINlWA1n7Fyg0RdNFe5sXUHgGfz1y_I5ThhPsBNtVcoGlNyRhaMyVeP8PKhKMKdS1jistYfyjtEhmW5Rge15W_NBCtFeqFii6sYWtWovSNi0RU0rJi4oq14S1r2rXfROHO0T13f_cDqsHSZjUwn4b90RPRimToZL4NHf2wxU5nTvMeBHJR1vngattg7xAr-FwuG2wDFRs-77SO4sUmexE1D6XMMVL6nsA6VNg9uUWYj6F6UZ"
                                             fill
-                                            className="rounded-full object-cover" unoptimized />
+                                            className="rounded-full object-cover" />
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg text-gray-900">Dr. Ananya Sharma</p>
@@ -116,7 +116,7 @@ export default function DreamPathPage() {
                                         <Image alt="Portrait of a male engineer in a hard hat"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0ehX9FMJSsTFm_bho9g_aMEGfE57WmC8GrVn75su-mKtkwILb85AkNUm1AhRYB0TQ7jvuLSxyBL7KwSwzEXghxIl6hPvOTx2ljv1XS_8UI42Kv7ONOp70_RtXIvx8Xid7ddmVRuBAAGuVQkSgmzATMxlvrNjOPZ20wcOj9W2siWQz1sGuarBeqRRGNYdzsrtAbVwr5z4LuHhnJK9lfDXIOPEPEMLYly5PTipx6nuuOpgST-iJLbNn1dQm2WgFn78FYdfB-7HqT-qj"
                                             fill
-                                            className="rounded-full object-cover" unoptimized />
+                                            className="rounded-full object-cover" />
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg text-gray-900">Mr. Sameer Patel</p>
@@ -130,7 +130,7 @@ export default function DreamPathPage() {
                             <Image alt="An engineer working with advanced robotics in a lab"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnL4xUqo39HJ35evDBwE0i7GPuzVxBoJvGHl3xVwxP3vlxQuyt8LtAco722xNIBLSy4GuXfcRmQPDiBf71kKXBkpMkXcP3RBroObQ9DSThqjSMFpLN9Grhjh3lVrnK99de5oa1ZDArlK6UoPzzSCTup44sMl9gGhd_A7xFgKWu_rffFsqwFYOhYeJh7lttbx6C31WjZnbvudaKJwSNT5SVFAFyAf1HwOk7bi9ryQsX93LJDj20dTZSh4HFoOyOpNowdhVm63_IwlIy"
                                 fill
-                                className="rounded-xl object-cover shadow-2xl" unoptimized />
+                                className="rounded-xl object-cover shadow-2xl" />
                         </div>
                     </section>
 
@@ -140,7 +140,7 @@ export default function DreamPathPage() {
                             <Image alt="A scientist in a modern laboratory looking into a microscope"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPsjIFXc6Oj0suaeEsFFImwKFr7HXrl_RLeG4CHT87AQXVSFFUNwWLj8ZwU_6wd9pTA5ELqHLR78BPN-8h68annhFW16TAm3HwKcofZWS1feHhNXg8yrHofH8NkbvGEaiwpZlfi9sFIXoP-wVZLnzzXWyZCsr5_8O2ygHO1PReWTINICxpO6gK1n8Hiyjk4gI8EaU_P2UpI7DotTdYOFXWJVqo4UIjSjWkuIhYjazh0dLZxTuwIHlzKb9AaLbNT6egJv8mM0zTEjK6"
                                 fill
-                                className="rounded-xl object-cover shadow-2xl" unoptimized />
+                                className="rounded-xl object-cover shadow-2xl" />
                         </div>
                         <div>
                             <h2 className="font-display text-4xl md:text-5xl font-bold text-royal-blue mb-6">The Scientist</h2>
@@ -154,7 +154,7 @@ export default function DreamPathPage() {
                                         <Image alt="Portrait of a leading female scientist"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOWsvAh92uOwBMkP4_6ZFpxtVqW0AYc_R0V2-aQq0vdj3LdZQIwT8oU0tGa8nE2QPvo7zPG3iXhJur9dTVxnsBmmxwbTbDYEg89IZsgltV8z1zu5ovDO4I9u89SfI7bKUdcypjNrD0KWv6QXjinsglZ8AGcH-hlYwiugxkI4zqepQmKnNfqukEzXXhB4jcc-osc1ZBVmwBJdZoMiLNKNUSSAZe_AsEEd3TV0H1S3oj4XCdNGeToHSMSHlG6OwGq8ZWwrZuwt28i4op"
                                             fill
-                                            className="rounded-full object-cover" unoptimized />
+                                            className="rounded-full object-cover" />
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg text-gray-900">Dr. Priya Rao</p>
@@ -180,7 +180,7 @@ export default function DreamPathPage() {
                                         <Image alt="Portrait of a distinguished male IAS Officer"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuApUsn93bWYdUwiWA60e22YOrXzuTuVMGVf9snitdiJyKBIHQbkT_FOI3TeGM1QBZ51kiVQbls7GX7YjnskFJb-McwvfQLYDDOOYcv_q8iegfipWImuM5OiVAFHuEjDyGIdHNvbyu6mzMsznPbZVXrdWR4UE4CQf5sZ7KzaDXsCxuScKIbKHvcjFCAqQ0WuCCAt1aEN5T742kRcwJ_xLDONa1NixM3doOgSDEqJJsLWqmTm8E3adYyR3F8DpEbEuXm_eunq240xTbiF"
                                             fill
-                                            className="rounded-full object-cover" unoptimized />
+                                            className="rounded-full object-cover" />
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg text-gray-900">Mr. Vikram Singh</p>
@@ -194,7 +194,7 @@ export default function DreamPathPage() {
                             <Image alt="A confident young professional standing in front of a government building"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlciHA36AA0bjz1b3u8jH_BT6BCC5y0pO81SH7iu0atQQaBrcSpG2DmPvJ-pVLBvwoxlK_VpIO4RBxajEh_VXVDBqbBgOT3r9soqGI0Ky5WWISzilyMpCv-AEpnkzy0nS4oT48Zu5oOnzaAu2Jdd03JSUA9pA-Bq-dcUwyh_2Jmnsowu6pDDseCstcVxjUmK5lfqZjdbDdZ44JCxlQMVMADrqNzf4u00C6d8BuBnBYo3wP-GUqiGUDHL72-kJyFViRundbLmfLQlWl"
                                 fill
-                                className="rounded-xl object-cover shadow-2xl" unoptimized />
+                                className="rounded-xl object-cover shadow-2xl" />
                         </div>
                     </section>
 
@@ -204,7 +204,7 @@ export default function DreamPathPage() {
                             <Image alt="A young entrepreneur presenting a business idea in a modern office"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTlz4BZwi40myYbA_BIKTmHaZSa_t3Gw0W79jdAFJ1-owczhZnhU4g4IrZL8EMK-ZXD4iyX4tf9p5nUil8rAzF1G0o4GSkiT65SsrUR6jhCLGH7ua98Hp4ekQxSCrkWMn2Cj5UPXKkK7VoPo-W3Nu9d2c8G8B8XBUZ_vh5Knu6N3VBy0P04RGZcSCC6aLOS3tnA_lgkFfRwNTWZlTYVzjVCJOQ0kKcnndf9OQBFkeYVXPhr6h-_45Pt3zkHMZ7QUFmGy7rAWk4ZjZK"
                                 fill
-                                className="rounded-xl object-cover shadow-2xl" unoptimized />
+                                className="rounded-xl object-cover shadow-2xl" />
                         </div>
                         <div>
                             <h2 className="font-display text-4xl md:text-5xl font-bold text-royal-blue mb-6">The Entrepreneur</h2>
@@ -218,7 +218,7 @@ export default function DreamPathPage() {
                                         <Image alt="Portrait of a successful female entrepreneur"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRFiGukG2kYx5ahV9TKvM4i218QELXgINlWA1n7Fyg0RdNFe5sXUHgGfz1y_I5ThhPsBNtVcoGlNyRhaMyVeP8PKhKMKdS1jistYfyjtEhmW5Rge15W_NBCtFeqFii6sYWtWovSNi0RU0rJi4oq14S1r2rXfROHO0T13f_cDqsHSZjUwn4b90RPRimToZL4NHf2wxU5nTvMeBHJR1vngattg7xAr-FwuG2wDFRs-77SO4sUmexE1D6XMMVL6nsA6VNg9uUWYj6F6UZ"
                                             fill
-                                            className="rounded-full object-cover" unoptimized />
+                                            className="rounded-full object-cover" />
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg text-gray-900">Ms. Aisha Khanna</p>

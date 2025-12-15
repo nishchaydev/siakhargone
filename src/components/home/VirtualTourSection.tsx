@@ -55,7 +55,7 @@ export function VirtualTourSection() {
                 alt={virtualTourImage.description}
                 data-ai-hint={virtualTourImage.imageHint}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105" unoptimized />
+                className="object-cover transition-transform duration-300 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <div
                   className="flex flex-col items-center text-white"

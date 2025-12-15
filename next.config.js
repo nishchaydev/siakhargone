@@ -16,7 +16,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png|webp|avif|mp4|woff2)',
+        source: '/:all*(svg|jpg|png|webp|avif|mp4|woff2|ico|gif)',
         locale: false,
         headers: [
           {
@@ -35,6 +35,45 @@ const nextConfig = {
         ],
       },
     ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/methodology-and-learning',
+        destination: '/academics',
+        permanent: true,
+      },
+      {
+        source: '/contact-us',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/why-study-at-sia',
+        destination: '/life-at-sia',
+        permanent: true,
+      },
+      {
+        source: '/welcome-from-principal',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/school-administration',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/creative-convergence',
+        destination: '/beyond-school',
+        permanent: true,
+      },
+      {
+        source: '/book-list',
+        destination: '/academics',
+        permanent: true,
+      },
+    ];
   },
 };
 

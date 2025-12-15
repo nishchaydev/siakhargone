@@ -20,7 +20,7 @@ export default function LifeAtSiaPage() {
                     alt="SIA Campus Aerial View"
                     fill
                     className="absolute inset-0 w-full h-full object-cover"
-                    priority unoptimized />
+                    priority />
                 <div className="absolute inset-0 bg-black/40 z-10" />
                 <div className="relative z-20 container mx-auto px-6 text-white">
                     <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 text-amber-400">World-Class Campus & Facilities</h1>
@@ -67,7 +67,7 @@ export default function LifeAtSiaPage() {
                                 <Image src={feature.img}
                                     alt={feature.title}
                                     fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105" />
                             </div>
                             <div className="p-6">
                                 <h3 className="font-display text-xl font-bold text-royal-blue mb-2">{feature.title}</h3>
@@ -89,13 +89,13 @@ export default function LifeAtSiaPage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349462/infrastructure-library-1_cgdkdd.webp" alt="Library" fill className="object-cover" unoptimized />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349462/infrastructure-library-1_cgdkdd.webp" alt="Library" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349465/lab-biology-1_hz0ivq.webp" alt="Lab microscope" fill className="object-cover" unoptimized />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349465/lab-biology-1_hz0ivq.webp" alt="Lab microscope" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349458/classroom-2_i2r5az.webp" alt="Student writing" fill className="object-cover" unoptimized />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349458/classroom-2_i2r5az.webp" alt="Student writing" fill className="object-cover" />
                             </div>
                         </div>
                         <div>
@@ -122,13 +122,13 @@ export default function LifeAtSiaPage() {
                         </div>
                         <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-2_nqqixj.webp" alt="Sports Area" fill className="object-cover" unoptimized />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-2_nqqixj.webp" alt="Sports Area" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-3_gmu7hb.webp" alt="Sports Activity" fill className="object-cover" unoptimized />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-3_gmu7hb.webp" alt="Sports Activity" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src={cloudinary.annualFunction[2]} alt="Cultural Activity" fill className="object-cover" unoptimized />
+                                <Image src={cloudinary.annualFunction[2]} alt="Cultural Activity" fill className="object-cover" />
                             </div>
                         </div>
                     </div>

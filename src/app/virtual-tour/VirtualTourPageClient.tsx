@@ -29,6 +29,7 @@ export default function VirtualTourPageClient() {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
+            loading="lazy"
             className="w-full h-full absolute top-0 left-0"
           ></iframe>
         </motion.div>
