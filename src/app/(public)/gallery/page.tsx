@@ -1,4 +1,6 @@
 
+export const dynamic = "force-dynamic";
+
 import GalleryPageClient from "./GalleryPageClient";
 import { cloudinary } from "@/lib/cloudinary-images";
 import { loadAlbums } from "@/lib/content";
