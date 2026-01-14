@@ -76,7 +76,7 @@ export const PrincipalMessage = () => {
           </div>
 
           <div className="pt-4 flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-navy hover:bg-navy-light text-white">
+            <Button asChild variant="secondary" size="lg">
               <Link href="/about#principal">Read Full Message</Link>
             </Button>
             <div className="flex flex-col justify-center pl-4 border-l-4 border-gold">

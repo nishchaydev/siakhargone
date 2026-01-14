@@ -16,7 +16,7 @@ export default function NotFound() {
                     Oops! It seems you've wandered off the path. The page you are looking for might have been moved, deleted, or doesn't exist.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button asChild size="lg" className="bg-navy hover:bg-gold hover:text-navy text-white font-bold transition-all shadow-md">
+                    <Button asChild variant="secondary" size="lg" className="font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                         <Link href="/">
                             Return to Homepage
                         </Link>
