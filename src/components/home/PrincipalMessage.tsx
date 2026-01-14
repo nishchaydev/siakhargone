@@ -31,6 +31,8 @@ export const PrincipalMessage = () => {
               src={schoolLogo}
               alt="Principal of Sanskar International Academy"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
               className="object-contain p-10 bg-navy/5"
             />
           </div>

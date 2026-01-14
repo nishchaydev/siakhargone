@@ -49,7 +49,7 @@ export function Academics() {
         <h2 className="text-4xl md:text-5xl font-semibold text-navy font-headline">
           Our Academic Structure
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="mt-4 text-lg text-navy/80 max-w-2xl mx-auto">
           Fostering curiosity, creativity, and competence at every stage of learning.
         </p>
       </div>
