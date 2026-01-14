@@ -58,4 +58,5 @@ export const SHEET_TAB_IDS = {
     // Let's check the file content of google-sheets.ts first to be consistent. 
     // Actually, I'll VIEW the file first to be safe.
     TRANSFER_CERTIFICATES: 'TransferCertificates',
+    ENQUIRIES: 'Enquiries',
 };

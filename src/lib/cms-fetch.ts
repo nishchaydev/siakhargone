@@ -23,8 +23,12 @@ export async function getCMSNews(): Promise<CMSNewsItem[]> {
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
-    } catch (error) {
-        console.error("Failed to fetch news:", error);
+    } catch (error: any) {
+        if (error.cause?.code === 'ENOTFOUND' || error.cause?.code === 'ECONNREFUSED') {
+            console.warn("⚠️ CMS News Fetch Failed: Network Error (Offline?)");
+        } else {
+            console.error("Failed to fetch news:", error);
+        }
         return [];
     }
 }
@@ -35,8 +39,12 @@ export async function getCMSNotices(): Promise<CMSNoticeItem[]> {
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
-    } catch (error) {
-        console.error("Failed to fetch notices:", error);
+    } catch (error: any) {
+        if (error.cause?.code === 'ENOTFOUND' || error.cause?.code === 'ECONNREFUSED') {
+            console.warn("⚠️ CMS Notices Fetch Failed: Network Error (Offline?)");
+        } else {
+            console.error("Failed to fetch notices:", error);
+        }
         return [];
     }
 }
@@ -57,8 +65,12 @@ export async function getCMSCareers(): Promise<CMSCareerItem[]> {
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
-    } catch (error) {
-        console.error("Failed to fetch careers:", error);
+    } catch (error: any) {
+        if (error.cause?.code === 'ENOTFOUND' || error.cause?.code === 'ECONNREFUSED') {
+            console.warn("⚠️ CMS Careers Fetch Failed: Network Error (Offline?)");
+        } else {
+            console.error("Failed to fetch careers:", error);
+        }
         return [];
     }
 }
@@ -77,8 +89,12 @@ export async function getCMSGallery(): Promise<CMSGalleryItem[]> {
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
-    } catch (error) {
-        console.error("Failed to fetch gallery:", error);
+    } catch (error: any) {
+        if (error.cause?.code === 'ENOTFOUND' || error.cause?.code === 'ECONNREFUSED') {
+            console.warn("⚠️ CMS Gallery Fetch Failed: Network Error (Offline?)");
+        } else {
+            console.error("Failed to fetch gallery:", error);
+        }
         return [];
     }
 }

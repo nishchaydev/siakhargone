@@ -155,37 +155,6 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                 subtitle="Join the Sanskar family. Begin your journey towards excellence today."
                 image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
             />
-            <Section id="career" title="Career Counselling" subtitle="Guiding students towards purposeful futures" isFirstSection={true}>
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className="prose lg:prose-lg max-w-none text-muted-foreground"
-                    >
-                        <p>
-                            At Sanskar International Academy, we help every learner discover their strengths and ambitions through structured <strong>career counselling</strong> and mentorship programs.
-                            From psychometric assessments to personalized guidance, students receive the clarity and confidence they need to choose the right path.
-                        </p>
-                        <ul className="space-y-3 mt-4">
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> Aptitude and personality assessments</li>
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> One-on-one counselling and goal-setting</li>
-                            <li className="flex items-start"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1"><Check className="h-5 w-5 text-primary" /></div> Internship and work experience programs</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
-                    >
-                        {careerCounsellingImage && (
-                            <Image src={careerCounsellingImage.imageUrl} alt={careerCounsellingImage.description} width={600} height={400} className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-500" data-ai-hint={careerCounsellingImage.imageHint} priority />
-                        )}
-                    </motion.div>
-                </div>
-            </Section>
 
             <Section id="admission-form" title="Admission Enquiry Form 2026-27" subtitle="Begin your journey with us" bgColor="bg-gray-50">
                 <div className="max-w-4xl mx-auto mb-16">
@@ -376,10 +345,12 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                                                     <div className="space-y-2">
                                                         <Label>Father's Name</Label>
                                                         <Input placeholder="Full Name" {...register("fatherName", { required: "Father's name is required" })} />
+                                                        {errors.fatherName && <span className="text-destructive text-xs">{errors.fatherName.message}</span>}
                                                     </div>
                                                     <div className="space-y-2">
                                                         <Label>Mobile</Label>
-                                                        <Input placeholder="10-digit Mobile" type="tel" {...register("fatherMobile", { required: true, pattern: /^[0-9]{10}$/ })} />
+                                                        <Input placeholder="10-digit Mobile" type="tel" {...register("fatherMobile", { required: "Mobile number is required", pattern: { value: /^[0-9]{10,12}$/, message: "Please enter valid 10-digit mobile number" } })} />
+                                                        {errors.fatherMobile && <span className="text-destructive text-xs">{errors.fatherMobile.message}</span>}
                                                     </div>
                                                     <div className="space-y-2 md:col-span-2">
                                                         <Label>Email (Optional)</Label>
@@ -395,10 +366,12 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                                                     <div className="space-y-2">
                                                         <Label>Mother's Name</Label>
                                                         <Input placeholder="Full Name" {...register("motherName", { required: "Mother's name is required" })} />
+                                                        {errors.motherName && <span className="text-destructive text-xs">{errors.motherName.message}</span>}
                                                     </div>
                                                     <div className="space-y-2">
                                                         <Label>Mobile</Label>
-                                                        <Input placeholder="10-digit Mobile" type="tel" {...register("motherMobile")} />
+                                                        <Input placeholder="10-digit Mobile" type="tel" {...register("motherMobile", { pattern: { value: /^[0-9]{10,12}$/, message: "Please enter valid 10-digit mobile number" } })} />
+                                                        {errors.motherMobile && <span className="text-destructive text-xs">{errors.motherMobile.message}</span>}
                                                     </div>
                                                     <div className="space-y-2 md:col-span-2">
                                                         <Label>Email (Optional)</Label>
@@ -410,6 +383,7 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                                             <div className="space-y-2 md:col-span-2">
                                                 <Label>Address</Label>
                                                 <Textarea placeholder="Current residential address" {...register("address", { required: "Address is required" })} />
+                                                {errors.address && <span className="text-destructive text-xs">{errors.address.message}</span>}
                                             </div>
                                         </div>
                                     </motion.div>
@@ -509,7 +483,7 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                                             Thank you for your interest in Sanskar International Academy. Our admissions team will contact you shortly to schedule an interaction.
                                         </p>
                                         <div className="pt-4">
-                                            <Button variant="outline" asChild>
+                                            <Button asChild className="bg-gold hover:bg-gold/90 text-navy font-bold">
                                                 <Link href="/">Back to Home</Link>
                                             </Button>
                                         </div>
@@ -521,10 +495,9 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                             {step < 5 && (
                                 <div className="flex justify-between mt-8 pt-4 border-t">
                                     <Button
-                                        variant="ghost"
                                         onClick={prevStep}
                                         disabled={step === 1 || isSubmitting}
-                                        className={step === 1 ? "invisible" : ""}
+                                        className={step === 1 ? "invisible" : "bg-gold hover:bg-gold/90 text-navy font-bold"}
                                     >
                                         Back
                                     </Button>

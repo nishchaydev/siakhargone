@@ -37,27 +37,27 @@ export default async function GalleryPage() {
 
   let finalImages = [];
 
-  if (galleryItems.length > 0) {
-    finalImages = galleryItems.map((item) => ({
-      id: `cms-${item.id}`,
-      imageUrl: item.imageId.startsWith("http")
-        ? item.imageId
-        : `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dkits80xk"}/image/upload/c_scale,w_1200/${item.imageId}`,
-      description: item.alt,
-      imageHint: item.category
-    }));
-  } else {
-    // Fallback to static albums
-    const albums = await loadAlbums();
-    finalImages = albums.flatMap((album: any) =>
-      album.photos?.map((photo: string, index: number) => ({
-        id: `${album.albumName}-${index}`,
-        imageUrl: photo,
-        description: album.albumName,
-        imageHint: album.category || "All"
-      })) || []
-    );
-  }
+  const cmsImages = galleryItems.map((item) => ({
+    id: `cms-${item.id}`,
+    imageUrl: item.imageId.startsWith("http")
+      ? item.imageId
+      : `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dkits80xk"}/image/upload/c_scale,w_1200/${item.imageId}`,
+    description: item.alt === "Uploaded from Admin" ? "" : item.alt,
+    imageHint: item.category
+  }));
+
+  // Always load static albums as well
+  const albums = await loadAlbums();
+  const staticImages = albums.flatMap((album: any) =>
+    album.photos?.map((photo: string, index: number) => ({
+      id: `${album.albumName}-${index}`,
+      imageUrl: photo,
+      description: album.albumName,
+      imageHint: album.category || "All"
+    })) || []
+  );
+
+  finalImages = [...cmsImages, ...staticImages];
 
   return (
     <GalleryPageClient initialImages={finalImages} />

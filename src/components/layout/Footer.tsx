@@ -48,9 +48,9 @@ export default function Footer() {
               </p>
 
               <div className="flex gap-4 pt-6">
-                <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Facebook className="h-6 w-6" /></a>
-                <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Instagram className="h-6 w-6" /></a>
-                <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Youtube className="h-6 w-6" /></a>
+                <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Facebook className="h-6 w-6" /></a>
+                <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram profile" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Instagram className="h-6 w-6" /></a>
+                <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Youtube className="h-6 w-6" /></a>
               </div>
             </div>
 
@@ -88,6 +88,7 @@ export default function Footer() {
               <div className="rounded-2xl overflow-hidden border-2 border-white/20 h-48 w-full bg-navy-light relative group shadow-lg">
                 <iframe
                   src={schoolData.contact.googleMapLink + "&output=embed"}
+                  title="Google Map showing school location"
                   width="100%"
                   height="100%"
                   allowFullScreen

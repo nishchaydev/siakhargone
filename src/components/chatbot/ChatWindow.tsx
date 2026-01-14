@@ -1,15 +1,14 @@
-
 "use client";
 
-import { useState, useRef, useEffect, useTransition } from "react";
-import { Send, Bot, User, Loader2, ChevronRight, HelpCircle, MessageCircle } from "lucide-react";
-import type { ChatMessage } from "@/lib/definitions"; // We might need to extend this or just use local type
+import { useState, useRef, useEffect } from "react";
+import { Send, Bot, ChevronRight, MessageCircle } from "lucide-react";
+import type { ChatMessage } from "@/lib/definitions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from 'next/link';
+import { submitChatbotLead } from "@/app/actions/chatbot-lead";
 
 interface ChatWindowProps {
   onClose: () => void;
@@ -17,14 +16,15 @@ interface ChatWindowProps {
 
 interface QuickOption {
   label: string;
-  value: string; // The text sent as a user message
-  action?: () => void; // Optional internal action
+  value: string;
+  action?: () => void;
 }
 
-// Extended message type for local use
 interface LocalChatMessage extends ChatMessage {
   options?: QuickOption[];
 }
+
+type EnquiryStep = 'none' | 'name' | 'phone' | 'class' | 'message';
 
 // --- STATIC KNOWLEDGE BASE ---
 const KNOWLEDGE_BASE = [
@@ -32,7 +32,7 @@ const KNOWLEDGE_BASE = [
     keywords: ['hi', 'hello', 'hey', 'start', 'menu'],
     answer: "Hello! Welcome to Sanskar International Academy. How can I assist you today?",
     options: [
-      { label: "Admissions", value: "How do I apply for admissions?" },
+      { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
       { label: "Fee Structure", value: "What is the fee structure?" },
       { label: "Academics", value: "Tell me about academics" },
       { label: "Contact Us", value: "What are the contact details?" },
@@ -40,10 +40,9 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ['admission', 'apply', 'join', 'seat', 'enroll'],
-    answer: "Admissions for the 2026-27 session are currently OPEN. You can apply online or visit our school office.",
+    answer: "Admissions for the 2026-27 session are currently OPEN. You can enquire directly here!",
     options: [
-      { label: "View Process", value: "Show me the admission process" },
-      { label: "Download Form", value: "Where can I download forms?" },
+      { label: "Start Enquiry 📝", value: "I want to enquire for admission" },
       { label: "Check Age Criteria", value: "What is the age criteria?" }
     ]
   },
@@ -51,16 +50,14 @@ const KNOWLEDGE_BASE = [
     keywords: ['fee', 'cost', 'payment', 'charges', 'money'],
     answer: "Our fee structure is designed to be transparent. It varies by grade level. Please download the detailed fee structure below.",
     options: [
-      { label: "Download Fee Chart", value: "Download fee PDF" }, // Only example
-      { label: "Payment Methods", value: "How can I pay fees?" }
+      { label: "Start Enquiry", value: "I want to enquire for admission" },
     ]
   },
   {
     keywords: ['contact', 'phone', 'email', 'address', 'location', 'reach'],
-    answer: "You can reach us at:\n📍 NH-52, Khandwa Road, Khargone\n📞 +91 99999 88888\n📧 info@siakhargone.com",
+    answer: "You can reach us at:\n📍 NH-52, Khandwa Road, Khargone\n📞 070491 10104\n📧 info@siakhargone.com",
     options: [
-      { label: "Open Map", value: "Show me location on map" },
-      { label: "Request Callback", value: "Can someone call me?" }
+      { label: "Request Callback", value: "I want to enquire for admission" }
     ]
   },
   {
@@ -89,11 +86,8 @@ const KNOWLEDGE_BASE = [
   }
 ];
 
-// Helper to find best match
 const findBestMatch = (text: string): { answer: string, options?: QuickOption[] } => {
   const lowerText = text.toLowerCase();
-
-  // Direct matches
   const match = KNOWLEDGE_BASE.find(item =>
     item.keywords.some(keyword => lowerText.includes(keyword))
   );
@@ -102,15 +96,13 @@ const findBestMatch = (text: string): { answer: string, options?: QuickOption[] 
     return { answer: match.answer, options: match.options };
   }
 
-  // Default fallback
   return {
     answer: "I'm not sure I understood that correctly. Here are some topics I can help with:",
     options: [
-      { label: "Admissions", value: "Admissions" },
+      { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
       { label: "Fee Structure", value: "Fees" },
       { label: "Contact Support", value: "Contact" },
-      { label: "School Facilities", value: "Facilities" },
-      { label: "Careers / Jobs", value: "Careers" }
+      { label: "Facilities", value: "Facilities" },
     ]
   };
 };
@@ -122,7 +114,7 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
       role: "model",
       content: "Hello! I’m SIA Assistant! Ask me anything about the school.",
       options: [
-        { label: "Admissions 🎓", value: "Admissions" },
+        { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
         { label: "Fee Structure 💰", value: "Fees" },
         { label: "Facilities 🏫", value: "Facilities" },
         { label: "Contact Us 📞", value: "Contact" }
@@ -131,6 +123,11 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+
+  // Enquiry State
+  const [enquiryStep, setEnquiryStep] = useState<EnquiryStep>('none');
+  const [enquiryData, setEnquiryData] = useState({ name: '', phone: '', class: '', message: '' });
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -140,6 +137,85 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping]);
+
+  const addBotMessage = (content: string, options?: QuickOption[]) => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setMessages(prev => [...prev, {
+        id: Date.now().toString(),
+        role: "model",
+        content,
+        options
+      }]);
+      setIsTyping(false);
+    }, 600);
+  };
+
+  const handleEnquiryFlow = async (text: string) => {
+    // 1. Trigger Enquiry
+    if (enquiryStep === 'none' && (text.toLowerCase().includes("enquire") || text.toLowerCase().includes("admission"))) {
+      setEnquiryStep('name');
+      addBotMessage("Great! I can help you with that. First, may I know your name?");
+      return true;
+    }
+
+    // 2. Capture Name
+    if (enquiryStep === 'name') {
+      setEnquiryData(prev => ({ ...prev, name: text }));
+      setEnquiryStep('phone');
+      addBotMessage("Nice to meet you, " + text + "! Could you please share your Mobile Number?");
+      return true;
+    }
+
+    // 3. Capture Phone
+    if (enquiryStep === 'phone') {
+      // Basic validation
+      if (!/^\d{10}$/.test(text.replace(/\D/g, '')) && !text.includes("+")) {
+        addBotMessage("Please enter a valid 10-digit mobile number so we can reach you.");
+        return true;
+      }
+      setEnquiryData(prev => ({ ...prev, phone: text }));
+      setEnquiryStep('class');
+      addBotMessage("Which class are you looking admission for? (e.g., Nursery, Class 5, Class 11)");
+      return true;
+    }
+
+    // 4. Capture Class
+    if (enquiryStep === 'class') {
+      setEnquiryData(prev => ({ ...prev, class: text }));
+      setEnquiryStep('message');
+      addBotMessage("Any specific query or message for us? (Or type 'None')");
+      return true;
+    }
+
+    // 5. Capture Message & Submit
+    if (enquiryStep === 'message') {
+      setEnquiryData(prev => ({ ...prev, message: text }));
+      setEnquiryStep('none');
+
+      const finalData = { ...enquiryData, message: text };
+
+      setIsTyping(true);
+
+      // Submit to Server Action
+      const result = await submitChatbotLead(finalData);
+
+      setIsTyping(false);
+
+      if (result.success) {
+        addBotMessage("Thank you! Your enquiry has been registered. Our team will contact you shortly.", [
+          { label: "Back to Menu", value: "Menu" }
+        ]);
+      } else {
+        addBotMessage("Sorry, I couldn't register your enquiry at the moment. Please try calling us directly.", [
+          { label: "Contact Numbers", value: "Contact" }
+        ]);
+      }
+      return true;
+    }
+
+    return false;
+  };
 
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
@@ -153,19 +229,21 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
 
     setMessages(prev => [...prev, userMessage]);
     setInput("");
-    setIsTyping(true);
 
-    // 2. Simulate Delay for "Natural" Feel
+    // 2. Check for Enquiry Flow Interception
+    const handledByEnquiry = await handleEnquiryFlow(text);
+    if (handledByEnquiry) return;
+
+    // 3. Normal Chat Bot Logic
+    setIsTyping(true);
     setTimeout(() => {
       const { answer, options } = findBestMatch(text);
-
       const botMessage: LocalChatMessage = {
         id: (Date.now() + 1).toString(),
         role: "model",
         content: answer,
         options: options
       };
-
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
     }, 600);
@@ -202,7 +280,7 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => window.open('https://wa.me/919999988888', '_blank')}
+            onClick={() => window.open('https://wa.me/917049110104', '_blank')}
             className="text-white hover:bg-white/20 h-8 w-8 rounded-full"
             title="Chat on WhatsApp"
           >
@@ -280,7 +358,13 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your query..."
+            placeholder={
+              enquiryStep === 'name' ? "Enter your Name..." :
+                enquiryStep === 'phone' ? "Enter your Phone Number..." :
+                  enquiryStep === 'class' ? "Enter Class (e.g. Nursery)..." :
+                    enquiryStep === 'message' ? "Enter Message..." :
+                      "Type your query..."
+            }
             className="rounded-full bg-gray-50 border-gray-200 focus-visible:ring-gold focus-visible:ring-offset-0"
             autoFocus
           />

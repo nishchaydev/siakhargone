@@ -2,12 +2,18 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import schoolLogo from "@/assets/school-logo.png";
+// import schoolLogo from "@/assets/school-logo.png";
+const schoolLogo = "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png";
 import * as React from "react";
 import { Menu, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent, DialogTitle as DTitle, DialogDescription as DDesc } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import {
   Sheet,
@@ -96,7 +102,7 @@ const navItems: NavItem[] = [
     title: "Beyond Academics",
     href: "/beyond-academics",
     children: [
-      { title: "Dream Path", href: "/dream-path", description: "Discover your path to future success." },
+      // { title: "Dream Path", href: "/dream-path", description: "Discover your path to future success." }, // Hidden as per request
       { title: "Sports", href: "/beyond-academics#sports", description: "Excellence in physical development and teamwork." },
       { title: "Co-Curricular", href: "/beyond-academics#co-curricular", description: "Creative, innovative and self-expression activities." },
       { title: "Personality Development", href: "/beyond-academics#personality", description: "Shaping confident and compassionate individuals." },
@@ -113,17 +119,24 @@ const navItems: NavItem[] = [
       { title: "Gallery", href: "/news-events#gallery", description: "Visual memories of school life." },
     ],
   },
-  { title: "Downloads", href: "/downloads" },
+  {
+    title: "Downloads",
+    href: "/downloads",
+    children: [
+      { title: "Student Resources", href: "/downloads", description: "Forms, production calendars and study materials." },
+      { title: "Mandatory Disclosures", href: "/mandatory-disclosure", description: "Public disclosures and legal documents." },
+    ]
+  },
   { title: "Contact Us", href: "/contact" },
 ];
 
 // ... imports
 
 const Header = () => {
-  const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -230,7 +243,7 @@ const Header = () => {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
             <Image src={schoolLogo}
-              alt="Sia Khargone Logo"
+              alt=""
               fill
               className="object-contain"
               priority />
@@ -301,46 +314,85 @@ const Header = () => {
             <Search className="h-5 w-5" />
           </Button>
 
-          {/* Search Overlay */}
           <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
-            <DialogContent className="sm:max-w-[600px] top-[20%] translate-y-0 p-0 overflow-hidden bg-white">
-              <VisuallyHidden>
-                <DTitle>Search Site</DTitle>
-                <DDesc>Search for news, notices, and other content.</DDesc>
-              </VisuallyHidden>
-              <div className="flex items-center border-b px-4">
-                <Search className="mr-2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  placeholder="Search news, notices, TCs..."
-                  className="flex-1 border-0 shadow-none focus-visible:ring-0 text-lg h-16"
+            <DialogContent className="sm:max-w-[550px] top-[20%] translate-y-0 p-0 overflow-hidden bg-white">
+              <DialogTitle className="sr-only">Search Site</DialogTitle>
+              <DialogDescription className="sr-only">Search for pages, sections, and resources.</DialogDescription>
+
+              <div className="flex items-center border-b px-4 py-3">
+                <Search className="mr-2 h-5 w-5 opacity-50 text-navy" />
+                <input
+                  placeholder="Search pages (e.g., Fees, Admissions)..."
+                  className="flex h-10 w-full rounded-md bg-transparent py-3 text-base outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-black"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
                 />
               </div>
-              {(searchResults.length > 0 || isSearching) && (
-                <div className="max-h-[60vh] overflow-y-auto p-2">
-                  {isSearching ? (
-                    <div className="p-4 text-center text-muted-foreground">Searching...</div>
-                  ) : (
-                    <div className="grid gap-1">
-                      {searchResults.map((result, i) => (
+
+              <div className="max-h-[300px] overflow-y-auto p-2">
+                {(() => {
+                  const allItems = [
+                    { title: "Home", href: "/", category: "Page" },
+                    { title: "About Us", href: "/about/overview", category: "Page" },
+                    { title: "Principal's Message", href: "/about/principal", category: "About" },
+                    { title: "Admission Process", href: "/admissions", category: "Admissions" },
+                    { title: "Apply Online", href: "/admissions", category: "Admissions" },
+                    { title: "Fee Structure", href: "/fees", category: "Admissions" },
+                    { title: "Academic Calendar", href: "/", category: "Academics" },
+                    { title: "Gallery", href: "/gallery", category: "Media" },
+                    { title: "Contact Us", href: "/contact", category: "Support" },
+                    { title: "Careers", href: "/careers", category: "More" },
+                    { title: "Mandatory Disclosure", href: "/mandatory-disclosure", category: "Legal" },
+                  ];
+
+                  // If query is empty, show Quick Links
+                  if (!searchQuery.trim()) {
+                    return (
+                      <div className="px-2 py-2">
+                        <p className="text-xs font-semibold text-gray-400 uppercase mb-2">Quick Links</p>
+                        <div className="grid gap-1">
+                          {allItems.slice(3, 7).map((item, idx) => (
+                            <Link
+                              key={idx}
+                              href={item.href}
+                              onClick={() => setIsSearchOpen(false)}
+                              className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors"
+                            >
+                              <span className="text-sm font-medium text-navy">{item.title}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  const filtered = allItems.filter(item =>
+                    item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    item.category.toLowerCase().includes(searchQuery.toLowerCase())
+                  );
+
+                  if (filtered.length === 0) {
+                    return <p className="p-4 text-center text-sm text-muted-foreground">No results found for "{searchQuery}".</p>;
+                  }
+
+                  return (
+                    <div className="space-y-1">
+                      {filtered.map((item, idx) => (
                         <Link
-                          key={i}
-                          href={result.url}
+                          key={idx}
+                          href={item.href}
                           onClick={() => setIsSearchOpen(false)}
-                          className="flex flex-col px-4 py-3 hover:bg-muted rounded-md transition-colors"
+                          className="flex items-center justify-between rounded-md px-4 py-3 hover:bg-gray-100 transition-colors group"
                         >
-                          <span className="font-medium text-navy">{result.title}</span>
-                          <span className="text-sm text-muted-foreground flex items-center justify-between">
-                            {result.description}
-                            <Badge variant="secondary" className="text-[10px] h-5">{result.type}</Badge>
-                          </span>
+                          <span className="font-medium text-navy group-hover:text-gold-dark transition-colors">{item.title}</span>
+                          <Badge variant="secondary" className="text-[10px] bg-gray-100 text-gray-500 group-hover:bg-white">{item.category}</Badge>
                         </Link>
                       ))}
                     </div>
-                  )}
-                </div>
-              )}
+                  );
+                })()}
+              </div>
             </DialogContent>
           </Dialog>
 
@@ -357,25 +409,25 @@ const Header = () => {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0 bg-white text-foreground flex flex-col h-full border-l-gold/20">
-              <SheetHeader className="p-6 border-b border-gray-100 bg-gray-50/50">
+              <SheetHeader className="px-6 py-4 border-b border-gray-100 bg-gray-50/50">
                 <VisuallyHidden>
-                  <SheetTitle>Main Menu</SheetTitle>
-                  <SheetDescription>
-                    Navigation links for the Sanskar International Academy website.
-                  </SheetDescription>
+                  <SheetTitle>Navigation Menu</SheetTitle>
+                  <SheetDescription>Main navigation for mobile devices</SheetDescription>
                 </VisuallyHidden>
                 <div className="flex items-center gap-3">
-                  <div className="relative h-10 w-10 shrink-0 overflow-hidden">
-                    <Image src={schoolLogo}
-                      alt="Sia Khargone Logo"
-                      fill
-                      className="object-contain"
-                      priority />
-                  </div>
-                  <div className="flex flex-col text-left">
-                    <span className="font-display font-bold text-xl leading-none tracking-tight text-navy">SANSKAR</span>
-                    <span className="font-sans text-[9px] uppercase tracking-widest text-gray-500">International Academy</span>
-                  </div>
+                  <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
+                    <div className="relative h-10 w-10 shrink-0 overflow-hidden">
+                      <Image src={schoolLogo}
+                        alt=""
+                        fill
+                        className="object-contain"
+                        priority />
+                    </div>
+                    <div className="flex flex-col text-left">
+                      <span className="font-display font-bold text-xl leading-none tracking-tight text-navy">SANSKAR</span>
+                      <span className="font-sans text-[9px] uppercase tracking-widest text-gray-500">International Academy</span>
+                    </div>
+                  </Link>
                 </div>
               </SheetHeader>
 

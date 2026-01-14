@@ -140,14 +140,9 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
               onClick={(e) => e.stopPropagation()}
             >
               <Image src={selectedImage.imageUrl}
-                alt={selectedImage.description || "Selected"}
+                alt=""
                 fill
                 className="object-contain" />
-              {selectedImage.description && (
-                <div className="absolute bottom-4 left-0 right-0 text-center text-white bg-black/50 p-2 rounded">
-                  {selectedImage.description}
-                </div>
-              )}
             </motion.div>
           </motion.div>
         )}

@@ -85,7 +85,7 @@ export default function FeesPage() {
                                 <CardTitle>Academic Session 2026-27</CardTitle>
                                 <CardDescription>Consolidated fee structure per annum.</CardDescription>
                             </div>
-                            <Button variant="outline" size="sm">
+                            <Button size="sm" className="bg-gold hover:bg-gold/90 text-navy font-bold">
                                 <Download className="w-4 h-4 mr-2" /> Download PDF
                             </Button>
                         </div>

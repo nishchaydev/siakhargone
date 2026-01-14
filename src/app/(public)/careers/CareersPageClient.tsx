@@ -274,8 +274,7 @@ export default function CareersPageClient() {
             </p>
             <Button
               onClick={() => openApplication("General Application")}
-              variant="outline"
-              className="relative z-10 border-gold text-gold hover:bg-gold hover:text-navy px-8 py-6 text-lg"
+              className="relative z-10 bg-gold hover:bg-gold/90 text-navy px-8 py-6 text-lg font-bold"
             >
               Send Resume via Application
             </Button>

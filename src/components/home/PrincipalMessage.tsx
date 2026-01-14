@@ -2,6 +2,8 @@
 
 import { Section } from "@/components/common/Section";
 import Image from "next/image";
+// import schoolLogo from "@/assets/school-logo.png";
+const schoolLogo = "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Quote } from "lucide-react";
@@ -26,10 +28,10 @@ export const PrincipalMessage = () => {
         >
           <div className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
             <Image
-              src="/school-logo.png"
+              src={schoolLogo}
               alt="Principal of Sanskar International Academy"
               fill
-              className="object-cover p-10 bg-navy/5"
+              className="object-contain p-10 bg-navy/5"
             />
           </div>
           {/* Floating Quote Card */}

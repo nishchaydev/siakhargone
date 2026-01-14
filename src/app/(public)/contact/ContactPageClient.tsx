@@ -193,8 +193,7 @@ export default function ContactPageClient() {
                     </div>
                     <Button
                       onClick={() => setIsSuccess(false)}
-                      variant="outline"
-                      className="mt-4"
+                      className="mt-4 bg-gold hover:bg-gold/90 text-navy font-bold"
                     >
                       Send Another Message
                     </Button>

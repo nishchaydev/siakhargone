@@ -102,7 +102,7 @@ export default function MandatoryDisclosurePage() {
                                                     <div className="flex flex-col sm:flex-row justify-end gap-2">
                                                         {doc.links ? (
                                                             <>
-                                                                <Button asChild size="sm" variant="outline" className="h-9 gap-1.5 border-navy/20 text-navy hover:text-navy hover:bg-navy/5 hover:border-navy/40">
+                                                                <Button asChild size="sm" className="h-9 gap-1.5 border-0 bg-gold hover:bg-gold/90 text-navy font-bold">
                                                                     <a href={doc.links.preview} target="_blank" rel="noopener noreferrer">
                                                                         <Eye className="h-3.5 w-3.5" />
                                                                         <span className="hidden sm:inline">View</span>

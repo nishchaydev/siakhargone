@@ -1,0 +1,44 @@
+'use server';
+
+import { getGoogleSheetsInstance } from "@/lib/google-sheets";
+
+export async function submitChatbotLead(data: {
+    name: string;
+    phone: string;
+    class: string;
+    message: string;
+}) {
+    try {
+        const sheets = await getGoogleSheetsInstance();
+        const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+
+        if (!spreadsheetId) {
+            console.error("Missing Google Sheets ID");
+            throw new Error("Missing Google Sheets ID");
+        }
+        console.log("Submitting to sheet:", spreadsheetId);
+
+        // Append to "Enquiries" sheet
+        await sheets.spreadsheets.values.append({
+            spreadsheetId,
+            range: 'Enquiries!A:E', // Assuming columns: Date, Name, Phone, Class, Message
+            valueInputOption: 'USER_ENTERED',
+            requestBody: {
+                values: [
+                    [
+                        new Date().toISOString(),
+                        data.name,
+                        data.phone,
+                        data.class,
+                        data.message || "Chatbot Enquiry"
+                    ]
+                ]
+            }
+        });
+
+        return { success: true };
+    } catch (error) {
+        console.error("Error submitting chatbot lead:", error);
+        return { success: false, error: "Failed to submit enquiry." };
+    }
+}

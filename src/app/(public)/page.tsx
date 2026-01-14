@@ -48,9 +48,9 @@ export default function Home() {
       title: "Where Excellence Begins.",
       subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
       sanskrit: "विद्या ददाति विनयम्",
-      video: "https://www.youtube.com/watch?v=6-i18-xt8sI", // Restored background video
+      video: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6", // User requested video
       grid: [
-        cloudinary.infrastructure.building[1],
+        cloudinary.infrastructure.building[0],
         cloudinary.infrastructure.classrooms[0], // dsc_2821 replacement
         cloudinary.rainyDay[2], // rainy-day-3
         cloudinary.infrastructure.library[1], // library-2

@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display, Mukta } from 'next/font/google';
 import './globals.css';
+import BackToTop from "@/components/common/BackToTop";
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
@@ -97,6 +98,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground antialiased bg-grain">
         {children}
+        <BackToTop />
         <Toaster />
         <SpeedInsights />
         <Analytics />
@@ -109,7 +111,7 @@ export default function RootLayout({
               "@type": "EducationalOrganization",
               "name": "Sanskar International Academy",
               "url": "https://siakhargone.in",
-              "logo": "https://siakhargone.in/school-logo.png",
+              "logo": "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
               "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+91-9644004990",

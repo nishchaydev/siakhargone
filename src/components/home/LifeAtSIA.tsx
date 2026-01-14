@@ -43,16 +43,18 @@ export const LifeAtSIA = () => {
         <Section id="life-at-sia" className="bg-white">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div className="space-y-2">
-                    <span className="text-gold font-bold tracking-wider uppercase text-sm">Experience</span>
+                    <span className="text-gold-dark font-bold tracking-wider uppercase text-sm">Experience</span>
                     <h2 className="text-3xl md:text-5xl font-display font-bold text-navy">
-                        Life at <span className="text-gold-accent">SIA</span>
+                        Life at <span className="text-gold-dark">SIA</span>
                     </h2>
                     <p className="text-muted-foreground max-w-xl">
                         A vibrant ecosystem where learning extends beyond classrooms. From morning prayers to evening sports, every moment is designed to inspire.
                     </p>
                 </div>
-                <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-white group">
-                    View Full Gallery <ArrowUpRight className="ml-2 h-4 w-4" />
+                <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-white group" asChild>
+                    <Link href="/gallery">
+                        View Full Gallery <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </Link>
                 </Button>
             </div>
 

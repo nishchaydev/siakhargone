@@ -7,6 +7,7 @@ export const ContactFormSchema = z.object({
     email: z.string().email("Invalid email address").optional().or(z.literal("")),
     class: z.string().min(1, "Please select a class"),
     message: z.string().min(5, "Message is too short").max(1000, "Message is too long"),
+    type: z.string().optional(),
 }).strict();
 
 export const ApplyFormSchema = z.object({
