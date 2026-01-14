@@ -1,28 +1,39 @@
-
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://siakhargone.in';
+    const baseUrl = 'https://siakhargone.in'; // Production URL
 
-    // Core pages
+    // Core Pages
     const routes = [
         '',
-        '/about',
+        '/about/overview',
+        '/about/vision',
+        '/about/principal',
+        '/about/management',
         '/academics',
-        '/life-at-sia',
-        '/beyond-school',
+        '/academics/faculty',
         '/admissions',
+        '/beyond-academics',
+        '/life-at-sia',
         '/contact',
+        '/downloads',
         '/gallery',
-        '/mandatory-disclosure',
+        '/notices',
+        '/careers',
+        '/tc',
+        '/news-events',
+        '/results',
+        '/fees',
+        '/virtual-tour',
         '/privacy',
         '/terms',
-    ].map((route) => ({
+        '/mandatory-disclosure'
+    ];
+
+    return routes.map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
+        changeFrequency: route === '' ? 'daily' : 'weekly',
         priority: route === '' ? 1 : 0.8,
     }));
-
-    return routes;
 }

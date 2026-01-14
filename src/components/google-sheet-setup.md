@@ -19,37 +19,7 @@ To save the admission inquires directly to a Google Sheet, follow these simple s
 2. Delete any code there and paste this **Magic Script**:
 
 ```javascript
-function doPost(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var data = JSON.parse(e.postData.contents);
-  var sheet;
 
-  // Select sheet based on data type
-  if (data.type === "enquiry") {
-    // Try to find "Enquiry" sheet, fallback to "Sheet2"
-    sheet = ss.getSheetByName("Enquiry") || ss.getSheetByName("Sheet2");
-  } else {
-    // Default to "Admission" (or "Sheet1")
-    sheet = ss.getSheetByName("Admission") || ss.getSheetByName("Sheet1");
-  }
-
-  // Safety fallback
-  if (!sheet) sheet = ss.getActiveSheet();
-  
-  sheet.appendRow([
-    new Date(),
-    data.studentName,
-    data.grade,
-    data.dob || "N/A",
-    data.parentName,
-    "'"+data.phone, 
-    data.email,
-    data.message || "" // Added message column support
-  ]);
-  
-  return ContentService.createTextOutput(JSON.stringify({"result":"success"}))
-    .setMimeType(ContentService.MimeType.JSON);
-}
 ```
 
 3. Click the **Save** icon (💾).

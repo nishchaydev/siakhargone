@@ -13,8 +13,35 @@ const nextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com' }
     ],
   },
+  env: {
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    NEXT_PUBLIC_CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+    NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
+  },
   async headers() {
     return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN', // Allows iframes on same domain (e.g., admin), block elsewhere
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Content-Security-Policy',
+            // Permissive CSP to allow external scripts/images (Cloudinary, Google, Unsplash) while blocking basic XSS
+            value: "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data: blob:; object-src 'none';",
+          },
+        ],
+      },
       {
         source: '/:all*(svg|jpg|png|webp|avif|mp4|woff2|ico|gif)',
         locale: false,

@@ -1,26 +1,29 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { ArrowLeft, Trash2, Bell, AlertCircle } from "lucide-react";
+import { ArrowLeft, Trash2, Loader2, Bell, Pencil, Save } from "lucide-react";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
-interface Notice {
+interface NoticeItem {
     id: number;
     text: string;
     link: string;
     date: string;
-    isImportant: boolean;
+    isPriority: boolean; // Map from 'Priority' column (TRUE/FALSE)
 }
 
 export default function NoticesManager() {
-    const [notices, setNotices] = useState<Notice[]>([]);
+    const [notices, setNotices] = useState<NoticeItem[]>([]);
     const [loading, setLoading] = useState(true);
-    const [form, setForm] = useState({ text: "", link: "", isImportant: false });
+    const [form, setForm] = useState({ text: "", link: "", date: "", isPriority: false });
+    const [editingId, setEditingId] = useState<number | null>(null);
+    const [submitting, setSubmitting] = useState(false);
+    const [deletingId, setDeletingId] = useState<number | null>(null);
 
     useEffect(() => {
         fetchNotices();
@@ -38,90 +41,139 @@ export default function NoticesManager() {
         }
     };
 
+    const handleEdit = (item: NoticeItem) => {
+        setForm({
+            text: item.text,
+            link: item.link,
+            date: item.date,
+            isPriority: item.isPriority
+        });
+        setEditingId(item.id);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    const handleCancelEdit = () => {
+        setForm({ text: "", link: "", date: "", isPriority: false });
+        setEditingId(null);
+    };
+
+    const handleDelete = async (id: number) => {
+        if (!confirm("Delete this notice?")) return;
+        setDeletingId(id);
+        try {
+            const res = await fetch("/api/admin/notices", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            });
+            if (res.ok) {
+                setNotices(notices.filter(n => n.id !== id));
+            } else alert("Failed to delete");
+        } catch (e) { alert("Error deleting"); } finally { setDeletingId(null); }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setSubmitting(true);
         try {
-            const payload = { ...form, date: new Date().toLocaleDateString() };
-
+            const method = editingId ? "PUT" : "POST";
+            const body = editingId ? { ...form, id: editingId } : form;
             const res = await fetch("/api/admin/notices", {
-                method: "POST",
-                body: JSON.stringify(payload)
+                method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
             });
-
             if (res.ok) {
-                setForm({ text: "", link: "", isImportant: false });
+                handleCancelEdit();
                 fetchNotices();
-            }
-        } catch (err) {
-            alert("Failed to save");
-        }
+            } else alert("Failed to save");
+        } catch (e) { alert("Error saving"); } finally { setSubmitting(false); }
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6">
-            <div className="max-w-3xl mx-auto space-y-6">
-                <div className="flex items-center gap-4 mb-8">
-                    <Link href="/admin-school-portal/dashboard">
-                        <Button variant="ghost" size="icon"><ArrowLeft className="w-5 h-5" /></Button>
-                    </Link>
-                    <div>
-                        <h1 className="text-2xl font-bold text-navy">Notice Board</h1>
-                        <p className="text-muted-foreground">Manage scrolling ticker and alerts.</p>
+        <div className="min-h-screen bg-gray-50/50 p-6 md:p-10 font-sans">
+            <div className="max-w-4xl mx-auto space-y-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                        <Link href="/admin-school-portal/dashboard">
+                            <Button variant="outline" size="icon" className="h-10 w-10 rounded-full bg-white shadow-sm hover:bg-gray-100">
+                                <ArrowLeft className="w-5 h-5 text-gray-600" />
+                            </Button>
+                        </Link>
+                        <div>
+                            <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-3">
+                                <Bell className="w-8 h-8 text-yellow-500" />
+                                Notices Board
+                            </h1>
+                            <p className="text-gray-500 mt-1 font-medium">Flash alerts and important downloads.</p>
+                        </div>
                     </div>
                 </div>
 
-                <Card className="border-t-4 border-t-amber-500 shadow-sm">
-                    <CardContent className="p-6">
-                        <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                            <Bell className="w-5 h-5 text-amber-600" /> New Notice
-                        </h3>
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <Input
-                                placeholder="Notice Text (e.g. School Closed Tomorrow)"
-                                value={form.text}
-                                onChange={e => setForm({ ...form, text: e.target.value })}
-                                required
-                            />
-                            <div className="grid grid-cols-[1fr_auto] gap-4 items-center">
-                                <Input
-                                    placeholder="Link (Optional PDF/Page)"
-                                    value={form.link}
-                                    onChange={e => setForm({ ...form, link: e.target.value })}
-                                />
-                                <div className="flex items-center gap-2">
-                                    <Switch
-                                        checked={form.isImportant}
-                                        onCheckedChange={checked => setForm({ ...form, isImportant: checked })}
-                                    />
-                                    <label className="text-sm font-medium">Urgent?</label>
-                                </div>
-                            </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="md:col-span-1">
+                        <Card className="border-0 shadow-lg ring-1 ring-gray-100 sticky top-6 bg-white overflow-hidden rounded-2xl">
+                            <div className={`h-2 w-full ${editingId ? "bg-amber-500" : "bg-yellow-500"}`} />
+                            <CardHeader>
+                                <CardTitle>{editingId ? "Edit Notice" : "New Notice"}</CardTitle>
+                                <CardDescription>Visible on the ticker tape.</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div className="space-y-1.5">
+                                        <Label>Notice Text</Label>
+                                        <Input required value={form.text} onChange={e => setForm({ ...form, text: e.target.value })} placeholder="e.g. School closed tomorrow" />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <Label>Link (Optional)</Label>
+                                        <Input value={form.link} onChange={e => setForm({ ...form, link: e.target.value })} placeholder="Download PDF URL" />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <Label>Date</Label>
+                                        <Input required type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
+                                    </div>
+                                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                        <Label>High Priority?</Label>
+                                        <Switch checked={form.isPriority} onCheckedChange={c => setForm({ ...form, isPriority: c })} />
+                                    </div>
+                                    <div className="pt-2 flex gap-2">
+                                        {editingId && <Button type="button" variant="outline" onClick={handleCancelEdit} className="flex-1">Cancel</Button>}
+                                        <Button type="submit" className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-bold" disabled={submitting}>
+                                            {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : (editingId ? "Update" : "Add")}
+                                        </Button>
+                                    </div>
+                                </form>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-                            <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white">
-                                Publish Notice
-                            </Button>
-                        </form>
-                    </CardContent>
-                </Card>
-
-                <div className="space-y-3">
-                    <h3 className="font-bold text-gray-700 mt-8">Active Notices</h3>
-                    {loading ? <p className="text-gray-400">Loading...</p> : notices.map((n) => (
-                        <div key={n.id} className="bg-white p-4 rounded-lg shadow-sm border flex justify-between items-center group">
-                            <div className="flex items-center gap-3">
-                                {n.isImportant && <AlertCircle className="w-5 h-5 text-red-500" />}
-                                <div>
-                                    <p className="font-medium text-gray-800">{n.text}</p>
-                                    <p className="text-xs text-gray-400">{n.date} • {n.link}</p>
-                                </div>
-                            </div>
-                            <Button variant="ghost" size="icon" className="text-red-400 opacity-50 group-hover:opacity-100">
-                                <Trash2 className="w-4 h-4" />
-                            </Button>
+                    <div className="md:col-span-2 space-y-4">
+                        <div className="flex items-center justify-between mb-2 px-1">
+                            <h3 className="font-bold text-gray-700 text-lg">Active Notices ({notices.length})</h3>
                         </div>
-                    ))}
+                        {loading ? <div className="text-center py-12 text-gray-400">Loading...</div> :
+                            notices.length === 0 ? <div className="text-center py-12 border-2 border-dashed rounded-xl">No notices.</div> : (
+                                <div className="space-y-3">
+                                    {notices.map(n => (
+                                        <div key={n.id} className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between group hover:shadow-md transition-all">
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-2 mb-1">
+                                                    {n.isPriority && <span className="bg-red-100 text-red-600 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Priority</span>}
+                                                    <span className="text-xs text-gray-400">{n.date}</span>
+                                                </div>
+                                                <p className="font-medium text-gray-800">{n.text}</p>
+                                                {n.link && <a href={n.link} className="text-xs text-blue-500 hover:underline">View Link</a>}
+                                            </div>
+                                            <div className="flex gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                                                <Button size="icon" variant="ghost" className="h-8 w-8" onClick={() => handleEdit(n)}><Pencil className="w-3 h-3" /></Button>
+                                                <Button size="icon" variant="ghost" className="h-8 w-8 text-red-500 hover:bg-red-50" onClick={() => handleDelete(n.id)}><Trash2 className="w-3 h-3" /></Button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                    </div>
                 </div>
-
             </div>
         </div>
     );

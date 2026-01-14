@@ -63,7 +63,7 @@ export function WhyChoose() {
                     const Icon = feature.icon;
                     return (
                         <motion.div key={feature.title} variants={fadeInUp}>
-                            <Card className="text-center p-8 h-full card-premium">
+                            <Card className="text-center p-6 md:p-8 h-full card-premium">
                                 <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-2xl bg-royal-blue/10 text-royal-blue mb-6">
                                     <Icon className="h-8 w-8" />
                                 </div>

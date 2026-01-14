@@ -33,7 +33,7 @@ export function CTASection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    Admissions are open for the academic year 2025-26. Give your child the gift of world-class education rooted in values.
+                    Admissions are open for the academic year 2026-27. Give your child the gift of world-class education rooted in values.
                 </motion.p>
 
                 <motion.div

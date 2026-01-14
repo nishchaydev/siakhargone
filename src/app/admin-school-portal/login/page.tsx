@@ -27,7 +27,9 @@ export default function AdminLogin() {
             });
 
             if (res.ok) {
+                // Cookie is set by the server automatically
                 router.push("/admin-school-portal/dashboard");
+                router.refresh(); // Ensure middleware sees the new cookie
             } else {
                 setError("Invalid Password. Access Denied.");
             }

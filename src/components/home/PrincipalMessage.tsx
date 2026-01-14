@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Section } from "@/components/common/Section";
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Quote } from "lucide-react";
 import { motion } from "framer-motion";
+import { schoolData } from "@/data/schoolData";
 
 export const PrincipalMessage = () => {
   return (
@@ -42,7 +42,7 @@ export const PrincipalMessage = () => {
           >
             <Quote className="h-8 w-8 text-gold mb-2 opacity-80" />
             <p className="text-sm font-medium italic leading-relaxed">
-              "Education is not just about syllabi and exams. It's about kindling the fire of curiosity."
+              "{schoolData.principal.messageQuote}"
             </p>
           </motion.div>
         </motion.div>
@@ -76,7 +76,7 @@ export const PrincipalMessage = () => {
               <Link href="/about#principal">Read Full Message</Link>
             </Button>
             <div className="flex flex-col justify-center pl-4 border-l-4 border-gold">
-              <span className="font-display font-bold text-navy text-lg">Mr. Shivam Jaiswal</span>
+              <span className="font-display font-bold text-navy text-lg">{schoolData.principal.name}</span>
               <span className="text-sm text-muted-foreground">Principal, SIA Khargone</span>
             </div>
           </div>

@@ -11,6 +11,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { getCMSNews, CMSNewsItem } from "@/lib/cms-fetch";
 
+
+
 const defaultNews = [
     {
         id: 1,
@@ -43,34 +45,47 @@ const defaultNews = [
 
 export const LatestNews = () => {
     const [newsItems, setNewsItems] = useState<any[]>(defaultNews);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const loadNews = async () => {
-            const apiNews = await getCMSNews();
-            if (apiNews.length > 0) {
-                // Map API format to Component format
-                const mapped = apiNews.slice(0, 3).map((item) => ({
-                    id: item.id,
-                    category: "Update", // Default category for dynamic news
-                    date: item.date,
-                    title: item.title,
-                    description: item.description,
-                    icon: Bell, // Default icon
-                    color: "bg-blue-50 text-blue-600"
-                }));
-
-                // If we have API news, combine or replace. Here we replace for simplicity.
-                setNewsItems(mapped);
+            try {
+                const apiNews = await getCMSNews();
+                if (apiNews.length > 0) {
+                    const mapped = apiNews.slice(0, 3).map((item) => ({
+                        id: item.id,
+                        category: "Update",
+                        date: item.date,
+                        title: item.title,
+                        description: item.description,
+                        icon: Bell,
+                        color: "bg-blue-50 text-blue-600"
+                    }));
+                    setNewsItems(mapped);
+                } else {
+                    setNewsItems(defaultNews);
+                }
+            } catch (error) {
+                console.error("Failed to load news, using defaults", error);
+                setNewsItems(defaultNews);
+            } finally {
+                setIsLoading(false);
             }
         };
         loadNews();
     }, []);
+
+    // Don't render the section if we have finished loading and there is no news
+    if (!isLoading && newsItems.length === 0) {
+        return null;
+    }
+
     return (
         <Section className="bg-ivory" id="latest-news">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div className="space-y-2">
                     <span className="text-gold font-bold tracking-wider uppercase text-sm">Campus Buzz</span>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-navy">
+                    <h2 className="text-3xl md:text-5xl font-display font-bold text-navy">
                         Happenings <span className="text-gold-accent">@ SIA</span>
                     </h2>
                 </div>
@@ -81,35 +96,40 @@ export const LatestNews = () => {
 
             <div className="grid md:grid-cols-3 gap-8">
                 {newsItems.map((item, index) => (
-                    <motion.div
+                    <Link
+                        href={`/news-events#news-${item.id}`} // Assuming we'll have anchors or detail pages
                         key={item.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all hover:border-gold/30 group"
+                        className="block h-full"
                     >
-                        <div className="flex justify-between items-start mb-4">
-                            <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none`}>
-                                {item.category}
-                            </Badge>
-                            <div className="flex items-center text-sm text-gray-500">
-                                <Calendar className="w-4 h-4 mr-1" />
-                                {item.date}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover-lift group cursor-pointer h-full flex flex-col"
+                        >
+                            <div className="flex justify-between items-start mb-4">
+                                <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none`}>
+                                    {item.category}
+                                </Badge>
+                                <div className="flex items-center text-sm text-gray-500">
+                                    <Calendar className="w-4 h-4 mr-1" />
+                                    {item.date}
+                                </div>
                             </div>
-                        </div>
 
-                        <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-accent transition-colors line-clamp-2">
-                            {item.title}
-                        </h3>
+                            <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-accent transition-colors line-clamp-2">
+                                {item.title}
+                            </h3>
 
-                        <p className="text-gray-600 mb-6 text-sm line-clamp-3">
-                            {item.description}
-                        </p>
+                            <p className="text-gray-600 mb-6 text-sm line-clamp-3 flex-grow">
+                                {item.description}
+                            </p>
 
-                        <a href="#" className="inline-flex items-center text-sm font-bold text-navy hover:text-gold-accent transition-colors">
-                            Read More <ChevronRight className="ml-1 w-4 h-4" />
-                        </a>
-                    </motion.div>
+                            <div className="inline-flex items-center text-sm font-bold text-navy hover:text-gold-accent transition-colors mt-auto">
+                                Read More <ChevronRight className="ml-1 w-4 h-4" />
+                            </div>
+                        </motion.div>
+                    </Link>
                 ))}
             </div>
         </Section>

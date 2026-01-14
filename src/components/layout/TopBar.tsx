@@ -12,7 +12,7 @@ interface TopBarProps {
 export default function TopBar({ isTransparent = false }: TopBarProps) {
   const topBarClasses = cn(
     "transition-colors duration-300",
-    isTransparent ? "bg-transparent text-white" : "bg-primary/95 text-primary-foreground"
+    isTransparent ? "bg-transparent text-white" : "bg-navy text-white"
   );
 
   const linkClasses = cn(
@@ -38,8 +38,6 @@ export default function TopBar({ isTransparent = false }: TopBarProps) {
         </div>
         <div className="hidden items-center gap-4 md:flex">
           <Link href="/contact#faq" className={linkClasses}>FAQ</Link>
-          <span className={separatorClasses}>|</span>
-          <Link href="/contact" className={linkClasses}>Support</Link>
         </div>
       </div>
     </div>

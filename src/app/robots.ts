@@ -1,4 +1,3 @@
-
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: ['/admin', '/api/'],
+            disallow: ['/admin-school-portal/', '/api/admin/'], // Hide Admin pages
         },
         sitemap: 'https://siakhargone.in/sitemap.xml',
     };

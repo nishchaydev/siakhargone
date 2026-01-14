@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
 import { motion } from "framer-motion";
+import { schoolData } from "@/data/schoolData";
 
 const footerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -37,76 +38,79 @@ export default function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 border-b border-white/10 pb-12">
 
             {/* Column 1: Brand & About (4 cols) */}
-            <motion.div variants={itemVariants} className="lg:col-span-4 space-y-6 pr-4">
+            <div className="lg:col-span-4 space-y-6 pr-4">
               <div className="flex flex-col">
-                <span className="font-display font-bold text-4xl text-white tracking-tight">SANSKAR</span>
-                <span className="font-sans text-xs uppercase tracking-[0.3em] text-gold/80">International Academy</span>
+                <span className="font-display font-bold text-5xl text-white tracking-tight">SANSKAR</span>
+                <span className="font-sans text-sm uppercase tracking-[0.3em] text-gold/90 font-semibold">International Academy</span>
               </div>
-              <p className="text-white/70 text-sm leading-relaxed max-w-sm">
+              <p className="text-white/80 text-base leading-relaxed max-w-sm">
                 A premier CBSE institution committed to nurturing global citizens through a blend of academic excellence, cultural values, and modern innovation.
               </p>
 
-              <div className="flex gap-4 pt-4">
-                <a href="https://www.facebook.com/siakhargone/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group"><Facebook className="h-5 w-5" /></a>
-                <a href="https://www.instagram.com/sanskarinternationalacademy/?hl=en" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group"><Instagram className="h-5 w-5" /></a>
-                <a href="https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group"><Youtube className="h-5 w-5" /></a>
+              <div className="flex gap-4 pt-6">
+                <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Facebook className="h-6 w-6" /></a>
+                <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Instagram className="h-6 w-6" /></a>
+                <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Youtube className="h-6 w-6" /></a>
               </div>
-            </motion.div>
+            </div>
 
             {/* Column 2: Quick Links (2 cols) */}
-            <motion.div variants={itemVariants} className="lg:col-span-2">
-              <h3 className="font-display font-bold text-lg text-white mb-6">Discovery</h3>
-              <ul className="space-y-3 text-sm font-medium text-white/60">
-                <li><Link href="/about" className="hover:text-gold transition-colors inline-block">Our Story</Link></li>
-                <li><Link href="/admissions" className="hover:text-gold transition-colors inline-block">Admissions</Link></li>
-                <li><Link href="/academics" className="hover:text-gold transition-colors inline-block">Academics</Link></li>
-                <li><Link href="/gallery" className="hover:text-gold transition-colors inline-block">Campus Life</Link></li>
-                <li><Link href="/contact" className="hover:text-gold transition-colors inline-block">Contact Us</Link></li>
+            <div className="lg:col-span-2">
+              <h3 className="font-display font-bold text-xl text-white mb-8 border-b-4 border-gold inline-block pb-2">Explore</h3>
+              <ul className="space-y-4 text-base font-medium text-white/70">
+                <li><Link href="/about" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Our Story</Link></li>
+                <li><Link href="/academics" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Academics</Link></li>
+                <li><Link href="/gallery" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Campus Life</Link></li>
+                <li><Link href="/faculty" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Faculty</Link></li>
+                <li><Link href="/contact" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Contact Us</Link></li>
               </ul>
-            </motion.div>
+            </div>
 
-            {/* Column 3: Resources (2 cols) */}
-            <motion.div variants={itemVariants} className="lg:col-span-2">
-              <h3 className="font-display font-bold text-lg text-white mb-6">Portals</h3>
-              <ul className="space-y-3 text-sm font-medium text-white/60">
-                <li><a href="#" className="hover:text-gold transition-colors inline-block">Student Portal</a></li>
-                <li><a href="#" className="hover:text-gold transition-colors inline-block">Parent Login</a></li>
-                <li><a href="#" className="hover:text-gold transition-colors inline-block">Staff Area</a></li>
-                <li><Link href="/careers" className="hover:text-gold transition-colors inline-block">Careers @ SIA</Link></li>
-                <li><Link href="/alumni" className="hover:text-gold transition-colors inline-block">Alumni Network</Link></li>
+            {/* Column 3: Important Links (3 cols) */}
+            <div className="lg:col-span-3">
+              <h3 className="font-display font-bold text-xl text-white mb-8 border-b-4 border-gold inline-block pb-2">Important Links</h3>
+              <ul className="space-y-4 text-base font-medium text-white/70">
+                <li><Link href="/downloads" className="hover:text-gold transition-colors inline-block flex items-center gap-2 hover:translate-x-1 duration-300"><span className="w-2 h-2 rounded-full bg-gold"></span>Downloads Area</Link></li>
+                <li><Link href="/mandatory-disclosure" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Mandatory Disclosure</Link></li>
+                <li><Link href="/admissions" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Admissions Process</Link></li>
+                <li><Link href="/fees" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Pay Fees Online</Link></li>
+                <li><Link href="/tc" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Transfer Certificate (TC)</Link></li>
+                <li><Link href="/results" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Student Results</Link></li>
+                <li><Link href="/careers" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Careers</Link></li>
               </ul>
-            </motion.div>
+            </div>
 
-            {/* Column 4: Location Map (4 cols) */}
-            <motion.div variants={itemVariants} className="lg:col-span-4">
-              <h3 className="font-display font-bold text-lg text-white mb-6">Visit Campus</h3>
-              <div className="rounded-xl overflow-hidden border border-white/20 h-40 w-full bg-navy-light relative group">
-                {/* Google Map Embed */}
+            {/* Column 4: Location Map (3 cols) */}
+            <div className="lg:col-span-3">
+              <h3 className="font-display font-bold text-xl text-white mb-8 border-b-4 border-gold inline-block pb-2">Visit Campus</h3>
+
+              {/* Larger Map Style from Contact Page */}
+              <div className="rounded-2xl overflow-hidden border-2 border-white/20 h-48 w-full bg-navy-light relative group shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.308731307684!2d75.58981431495404!3d21.821990985573456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd89acf88888889%3A0x6b88888888888888!2sSanskar%20International%20Academy!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                  src={schoolData.contact.googleMapLink + "&output=embed"}
                   width="100%"
                   height="100%"
                   allowFullScreen
                   loading="lazy"
-                  className="opacity-80 group-hover:opacity-100 transition-opacity"
+                  className="opacity-90 group-hover:opacity-100 transition-opacity grayscale-[0.2] group-hover:grayscale-0"
                 ></iframe>
-                <div className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm p-3 flex items-center justify-between text-xs text-white">
-                  <span className="flex items-center gap-2"><MapPin className="w-3 h-3 text-gold" /> Khargone - Khandwa Hwy</span>
-                  <a href="https://goo.gl/maps/..." target="_blank" className="font-bold text-gold hover:underline">Get Directions</a>
-                </div>
               </div>
 
-              <div className="mt-6 space-y-3">
-                <div className="flex items-center gap-3 text-sm text-white/80">
-                  <Phone className="w-4 h-4 text-gold" />
-                  <a href="tel:+917049110104" className="hover:text-white">+91 70491 10104</a>
+              <div className="mt-6 space-y-4">
+                <div className="flex items-start gap-3 text-base text-white/80">
+                  <MapPin className="w-5 h-5 text-gold shrink-0 mt-1" />
+                  <span>{schoolData.contact.address}</span>
                 </div>
-                <div className="flex items-center gap-3 text-sm text-white/80">
-                  <Mail className="w-4 h-4 text-gold" />
-                  <a href="mailto:info@siakhargone.in" className="hover:text-white">info@siakhargone.in</a>
+                <div className="flex items-center gap-3 text-base text-white/80">
+                  <Phone className="w-5 h-5 text-gold shrink-0" />
+                  <a href={`tel:${schoolData.contact.phone[0]}`} className="hover:text-white">{schoolData.contact.phone[0]}</a>
+                </div>
+                <div className="flex items-center gap-3 text-base text-white/80">
+                  <Mail className="w-5 h-5 text-gold shrink-0" />
+                  <a href={`mailto:${schoolData.contact.email}`} className="hover:text-white">{schoolData.contact.email}</a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Bottom Bar */}

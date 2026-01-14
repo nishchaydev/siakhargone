@@ -15,7 +15,7 @@ const lifeImages = [
         src: cloudinary.sessionStart[0],
         alt: "Morning Assembly",
         caption: "Morning Assembly",
-        size: "col-span-1 md:col-span-2 row-span-2"
+        size: "col-span-2 md:col-span-2 row-span-1 md:row-span-2"
     },
     {
         src: cloudinary.infrastructure.library[0],
@@ -33,7 +33,8 @@ const lifeImages = [
         src: cloudinary.sportsAchievements[2],
         alt: "Sports Complex",
         caption: "Sports & Fitness",
-        size: "col-span-1 md:col-span-2"
+        size: "col-span-2 md:col-span-2",
+        className: "object-top"
     }
 ];
 
@@ -43,7 +44,7 @@ export const LifeAtSIA = () => {
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div className="space-y-2">
                     <span className="text-gold font-bold tracking-wider uppercase text-sm">Experience</span>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-navy">
+                    <h2 className="text-3xl md:text-5xl font-display font-bold text-navy">
                         Life at <span className="text-gold-accent">SIA</span>
                     </h2>
                     <p className="text-muted-foreground max-w-xl">
@@ -69,7 +70,7 @@ export const LifeAtSIA = () => {
                             src={img.src}
                             alt={img.alt}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            className={`object-cover transition-transform duration-700 group-hover:scale-110 ${img.className || ''}`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                         <div className="absolute bottom-4 left-4 text-white">

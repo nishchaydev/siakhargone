@@ -59,3 +59,27 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: "Failed to add news" }, { status: 500 });
     }
 }
+
+export async function PUT(req: Request) {
+    try {
+        const { id, title, description, date, imageUrl } = await req.json();
+        const sheets = await getGoogleSheetsInstance();
+        const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+
+        if (!spreadsheetId) return NextResponse.json({ error: "Missing ID" }, { status: 500 });
+
+        await sheets.spreadsheets.values.update({
+            spreadsheetId,
+            range: `${SHEET_TAB_IDS.NEWS}!A${id}:D${id}`,
+            valueInputOption: "USER_ENTERED",
+            requestBody: {
+                values: [[title, description, date, imageUrl]],
+            },
+        });
+
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error("News Update Error:", error);
+        return NextResponse.json({ error: "Failed to update news" }, { status: 500 });
+    }
+}

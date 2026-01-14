@@ -44,6 +44,8 @@ export async function getCMSNotices(): Promise<CMSNoticeItem[]> {
 export interface CMSCareerItem {
     id: number;
     role: string;
+    department?: string;
+    type?: string;
     experience: string;
     description: string;
     isActive: boolean;
@@ -57,6 +59,26 @@ export async function getCMSCareers(): Promise<CMSCareerItem[]> {
         return json.data || [];
     } catch (error) {
         console.error("Failed to fetch careers:", error);
+        return [];
+    }
+}
+
+
+export interface CMSGalleryItem {
+    id: number;
+    imageId: string;
+    category: string;
+    alt: string;
+}
+
+export async function getCMSGallery(): Promise<CMSGalleryItem[]> {
+    try {
+        const res = await fetch("/api/admin/gallery", { cache: "no-store" });
+        if (!res.ok) return [];
+        const json = await res.json();
+        return json.data || [];
+    } catch (error) {
+        console.error("Failed to fetch gallery:", error);
         return [];
     }
 }

@@ -17,17 +17,17 @@ export function middleware(request: NextRequest) {
         }
 
         // B. Auth Check for CMS
-        const adminSession = request.cookies.get("admin_session");
+        const adminToken = request.cookies.get("admin_token");
         const isLoginPage = pathname === "/login";
 
         // Exclude public static files if any (usually handled by matcher, but being safe)
         if (!pathname.includes(".")) {
             // Redirect unauthenticated to login
-            if (!adminSession?.value && !isLoginPage) {
+            if (!adminToken && !isLoginPage) {
                 return NextResponse.redirect(new URL("/login", request.url));
             }
             // Redirect authenticated away from login
-            if (adminSession?.value && isLoginPage) {
+            if (adminToken && isLoginPage) {
                 return NextResponse.redirect(new URL("/dashboard", request.url));
             }
         }
@@ -43,14 +43,15 @@ export function middleware(request: NextRequest) {
     // --- 2. Main Domain Logic ---
     // Protect the physical path if accessed directly (optional, but good for security)
     if (request.nextUrl.pathname.startsWith("/admin-school-portal")) {
-        const adminSession = request.cookies.get("admin_session");
+        const adminToken = request.cookies.get("admin_token");
         if (request.nextUrl.pathname === "/admin-school-portal/login") {
-            if (adminSession?.value === "true") {
+            if (adminToken) {
                 return NextResponse.redirect(new URL("/admin-school-portal/dashboard", request.url));
             }
             return NextResponse.next();
         }
-        if (adminSession?.value !== "true") {
+        // Allow access to login page logic above, block everything else
+        if (!adminToken) {
             return NextResponse.redirect(new URL("/admin-school-portal/login", request.url));
         }
     }
