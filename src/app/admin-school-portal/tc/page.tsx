@@ -325,7 +325,8 @@ export default function TCManager() {
                                                     if (json.success) {
                                                         setForm(prev => ({ ...prev, pdfLink: json.link }));
                                                     } else {
-                                                        alert("Upload Failed: " + json.error);
+                                                        console.error("Upload failed detail:", json);
+                                                        alert("Upload Failed: " + (json.details || json.error));
                                                     }
                                                 } catch (err) {
                                                     console.error(err);

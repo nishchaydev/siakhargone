@@ -16,22 +16,26 @@ import {
 import { Button } from "@/components/ui/button";
 
 const sidebarItems = [
-    { title: "Dashboard", href: "/admin-school-portal/dashboard", icon: LayoutDashboard },
-    { title: "News", href: "/admin-school-portal/news", icon: Megaphone },
-    { title: "Notices", href: "/admin-school-portal/notices", icon: FileText },
-    { title: "Gallery", href: "/admin-school-portal/gallery", icon: ImageIcon },
-    { title: "Careers", href: "/admin-school-portal/careers", icon: Briefcase },
-    { title: "Certificates (TC)", href: "/admin-school-portal/tc", icon: FileCheck },
-    { title: "Applications", href: "/admin-school-portal/applications", icon: Briefcase }, // Reusing Briefcase for now
+    { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { title: "News", href: "/news", icon: Megaphone },
+    { title: "Notices", href: "/notices", icon: FileText },
+    { title: "Gallery", href: "/gallery", icon: ImageIcon },
+    { title: "Careers", href: "/careers", icon: Briefcase },
+    { title: "Certificates (TC)", href: "/tc", icon: FileCheck },
+    { title: "Applications", href: "/applications", icon: Briefcase }, // Reusing Briefcase for now
 ];
 
-export default function AdminSidebar() {
+interface AdminSidebarProps {
+    basePath?: string;
+}
+
+export default function AdminSidebar({ basePath = "/admin-school-portal" }: AdminSidebarProps) {
     const pathname = usePathname();
 
     const handleLogout = async () => {
         try {
             await fetch("/api/admin/logout", { method: "POST" });
-            window.location.href = "/admin-school-portal/login";
+            window.location.href = `${basePath}/login`;
         } catch (error) {
             console.error("Logout failed", error);
         }
@@ -50,11 +54,12 @@ export default function AdminSidebar() {
                 <div className="flex-1 overflow-y-auto py-6 px-4 space-y-1">
                     {sidebarItems.map((item) => {
                         const Icon = item.icon;
-                        const isActive = pathname.startsWith(item.href);
+                        const fullPath = `${basePath}${item.href}`;
+                        const isActive = pathname.startsWith(fullPath);
                         return (
                             <Link
                                 key={item.href}
-                                href={item.href}
+                                href={fullPath}
                                 className={cn(
                                     "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors",
                                     isActive

@@ -358,8 +358,8 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                             </div>
                         </div>
                         <DialogFooter>
-                            <Button variant="outline" onClick={() => setEditingImage(null)}>Cancel</Button>
-                            <Button onClick={handleSaveEdit} disabled={saving} className="bg-purple-600 hover:bg-purple-700 text-white">
+                            <Button variant="outline" onClick={() => setEditingImage(null)} className="border-gray-300 text-gray-700 hover:bg-gray-50">Cancel</Button>
+                            <Button onClick={handleSaveEdit} disabled={saving} className="bg-gold hover:bg-gold-dark text-navy font-bold">
                                 {saving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Save Changes"}
                             </Button>
                         </DialogFooter>

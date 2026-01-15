@@ -58,6 +58,7 @@ export const LatestNews = () => {
                         date: item.date,
                         title: item.title,
                         description: item.description,
+                        imageUrl: item.imageUrl,
                         icon: Bell,
                         color: "bg-blue-50 text-blue-600"
                     }));
@@ -81,7 +82,7 @@ export const LatestNews = () => {
     }
 
     return (
-        <Section className="bg-ivory" id="latest-news">
+        <Section className="bg-white" id="latest-news">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div className="space-y-2">
                     <span className="text-gold font-bold tracking-wider uppercase text-sm">Campus Buzz</span>
@@ -89,15 +90,17 @@ export const LatestNews = () => {
                         Happenings <span className="text-gold-accent">@ SIA</span>
                     </h2>
                 </div>
-                <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-white group">
-                    View All News <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link href="/news-events">
+                    <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-white group">
+                        View All News <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                </Link>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
                 {newsItems.map((item, index) => (
                     <Link
-                        href={`/news-events#news-${item.id}`} // Assuming we'll have anchors or detail pages
+                        href="/news-events"
                         key={item.id}
                         className="block h-full"
                     >
@@ -105,17 +108,32 @@ export const LatestNews = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover-lift group cursor-pointer h-full flex flex-col"
+                            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover-lift group cursor-pointer h-full flex flex-col overflow-hidden"
                         >
-                            <div className="flex justify-between items-start mb-4">
-                                <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none`}>
-                                    {item.category}
-                                </Badge>
-                                <div className="flex items-center text-sm text-gray-500">
-                                    <Calendar className="w-4 h-4 mr-1" />
-                                    {item.date}
+                            {item.imageUrl ? (
+                                <div className="h-48 -mx-6 -mt-6 mb-4 relative overflow-hidden">
+                                    <img
+                                        src={item.imageUrl}
+                                        alt={item.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                    <div className="absolute top-4 left-4">
+                                        <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none shadow-md`}>
+                                            {item.category}
+                                        </Badge>
+                                    </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="flex justify-between items-start mb-4">
+                                    <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none`}>
+                                        {item.category}
+                                    </Badge>
+                                    <div className="flex items-center text-sm text-gray-500">
+                                        <Calendar className="w-4 h-4 mr-1" />
+                                        {item.date}
+                                    </div>
+                                </div>
+                            )}
 
                             <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-accent transition-colors line-clamp-2">
                                 {item.title}

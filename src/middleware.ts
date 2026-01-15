@@ -16,6 +16,13 @@ export function middleware(request: NextRequest) {
             return NextResponse.next();
         }
 
+        // Fix: If accessing via CMS subdomain, strip the /admin-school-portal prefix to avoid 404s
+        // e.g. cms.site.com/admin-school-portal/dashboard -> cms.site.com/dashboard
+        if (pathname.startsWith("/admin-school-portal")) {
+            const newPath = pathname.replace("/admin-school-portal", "");
+            return NextResponse.redirect(new URL(newPath || "/dashboard", request.url));
+        }
+
         // B. Auth Check for CMS
         const adminToken = request.cookies.get("admin_token");
         const isLoginPage = pathname === "/login";
