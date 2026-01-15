@@ -2,12 +2,12 @@
 import { headers } from "next/headers";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 
-export default function AdminLayout({
+export default async function AdminLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const headersList = headers();
+    const headersList = await headers();
     const host = headersList.get("host") || "";
     const isCmsSubdomain = host.startsWith("cms.");
     const basePath = isCmsSubdomain ? "" : "/admin-school-portal";
