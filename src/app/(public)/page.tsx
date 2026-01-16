@@ -1,14 +1,9 @@
-
-
-
-
-
 import HeroSection from "@/components/sections/HeroSection";
 import dynamic from 'next/dynamic';
-
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Lazy Load Non-Critical Components
+const AtAGlance = dynamic(() => import("@/components/home/AtAGlance").then(mod => mod.AtAGlance));
 const WhyChoose = dynamic(() => import("@/components/home/WhyChoose").then(mod => mod.WhyChoose), {
   loading: () => <div className="py-20"><Skeleton className="h-[400px] w-full max-w-7xl mx-auto rounded-xl" /></div>
 });
@@ -70,6 +65,7 @@ export default function Home() {
   return (
     <>
       <HeroSection data={cmsData.hero} stats={cmsData.stats} />
+      <AtAGlance />
       <WhyChoose />
       <PrincipalMessage />
       <Academics />
@@ -81,4 +77,3 @@ export default function Home() {
     </>
   );
 }
-

@@ -1,19 +1,19 @@
-import { Metadata } from "next";
+"use client";
+
 import PageBanner from "@/components/common/PageBanner";
 import { Section } from "@/components/common/Section";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, ArrowRight, Image as ImageIcon } from "lucide-react";
+import { Calendar, MapPin, ArrowRight, Image as ImageIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { NoticeBoard } from "@/components/notices/NoticeBoard";
 import { cloudinary } from "@/lib/cloudinary-images";
-
-export const metadata: Metadata = {
-    title: "News & Events | Sanskar International Academy",
-    description: "Stay updated with the latest news, upcoming events, and gallery highlights from SIA.",
-};
+import { useState, useEffect } from "react";
+import { getCMSNews, CMSNewsItem } from "@/lib/cms-fetch";
+import { Dialog, DialogContent, DialogClose, DialogTitle } from "@/components/ui/dialog";
+import { motion, AnimatePresence } from "framer-motion";
 
 const upcomingEvents = [
     {
@@ -45,34 +45,43 @@ const upcomingEvents = [
     }
 ];
 
-const newsItems = [
-    {
-        id: 1,
-        title: "SIA Students Shine in District Debate Competition",
-        date: "2026-01-10",
-        category: "Achievement",
-        excerpt: "Our students secured the first position in the Inter-School District Debate Competition held last week.",
-        image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        id: 2,
-        title: "New Computer Lab Inauguration",
-        date: "2026-01-05",
-        category: "Infrastructure",
-        excerpt: "We are proud to announce the opening of our state-of-the-art computer lab equipped with the latest technology.",
-        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        id: 3,
-        title: "Workshop on Mental Health & Well-being",
-        date: "2025-12-20",
-        category: "Workshop",
-        excerpt: "A successful workshop was conducted for students of grades 9-12 focusing on stress management and mental well-being.",
-        image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=2069&auto=format&fit=crop"
-    }
-];
-
 export default function NewsEventsPage() {
+    const [newsItems, setNewsItems] = useState<CMSNewsItem[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [selectedNews, setSelectedNews] = useState<CMSNewsItem | null>(null);
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const data = await getCMSNews();
+                setNewsItems(data);
+            } catch (err) {
+                console.error("Failed to load news", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchNews();
+    }, []);
+
+    // Placeholder content if no news found
+    const displayItems = newsItems.length > 0 ? newsItems : [
+        {
+            id: 101,
+            title: "School Reopens after Winter Break",
+            date: "2026-01-08",
+            description: "We are excited to welcome back all students for the new term. Please follow the winter uniform schedule.",
+            imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop"
+        },
+        {
+            id: 102,
+            title: "Republic Day Preparations",
+            date: "2026-01-20",
+            description: "Practice sessions for the upcoming Republic Day parade have begun. Students from grades 6-12 are participating.",
+            imageUrl: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?q=80&w=2076&auto=format&fit=crop"
+        }
+    ];
+
     return (
         <div className="bg-grain min-h-screen">
             <PageBanner
@@ -84,59 +93,78 @@ export default function NewsEventsPage() {
             {/* Latest News Section */}
             <Section id="news" title="Latest News" subtitle="Happenings around the campus">
                 <div className="grid md:grid-cols-3 gap-8">
-                    {newsItems.map((news) => (
-                        <Card key={news.id} className="overflow-hidden hover:shadow-lg transition-shadow border-none shadow-md group">
-                            <div className="relative h-48 w-full overflow-hidden">
-                                <Image
-                                    src={news.image}
-                                    alt={news.title}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute top-4 right-4">
-                                    <Badge className="bg-white/90 text-navy hover:bg-white">{news.category}</Badge>
-                                </div>
-                            </div>
-                            <CardContent className="p-6">
-                                <p className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
-                                    <Calendar size={14} /> {news.date}
-                                </p>
-                                <h3 className="text-xl font-bold text-navy mb-3 line-clamp-2 group-hover:text-gold transition-colors">
-                                    {news.title}
-                                </h3>
-                                <p className="text-gray-600 line-clamp-3 mb-4">
-                                    {news.excerpt}
-                                </p>
-                                <Button variant="link" className="p-0 h-auto text-navy font-bold flex items-center gap-1 hover:gap-2 transition-all">
-                                    Read More <ArrowRight size={14} />
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    {loading ? (
+                        <div className="col-span-3 text-center py-10 text-gray-500">Loading Latest News...</div>
+                    ) : (
+                        // @ts-ignore
+                        displayItems.map((news) => (
+                            <motion.div
+                                key={news.id}
+                                whileHover={{ y: -5 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <Card
+                                    onClick={() => setSelectedNews(news as CMSNewsItem)}
+                                    className="overflow-hidden hover:shadow-xl transition-all border-none shadow-md group cursor-pointer h-full flex flex-col"
+                                >
+                                    <div className="relative h-48 w-full overflow-hidden">
+                                        {news.imageUrl ? (
+                                            <Image
+                                                src={news.imageUrl}
+                                                alt={news.title}
+                                                fill
+                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-navy/5 flex items-center justify-center">
+                                                <ImageIcon className="text-navy/20 w-12 h-12" />
+                                            </div>
+                                        )}
+                                        <div className="absolute top-4 right-4">
+                                            <Badge className="bg-white/90 text-navy hover:bg-white shadow-sm">Update</Badge>
+                                        </div>
+                                    </div>
+                                    <CardContent className="p-6 flex-1 flex flex-col">
+                                        <p className="text-xs font-bold text-gold mb-2 flex items-center gap-1 uppercase tracking-wider">
+                                            <Calendar size={12} /> {news.date}
+                                        </p>
+                                        <h3 className="text-xl font-bold text-navy mb-3 line-clamp-2 group-hover:text-gold transition-colors">
+                                            {news.title}
+                                        </h3>
+                                        <p className="text-gray-600 line-clamp-3 mb-4 text-sm flex-grow">
+                                            {news.description}
+                                        </p>
+                                        <Button variant="link" className="p-0 h-auto text-navy font-bold flex items-center gap-1 hover:gap-2 transition-all mt-auto self-start">
+                                            Read More <ArrowRight size={14} />
+                                        </Button>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        ))
+                    )}
                 </div>
             </Section>
 
             {/* Notice Board Section */}
-            <Section id="notices" title="Notice Board" subtitle="Official circulars and announcements" bgColor="bg-cream">
+            <Section id="notices" title="Notice Board" subtitle="Official circulars and announcements" bgColor="bg-white">
                 <div className="max-w-5xl mx-auto">
                     <NoticeBoard />
                 </div>
             </Section>
 
-            {/* Upcoming Events Section */}
+            {/* Upcoming Events Section (Static for now, but updated dates) */}
             <Section id="events" title="Upcoming Events" subtitle="Mark your calendars">
                 <div className="space-y-6 max-w-5xl mx-auto">
                     {upcomingEvents.map((event) => (
-                        <Card key={event.id} className="overflow-hidden border-l-4 border-l-gold hover:shadow-md transition-all">
+                        <Card key={event.id} className="overflow-hidden border-l-4 border-l-gold hover:shadow-md transition-all cursor-default">
                             <div className="flex flex-col md:flex-row">
                                 {/* Date Box */}
                                 <div className="bg-navy text-white p-6 flex flex-col items-center justify-center min-w-[120px] shrink-0 text-center">
                                     <span className="text-3xl font-bold font-display">{event.date.split('-')[2]}</span>
                                     <span className="text-sm uppercase tracking-wider opacity-80"> Feb 2026</span>
-                                    {/* Simplified date parsing for demo */}
                                 </div>
 
-                                {/* Image (Hidden on small mobile) */}
+                                {/* Image */}
                                 <div className="relative h-48 w-full md:w-64 shrink-0 hidden sm:block">
                                     <Image
                                         src={event.image}
@@ -164,20 +192,21 @@ export default function NewsEventsPage() {
             {/* Gallery Preview Section */}
             <Section id="gallery" title="Campus Life" subtitle="Glimpses of life at SIA" bgColor="bg-white">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {/* Using some placeholder images or cloudinary if available */}
                     {[
-                        cloudinary.infrastructure.others[4], // Ground
-                        cloudinary.annualFunction[0],      // Function
-                        cloudinary.sportsAchievements[2],  // Sports
-                        cloudinary.lab.physics[0]          // Lab
+                        cloudinary.infrastructure.others[4],
+                        cloudinary.annualFunction[0],
+                        cloudinary.sportsAchievements[2],
+                        cloudinary.lab.physics[0]
                     ].map((src, i) => (
                         <div key={i} className="relative aspect-square rounded-xl overflow-hidden group">
-                            <Image
-                                src={src}
-                                alt="Campus Life"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
+                            {src && (
+                                <Image
+                                    src={src}
+                                    alt="Campus Life"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                            )}
                             <div className="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                 <ImageIcon className="text-white w-8 h-8" />
                             </div>
@@ -190,6 +219,54 @@ export default function NewsEventsPage() {
                     </Button>
                 </div>
             </Section>
+
+            {/* News Detail Modal */}
+            <Dialog open={!!selectedNews} onOpenChange={(open) => !open && setSelectedNews(null)}>
+                <DialogContent className="sm:max-w-2xl bg-white p-0 overflow-hidden border-0">
+                    <div className="relative h-64 w-full">
+                        {selectedNews?.imageUrl ? (
+                            <Image
+                                src={selectedNews.imageUrl}
+                                alt={selectedNews?.title || "News"}
+                                fill
+                                className="object-cover"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-navy/10 flex items-center justify-center">
+                                <ImageIcon className="text-navy/30 w-16 h-16" />
+                            </div>
+                        )}
+                        <Button
+                            variant="secondary"
+                            size="icon"
+                            className="absolute top-4 right-4 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md text-white border-0"
+                            onClick={() => setSelectedNews(null)}
+                        >
+                            <X className="w-5 h-5" />
+                        </Button>
+                        <div className="absolute top-4 left-4">
+                            <Badge className="bg-gold text-navy font-bold border-none shadow-lg">Latest Update</Badge>
+                        </div>
+                    </div>
+                    <div className="p-8">
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-4 font-medium uppercase tracking-wider">
+                            <Calendar className="w-4 h-4 text-gold" />
+                            {selectedNews?.date}
+                        </div>
+                        <DialogTitle className="text-3xl font-display font-bold text-navy mb-4 leading-tight">
+                            {selectedNews?.title}
+                        </DialogTitle>
+                        <div className="prose prose-blue max-w-none text-gray-600 leading-relaxed">
+                            <p>{selectedNews?.description}</p>
+                        </div>
+                        <div className="mt-8 flex justify-end">
+                            <Button className="bg-navy hover:bg-navy-light text-white" onClick={() => setSelectedNews(null)}>
+                                Close
+                            </Button>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }

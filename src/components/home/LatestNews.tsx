@@ -26,7 +26,7 @@ const defaultNews = [
     {
         id: 4,
         category: "Excursion",
-        date: "Recent",
+        date: "18 Jan 2026",
         title: "Educational Trip to Gujarat",
         description: "A memorable journey where students explored the vibrant culture and heritage of Gujarat.",
         icon: MapPin,

@@ -48,9 +48,9 @@ export default function Footer() {
               </p>
 
               <div className="flex gap-4 pt-6">
-                <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Facebook className="h-6 w-6" /></a>
-                <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram profile" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Instagram className="h-6 w-6" /></a>
-                <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel" className="bg-white/10 p-3 rounded-full hover:bg-gold hover:text-navy transition-all group scale-110"><Youtube className="h-6 w-6" /></a>
+                <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Facebook className="h-6 w-6" /></a>
+                <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram profile" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Instagram className="h-6 w-6" /></a>
+                <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Youtube className="h-6 w-6" /></a>
               </div>
             </div>
 
@@ -108,7 +108,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-3 text-base text-white/80">
                   <Mail className="w-5 h-5 text-gold shrink-0" />
-                  <a href={`mailto:${schoolData.contact.email}`} className="hover:text-white">{schoolData.contact.email}</a>
+                  <a href="mailto:siakhargone@gmail.com" className="hover:text-white">siakhargone@gmail.com</a>
                 </div>
               </div>
             </div>
@@ -116,7 +116,11 @@ export default function Footer() {
 
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-white/40">
-            <p>© {new Date().getFullYear()} Sanskar International Academy. All Rights Reserved.</p>
+            <div className="flex flex-col md:flex-row gap-4 items-center">
+              <p>© {new Date().getFullYear()} Sanskar International Academy. All Rights Reserved.</p>
+              <p className="hidden md:block">|</p>
+              <p>Last Updated: {new Date().toLocaleString('default', { month: 'short', year: 'numeric' })}</p>
+            </div>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
               <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-white">Terms of Use</Link>

@@ -4,6 +4,34 @@ const nextYear = currentYear + 1;
 
 export const events = [
     {
+        id: 101,
+        title: "New Year's Day",
+        date: `${currentYear}-01-01`,
+        description: "Celebrating the start of 2026.",
+        image: "https://images.unsplash.com/photo-1546271876-af60700d3419?q=80&w=2000&auto=format&fit=crop"
+    },
+    {
+        id: 102,
+        title: "Makar Sankranti / Pongal",
+        date: `${currentYear}-01-14`,
+        description: "Harvest festival celebrations across India.",
+        image: "https://images.unsplash.com/photo-1610457632616-43d57e2d96c3?q=80&w=2000&auto=format&fit=crop"
+    },
+    {
+        id: 103,
+        title: "Vasant Panchami",
+        date: `${currentYear}-01-23`,
+        description: "Festival dedicated to Goddess Saraswati.",
+        image: "https://images.unsplash.com/photo-1582046428780-e822066c1c87?q=80&w=2000&auto=format&fit=crop"
+    },
+    {
+        id: 104,
+        title: "Republic Day",
+        date: `${currentYear}-01-26`,
+        description: "77th Republic Day celebration with flag hoisting.",
+        image: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?q=80&w=2076&auto=format&fit=crop"
+    },
+    {
         id: 1,
         title: "New Academic Session Begins",
         date: `${currentYear}-04-01`,

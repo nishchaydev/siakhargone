@@ -14,9 +14,16 @@ const actions = [
     {
         label: "Enquire",
         icon: PenTool,
-        href: "/admissions", // Consolidated to admissions page
+        href: "/admissions",
         color: "bg-gold",
         external: false,
+    },
+    {
+        label: "WhatsApp",
+        icon: MessageCircle,
+        href: "https://wa.me/917049110104?text=Hi%2C%20I%20want%20to%20know%20about%20admissions",
+        color: "bg-green-500",
+        external: true,
     },
 ];
 

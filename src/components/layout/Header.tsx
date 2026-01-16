@@ -269,7 +269,7 @@ const Header = () => {
                     >
                       {item.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>
+                    <NavigationMenuContent className={item.title === "Downloads" ? "right-0 left-auto" : ""}>
                       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-foreground">
                         {item.children.map((child) => (
                           <ListItem

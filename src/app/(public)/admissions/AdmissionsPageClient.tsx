@@ -16,6 +16,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Check, ChevronRight, Loader2, Sparkles, User, Users, School, Bus } from "lucide-react";
 import confetti from "canvas-confetti";
 import PageBanner from "@/components/common/PageBanner";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface ImagePlaceholder {
     id: string;
@@ -523,6 +529,43 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
                             )}
                         </CardContent>
                     </Card>
+                </div>
+            </Section>
+
+            <Section id="faqs" title="Frequently Asked Questions" subtitle="Common queries about admissions at SIA" bgColor="bg-white">
+                <div className="max-w-3xl mx-auto">
+                    <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger>What is the age criteria for admission?</AccordionTrigger>
+                            <AccordionContent>
+                                For Nursery, the child must be 3+ years as of March 31st of the academic year. For Class 1, the age should be 6+ years. Age criteria for other classes follow accordingly.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-2">
+                            <AccordionTrigger>Is transport facility available?</AccordionTrigger>
+                            <AccordionContent>
+                                Yes, we have a fleet of GPS-enabled buses covering the entire Khargone city and nearby rural areas within a 20km radius.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-3">
+                            <AccordionTrigger>What is the student-teacher ratio?</AccordionTrigger>
+                            <AccordionContent>
+                                We maintain a healthy student-teacher ratio of 25:1 in Pre-Primary and 30:1 in higher classes to ensure personalized attention for every student.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-4">
+                            <AccordionTrigger>Do you offer sports and co-curricular activities?</AccordionTrigger>
+                            <AccordionContent>
+                                Absolutely. We have facilities for Cricket, Football, Basketball, skating, and Taekwondo. We also offer Music, Dance, Art & Craft, and Robotics as part of the curriculum.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-5">
+                            <AccordionTrigger>How can I pay the school fees?</AccordionTrigger>
+                            <AccordionContent>
+                                Fees can be paid online via our school app/portal, or via Cheque/DD at the school reception. We also accept UPI and Card payments.
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
                 </div>
             </Section>
 

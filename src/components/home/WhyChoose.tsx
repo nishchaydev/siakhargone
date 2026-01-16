@@ -50,10 +50,15 @@ export function WhyChoose() {
             id="why-choose"
             title="Why Choose SIA?"
             subtitle="Defining excellence in education through care and innovation."
-            bgColor="bg-ivory"
+            bgColor="bg-white"
+            className="relative overflow-hidden"
         >
+            {/* Background Decorative Elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-navy/5 rounded-bl-full -mr-20 -mt-20 z-0 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/10 rounded-tr-full -ml-10 -mb-10 z-0 pointer-events-none" />
+
             <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10"
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="visible"
@@ -63,11 +68,11 @@ export function WhyChoose() {
                     const Icon = feature.icon;
                     return (
                         <motion.div key={feature.title} variants={fadeInUp}>
-                            <Card className="text-center p-6 md:p-8 h-full card-premium">
-                                <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-2xl bg-royal-blue/10 text-royal-blue mb-6">
+                            <Card className="text-center p-6 md:p-8 h-full card-premium border-gray-100 shadow-none hover:shadow-lg bg-white">
+                                <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-2xl bg-navy/5 text-navy mb-6 group-hover:bg-gold/10 group-hover:text-gold-dark transition-colors duration-300">
                                     <Icon className="h-8 w-8" />
                                 </div>
-                                <h3 className="text-xl font-bold font-display text-royal-blue-dark mb-3">
+                                <h3 className="text-xl font-bold font-display text-navy mb-3">
                                     {feature.title}
                                 </h3>
                                 <p className="text-muted-foreground leading-relaxed">

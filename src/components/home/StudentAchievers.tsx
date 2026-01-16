@@ -15,19 +15,11 @@ const achievers = [
         class: "Class X",
         achievement: "State Level Gold Medalist",
         category: "Taekwondo",
-        image: "/images/achievers/taekwondo-boy.jpg", // Placeholder
+        image: "/images/achievers/real-student-1.png",
         icon: Medal,
         color: "bg-gold/10 text-gold-dark border-gold/20"
     },
-    {
-        name: "Ishita Sharma",
-        class: "Class VIII",
-        achievement: "National Science Olympiad (Rank 5)",
-        category: "Academics",
-        image: "/images/achievers/olympiad-girl.jpg", // Placeholder
-        icon: Star,
-        color: "bg-blue-100 text-blue-700 border-blue-200"
-    },
+
     {
         name: "Under-14 Cricket Team",
         class: "Secondary Wing",
@@ -45,8 +37,12 @@ export const StudentAchievers = () => {
         `https://placehold.co/400x500/0C2E53/FFFFFF/png?text=${category.replace(" ", "+")}`;
 
     return (
-        <Section id="achievers" className="bg-gradient-to-b from-white to-gray-50">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+        <Section id="achievers" className="bg-white relative overflow-hidden" isFirstSection={false}>
+            {/* Background Decorative Elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-navy/5 rounded-bl-full -mr-20 -mt-20 z-0 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/10 rounded-tr-full -ml-10 -mb-10 z-0 pointer-events-none" />
+
+            <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
                 <span className="text-gold font-bold tracking-wider uppercase text-sm">Hall of Fame</span>
                 <h2 className="text-4xl md:text-5xl font-display font-bold text-navy mt-2">
                     Our <span className="text-gold-accent">Pride & Glory</span>
@@ -56,7 +52,7 @@ export const StudentAchievers = () => {
                 </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-8 relative z-10">
                 {achievers.map((student, index) => (
                     <motion.div
                         key={index}
@@ -65,7 +61,7 @@ export const StudentAchievers = () => {
                         transition={{ delay: index * 0.2, duration: 0.6 }}
                         viewport={{ once: true }}
                     >
-                        <Card className="overflow-hidden border-0 shadow-soft hover:shadow-xl transition-all duration-300 group h-full">
+                        <Card className="overflow-hidden border-gray-100 shadow-none hover:shadow-xl transition-all duration-300 group h-full bg-white">
                             <div className="relative aspect-[4/5] overflow-hidden">
                                 {/* Use local placeholder or fallback */}
                                 <Image
@@ -74,10 +70,11 @@ export const StudentAchievers = () => {
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
+                                {/* Clean gradient overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent opacity-80" />
 
                                 <div className="absolute top-4 right-4">
-                                    <Badge className={`${student.color} backdrop-blur-md border`}>
+                                    <Badge className={`${student.color} backdrop-blur-md border shadow-sm`}>
                                         <student.icon className="w-3 h-3 mr-1" /> {student.category}
                                     </Badge>
                                 </div>
