@@ -35,6 +35,28 @@ interface AdmissionsPageClientProps {
     bannerImage?: string;
 }
 
+// Define types locally
+type FormStep = 1 | 2 | 3 | 4 | 5;
+
+interface AdmissionFormData {
+    studentName: string;
+    dob: string;
+    gender: string;
+    currentClass: string;
+    grade: string;
+    currentSchool: string;
+    board: string;
+    fatherName: string;
+    fatherMobile: string;
+    fatherEmail: string;
+    motherName: string;
+    motherMobile: string;
+    motherEmail: string;
+    address: string;
+    transportRequired: string;
+    visitTime: string;
+}
+
 export default function AdmissionsPageClient({
     careerCounsellingImage,
     bannerImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
@@ -43,7 +65,7 @@ export default function AdmissionsPageClient({
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Form state
-    const { register, handleSubmit, control, formState: { errors }, trigger, watch, setValue } = useForm<formData>({
+    const { register, handleSubmit, control, formState: { errors }, trigger, watch, setValue } = useForm<AdmissionFormData>({
         defaultValues: {
             studentName: "",
             dob: "",
@@ -68,7 +90,10 @@ export default function AdmissionsPageClient({
     // -------------------------------------------------------------------------
     // 🔴 PASTE YOUR GOOGLE WEP APP URL HERE
     // -------------------------------------------------------------------------
-    const onSubmit = async (data: formData) => {
+    // -------------------------------------------------------------------------
+    // 🔴 PASTE YOUR GOOGLE WEP APP URL HERE
+    // -------------------------------------------------------------------------
+    const onSubmit = async (data: AdmissionFormData) => {
         setIsSubmitting(true);
 
         try {
@@ -88,7 +113,7 @@ export default function AdmissionsPageClient({
     };
 
     const nextStep = async () => {
-        let fieldsToValidate: (keyof formData)[] = [];
+        let fieldsToValidate: (keyof AdmissionFormData)[] = [];
 
         if (step === 1) fieldsToValidate = ['studentName', 'dob', 'gender', 'currentClass', 'grade', 'currentSchool', 'board'];
         if (step === 2) fieldsToValidate = ['fatherName', 'fatherMobile', 'motherName', 'address'];
