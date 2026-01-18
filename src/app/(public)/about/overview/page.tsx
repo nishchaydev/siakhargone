@@ -8,14 +8,12 @@ export const metadata: Metadata = {
     description: 'Learn about Sanskar International Academy (SIA), a premier CBSE institution in Khargone combining academic excellence with cultural values.',
 };
 
-import { getSiteAssets } from '@/lib/cms-fetch';
-
 export const dynamic = 'force-dynamic';
 
 export default async function AboutOverviewPage() {
     const aboutData = await loadAboutData();
-    const assets = await getSiteAssets().catch(() => []);
-    const bannerImage = assets.find(a => a.key === 'banner_about')?.imageUrl || "https://images.unsplash.com/photo-1541339907198-e031e787bf77?q=80&w=2070&auto=format&fit=crop";
+    // Static fallback since SiteAssets was removed
+    const bannerImage = "https://images.unsplash.com/photo-1541339907198-e031e787bf77?q=80&w=2070&auto=format&fit=crop";
 
     const schoolImage = (aboutData && aboutData.schoolImage) ? {
         src: aboutData.schoolImage.src,

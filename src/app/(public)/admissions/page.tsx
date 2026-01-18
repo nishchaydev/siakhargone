@@ -15,13 +15,12 @@ const careerCounsellingImage = {
   imageHint: "Counselling"
 };
 
-import { getSiteAssets } from '@/lib/cms-fetch';
+// getSiteAssets removed
 
 export const dynamic = 'force-dynamic';
 
 export default async function AdmissionsPage() {
-  const assets = await getSiteAssets().catch(() => []);
-  const bannerImage = assets.find(a => a.key === 'banner_admissions')?.imageUrl;
+  const bannerImage = undefined;
 
   return <AdmissionsPageClient careerCounsellingImage={careerCounsellingImage} bannerImage={bannerImage} />;
 }

@@ -26,7 +26,6 @@ const sidebarItems = [
     { title: "Events", href: "/events", icon: Calendar },
     { title: "Notices", href: "/notices", icon: FileText },
     { title: "Gallery", href: "/gallery", icon: ImageIcon },
-    { title: "Hall of Fame", href: "/achievers", icon: Trophy },
     { title: "Careers", href: "/careers", icon: Briefcase },
     { title: "Student Results", href: "/results", icon: GraduationCap },
     { title: "Applications", href: "/applications", icon: Briefcase },

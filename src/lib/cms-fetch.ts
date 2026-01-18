@@ -99,44 +99,4 @@ export async function getCMSGallery(): Promise<CMSGalleryItem[]> {
     }
 }
 
-export interface SiteAsset {
-    id: string;
-    section: string;
-    key: string;
-    imageUrl: string;
-    altText: string;
-}
 
-export async function getSiteAssets(): Promise<SiteAsset[]> {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/site-assets`, { cache: "no-store" });
-        if (!res.ok) return [];
-        const json = await res.json();
-        return json.data || [];
-    } catch (error: any) {
-        console.warn("⚠️ Site Assets Fetch Failed:", error.message);
-        return [];
-    }
-}
-
-export interface CMSAchiever {
-    id: string;
-    name: string;
-    class: string;
-    achievement: string;
-    category: string;
-    imageUrl: string;
-    priority: number;
-}
-
-export async function getCMSAchievers(): Promise<CMSAchiever[]> {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/achievers`, { cache: "no-store" });
-        if (!res.ok) return [];
-        const json = await res.json();
-        return json.data || [];
-    } catch (error: any) {
-        console.warn("⚠️ CMS Achievers Fetch Failed:", error.message);
-        return [];
-    }
-}

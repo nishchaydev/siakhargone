@@ -16,53 +16,24 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 
-interface CMSNewsItem {
-    id: string; // Changed to string to match service
+interface CMSEventItem {
+    id: string;
     title: string;
-    description: string;
     date: string;
-    imageUrl?: string;
+    time: string;
+    location: string;
+    description: string;
+    imageUrl: string;
 }
 
 interface NewsEventsPageClientProps {
     initialNews: CMSNewsItem[];
+    initialEvents: CMSEventItem[];
 }
 
-const upcomingEvents = [
-    {
-        id: 1,
-        title: "Annual Sports Meet 2026",
-        date: "2026-02-15",
-        time: "09:00 AM",
-        location: "School Sports Ground",
-        description: "Join us for a day of athletic excellence and team spirit as our students compete in various sports events.",
-        image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        id: 2,
-        title: "Science Exhibition",
-        date: "2026-02-28",
-        time: "10:30 AM",
-        location: "Main Auditorium",
-        description: "Witness the innovative projects and scientific models created by our young scientists.",
-        image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        id: 3,
-        title: "Holi Celebration",
-        date: "2026-03-04",
-        time: "11:00 AM",
-        location: "School Campus",
-        description: "A colorful celebration of the festival of Holi with organic colors and cultural performances.",
-        image: "https://images.unsplash.com/photo-1543355209-4081c70c1a92?q=80&w=2070&auto=format&fit=crop"
-    }
-];
-
-export default function NewsEventsPageClient({ initialNews }: NewsEventsPageClientProps) {
-    // If initialNews is empty, we could fallback, but better to show empty state or just rely on server.
-    // The user issue was inconsistency, likely due to client fetch failure or mismatch.
-    // Server fetch should resolve this.
+export default function NewsEventsPageClient({ initialNews, initialEvents }: NewsEventsPageClientProps) {
     const newsItems = initialNews;
+    const eventsItems = initialEvents;
     const [selectedNews, setSelectedNews] = useState<CMSNewsItem | null>(null);
 
     return (
@@ -134,40 +105,52 @@ export default function NewsEventsPageClient({ initialNews }: NewsEventsPageClie
                 </div>
             </Section>
 
-            {/* Upcoming Events Section (Static for now, but updated dates) */}
+            {/* Upcoming Events Section */}
             <Section id="events" title="Upcoming Events" subtitle="Mark your calendars">
                 <div className="space-y-6 max-w-5xl mx-auto">
-                    {upcomingEvents.map((event) => (
-                        <Card key={event.id} className="overflow-hidden border-l-4 border-l-gold hover:shadow-md transition-all cursor-default">
-                            <div className="flex flex-col md:flex-row">
-                                {/* Date Box */}
-                                <div className="bg-navy text-white p-6 flex flex-col items-center justify-center min-w-[120px] shrink-0 text-center">
-                                    <span className="text-3xl font-bold font-display">{event.date.split('-')[2]}</span>
-                                    <span className="text-sm uppercase tracking-wider opacity-80"> Feb 2026</span>
-                                </div>
-
-                                {/* Image */}
-                                <div className="relative h-48 w-full md:w-64 shrink-0 hidden sm:block">
-                                    <Image
-                                        src={event.image}
-                                        alt={event.title}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-6 flex-1 flex flex-col justify-center">
-                                    <h3 className="text-2xl font-bold text-navy mb-2">{event.title}</h3>
-                                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
-                                        <span className="flex items-center gap-1"><MapPin size={14} className="text-gold" /> {event.location}</span>
-                                        <span className="flex items-center gap-1"><Calendar size={14} className="text-gold" /> {event.time}</span>
+                    {eventsItems.length === 0 ? (
+                        <div className="text-center py-10 text-gray-500">No upcoming events scheduled.</div>
+                    ) : (
+                        eventsItems.map((event) => (
+                            <Card key={event.id} className="overflow-hidden border-l-4 border-l-gold hover:shadow-md transition-all cursor-default">
+                                <div className="flex flex-col md:flex-row">
+                                    {/* Date Box */}
+                                    <div className="bg-navy text-white p-6 flex flex-col items-center justify-center min-w-[120px] shrink-0 text-center">
+                                        <span className="text-3xl font-bold font-display">{event.date.split('-')[2]}</span>
+                                        <span className="text-sm uppercase tracking-wider opacity-80">
+                                            {new Date(event.date).toLocaleString('default', { month: 'short' })} {event.date.split('-')[0]}
+                                        </span>
                                     </div>
-                                    <p className="text-gray-600">{event.description}</p>
+
+                                    {/* Image */}
+                                    <div className="relative h-48 w-full md:w-64 shrink-0 hidden sm:block">
+                                        {event.imageUrl ? (
+                                            <Image
+                                                src={event.imageUrl}
+                                                alt={event.title}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
+                                                <ImageIcon />
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="p-6 flex-1 flex flex-col justify-center">
+                                        <h3 className="text-2xl font-bold text-navy mb-2">{event.title}</h3>
+                                        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
+                                            <span className="flex items-center gap-1"><MapPin size={14} className="text-gold" /> {event.location}</span>
+                                            <span className="flex items-center gap-1"><Calendar size={14} className="text-gold" /> {event.time}</span>
+                                        </div>
+                                        <p className="text-gray-600">{event.description}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </Card>
-                    ))}
+                            </Card>
+                        ))
+                    )}
                 </div>
             </Section>
 

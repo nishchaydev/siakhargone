@@ -1,6 +1,5 @@
 import HeroSection from "@/components/sections/HeroSection";
 // Don't lazy load LatestNews to prevent "pop-in" if we have data instantly.
-// But we still can if we want to reduce bundle, but passing props is key.
 import { LatestNews } from "@/components/home/LatestNews";
 
 import nextDynamic from 'next/dynamic';
@@ -12,36 +11,27 @@ const WhyChoose = nextDynamic(() => import("@/components/home/WhyChoose").then(m
   loading: () => <div className="py-20"><Skeleton className="h-[400px] w-full max-w-7xl mx-auto rounded-xl" /></div>
 });
 const PrincipalMessage = nextDynamic(() => import("@/components/home/PrincipalMessage").then(mod => mod.PrincipalMessage));
-// LatestNews is now imported directly for performance
-
 const CTASection = nextDynamic(() => import("@/components/home/CTASection").then(mod => mod.CTASection));
 const Academics = nextDynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
-const StudentAchievers = nextDynamic(() => import("@/components/home/StudentAchievers").then(mod => mod.StudentAchievers));
 const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
-// const AchievementsSection = dynamic(() => import("@/components/home/AchievementsSection").then(mod => mod.AchievementsSection)); // Deprecated
 const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
 
 import { albums, testimonials } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
 import { getNewsService } from "@/services/newsService";
-import { CMSNewsItem, getSiteAssets, SiteAsset, getCMSAchievers, CMSAchiever } from "@/lib/cms-fetch";
+// Removed deleted imports: getSiteAssets, getCMSAchievers
 
 // Force dynamic rendering since we are fetching news which updates frequently
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  // Hybrid Fetching: News is dynamic, Assets/Achievers are static/manual
+  // Hybrid Fetching: News is dynamic
   const [newsData] = await Promise.all([
     // Direct Service Call (No Fetch API Overhead/Error)
     getNewsService().catch(e => { console.error("News Fetch Error:", e); return []; })
   ]);
 
-  // Static data for assets and achievers (Manually updated by user)
-  const achieversData: CMSAchiever[] = [];
-
-  // Curate homepage gallery images (Static for now as Gallery module is separate, or can be hybridized)
-  // For now keeping sidebar/gallery logic static but Hero/LifeAtSIA dynamic as requested
-
+  // Curate homepage gallery images
   const sessionStart = albums.find(a => a.albumName === "Session Start")?.photos || [];
   const annualFunction = albums.find(a => a.albumName === "Annual Function")?.photos?.slice(1, 11) || [];
   const sports = albums.find(a => a.albumName === "Sports & Achivements")?.photos?.slice(0, 5) || [];
@@ -95,7 +85,7 @@ export default async function Home() {
       <WhyChoose />
       <PrincipalMessage />
       <Academics />
-      <StudentAchievers achievers={achieversData} />
+      {/* StudentAchievers removed */}
       <LatestNews initialNews={newsData} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />

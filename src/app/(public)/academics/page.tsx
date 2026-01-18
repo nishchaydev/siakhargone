@@ -28,14 +28,13 @@ interface Highlight {
   description: string;
 }
 
-import { getSiteAssets } from '@/lib/cms-fetch';
-
+// getSiteAssets removed
 export const dynamic = 'force-dynamic';
 
 export default async function AcademicsPage() {
   const albums = await loadAlbums();
-  const assets = await getSiteAssets().catch(() => []);
-  const bannerImage = assets.find(a => a.key === 'banner_academics')?.imageUrl;
+  // Static banner fallback
+  const bannerImage = undefined;
 
   // Extract photos for auto-scroll
   const labAlbum = albums.find(a => a.albumName === "Labs & Facilities");

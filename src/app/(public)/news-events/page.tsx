@@ -1,14 +1,15 @@
 import { getNewsService } from "@/services/newsService";
+import { getEventsService } from "@/services/eventsService";
 import NewsEventsPageClient from "./NewsEventsPageClient";
 
 export const dynamic = 'force-dynamic';
 
 export default async function NewsEventsPage() {
-    const newsItems = await getNewsService();
+    // Fetch both News and Events in parallel
+    const [newsItems, eventsItems] = await Promise.all([
+        getNewsService(),
+        getEventsService()
+    ]);
 
-    // Map service items to UI items if needed, but they should match closely
-    // Service: { id, title, description, date, imageUrl, ... }
-    // Client Expects: { id, title, description, date, imageUrl? }
-
-    return <NewsEventsPageClient initialNews={newsItems} />;
+    return <NewsEventsPageClient initialNews={newsItems} initialEvents={eventsItems} />;
 }
