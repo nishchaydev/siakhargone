@@ -16,6 +16,14 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 
+interface CMSNewsItem {
+    id: string; // Changed to string to match service
+    title: string;
+    description: string;
+    date: string;
+    imageUrl?: string;
+}
+
 interface CMSEventItem {
     id: string;
     title: string;
