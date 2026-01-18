@@ -13,36 +13,6 @@ import { getCMSNews, CMSNewsItem } from "@/lib/cms-fetch";
 
 
 
-const defaultNews = [
-    {
-        id: 1,
-        category: "Admission",
-        date: "15 Dec 2024",
-        title: "Admissions Open for Session 2025-26",
-        description: "Applications are now invited for Nursery to Class XI. Apply online or visit the campus.",
-        icon: Star,
-        color: "bg-blue-100 text-blue-700"
-    },
-    {
-        id: 4,
-        category: "Excursion",
-        date: "18 Jan 2026",
-        title: "Educational Trip to Gujarat",
-        description: "A memorable journey where students explored the vibrant culture and heritage of Gujarat.",
-        icon: MapPin,
-        color: "bg-orange-100 text-orange-700"
-    },
-    {
-        id: 2,
-        category: "Sports",
-        date: "10 Dec 2024",
-        title: "SIA Wins Inter-School Cricket Championship",
-        description: "Our under-14 cricket team brings home the trophy after a thrilling final match.",
-        icon: Trophy,
-        color: "bg-gold/20 text-gold-dark"
-    }
-];
-
 interface LatestNewsProps {
     initialNews: any[];
 }
@@ -57,7 +27,7 @@ export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
         imageUrl: item.imageUrl,
         icon: item.icon || Bell, // Fallback if server doesn't provide
         color: "bg-blue-50 text-blue-600"
-    })) : defaultNews);
+    })) : []);
 
     const [isLoading, setIsLoading] = useState(false); // No client fetch needed if SSR data provided
 

@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { ExternalLink, CreditCard, Download, Search, Bus, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 import { tuitionFees, busFees, oneTimeFees } from "@/data/fees";
+import { FeeCalculator } from "@/components/fees/FeeCalculator";
 
 export default function FeesPage() {
     const [busSearch, setBusSearch] = useState("");
@@ -27,6 +28,11 @@ export default function FeesPage() {
                     <p className="text-lg text-muted-foreground">
                         Transparent and affordable education. View our current session fees and pay securely online via our ERP portal.
                     </p>
+                </div>
+
+                {/* Fee Calculator Section - Prominently Displayed */}
+                <div className="mb-20 max-w-4xl mx-auto">
+                    <FeeCalculator />
                 </div>
 
                 {/* Action Card */}

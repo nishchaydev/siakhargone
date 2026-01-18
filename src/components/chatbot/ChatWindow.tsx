@@ -27,13 +27,14 @@ interface LocalChatMessage extends ChatMessage {
 type EnquiryStep = 'none' | 'name' | 'phone' | 'class' | 'message';
 
 // --- STATIC KNOWLEDGE BASE ---
+// --- STATIC KNOWLEDGE BASE ---
 const KNOWLEDGE_BASE = [
   {
     keywords: ['hi', 'hello', 'hey', 'start', 'menu'],
     answer: "Hello! Welcome to Sanskar International Academy. How can I assist you today?",
     options: [
       { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
-      { label: "Fee Structure", value: "What is the fee structure?" },
+      { label: "Fee Calculator 🧮", value: "calculator" },
       { label: "Academics", value: "Tell me about academics" },
       { label: "Contact Us", value: "What are the contact details?" },
     ]
@@ -43,16 +44,26 @@ const KNOWLEDGE_BASE = [
     answer: "Admissions for the 2026-27 session are currently OPEN. You can enquire directly here!",
     options: [
       { label: "Start Enquiry 📝", value: "I want to enquire for admission" },
+      { label: "Fee Calculator 🧮", value: "calculator" },
       { label: "Chat on WhatsApp 💬", value: "whatsapp" },
       { label: "Check Age Criteria", value: "What is the age criteria?" }
     ]
   },
   {
     keywords: ['fee', 'cost', 'payment', 'charges', 'money'],
-    answer: "Our fee structure is designed to be transparent. It varies by grade level. Please download the detailed fee structure below.",
+    answer: "Our fee structure is designed to be transparent. You can estimate the exact amount using our Fee Calculator.",
     options: [
+      { label: "Open Fee Calculator 🧮", value: "calculator" },
       { label: "Start Enquiry", value: "I want to enquire for admission" },
       { label: "Chat on WhatsApp 💬", value: "whatsapp" }
+    ]
+  },
+  {
+    keywords: ['calculator', 'estimate', 'calculation'],
+    answer: "You can calculate the exact fees for your child's class and bus route on our Fees page.",
+    options: [
+      { label: "Go to Fee Calculator", value: "open_calculator" },
+      { label: "Download Fee Structure", value: "download_fees" }
     ]
   },
   {
@@ -102,8 +113,8 @@ const findBestMatch = (text: string): { answer: string, options?: QuickOption[] 
     answer: "I'm not sure I understood that correctly. Here are some topics I can help with:",
     options: [
       { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
+      { label: "Fee Calculator 🧮", value: "calculator" },
       { label: "Chat on WhatsApp 💬", value: "whatsapp" },
-      { label: "Fee Structure", value: "Fees" },
       { label: "Contact Support", value: "Contact" },
       { label: "Facilities", value: "Facilities" },
     ]
@@ -118,8 +129,8 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
       content: "Hello! I’m SIA Assistant! Ask me anything about the school.",
       options: [
         { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
+        { label: "Fee Calculator 🧮", value: "calculator" },
         { label: "Chat on WhatsApp 💬", value: "whatsapp" },
-        { label: "Fee Structure 💰", value: "Fees" },
         { label: "Facilities 🏫", value: "Facilities" },
         { label: "Contact Us 📞", value: "Contact" }
       ]
@@ -227,6 +238,11 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
 
     if (text === "whatsapp") {
       window.open("https://wa.me/917049110104?text=Hi, I want admission information.", "_blank");
+      return;
+    }
+
+    if (text === "open_calculator") {
+      window.location.href = "/fees";
       return;
     }
 
