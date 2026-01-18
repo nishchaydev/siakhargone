@@ -86,7 +86,7 @@ export default async function Home() {
       <PrincipalMessage />
       <Academics />
       {/* StudentAchievers removed */}
-      <LatestNews initialNews={newsData} />
+      <LatestNews initialNews={newsData.slice(0, 3)} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
       <CTASection />
