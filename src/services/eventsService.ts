@@ -23,7 +23,8 @@ export async function getEventsService(): Promise<EventItem[]> {
         // Schema: Id, Title, Date, Time, Location, Description, ImageUrl, CreatedAt
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId,
-            range: `${SHEET_TAB_IDS.EVENTS || 'Events'}!A2:H`,
+            // Simplify range to 'A:H' to avoid "Unable to parse range" if strict A2 usage is problematic for the API in some contexts
+            range: `${SHEET_TAB_IDS.EVENTS || 'Events'}!A:H`,
         });
 
         const rows = response.data.values || [];

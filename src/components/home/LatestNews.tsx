@@ -20,13 +20,13 @@ interface LatestNewsProps {
 export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
     const [newsItems, setNewsItems] = useState<any[]>(initialNews.length > 0 ? initialNews.map(item => ({
         id: item.id,
-        category: "Update",
+        category: item.type || "Update",
         date: item.date,
         title: item.title,
         description: item.description,
         imageUrl: item.imageUrl,
-        icon: item.icon || Bell, // Fallback if server doesn't provide
-        color: "bg-blue-50 text-blue-600"
+        icon: item.type === 'Event' ? Calendar : Bell,
+        color: item.type === 'Event' ? "bg-orange-100 text-orange-700 border-orange-200" : "bg-blue-50 text-blue-600 border-blue-100"
     })) : []);
 
     const [isLoading, setIsLoading] = useState(false); // No client fetch needed if SSR data provided

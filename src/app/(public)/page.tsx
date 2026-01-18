@@ -20,6 +20,7 @@ const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").
 import { albums, testimonials } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
 import { getNewsService } from "@/services/newsService";
+import { getEventsService } from "@/services/eventsService";
 // Removed deleted imports: getSiteAssets, getCMSAchievers
 
 // Force dynamic rendering since we are fetching news which updates frequently
@@ -27,12 +28,21 @@ export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   // Hybrid Fetching: News is dynamic
-  const [newsData] = await Promise.all([
-    // Direct Service Call (No Fetch API Overhead/Error)
-    getNewsService().catch(e => { console.error("News Fetch Error:", e); return []; })
+  // Hybrid Fetching: News & Events
+  const [newsItems, eventsItems] = await Promise.all([
+    getNewsService().catch((e: unknown) => { console.error("News Fetch Error:", e); return []; }),
+    getEventsService().catch((e: unknown) => { console.error("Events Fetch Error:", e); return []; })
   ]);
 
-  console.log(`[HomePage] Fetched ${newsData.length} news items.`);
+  // Unified Feed Logic
+  const allUpdates = [
+    ...newsItems.map((item: any) => ({ ...item, type: 'News' })),
+    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' }))
+  ].sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const latestUpdates = allUpdates.slice(0, 3);
+
+  console.log(`[HomePage] Displaying ${latestUpdates.length} updates from ${newsItems.length} news & ${eventsItems.length} events.`);
 
   // Curate homepage gallery images
   const sessionStart = albums.find(a => a.albumName === "Session Start")?.photos || [];
@@ -89,7 +99,7 @@ export default async function Home() {
       <PrincipalMessage />
       <Academics />
       <StudentAchievers />
-      <LatestNews initialNews={newsData.slice(0, 3)} />
+      <LatestNews initialNews={latestUpdates} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
       <CTASection />
