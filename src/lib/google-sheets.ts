@@ -60,8 +60,6 @@ export const SHEET_TAB_IDS = {
     TRANSFER_CERTIFICATES: 'TransferCertificates',
     ENQUIRIES: 'Enquiries',
     ADMISSIONS: 'Admissions',
-    SITE_ASSETS: 'SiteAssets',
-    STUDENT_ACHIEVERS: 'StudentAchievers',
     EVENTS: 'Events',
 };
 
