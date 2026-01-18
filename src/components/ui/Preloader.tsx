@@ -34,7 +34,7 @@ export default function Preloader() {
                 className="relative w-32 h-32 md:w-40 md:h-40 mb-4"
             >
                 <Image
-                    src={cloudinary.schoolLogo || "/logo.png"}
+                    src="https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png"
                     alt="SIA Loader"
                     fill
                     className="object-contain"

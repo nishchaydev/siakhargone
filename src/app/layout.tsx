@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Preloader from "@/components/ui/Preloader";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -97,6 +98,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       </head>
       <body className="bg-background text-foreground antialiased bg-grain">
+        <Preloader />
         {children}
         <BackToTop />
         <Toaster />
