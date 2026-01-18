@@ -21,23 +21,25 @@ import { albums, testimonials } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
 import { getNewsService } from "@/services/newsService";
 import { getEventsService } from "@/services/eventsService";
+import { getNoticesService } from "@/services/noticesService";
 // Removed deleted imports: getSiteAssets, getCMSAchievers
 
 // Force dynamic rendering since we are fetching news which updates frequently
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  // Hybrid Fetching: News is dynamic
-  // Hybrid Fetching: News & Events
-  const [newsItems, eventsItems] = await Promise.all([
+  // Hybrid Fetching: News, Events & Notices
+  const [newsItems, eventsItems, noticesItems] = await Promise.all([
     getNewsService().catch((e: unknown) => { console.error("News Fetch Error:", e); return []; }),
-    getEventsService().catch((e: unknown) => { console.error("Events Fetch Error:", e); return []; })
+    getEventsService().catch((e: unknown) => { console.error("Events Fetch Error:", e); return []; }),
+    getNoticesService().catch((e: unknown) => { console.error("Notices Fetch Error:", e); return []; })
   ]);
 
   // Unified Feed Logic
   const allUpdates = [
     ...newsItems.map((item: any) => ({ ...item, type: 'News' })),
-    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' }))
+    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' })),
+    ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: 'Important Notice' })) // Notices might not have description, provide fallback or mapping
   ].sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const latestUpdates = allUpdates.slice(0, 3);

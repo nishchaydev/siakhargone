@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  compress: true,
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
@@ -12,24 +13,35 @@ const nextConfig = {
       { protocol: 'https', hostname: 'ui-avatars.com' },
       { protocol: 'https', hostname: 'res.cloudinary.com' }
     ],
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
+  },
+  experimental: {
+    // optimizeCss: true, // Temporarily disabled to debug build error
   },
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
     NEXT_PUBLIC_CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
   },
-  async headers() {
+  headers: async () => {
     return [
       {
         source: '/:path*',
         headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN', // Allows iframes on same domain (e.g., admin), block elsewhere
+            value: 'SAMEORIGIN',
           },
           {
             key: 'Referrer-Policy',
@@ -37,7 +49,6 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            // Permissive CSP to allow external scripts/images (Cloudinary, Google, Unsplash) while blocking basic XSS
             value: "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data: blob:; object-src 'none';",
           },
         ],
@@ -61,9 +72,9 @@ const nextConfig = {
           }
         ],
       },
-    ]
+    ];
   },
-  async redirects() {
+  redirects: async () => {
     return [
       {
         source: '/methodology-and-learning',

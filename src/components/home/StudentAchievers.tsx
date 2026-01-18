@@ -71,30 +71,11 @@ export const StudentAchievers = () => {
                             <div className="relative aspect-[4/5] overflow-hidden">
                                 <Image
                                     src={student.image}
-                                    alt={student.name}
+                                    alt="Student Achiever"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 33vw"
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
-                                {/* Clean gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent opacity-80" />
-
-                                <div className="absolute top-4 right-4">
-                                    <Badge className={`${student.color} backdrop-blur-md border shadow-sm`}>
-                                        <student.icon className="w-3 h-3 mr-1" /> {student.category}
-                                    </Badge>
-                                </div>
-
-                                <div className="absolute bottom-0 left-0 p-6 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                    <p className="text-gold font-bold uppercase tracking-widest text-xs mb-1">
-                                        {student.class}
-                                    </p>
-                                    <h3 className="text-2xl font-bold font-display leading-tight mb-2">
-                                        {student.name}
-                                    </h3>
-                                    <p className="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                        {student.achievement}
-                                    </p>
-                                </div>
                             </div>
                         </Card>
                     </motion.div>

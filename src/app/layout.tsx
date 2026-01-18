@@ -6,8 +6,8 @@ import BackToTop from "@/components/common/BackToTop";
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
-import { GoogleAnalytics } from '@next/third-parties/google'
 import Preloader from "@/components/ui/Preloader";
+import GoogleAnalyticsLazy from "@/components/common/GoogleAnalyticsLazy"; // Lazy load GA
 
 const inter = Inter({
   subsets: ['latin'],
@@ -104,7 +104,7 @@ export default function RootLayout({
         <Toaster />
         <SpeedInsights />
         <Analytics />
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+        <GoogleAnalyticsLazy gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

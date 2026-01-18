@@ -19,7 +19,7 @@ type Props = {
 
 export default function HeroVideo({
   variant = 'modern',
-  backgroundImage = 'https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&w=1600&q=80',
+  backgroundImage = 'https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&w=640&q=60',
 }: Props) {
 
   const { name, cta } = schoolData
@@ -38,6 +38,7 @@ export default function HeroVideo({
         fill
         className="object-cover z-0"
         priority
+        fetchPriority="high"
         sizes="100vw"
       />
 

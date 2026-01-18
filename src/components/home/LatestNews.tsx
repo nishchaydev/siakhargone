@@ -4,8 +4,9 @@
 import { Section } from "@/components/common/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, ChevronRight, Trophy, Bell, Star, MapPin } from "lucide-react";
+import { Calendar, ChevronRight, Trophy, Bell, Star, MapPin, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { useEffect, useState } from "react";
@@ -24,9 +25,10 @@ export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
         date: item.date,
         title: item.title,
         description: item.description,
-        imageUrl: item.imageUrl,
-        icon: item.type === 'Event' ? Calendar : Bell,
-        color: item.type === 'Event' ? "bg-orange-100 text-orange-700 border-orange-200" : "bg-blue-50 text-blue-600 border-blue-100"
+        imageUrl: item.imageUrl, // Notices might not have images, handle gracefully below
+        icon: item.type === 'Event' ? Calendar : (item.type === 'Notice' ? AlertCircle : Bell),
+        color: item.type === 'Event' ? "bg-orange-100 text-orange-700 border-orange-200" :
+            (item.type === 'Notice' ? "bg-red-100 text-red-700 border-red-200" : "bg-blue-50 text-blue-600 border-blue-100")
     })) : []);
 
     const [isLoading, setIsLoading] = useState(false); // No client fetch needed if SSR data provided
@@ -81,10 +83,12 @@ export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
                             >
                                 {item.imageUrl ? (
                                     <div className="h-48 -mx-6 -mt-6 mb-4 relative overflow-hidden">
-                                        <img
+                                        <Image
                                             src={item.imageUrl}
                                             alt={item.title}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
                                         <div className="absolute top-4 left-4">
                                             <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none shadow-md`}>

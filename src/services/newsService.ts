@@ -8,7 +8,9 @@ export interface NewsItem {
     imageUrl: string;
 }
 
-export async function getNewsService(): Promise<NewsItem[]> {
+import { getCachedData } from "@/lib/cache-wrapper";
+
+async function fetchNewsFromGoogleSheets(): Promise<NewsItem[]> {
     try {
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
@@ -36,8 +38,12 @@ export async function getNewsService(): Promise<NewsItem[]> {
         return news.reverse();
     } catch (error) {
         console.error("Service News Fetch Error:", error);
-        return [];
+        throw error; // Throw to let cache handle stale data logic
     }
+}
+
+export async function getNewsService(): Promise<NewsItem[]> {
+    return getCachedData("news_data", fetchNewsFromGoogleSheets, 3600 * 1000); // 1 hour 
 }
 
 export async function addNewsService(item: { title: string, description: string, date: string, imageUrl: string }) {

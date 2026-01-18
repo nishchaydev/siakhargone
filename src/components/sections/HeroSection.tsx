@@ -28,6 +28,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                     fill
                     className="object-cover opacity-60 z-0"
                     priority
+                    fetchPriority="high"
                     sizes="(max-width: 768px) 100vw, 100vw"
                 />
 
@@ -50,7 +51,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                         return (
                             <iframe
                                 className="absolute inset-0 w-full h-full object-cover scale-[1.35] origin-center pointer-events-none blur-[1px] z-10"
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&start=1`}
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1`}
                                 title="YouTube video player"
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

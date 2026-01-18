@@ -10,7 +10,9 @@ export interface EventItem {
     imageUrl: string; // "image" in component, "imageUrl" here for consistency
 }
 
-export async function getEventsService(): Promise<EventItem[]> {
+import { getCachedData } from "@/lib/cache-wrapper";
+
+async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
     try {
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
@@ -40,10 +42,28 @@ export async function getEventsService(): Promise<EventItem[]> {
 
         // Sort by date? or Reverse?
         return events.reverse();
-    } catch (error) {
-        console.error("Service Events Fetch Error:", error);
-        return [];
+    } catch (error: any) {
+        console.error("Service Events Fetch Error:", error.message);
+
+        // Debugging: List available sheets if the specific sheet fetch fails
+        try {
+            const sheets = await getGoogleSheetsInstance();
+            const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+            if (spreadsheetId) {
+                const metadata = await sheets.spreadsheets.get({ spreadsheetId });
+                const sheetTitles = metadata.data.sheets?.map(s => s.properties?.title) || [];
+                console.error(`FAILED to find sheet 'Events'. Available sheets are: ${sheetTitles.join(", ")}`);
+            }
+        } catch (metaError) {
+            console.error("Could not fetch spreadsheet metadata for debugging.", metaError);
+        }
+
+        return []; // Return empty array to prevent app crash
     }
+}
+
+export async function getEventsService(): Promise<EventItem[]> {
+    return getCachedData("events_data", fetchEventsFromGoogleSheets, 3600 * 1000); // 1 hour
 }
 
 export async function addEventService(item: { title: string, date: string, time: string, location: string, description: string, imageUrl: string }) {

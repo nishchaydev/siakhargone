@@ -4,6 +4,12 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
 import { motion } from "framer-motion";
 import { schoolData } from "@/data/schoolData";
+import dynamic from "next/dynamic";
+
+const FooterMap = dynamic(() => import("@/components/common/FooterMap"), {
+  loading: () => <div className="w-full h-full bg-navy-light animate-pulse" />,
+  ssr: false,
+});
 
 const footerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -86,15 +92,7 @@ export default function Footer() {
 
               {/* Larger Map Style from Contact Page */}
               <div className="rounded-2xl overflow-hidden border-2 border-white/20 h-48 w-full bg-navy-light relative group shadow-lg">
-                <iframe
-                  src={schoolData.contact.googleMapLink + "&output=embed"}
-                  title="Google Map showing school location"
-                  width="100%"
-                  height="100%"
-                  allowFullScreen
-                  loading="lazy"
-                  className="opacity-90 group-hover:opacity-100 transition-opacity grayscale-[0.2] group-hover:grayscale-0"
-                ></iframe>
+                <FooterMap src={schoolData.contact.googleMapLink + "&output=embed"} />
               </div>
 
               <div className="mt-6 space-y-4">
