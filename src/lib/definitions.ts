@@ -6,6 +6,7 @@ export interface NavItem {
   href: string;
   description?: string;
   children?: NavItem[];
+  iconName?: string;
 }
 
 export interface Feature {
@@ -83,10 +84,10 @@ export interface AcademicTier {
 }
 
 export interface Job {
-    id: string;
-    title: string;
-    description: string;
-    department: string;
-    location: string;
-    status: 'Open' | 'Closed';
+  id: string;
+  title: string;
+  description: string;
+  department: string;
+  location: string;
+  status: 'Open' | 'Closed';
 }

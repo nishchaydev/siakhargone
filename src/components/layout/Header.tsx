@@ -69,11 +69,11 @@ const navItems: NavItem[] = [
   { title: "Home", href: "/" },
   {
     title: "Admissions", href: "/admissions", children: [
-      { title: "Admission Process", href: "/admissions#process", description: "Step-by-step guide to joining our school." },
-      { title: "Fee Structure", href: "/fees", description: "Transparent details on tuition and other charges." },
-      { title: "Scholarships", href: "/admissions#scholarships", description: "Opportunities for deserving students." },
-      { title: "FAQs", href: "/admissions#faqs", description: "Answers to commonly asked questions." },
-      { title: "Schedule a Tour", href: "/tour", description: "Book a personalized campus visit." },
+      { title: "Admission Process", href: "/admissions#process", description: "Step-by-step guide to joining our school.", iconName: "FileText" },
+      { title: "Fee Structure", href: "/fees", description: "Transparent details on tuition and other charges.", iconName: "IndianRupee" },
+      { title: "Scholarships", href: "/admissions#scholarships", description: "Opportunities for deserving students.", iconName: "GraduationCap" },
+      { title: "FAQs", href: "/admissions#faqs", description: "Answers to commonly asked questions.", iconName: "HelpCircle" },
+      { title: "Schedule a Tour", href: "/tour", description: "Book a personalized campus visit.", iconName: "MapPin" },
     ]
   },
   { title: "Contact Us", href: "/contact" },
@@ -81,51 +81,50 @@ const navItems: NavItem[] = [
     title: "About Us",
     href: "/about/overview",
     children: [
-      { title: "Overview", href: "/about/overview", description: "Learn more about our mission and values." },
-      { title: "Vision & Mission", href: "/about/vision", description: "Our guiding principles and aspirations." },
-      { title: "Principal's Message", href: "/about/principal", description: "Guidance from our academic leader." },
-      { title: "Management & Committee", href: "/about/management", description: "Meet our dedicated leadership team." },
-      { title: "Student Achievements", href: "/about/achievements", description: "Celebrating the successes of our students." },
+      { title: "Overview", href: "/about/overview", description: "Learn more about our mission and values.", iconName: "Info" },
+      { title: "Vision & Mission", href: "/about/vision", description: "Our guiding principles and aspirations.", iconName: "Eye" },
+      { title: "Principal's Message", href: "/about/principal", description: "Guidance from our academic leader.", iconName: "User" },
+      { title: "Management & Committee", href: "/about/management", description: "Meet our dedicated leadership team.", iconName: "Users" },
+      { title: "Student Achievements", href: "/about/achievements", description: "Celebrating the successes of our students.", iconName: "Trophy" },
     ],
   },
   {
     title: "Academics",
     href: "/academics",
     children: [
-      { title: "Curriculum", href: "/academics#curriculum", description: "Our comprehensive and engaging learning framework." },
-      { title: "Teaching Methodology", href: "/academics#methodology", description: "Innovative approaches to foster effective learning." },
-      { title: "Faculty", href: "/academics#faculty", description: "Meet our experienced and passionate educators." },
-      { title: "Learning Support", href: "/academics#support", description: "Dedicated resources for student success." },
-      { title: "Career Guidance", href: "/academics#career", description: "Empowering students for future pathways." },
+      { title: "Curriculum", href: "/academics#curriculum", description: "Our comprehensive and engaging learning framework.", iconName: "BookOpen" },
+      { title: "Teaching Methodology", href: "/academics#methodology", description: "Innovative approaches to foster effective learning.", iconName: "Lightbulb" },
+      { title: "Faculty", href: "/academics#faculty", description: "Meet our experienced and passionate educators.", iconName: "GraduationCap" },
+      { title: "Learning Support", href: "/academics#support", description: "Dedicated resources for student success.", iconName: "HeartHandshake" },
+      { title: "Career Guidance", href: "/academics#career", description: "Empowering students for future pathways.", iconName: "Compass" },
     ],
   },
   {
     title: "Sports & Activities",
     href: "/beyond-academics",
     children: [
-      // { title: "Dream Path", href: "/dream-path", description: "Discover your path to future success." }, // Hidden as per request
-      { title: "Sports", href: "/beyond-academics#sports", description: "Excellence in physical development and teamwork." },
-      { title: "Co-Curricular", href: "/beyond-academics#co-curricular", description: "Creative, innovative and self-expression activities." },
-      { title: "Personality Development", href: "/beyond-academics#personality", description: "Shaping confident and compassionate individuals." },
-      { title: "Mentorship", href: "/beyond-academics#mentorship", description: "Guidance and support for every student." },
+      { title: "Sports", href: "/beyond-academics#sports", description: "Excellence in physical development and teamwork.", iconName: "Trophy" },
+      { title: "Co-Curricular", href: "/beyond-academics#co-curricular", description: "Creative, innovative and self-expression activities.", iconName: "Palette" },
+      { title: "Personality Development", href: "/beyond-academics#personality", description: "Shaping confident and compassionate individuals.", iconName: "UserCheck" },
+      { title: "Mentorship", href: "/beyond-academics#mentorship", description: "Guidance and support for every student.", iconName: "Users" },
     ],
   },
   {
     title: "Updates",
     href: "/news-events",
     children: [
-      { title: "Notice Board", href: "/notices", description: "All official circulars and updates." },
-      { title: "Latest News", href: "/news-events#news", description: "Stay updated with the latest happenings." },
-      { title: "Upcoming Events", href: "/news-events#events", description: "Calendar of school activities and programs." },
-      { title: "Gallery", href: "/news-events#gallery", description: "Visual memories of school life." },
+      { title: "Notice Board", href: "/notices", description: "All official circulars and updates.", iconName: "ClipboardList" },
+      { title: "Latest News", href: "/news-events#news", description: "Stay updated with the latest happenings.", iconName: "Newspaper" },
+      { title: "Upcoming Events", href: "/news-events#events", description: "Calendar of school activities and programs.", iconName: "Calendar" },
+      { title: "Gallery", href: "/news-events#gallery", description: "Visual memories of school life.", iconName: "Image" },
     ],
   },
   {
     title: "Forms & Documents",
     href: "/downloads",
     children: [
-      { title: "Student Resources", href: "/downloads", description: "Forms, production calendars and study materials." },
-      { title: "Mandatory Disclosures", href: "/mandatory-disclosure", description: "Public disclosures and legal documents." },
+      { title: "Student Resources", href: "/downloads", description: "Forms, production calendars and study materials.", iconName: "Download" },
+      { title: "Mandatory Disclosures", href: "/mandatory-disclosure", description: "Public disclosures and legal documents.", iconName: "ShieldCheck" },
     ]
   },
 ];
@@ -270,12 +269,13 @@ const Header = () => {
                       {item.title}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className={["Forms & Documents", "Updates"].includes(item.title) ? "right-0 left-auto" : ""}>
-                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-foreground">
+                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-foreground rounded-xl shadow-xl border border-gold/10">
                         {item.children.map((child) => (
                           <ListItem
                             key={child.title}
                             title={child.title}
                             href={child.href}
+                            iconName={child.iconName}
                             onClick={(e) => handleLinkClick(e, child.href)}
                           >
                             {child.description}
