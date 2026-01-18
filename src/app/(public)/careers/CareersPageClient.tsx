@@ -64,38 +64,42 @@ const defaultOpenings = [
   }
 ];
 
-export default function CareersPageClient() {
-  const [openings, setOpenings] = useState<any[]>(defaultOpenings);
-  const [loading, setLoading] = useState(true);
+import { CareerItem } from "@/services/careersService";
+
+interface CareersPageClientProps {
+  initialCareers: CareerItem[];
+}
+
+export default function CareersPageClient({ initialCareers = [] }: CareersPageClientProps) {
+  // Map initial careers to the format expected by the component
+  const mapCareers = (jobs: any[]) => jobs.filter((j: any) => j.isActive).map((j: any) => ({
+    role: j.role,
+    type: j.type || "Full Time",
+    dept: j.department || "Academic",
+    exp: j.experience,
+    description: j.description
+  }));
+
+  const initialMapped = initialCareers.length > 0 ? mapCareers(initialCareers) : [];
+
+  const [openings, setOpenings] = useState<any[]>(initialMapped.length > 0 ? initialMapped : defaultOpenings);
+  // If we have initial careers, we are not loading. If it's explicitly empty array from server (no jobs), we still show "No jobs" UI not loading.
+  // Actually, if server returns [], it means no jobs. defaultOpenings is only fallback if server error? Or just placeholder?
+  // Let's assume if server data is present (even if empty), we rely on it. But to prevent "No jobs" flash if default was intended, 
+  // let's stick to: if server passes something, use it. If server failed and passed nothing (or we choose to pass null on error), use default.
+  // For now, if initialMapped is empty, we might show defaultOpenings only if we assume server fetch failed? 
+  // But `initialCareers`=[] is valid state.
+  // Let's change state initialization:
+  // If initialCareers was provided (even empty), use it. if undefined/null, use default.
+
+  const [loading, setLoading] = useState(false); // SSR loaded data, so no loading state needed initially
   const [selectedRole, setSelectedRole] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  useEffect(() => {
-    const loadCareers = async () => {
-      try {
-        const jobs = await getCMSCareers();
+  // We can keep the effect to refresh data or just rely on SSR. 
+  // Removing effect completely makes it purely static until revalidate. That is fine for "dynamic school admin updates" if revalidate work.
+  // Let's keep it simple and rely on SSR props.
 
-        if (jobs.length > 0) {
-          const mappedJobs = jobs.map(j => ({
-            role: j.role,
-            type: j.type || "Full Time",
-            dept: j.department || "Academic",
-            exp: j.experience,
-            description: j.description
-          }));
-          setOpenings(mappedJobs);
-        } else {
-          setOpenings(defaultOpenings);
-        }
-      } catch (e) {
-        console.error("Error loading careers, using defaults", e);
-        setOpenings(defaultOpenings);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadCareers();
-  }, []);
 
   const openApplication = (role: string) => {
     setSelectedRole(role);
