@@ -8,6 +8,8 @@ import { Card } from "@/components/ui/card";
 import { Trophy, Medal, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { cloudinary } from "@/lib/cloudinary-images";
+
 export const StudentAchievers = () => {
     // Static Hall of Fame Data
     const achievers = [
@@ -16,16 +18,16 @@ export const StudentAchievers = () => {
             class: "Class X",
             achievement: "State Level Sci-Fair Winner",
             category: "Academics",
-            image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1974&auto=format&fit=crop",
+            image: cloudinary.lab.physics[0] || "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1974&auto=format&fit=crop",
             icon: Star,
             color: "bg-gold/10 text-gold-dark border-gold/20"
         },
         {
             name: "Sports Captain",
             class: "Class XII",
-            achievement: "National Cricket Player",
+            achievement: "National Sports Player",
             category: "Sports",
-            image: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1931&auto=format&fit=crop",
+            image: cloudinary.sportsAchievements[6] || "https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1931&auto=format&fit=crop",
             icon: Trophy,
             color: "bg-green-100 text-green-700 border-green-200"
         },
@@ -34,7 +36,7 @@ export const StudentAchievers = () => {
             class: "Class XI",
             achievement: "National Art Competition",
             category: "Arts",
-            image: "https://images.unsplash.com/photo-1491013516836-7dbc6430dd7d?q=80&w=2070&auto=format&fit=crop",
+            image: cloudinary.annualFunction[0] || "https://images.unsplash.com/photo-1491013516836-7dbc6430dd7d?q=80&w=2070&auto=format&fit=crop",
             icon: Medal,
             color: "bg-purple-100 text-purple-700 border-purple-200"
         }

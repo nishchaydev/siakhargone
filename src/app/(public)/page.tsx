@@ -32,6 +32,8 @@ export default async function Home() {
     getNewsService().catch(e => { console.error("News Fetch Error:", e); return []; })
   ]);
 
+  console.log(`[HomePage] Fetched ${newsData.length} news items.`);
+
   // Curate homepage gallery images
   const sessionStart = albums.find(a => a.albumName === "Session Start")?.photos || [];
   const annualFunction = albums.find(a => a.albumName === "Annual Function")?.photos?.slice(1, 11) || [];
