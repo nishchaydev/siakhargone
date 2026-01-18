@@ -19,7 +19,7 @@ export interface CMSNoticeItem {
 
 export async function getCMSNews(): Promise<CMSNewsItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/news`, { cache: "no-store" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/news`, { next: { revalidate: 60 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
@@ -35,7 +35,7 @@ export async function getCMSNews(): Promise<CMSNewsItem[]> {
 
 export async function getCMSNotices(): Promise<CMSNoticeItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/notices`, { cache: "no-store" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/notices`, { next: { revalidate: 60 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
@@ -61,7 +61,7 @@ export interface CMSCareerItem {
 
 export async function getCMSCareers(): Promise<CMSCareerItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/careers`, { cache: "no-store" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/careers`, { next: { revalidate: 60 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
@@ -85,7 +85,7 @@ export interface CMSGalleryItem {
 
 export async function getCMSGallery(): Promise<CMSGalleryItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/gallery`, { cache: "no-store" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/gallery`, { next: { revalidate: 60 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
