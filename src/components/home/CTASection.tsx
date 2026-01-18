@@ -49,7 +49,7 @@ export function CTASection() {
                         </Link>
                     </Button>
 
-                    <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 py-6 rounded-full transition-all">
+                    <Button asChild size="lg" className="w-full sm:w-auto text-lg px-8 py-6 rounded-full bg-white text-navy hover:bg-gray-100 transition-all shadow-lg">
                         <Link href="/contact">
                             <Calendar className="mr-2 h-5 w-5" /> Schedule a Visit
                         </Link>

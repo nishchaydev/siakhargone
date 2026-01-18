@@ -11,7 +11,11 @@ import {
     Image as ImageIcon,
     Briefcase,
     FileCheck,
-    LogOut
+    GraduationCap,
+    Settings,
+    LogOut,
+    AppWindow,
+    Trophy
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -20,9 +24,12 @@ const sidebarItems = [
     { title: "News", href: "/news", icon: Megaphone },
     { title: "Notices", href: "/notices", icon: FileText },
     { title: "Gallery", href: "/gallery", icon: ImageIcon },
+    { title: "Site Assets", href: "/site-assets", icon: AppWindow },
+    { title: "Hall of Fame", href: "/achievers", icon: Trophy },
     { title: "Careers", href: "/careers", icon: Briefcase },
-    { title: "Certificates (TC)", href: "/tc", icon: FileCheck },
-    { title: "Applications", href: "/applications", icon: Briefcase }, // Reusing Briefcase for now
+    { title: "Student Results", href: "/results", icon: GraduationCap },
+    { title: "Applications", href: "/applications", icon: Briefcase },
+    { title: "Settings", href: "/settings", icon: Settings },
 ];
 
 interface AdminSidebarProps {

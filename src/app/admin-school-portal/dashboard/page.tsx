@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogOut, LayoutDashboard, FileText, Image as ImageIcon, Briefcase, Megaphone, FileCheck } from "lucide-react";
+import { LogOut, LayoutDashboard, FileText, Image as ImageIcon, Briefcase, Megaphone, FileCheck, GraduationCap, Settings } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -51,6 +51,20 @@ export default function AdminDashboard() {
             desc: "Issue and verify student TCs.",
             href: "/admin-school-portal/tc",
             color: "text-pink-600 bg-pink-100"
+        },
+        {
+            title: "Student Results",
+            icon: GraduationCap,
+            desc: "Upload and manage exam results.",
+            href: "/admin-school-portal/results",
+            color: "text-indigo-600 bg-indigo-100"
+        },
+        {
+            title: "Settings",
+            icon: Settings,
+            desc: "Database setup and system config.",
+            href: "/admin-school-portal/settings",
+            color: "text-gray-600 bg-gray-100"
         }
     ];
 

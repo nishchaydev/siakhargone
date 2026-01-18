@@ -59,4 +59,66 @@ export const SHEET_TAB_IDS = {
     // Actually, I'll VIEW the file first to be safe.
     TRANSFER_CERTIFICATES: 'TransferCertificates',
     ENQUIRIES: 'Enquiries',
+    ADMISSIONS: 'Admissions',
+    SITE_ASSETS: 'SiteAssets',
+    STUDENT_ACHIEVERS: 'StudentAchievers',
 };
+
+export async function deleteRowById(sheetName: string, id: string, columnIndex: number = 0) {
+    const sheets = await getGoogleSheetsInstance();
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+
+    if (!spreadsheetId) throw new Error("Missing Google Sheet ID");
+
+    // 1. Find the row index
+    // We fetch A:A to find the ID. 
+    // Note: This relies on ID being in the first column (index 0) by default, or specified index.
+    // Use the column letter based on index? For simple case, let's assume A:A if index is 0.
+    // If index > 0, we can fetch the specific column.
+
+    // Convert column index to letter (0 -> A, 1 -> B). Simple implementation for A-Z.
+    const columnLetter = String.fromCharCode(65 + columnIndex);
+
+    const response = await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: `${sheetName}!${columnLetter}:${columnLetter}`,
+    });
+
+    const rows = response.data.values || [];
+    const rowIndex = rows.findIndex((row) => row[0] === id); // row[0] because we only fetched one column
+
+    if (rowIndex === -1) {
+        throw new Error("Item not found");
+    }
+
+    // 2. Get Sheet Grid ID (required for deleteDimension)
+    const sheetMetadata = await sheets.spreadsheets.get({
+        spreadsheetId,
+    });
+
+    const sheet = sheetMetadata.data.sheets?.find(s => s.properties?.title === sheetName);
+    if (!sheet || typeof sheet.properties?.sheetId === 'undefined') {
+        throw new Error(`Sheet ${sheetName} not found`);
+    }
+
+    const sheetId = sheet.properties.sheetId;
+
+    // 3. Delete the row
+    await sheets.spreadsheets.batchUpdate({
+        spreadsheetId,
+        requestBody: {
+            requests: [
+                {
+                    deleteDimension: {
+                        range: {
+                            sheetId: sheetId,
+                            dimension: "ROWS",
+                            startIndex: rowIndex,
+                            endIndex: rowIndex + 1,
+                        },
+                    },
+                },
+            ],
+        },
+    });
+}

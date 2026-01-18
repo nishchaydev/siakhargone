@@ -29,6 +29,7 @@ interface TCRecord {
     issueDate: string;
     pdfLink: string;
     status: string;
+    dob: string;
 }
 
 export default function TCManager() {
@@ -47,7 +48,8 @@ export default function TCManager() {
         session: new Date().getFullYear() + "-" + (new Date().getFullYear() + 1),
         issueDate: new Date().toISOString().split('T')[0],
         pdfLink: "",
-        status: "Active"
+        status: "Active",
+        dob: "" // Added DOB
     });
     const [submitting, setSubmitting] = useState(false);
 
@@ -87,7 +89,8 @@ export default function TCManager() {
             session: new Date().getFullYear() + "-" + (new Date().getFullYear() + 1),
             issueDate: new Date().toISOString().split('T')[0],
             pdfLink: "",
-            status: "Active"
+            status: "Active",
+            dob: ""
         });
         setIsDialogOpen(true);
     };
@@ -102,7 +105,8 @@ export default function TCManager() {
             session: record.session,
             issueDate: record.issueDate,
             pdfLink: record.pdfLink,
-            status: record.status
+            status: record.status,
+            dob: record.dob || ""
         });
         setIsDialogOpen(true);
     };
@@ -184,7 +188,7 @@ export default function TCManager() {
                                     <TableHead>Admission No</TableHead>
                                     <TableHead>Student Name</TableHead>
                                     <TableHead>Class</TableHead>
-                                    <TableHead>Issue Date</TableHead>
+                                    <TableHead>DOB</TableHead>
                                     <TableHead>Status</TableHead>
                                     <TableHead className="text-right">Actions</TableHead>
                                 </TableRow>
@@ -210,7 +214,7 @@ export default function TCManager() {
                                             <TableCell>{record.admissionNo}</TableCell>
                                             <TableCell className="font-semibold text-gray-700">{record.studentName}</TableCell>
                                             <TableCell>{record.class}</TableCell>
-                                            <TableCell>{record.issueDate}</TableCell>
+                                            <TableCell>{record.dob}</TableCell>
                                             <TableCell>
                                                 <Badge
                                                     variant={record.status === "Active" ? "default" : "destructive"}
@@ -257,9 +261,13 @@ export default function TCManager() {
                                 <Input required value={form.tcNo} onChange={e => setForm({ ...form, tcNo: e.target.value })} placeholder="e.g. TC/2024/056" />
                             </div>
 
-                            <div className="col-span-2 space-y-2">
+                            <div className="col-span-1 space-y-2">
                                 <Label>Student Name</Label>
                                 <Input required value={form.studentName} onChange={e => setForm({ ...form, studentName: e.target.value })} placeholder="Full Name" />
+                            </div>
+                            <div className="col-span-1 space-y-2">
+                                <Label>Date of Birth</Label>
+                                <Input type="date" required value={form.dob} onChange={e => setForm({ ...form, dob: e.target.value })} />
                             </div>
 
                             <div className="col-span-1 space-y-2">
@@ -290,12 +298,17 @@ export default function TCManager() {
 
                             <div className="col-span-2 space-y-2">
                                 <Label className="flex items-center gap-2">
-                                    Google Drive PDF Link
-                                    <span className="text-xs text-muted-foreground font-normal">(Make sure sharing is set to "Anyone with link")</span>
+                                    Upload TC (PDF / Image)
+                                    <span className="text-xs text-muted-foreground font-normal">(Uploaded to Cloudinary)</span>
                                 </Label>
                                 {form.pdfLink ? (
                                     <div className="flex items-center gap-2 mt-1">
-                                        <Input disabled value={form.pdfLink} className="bg-gray-50 text-gray-500" />
+                                        <Input
+                                            key="pdf-link-display"
+                                            disabled
+                                            value={form.pdfLink}
+                                            className="bg-gray-50 text-gray-500"
+                                        />
                                         <Button type="button" variant="ghost" className="text-red-500" onClick={() => setForm({ ...form, pdfLink: "" })}>
                                             Remove
                                         </Button>
@@ -303,8 +316,9 @@ export default function TCManager() {
                                 ) : (
                                     <div className="flex items-center gap-2">
                                         <Input
+                                            key="pdf-upload-input"
                                             type="file"
-                                            accept="application/pdf"
+                                            accept="application/pdf, image/*"
                                             onChange={async (e) => {
                                                 const file = e.target.files?.[0];
                                                 if (!file) return;
@@ -316,7 +330,7 @@ export default function TCManager() {
                                                 e.target.disabled = true;
 
                                                 try {
-                                                    const res = await fetch("/api/admin/upload-drive", {
+                                                    const res = await fetch("/api/admin/upload-cloudinary", {
                                                         method: "POST",
                                                         body: formData
                                                     });
@@ -341,11 +355,50 @@ export default function TCManager() {
                             </div>
 
                             <div className="col-span-2 pt-4 flex justify-end gap-2">
-                                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+                                <Button type="button" variant="outline" className="border-gray-300 text-gray-700" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
                                 <Button type="submit" className="bg-blue-600 hover:bg-blue-700 font-bold" disabled={submitting}>
                                     {submitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Save Record"}
                                 </Button>
                             </div>
+
+                            {/* Delete Button (Only for existing records) */}
+                            {currentRecord && (
+                                <div className="col-span-2 pt-2 border-t mt-4 flex justify-between items-center">
+                                    <p className="text-xs text-red-500 font-medium">Danger Zone</p>
+                                    <Button
+                                        type="button"
+                                        variant="destructive"
+                                        size="sm"
+                                        disabled={submitting}
+                                        onClick={async () => {
+                                            if (!confirm("Are you sure you want to delete this TC? This action cannot be undone.")) return;
+
+                                            setSubmitting(true);
+                                            try {
+                                                const res = await fetch("/api/admin/tc", {
+                                                    method: "DELETE",
+                                                    headers: { "Content-Type": "application/json" },
+                                                    body: JSON.stringify({ id: currentRecord.id })
+                                                });
+
+                                                if (res.ok) {
+                                                    setIsDialogOpen(false);
+                                                    fetchRecords();
+                                                } else {
+                                                    alert("Failed to delete");
+                                                }
+                                            } catch (err) {
+                                                console.error(err);
+                                                alert("Error deleting");
+                                            } finally {
+                                                setSubmitting(false);
+                                            }
+                                        }}
+                                    >
+                                        Delete Forever
+                                    </Button>
+                                </div>
+                            )}
                         </form>
                     </DialogContent>
                 </Dialog>

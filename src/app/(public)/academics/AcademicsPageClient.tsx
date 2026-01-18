@@ -30,6 +30,7 @@ interface AcademicsPageClientProps {
     methodologyImage?: ImagePlaceholder;
     infrastructureImage?: ImagePlaceholder;
     infrastructurePhotos?: string[];
+    bannerImage?: string;
 }
 
 const iconMap: { [key: string]: LucideIcon } = {
@@ -41,6 +42,9 @@ const iconMap: { [key: string]: LucideIcon } = {
     MonitorSmartphone,
     Palette
 };
+
+// ... (staggerContainer and fadeInUp remain same, skipping for brevity in replacement context if possible, but replace_file_content is precise)
+// To avoid strict matching issues with large blocks, I will target the Props interface and the component signature separately or carefully.
 
 const staggerContainer = {
     hidden: { opacity: 0 },
@@ -65,14 +69,15 @@ export default function AcademicsPageClient({
     infrastructureItems,
     methodologyImage,
     infrastructureImage,
-    infrastructurePhotos = []
+    infrastructurePhotos = [],
+    bannerImage = "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2070&auto=format&fit=crop"
 }: AcademicsPageClientProps) {
     return (
         <div className="bg-grain min-h-screen">
             <PageBanner
                 title="Academics"
                 subtitle="Excellence in Education. Rooted in Values."
-                image="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2070&auto=format&fit=crop"
+                image={bannerImage}
             />
             <Section
                 id="curriculum"

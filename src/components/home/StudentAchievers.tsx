@@ -8,33 +8,55 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Trophy, Medal, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Mock data - replace with real data from CMS later
-const achievers = [
-    {
-        name: "Arav Patel",
-        class: "Class X",
-        achievement: "State Level Gold Medalist",
-        category: "Taekwondo",
-        image: "/images/achievers/real-student-1.png",
-        icon: Medal,
-        color: "bg-gold/10 text-gold-dark border-gold/20"
-    },
+import { CMSAchiever } from "@/lib/cms-fetch";
 
-    {
-        name: "Under-14 Cricket Team",
-        class: "Secondary Wing",
-        achievement: "Inter-School Championship Winners",
-        category: "Sports",
-        image: "/images/achievers/cricket-team.jpg", // Placeholder
-        icon: Trophy,
-        color: "bg-green-100 text-green-700 border-green-200"
-    }
-];
+interface StudentAchieversProps {
+    achievers?: CMSAchiever[];
+}
 
-export const StudentAchievers = () => {
+export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
     // Generate placeholders if real images don't exist yet
     const getPlaceholder = (category: string) =>
         `https://placehold.co/400x500/0C2E53/FFFFFF/png?text=${category.replace(" ", "+")}`;
+
+    // Use CMS data if available, otherwise fallback to empty or initial static (optional)
+    // If we want to show *something* initially before CMS is populated, we could keep mock, 
+    // but better to show nothing or just the CMS data to avoid confusion.
+    // Let's use CMS data primarily.
+
+    // Sort by priority if needed, or mapped order
+    const displayAchievers = achievers.map(a => ({
+        name: a.name,
+        class: a.class,
+        achievement: a.achievement,
+        category: a.category,
+        image: a.imageUrl,
+        icon: a.category === "Sports" || a.category === "Taekwondo" ? Trophy : (a.category === "Academics" ? Star : Medal),
+        color: "bg-navy/5 text-navy border-navy/10" // Default styling, can retain specific logic if needed
+    }));
+
+    // If empty, show some static placeholders so the section isn't invisible during setup
+    const finalAchievers = displayAchievers.length > 0 ? displayAchievers : [
+        {
+            name: "Star Achiever",
+            class: "Class X",
+            achievement: "State Level Winner",
+            category: "Academics",
+            image: "/images/achievers/real-student-1.png", // fallback local or placeholder
+            icon: Star,
+            color: "bg-gold/10 text-gold-dark border-gold/20"
+        },
+        {
+            name: "Sports Captain",
+            class: "Class XII",
+            achievement: "National Player",
+            category: "Sports",
+            image: "/images/achievers/cricket-team.jpg",
+            icon: Trophy,
+            color: "bg-green-100 text-green-700 border-green-200"
+        }
+    ];
+
 
     return (
         <Section id="achievers" className="bg-white relative overflow-hidden" isFirstSection={false}>
@@ -53,7 +75,7 @@ export const StudentAchievers = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 relative z-10">
-                {achievers.map((student, index) => (
+                {finalAchievers.map((student, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 30 }}
@@ -65,7 +87,7 @@ export const StudentAchievers = () => {
                             <div className="relative aspect-[4/5] overflow-hidden">
                                 {/* Use local placeholder or fallback */}
                                 <Image
-                                    src={getPlaceholder(student.category)}
+                                    src={student.image.startsWith("/") || student.image.startsWith("http") ? student.image : getPlaceholder(student.category)}
                                     alt={student.name}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"

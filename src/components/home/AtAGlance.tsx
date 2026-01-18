@@ -27,7 +27,7 @@ const features = [
     {
         icon: Clock,
         title: "School Timings",
-        description: "Mon-Sat: 08:30 AM to 02:30 PM. Reception: 09:00 AM - 04:00 PM.",
+        description: "Mon-Sat: 08:30 AM to 02:10 PM. Reception: 09:00 AM - 04:00 PM.",
         className: "bg-navy text-white shadow-navy/40"
     }
 ];

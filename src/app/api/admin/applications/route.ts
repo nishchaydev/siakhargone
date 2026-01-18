@@ -69,3 +69,48 @@ export async function PUT(req: Request) {
         return NextResponse.json({ error: "Failed to update" }, { status: 500 });
     }
 }
+
+export async function DELETE(req: Request) {
+    try {
+        const { id } = await req.json(); // id is row number (1-based from sheet perspective, e.g., 2, 3...)
+        const sheets = await getGoogleSheetsInstance();
+        const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+
+        if (!id) return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+
+        // Calculate grid index (0-based). Row 1 is index 0.
+        // If id is 2, index is 1.
+        const rowIndex = parseInt(id) - 1;
+
+        // Get Sheet ID for "Applications"
+        const sheetMetadata = await sheets.spreadsheets.get({ spreadsheetId });
+        const sheet = sheetMetadata.data.sheets?.find(s => s.properties?.title === TAB_NAME);
+        if (!sheet || typeof sheet.properties?.sheetId === 'undefined') {
+            throw new Error("Sheet not found");
+        }
+        const sheetId = sheet.properties.sheetId;
+
+        await sheets.spreadsheets.batchUpdate({
+            spreadsheetId,
+            requestBody: {
+                requests: [
+                    {
+                        deleteDimension: {
+                            range: {
+                                sheetId: sheetId,
+                                dimension: "ROWS",
+                                startIndex: rowIndex,
+                                endIndex: rowIndex + 1,
+                            },
+                        },
+                    },
+                ],
+            },
+        });
+
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error("Application Delete Error:", error);
+        return NextResponse.json({ error: "Failed to delete application" }, { status: 500 });
+    }
+}

@@ -1,29 +1,46 @@
 import HeroSection from "@/components/sections/HeroSection";
-import dynamic from 'next/dynamic';
+// Don't lazy load LatestNews to prevent "pop-in" if we have data instantly.
+// But we still can if we want to reduce bundle, but passing props is key.
+import { LatestNews } from "@/components/home/LatestNews";
+
+import nextDynamic from 'next/dynamic';
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Lazy Load Non-Critical Components
-const AtAGlance = dynamic(() => import("@/components/home/AtAGlance").then(mod => mod.AtAGlance));
-const WhyChoose = dynamic(() => import("@/components/home/WhyChoose").then(mod => mod.WhyChoose), {
+const AtAGlance = nextDynamic(() => import("@/components/home/AtAGlance").then(mod => mod.AtAGlance));
+const WhyChoose = nextDynamic(() => import("@/components/home/WhyChoose").then(mod => mod.WhyChoose), {
   loading: () => <div className="py-20"><Skeleton className="h-[400px] w-full max-w-7xl mx-auto rounded-xl" /></div>
 });
-const PrincipalMessage = dynamic(() => import("@/components/home/PrincipalMessage").then(mod => mod.PrincipalMessage));
-const LatestNews = dynamic(() => import("@/components/home/LatestNews").then(mod => mod.LatestNews));
+const PrincipalMessage = nextDynamic(() => import("@/components/home/PrincipalMessage").then(mod => mod.PrincipalMessage));
+// LatestNews is now imported directly for performance
 
-const CTASection = dynamic(() => import("@/components/home/CTASection").then(mod => mod.CTASection));
-const Academics = dynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
-const StudentAchievers = dynamic(() => import("@/components/home/StudentAchievers").then(mod => mod.StudentAchievers));
-const LifeAtSIA = dynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
+const CTASection = nextDynamic(() => import("@/components/home/CTASection").then(mod => mod.CTASection));
+const Academics = nextDynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
+const StudentAchievers = nextDynamic(() => import("@/components/home/StudentAchievers").then(mod => mod.StudentAchievers));
+const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
 // const AchievementsSection = dynamic(() => import("@/components/home/AchievementsSection").then(mod => mod.AchievementsSection)); // Deprecated
-const Testimonials = dynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
+const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
 
 import { albums, testimonials } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
+import { getCMSNews, CMSNewsItem, getSiteAssets, SiteAsset, getCMSAchievers, CMSAchiever } from "@/lib/cms-fetch";
 
-export default function Home() {
-  // Curate homepage gallery images
+// Force dynamic rendering since we are fetching news which updates frequently
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  // Hybrid Fetching: News is dynamic, Assets/Achievers are static/manual
+  const [newsData] = await Promise.all([
+    getCMSNews().catch(e => { console.error("News Fetch Error:", e); return [] as CMSNewsItem[]; })
+  ]);
+
+  // Static data for assets and achievers (Manually updated by user)
+  const achieversData: CMSAchiever[] = [];
+
+  // Curate homepage gallery images (Static for now as Gallery module is separate, or can be hybridized)
+  // For now keeping sidebar/gallery logic static but Hero/LifeAtSIA dynamic as requested
+
   const sessionStart = albums.find(a => a.albumName === "Session Start")?.photos || [];
-  // Skip first image (Main Photo) in Annual Function slice as it is added manually at the start
   const annualFunction = albums.find(a => a.albumName === "Annual Function")?.photos?.slice(1, 11) || [];
   const sports = albums.find(a => a.albumName === "Sports & Achivements")?.photos?.slice(0, 5) || [];
   const campus = albums.find(a => a.albumName === "Campus Life")?.photos?.slice(0, 4) || [];
@@ -46,9 +63,9 @@ export default function Home() {
       video: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6", // User requested video
       grid: [
         cloudinary.infrastructure.building[0],
-        cloudinary.infrastructure.classrooms[0], // dsc_2821 replacement
-        cloudinary.rainyDay[2], // rainy-day-3
-        cloudinary.infrastructure.library[1], // library-2
+        cloudinary.infrastructure.classrooms[0],
+        cloudinary.rainyDay[2],
+        cloudinary.infrastructure.library[1],
       ],
       cta1Href: "/admissions",
       cta2Href: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6"
@@ -62,6 +79,13 @@ export default function Home() {
     gallery: galleryImages
   };
 
+  const lifeAtSIAImages = {
+    assembly: cloudinary.sessionStart[0],
+    library: cloudinary.infrastructure.library[0],
+    labs: cloudinary.lab.computer[0],
+    sports: cloudinary.sportsAchievements[2]
+  };
+
   return (
     <>
       <HeroSection data={cmsData.hero} stats={cmsData.stats} />
@@ -69,9 +93,9 @@ export default function Home() {
       <WhyChoose />
       <PrincipalMessage />
       <Academics />
-      <StudentAchievers />
-      <LatestNews />
-      <LifeAtSIA />
+      <StudentAchievers achievers={achieversData} />
+      <LatestNews initialNews={newsData} />
+      <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
       <CTASection />
     </>

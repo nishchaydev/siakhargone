@@ -5,7 +5,7 @@ import Image from "next/image";
 // import schoolLogo from "@/assets/school-logo.png";
 const schoolLogo = "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png";
 import * as React from "react";
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -36,6 +36,7 @@ import {
 import type { NavItem } from "@/lib/definitions";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
 import { useState, useEffect } from "react";
 import TopBar from "./TopBar";
 import { useActiveSection } from "@/hooks/use-active-section";
@@ -63,8 +64,19 @@ const mockAnnouncements: Announcement[] = [
   }
 ];
 
+
 const navItems: NavItem[] = [
   { title: "Home", href: "/" },
+  {
+    title: "Admissions", href: "/admissions", children: [
+      { title: "Admission Process", href: "/admissions#process", description: "Step-by-step guide to joining our school." },
+      { title: "Fee Structure", href: "/fees", description: "Transparent details on tuition and other charges." },
+      { title: "Scholarships", href: "/admissions#scholarships", description: "Opportunities for deserving students." },
+      { title: "FAQs", href: "/admissions#faqs", description: "Answers to commonly asked questions." },
+      { title: "Schedule a Tour", href: "/tour", description: "Book a personalized campus visit." },
+    ]
+  },
+  { title: "Contact Us", href: "/contact" },
   {
     title: "About Us",
     href: "/about/overview",
@@ -88,18 +100,7 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    title: "Admissions",
-    href: "/admissions",
-    children: [
-      { title: "Admission Process", href: "/admissions#process", description: "Step-by-step guide to joining our school." },
-      { title: "Fee Structure", href: "/admissions#fees", description: "Transparent details on tuition and other charges." },
-      { title: "Scholarships", href: "/admissions#scholarships", description: "Opportunities for deserving students." },
-      { title: "FAQs", href: "/admissions#faqs", description: "Answers to commonly asked questions." },
-      { title: "Schedule a Tour", href: "/tour", description: "Book a personalized campus visit." },
-    ],
-  },
-  {
-    title: "Beyond Academics",
+    title: "Sports & Activities",
     href: "/beyond-academics",
     children: [
       // { title: "Dream Path", href: "/dream-path", description: "Discover your path to future success." }, // Hidden as per request
@@ -110,7 +111,7 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    title: "News & Events",
+    title: "Updates",
     href: "/news-events",
     children: [
       { title: "Notice Board", href: "/notices", description: "All official circulars and updates." },
@@ -120,14 +121,13 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    title: "Downloads",
+    title: "Forms & Documents",
     href: "/downloads",
     children: [
       { title: "Student Resources", href: "/downloads", description: "Forms, production calendars and study materials." },
       { title: "Mandatory Disclosures", href: "/mandatory-disclosure", description: "Public disclosures and legal documents." },
     ]
   },
-  { title: "Contact Us", href: "/contact" },
 ];
 
 // ... imports
@@ -269,7 +269,7 @@ const Header = () => {
                     >
                       {item.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className={item.title === "Downloads" ? "right-0 left-auto" : ""}>
+                    <NavigationMenuContent className={["Forms & Documents", "Updates"].includes(item.title) ? "right-0 left-auto" : ""}>
                       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-foreground">
                         {item.children.map((child) => (
                           <ListItem
@@ -302,7 +302,17 @@ const Header = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 md:gap-4">
+
+          {/* Sticky Header CTAs - Visible only when scrolled */}
+          <div className={cn("hidden items-center gap-3 transition-all duration-300", isScrolled ? "flex" : "hidden opacity-0")}>
+            <a href="tel:07049110104" onClick={() => trackEvent('phone_click', { location: 'sticky_header' })} className="bg-gold/10 hover:bg-gold/20 text-gold p-2 rounded-full transition-colors" aria-label="Call Us">
+              <Phone className="h-4 w-4" />
+            </a>
+            <a href="https://wa.me/917049110104" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('whatsapp_click', { location: 'sticky_header' })} className="bg-green-500/10 hover:bg-green-500/20 text-green-500 p-2 rounded-full transition-colors" aria-label="WhatsApp Us">
+              <MessageCircle className="h-4 w-4" />
+            </a>
+          </div>
 
           <Button
             variant="ghost"

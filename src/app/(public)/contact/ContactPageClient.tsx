@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
@@ -16,6 +16,7 @@ export default function ContactPageClient() {
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
+  const [lastSubmission, setLastSubmission] = React.useState<any>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,25 +50,14 @@ export default function ContactPageClient() {
       return;
     }
 
-    // Prepare payload for Google Script (adjusting keys to match expected script format)
-    const payload = {
-      ...submissionData,
-      email: submissionData.email || "N/A",
-      subject: "Admission Enquiry for Class " + submissionData.class,
-    };
-
+    // Use internal API route
     try {
-      if (GOOGLE_SCRIPT_URL) {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      } else {
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Simulating
-        console.log("Contact Form Data:", submissionData);
-      }
+      await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submissionData),
+      });
+
 
       // Success Feedback
       const duration = 3 * 1000;
@@ -85,6 +75,15 @@ export default function ContactPageClient() {
       // Reset form
       form.reset();
       setIsSuccess(true);
+      setLastSubmission(submissionData); // Store for manual button
+
+      // WhatsApp Redirection Logic
+      const whatsappText = `Hi, I am ${submissionData.name}. I want admission information for Class ${submissionData.class || "General"}. Query: ${submissionData.message}`;
+      const whatsappUrl = `https://wa.me/917049110104?text=${encodeURIComponent(whatsappText)}`;
+
+      setTimeout(() => {
+        window.location.href = whatsappUrl;
+      }, 2000);
 
     } catch (error) {
       console.error("Error submitting form", error);
@@ -184,19 +183,32 @@ export default function ContactPageClient() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center space-y-6 py-10"
                   >
-                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                      <div className="text-4xl">✨</div>
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600">
+                      <CheckCircle2 className="w-10 h-10" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-navy mb-2">Enquiry Sent!</h3>
-                      <p className="text-gray-600">Thank you for contacting us. We will get back to you shortly.</p>
+                      <p className="text-gray-600">Thank you for contacting us. Redirecting you to WhatsApp for faster support...</p>
                     </div>
-                    <Button
-                      onClick={() => setIsSuccess(false)}
-                      className="mt-4 bg-gold hover:bg-gold/90 text-navy font-bold"
-                    >
-                      Send Another Message
-                    </Button>
+                    <div className="flex flex-col gap-2 items-center">
+                      <Button
+                        onClick={() => {
+                          const data = lastSubmission || { name: "", class: "", message: "" };
+                          const whatsappText = `Hi, I am ${data.name}. I want admission information for Class ${data.class || "General"}. Query: ${data.message}`;
+                          window.open(`https://wa.me/917049110104?text=${encodeURIComponent(whatsappText)}`, '_blank');
+                        }}
+                        className="mt-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold"
+                      >
+                        Open WhatsApp Now
+                      </Button>
+                      <Button
+                        variant="default"
+                        onClick={() => setIsSuccess(false)}
+                        className="mt-2 w-full bg-navy hover:bg-navy-dark text-white font-bold"
+                      >
+                        Send Another Message
+                      </Button>
+                    </div>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5 relative z-10">

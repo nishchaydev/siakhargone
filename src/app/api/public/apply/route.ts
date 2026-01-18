@@ -76,12 +76,25 @@ export async function POST(req: Request) {
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
+        // Get Cover Letter from original formData to save it
+        const coverLetter = formData.get("coverLetter") as string || "";
+        const jobWithCover = coverLetter ? `${position} \n[Cover]: ${coverLetter}` : position;
+
+        // Headers: [JobId, Name, Phone, Email, ResumeLink, Date, Status]
         await sheets.spreadsheets.values.append({
             spreadsheetId,
-            range: `Applications!A:F`, // Name, Email, Phone, Position, ResumeLink, Date
+            range: `Applications!A:G`,
             valueInputOption: "USER_ENTERED",
             requestBody: {
-                values: [[name, email, phone, position, resumeLink, new Date().toISOString()]],
+                values: [[
+                    jobWithCover,     // JobId / Position (with Cover Letter)
+                    name,             // Name
+                    phone,            // Phone
+                    email,            // Email
+                    resumeLink,       // ResumeLink
+                    new Date().toISOString(), // Date
+                    "New"             // Status
+                ]],
             },
         });
 

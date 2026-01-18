@@ -14,14 +14,24 @@ export const metadata: Metadata = {
 // const heroImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp";
 const heroImage = { imageUrl: cloudinary.infrastructure.building[1], description: "School Building", imageHint: "school building" };
 
-export default function ContactPage() {
+import { getSiteAssets } from '@/lib/cms-fetch';
+
+export const dynamic = 'force-dynamic';
+
+export default async function ContactPage() {
+  const assets = await getSiteAssets().catch(() => []);
+  const banner = assets.find(a => a.key === 'banner_contact')?.imageUrl;
+
+  // Method to prefer dynamic banner, fallback to existing static logic if not found
+  const finalBanner = banner || (typeof heroImage === 'string' ? heroImage : heroImage.imageUrl);
+
   return (
     <>
       {/* Hero Section */}
       <PageBanner
         title="Contact Us"
         subtitle="We're here to help. Reach out to us anytime."
-        image={typeof heroImage === 'string' ? heroImage : heroImage.imageUrl}
+        image={finalBanner}
       />
       <ContactPageClient />
     </>

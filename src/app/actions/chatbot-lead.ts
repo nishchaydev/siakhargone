@@ -21,16 +21,18 @@ export async function submitChatbotLead(data: {
         // Append to "Enquiries" sheet
         await sheets.spreadsheets.values.append({
             spreadsheetId,
-            range: 'Enquiries!A:E', // Assuming columns: Date, Name, Phone, Class, Message
+            range: 'Enquiries!A:G', // Columns: Name, Phone, Email, Class, Message, Date, Status
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 values: [
                     [
-                        new Date().toISOString(),
                         data.name,
                         data.phone,
+                        "N/A", // Email
                         data.class,
-                        data.message || "Chatbot Enquiry"
+                        data.message || "Chatbot Enquiry",
+                        new Date().toISOString(), // Date
+                        "New" // Status
                     ]
                 ]
             }

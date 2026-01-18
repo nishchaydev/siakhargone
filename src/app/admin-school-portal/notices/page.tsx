@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Trash2, Loader2, Bell, Pencil, Save } from "lucide-react";
+import { ArrowLeft, Trash2, Loader2, Bell, Pencil, Save, UploadCloud } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { CldUploadWidget } from 'next-cloudinary';
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
@@ -31,7 +32,7 @@ export default function NoticesManager() {
 
     const fetchNotices = async () => {
         try {
-            const res = await fetch("/api/admin/notices");
+            const res = await fetch("/api/admin/notices", { cache: 'no-store' });
             const json = await res.json();
             if (json.data) setNotices(json.data);
         } catch (err) {
@@ -40,6 +41,40 @@ export default function NoticesManager() {
             setLoading(false);
         }
     };
+    // ... (skip unchanged lines)
+    <div className="space-y-1.5">
+        <Label>Notice Image (Optional)</Label>
+        <div className="flex gap-2">
+            <Input value={form.link} onChange={e => setForm({ ...form, link: e.target.value })} placeholder="Paste Image URL" className="flex-1" />
+            <CldUploadWidget
+                uploadPreset="siakhargone_uploads"
+                onSuccess={(result: any) => {
+                    const url = result?.info?.secure_url;
+                    if (url) setForm(prev => ({ ...prev, link: url }));
+                }}
+                options={{
+                    sources: ['local', 'url'],
+                    maxFiles: 1,
+                    clientAllowedFormats: ["image"],
+                    resourceType: "image"
+                }}
+            >
+                {({ open }) => (
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            open();
+                        }}
+                        title="Upload Image (JPG/PNG)"
+                    >
+                        <UploadCloud className="w-4 h-4" />
+                    </Button>
+                )}
+            </CldUploadWidget>
+        </div>
+    </div>
 
     const handleEdit = (item: NoticeItem) => {
         setForm({
@@ -125,8 +160,37 @@ export default function NoticesManager() {
                                         <Input required value={form.text} onChange={e => setForm({ ...form, text: e.target.value })} placeholder="e.g. School closed tomorrow" />
                                     </div>
                                     <div className="space-y-1.5">
-                                        <Label>Link (Optional)</Label>
-                                        <Input value={form.link} onChange={e => setForm({ ...form, link: e.target.value })} placeholder="Download PDF URL" />
+                                        <Label>Notice Image (Optional)</Label>
+                                        <div className="flex gap-2">
+                                            <Input value={form.link} onChange={e => setForm({ ...form, link: e.target.value })} placeholder="Paste Image URL or Upload" className="flex-1" />
+                                            <CldUploadWidget
+                                                uploadPreset="siakhargone_uploads"
+                                                onSuccess={(result: any) => {
+                                                    const url = result?.info?.secure_url;
+                                                    if (url) setForm(prev => ({ ...prev, link: url }));
+                                                }}
+                                                options={{
+                                                    sources: ['local', 'url'],
+                                                    maxFiles: 1,
+                                                    clientAllowedFormats: ["image"],
+                                                    resourceType: "image"
+                                                }}
+                                            >
+                                                {({ open }) => (
+                                                    <Button
+                                                        type="button"
+                                                        variant="secondary"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            open();
+                                                        }}
+                                                        title="Upload Image Only"
+                                                    >
+                                                        <UploadCloud className="w-4 h-4" />
+                                                    </Button>
+                                                )}
+                                            </CldUploadWidget>
+                                        </div>
                                     </div>
                                     <div className="space-y-1.5">
                                         <Label>Date</Label>

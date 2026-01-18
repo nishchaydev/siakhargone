@@ -26,7 +26,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { CalendarIcon, Loader2 } from "lucide-react";
+import { CalendarIcon, Loader2, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import confetti from "canvas-confetti";
 
@@ -67,28 +67,23 @@ export function TourForm() {
         try {
             // Prepare payload
             const payload = {
-                type: "tour_booking",
+                type: "enquiry",
                 name: data.name,
                 phone: data.phone,
                 email: data.email || "N/A",
-                grade: data.grade,
-                date: format(data.date, "yyyy-MM-dd"), // Format date for sheets
-                message: data.message || "N/A",
+                class: data.grade, // Map 'grade' to 'class' for Enquiries sheet
+                date: new Date().toISOString(), // Submission timestamp
+                message: `[Tour Request] Preferred Date: ${format(data.date, "dd MMM yyyy")}. ${data.message || ""}`,
                 subject: `New Tour Request: ${data.name} (${data.grade})`
             };
 
-            if (GOOGLE_SCRIPT_URL) {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                });
-            } else {
-                // Simulate
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                console.log("Tour Payload:", payload);
-            }
+            // Use internal API route (leads to Enquiries sheet)
+            await fetch("/api/public/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
 
             // Success Animation
             confetti({
@@ -111,8 +106,8 @@ export function TourForm() {
     if (isSuccess) {
         return (
             <div className="text-center py-12 space-y-6 bg-white rounded-2xl shadow-sm border border-gold/20 p-8">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto text-4xl">
-                    🎉
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600">
+                    <CheckCircle2 className="w-10 h-10" />
                 </div>
                 <div>
                     <h3 className="text-2xl font-bold text-navy">Request Received!</h3>
@@ -121,7 +116,7 @@ export function TourForm() {
                         Our admissions team will confirm your slot shortly via phone/WhatsApp.
                     </p>
                 </div>
-                <Button variant="outline" onClick={() => setIsSuccess(false)}>
+                <Button className="w-full bg-navy hover:bg-navy-dark text-white font-bold h-12" onClick={() => setIsSuccess(false)}>
                     Book Another Visit
                 </Button>
             </div>
@@ -222,7 +217,7 @@ export function TourForm() {
                                         <Button
                                             variant={"outline"}
                                             className={cn(
-                                                "w-full pl-3 text-left font-normal bg-gray-50 focus:bg-white",
+                                                "w-full pl-3 text-left font-normal bg-gray-50 focus:bg-white text-gray-900",
                                                 !field.value && "text-muted-foreground"
                                             )}
                                         >

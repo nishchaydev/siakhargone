@@ -357,11 +357,38 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                 />
                             </div>
                         </div>
-                        <DialogFooter>
-                            <Button variant="outline" onClick={() => setEditingImage(null)} className="border-gray-300 text-gray-700 hover:bg-gray-50">Cancel</Button>
-                            <Button onClick={handleSaveEdit} disabled={saving} className="bg-gold hover:bg-gold-dark text-navy font-bold">
-                                {saving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Save Changes"}
+                        <DialogFooter className="flex items-center justify-between sm:justify-between">
+                            {/* Left Side: Delete */}
+                            <Button
+                                variant="destructive"
+                                onClick={async () => {
+                                    if (!confirm("Are you sure you want to delete this image?")) return;
+                                    setSaving(true);
+                                    try {
+                                        const res = await fetch(`/api/admin/gallery?id=${editingImage?.id}`, { method: "DELETE" });
+                                        if (res.ok) {
+                                            setEditingImage(null);
+                                            fetchImages();
+                                        } else {
+                                            alert("Failed to delete");
+                                        }
+                                    } catch (e) {
+                                        console.error(e);
+                                    } finally {
+                                        setSaving(false);
+                                    }
+                                }}
+                                disabled={saving}
+                            >
+                                Delete
                             </Button>
+
+                            <div className="flex gap-2">
+                                <Button variant="outline" onClick={() => setEditingImage(null)} className="border-gray-300 text-gray-700 hover:bg-gray-50">Cancel</Button>
+                                <Button onClick={handleSaveEdit} disabled={saving} className="bg-gold hover:bg-gold-dark text-navy font-bold">
+                                    {saving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Save Changes"}
+                                </Button>
+                            </div>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>

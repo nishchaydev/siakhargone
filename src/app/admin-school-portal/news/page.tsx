@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Trash2, Plus, Loader2, Newspaper, Pencil, Save, ExternalLink } from "lucide-react";
+import { ArrowLeft, Trash2, Plus, Loader2, Newspaper, Pencil, Save, ExternalLink, UploadCloud, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { CldUploadWidget } from 'next-cloudinary';
 import { Label } from "@/components/ui/label";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -32,7 +33,7 @@ export default function NewsManager() {
 
     const fetchNews = async () => {
         try {
-            const res = await fetch("/api/admin/news"); // Assumes GET endpoint exists
+            const res = await fetch("/api/admin/news", { cache: 'no-store' }); // Assumes GET endpoint exists
             const json = await res.json();
             if (json.data) setNews(json.data);
         } catch (err) {
@@ -149,8 +150,56 @@ export default function NewsManager() {
                                         <Input required type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
                                     </div>
                                     <div className="space-y-1.5">
-                                        <Label>Image URL (Optional)</Label>
-                                        <Input value={form.imageUrl} onChange={e => setForm({ ...form, imageUrl: e.target.value })} placeholder="https://..." />
+                                        <Label>Image (Optional)</Label>
+
+                                        {form.imageUrl ? (
+                                            <div className="relative group rounded-lg overflow-hidden border border-gray-200">
+                                                <div className="aspect-video w-full relative bg-gray-100">
+                                                    <img src={form.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                                                </div>
+                                                <Button
+                                                    type="button"
+                                                    variant="destructive"
+                                                    size="sm"
+                                                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                                                    onClick={() => setForm({ ...form, imageUrl: "" })}
+                                                >
+                                                    <Trash2 className="w-4 h-4 mr-1" /> Remove
+                                                </Button>
+                                            </div>
+                                        ) : (
+                                            <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:bg-gray-50 transition-colors">
+                                                <CldUploadWidget
+                                                    uploadPreset="siakhargone_uploads"
+                                                    onSuccess={(result: any) => {
+                                                        const url = result?.info?.secure_url;
+                                                        if (url) setForm({ ...form, imageUrl: url });
+                                                    }}
+                                                    options={{
+                                                        sources: ['local', 'url'],
+                                                        maxFiles: 1,
+                                                        clientAllowedFormats: ["image"],
+                                                    }}
+                                                >
+                                                    {({ open }) => (
+                                                        <Button
+                                                            type="button"
+                                                            variant="outline"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                open();
+                                                            }}
+                                                            className="w-full h-full border-0 bg-transparent hover:bg-transparent"
+                                                        >
+                                                            <div className="flex flex-col items-center gap-2 text-gray-400">
+                                                                <UploadCloud className="w-8 h-8" />
+                                                                <span className="text-sm font-medium">Click to Upload Image</span>
+                                                            </div>
+                                                        </Button>
+                                                    )}
+                                                </CldUploadWidget>
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="space-y-1.5">
                                         <Label>Description</Label>

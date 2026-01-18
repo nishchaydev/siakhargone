@@ -19,7 +19,7 @@ export async function GET() {
         // Fetch last 100 images
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId,
-            range: `${SHEET_TAB_IDS.GALLERY}!A2:C`, // ImageID, Category, AltText
+            range: `${SHEET_TAB_IDS.GALLERY}!A2:H`,
         });
 
         console.log("API: Sheets Response Status:", response.status);
@@ -27,11 +27,11 @@ export async function GET() {
         const rows = response.data.values || [];
         console.log("API: Rows Found:", rows.length);
 
-        const images = rows.map((row, index) => ({
-            id: index + 2,
-            imageId: row[0],
-            category: row[1],
-            alt: row[2],
+        const images = rows.map((row) => ({
+            id: row[0],
+            imageId: row[3], // ImageUrl column stores the ID/URL
+            category: row[2],
+            alt: row[1], // Title column stores Alt
         }));
 
         return NextResponse.json({ data: images.reverse() });
@@ -61,12 +61,16 @@ export async function POST(req: Request) {
             const sheets = await getGoogleSheetsInstance();
             const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
+            const id = crypto.randomUUID();
+            const createdAt = new Date().toISOString();
+
+            // Setup Schema: Id, Title(as Alt), Category, ImageUrl(as ImageId), Date, Description, Status, CreatedAt
             await sheets.spreadsheets.values.append({
                 spreadsheetId,
-                range: `${SHEET_TAB_IDS.GALLERY}!A:C`,
+                range: `${SHEET_TAB_IDS.GALLERY}!A:H`,
                 valueInputOption: "USER_ENTERED",
                 requestBody: {
-                    values: [[imageId, category || "General", alt || "School Photo"]],
+                    values: [[id, alt || "Photo", category || "General", imageId, new Date().toISOString(), "N/A", "Active", createdAt]],
                 },
             });
 
@@ -99,5 +103,24 @@ export async function PUT(req: Request) {
         return NextResponse.json({ success: true });
     } catch (error) {
         return NextResponse.json({ error: "Failed to update gallery" }, { status: 500 });
+    }
+}
+
+export async function DELETE(req: Request) {
+    try {
+        const url = new URL(req.url);
+        const id = url.searchParams.get("id");
+        const { deleteRowById, SHEET_TAB_IDS } = await import("@/lib/google-sheets");
+
+        if (!id) return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+
+        // Gallery ID is in Column A (Index 0)
+        await deleteRowById(SHEET_TAB_IDS.GALLERY, id, 0);
+
+        return NextResponse.json({ success: true });
+
+    } catch (error) {
+        console.error("Gallery DELETE Error:", error);
+        return NextResponse.json({ error: "Failed to delete image" }, { status: 500 });
     }
 }

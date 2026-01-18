@@ -11,23 +11,22 @@ import PageBanner from "@/components/common/PageBanner";
 
 export default function TCVerificationPage() {
     const [query, setQuery] = useState("");
+    const [dob, setDob] = useState(""); // Added DOB state
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState<any>(null);
     const [hasSearched, setHasSearched] = useState(false);
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!query.trim()) return;
+        if (!query.trim() || !dob.trim()) return;
 
         setLoading(true);
         setHasSearched(true);
         setResult(null);
 
         try {
-            // We can reuse the admin API or create a specific public search API
-            // For security, it's better to verify exact matches only.
-            // Using a new search API: /api/tc/search?q=...
-            const res = await fetch(`/api/tc/search?q=${encodeURIComponent(query)}`);
+            // Updated API call to include DOB
+            const res = await fetch(`/api/tc/search?q=${encodeURIComponent(query)}&dob=${encodeURIComponent(dob)}`);
             const json = await res.json();
 
             if (json.data) {
@@ -59,15 +58,27 @@ export default function TCVerificationPage() {
                     <Card className="shadow-lg border-0 ring-1 ring-gray-100">
                         {/* ... rest of the content unchanged ... */}
                         <CardContent className="p-6 md:p-10">
-                            <form onSubmit={handleSearch} className="flex gap-4">
+                            <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
                                 <div className="relative flex-1">
                                     <Search className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                                     <Input
                                         className="pl-10 h-12 text-lg"
-                                        placeholder="Enter Admission Number (e.g. 2024001)..."
+                                        placeholder="Enter Admission Number..."
                                         value={query}
                                         onChange={(e) => setQuery(e.target.value)}
+                                        required
                                     />
+                                </div>
+                                <div className="relative w-full md:w-48">
+                                    <Input
+                                        type="date"
+                                        className="h-12 text-lg"
+                                        placeholder="Date of Birth"
+                                        value={dob}
+                                        onChange={(e) => setDob(e.target.value)}
+                                        required
+                                    />
+                                    <span className="text-[10px] text-gray-500 absolute -bottom-5 left-1">Verify Date of Birth</span>
                                 </div>
                                 <Button type="submit" size="lg" className="h-12 px-8 bg-blue-600 hover:bg-blue-700 font-bold" disabled={loading}>
                                     {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Verify"}
@@ -115,12 +126,22 @@ export default function TCVerificationPage() {
 
                                 <div className="mt-8 pt-6 border-t flex justify-end">
                                     {result.pdfLink && (
-                                        <a href={result.pdfLink} target="_blank" rel="noopener noreferrer">
-                                            <Button className="bg-navy hover:bg-navy-light text-white font-bold">
-                                                <ExternalLink className="w-4 h-4 mr-2" />
-                                                View Original TC (PDF)
-                                            </Button>
-                                        </a>
+                                        <div className="flex gap-2">
+                                            <a
+                                                href={result.pdfLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <Button className="bg-navy hover:bg-navy-light text-white font-bold">
+                                                    <ExternalLink className="w-4 h-4 mr-2" />
+                                                    View TC Document
+                                                </Button>
+                                            </a>
+                                            {/* Drive links usually allow download from the viewer, but we can keep a separate button if we want, 
+                                                though for Drive links 'download' attribute doesn't work well cross-origin.
+                                                We'll just keep the main View button. 
+                                            */}
+                                        </div>
                                     )}
                                 </div>
                             </CardContent>

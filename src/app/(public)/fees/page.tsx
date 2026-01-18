@@ -1,24 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ExternalLink, CreditCard, Download } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { ExternalLink, CreditCard, Download, Search, Bus, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
+import { tuitionFees, busFees, oneTimeFees } from "@/data/fees";
 
 export default function FeesPage() {
-    const feeStructure = [
-        { class: "Nursery - KG II", admission: "5,000", tuition: "15,000", total: "20,000" },
-        { class: "Class I - V", admission: "8,000", tuition: "22,000", total: "30,000" },
-        { class: "Class VI - VIII", admission: "10,000", tuition: "25,000", total: "35,000" },
-        { class: "Class IX - X", admission: "12,000", tuition: "30,000", total: "42,000" },
-        { class: "Class XI - XII (Commerce)", admission: "15,000", tuition: "35,000", total: "50,000" },
-        { class: "Class XI - XII (Science)", admission: "15,000", tuition: "40,000", total: "55,000" },
-    ];
+    const [busSearch, setBusSearch] = useState("");
+
+    const filteredBusFees = busFees.filter(fee =>
+        fee.village.toLowerCase().includes(busSearch.toLowerCase())
+    );
 
     return (
         <div className="min-h-screen bg-grain pt-24 pb-12 px-4">
-            <div className="container mx-auto max-w-5xl space-y-12">
+            <div className="container mx-auto max-w-6xl space-y-12">
 
                 {/* Header Section */}
                 <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -77,10 +78,10 @@ export default function FeesPage() {
                     </motion.div>
                 </div>
 
-                {/* Fee Table */}
+                {/* Fees Tabs */}
                 <Card className="overflow-hidden shadow-xl border-t-4 border-t-navy">
-                    <CardHeader className="bg-gray-50 border-b">
-                        <div className="flex justify-between items-center">
+                    <CardHeader className="bg-gray-50 border-b pb-0">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
                             <div>
                                 <CardTitle>Academic Session 2026-27</CardTitle>
                                 <CardDescription>Consolidated fee structure per annum.</CardDescription>
@@ -90,27 +91,122 @@ export default function FeesPage() {
                             </Button>
                         </div>
                     </CardHeader>
+
                     <CardContent className="p-0">
-                        <Table>
-                            <TableHeader>
-                                <TableRow className="bg-gray-100/50">
-                                    <TableHead className="font-bold text-navy w-[40%]">Class / Grade</TableHead>
-                                    <TableHead className="font-bold text-navy text-right">Admission Fee</TableHead>
-                                    <TableHead className="font-bold text-navy text-right">Tuition Fee</TableHead>
-                                    <TableHead className="font-bold text-navy text-right text-lg">Total (Annual)</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {feeStructure.map((row, index) => (
-                                    <TableRow key={index} className="hover:bg-gray-50 transition-colors">
-                                        <TableCell className="font-medium text-gray-700">{row.class}</TableCell>
-                                        <TableCell className="text-right text-muted-foreground">₹{row.admission}</TableCell>
-                                        <TableCell className="text-right text-muted-foreground">₹{row.tuition}</TableCell>
-                                        <TableCell className="text-right font-bold text-navy text-lg">₹{row.total}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                        <Tabs defaultValue="tuition" className="w-full">
+                            <div className="bg-gray-50 px-6 border-b">
+                                <TabsList className="grid w-full max-w-md grid-cols-2">
+                                    <TabsTrigger value="tuition" className="data-[state=active]:bg-white data-[state=active]:text-navy data-[state=active]:shadow-sm">
+                                        <GraduationCap className="w-4 h-4 mr-2" /> Tuition Fees
+                                    </TabsTrigger>
+                                    <TabsTrigger value="bus" className="data-[state=active]:bg-white data-[state=active]:text-navy data-[state=active]:shadow-sm">
+                                        <Bus className="w-4 h-4 mr-2" /> Bus Fees
+                                    </TabsTrigger>
+                                </TabsList>
+                            </div>
+
+                            <TabsContent value="tuition" className="m-0 focus-visible:ring-0">
+                                <div className="p-6 bg-blue-50/50 border-b space-y-2">
+                                    <div className="flex flex-wrap gap-6 text-sm">
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-semibold text-navy">Registration Fees:</span>
+                                            <span className="font-mono bg-white px-2 py-0.5 rounded border">₹{oneTimeFees.registration}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-semibold text-navy">Admission Fees:</span>
+                                            <span className="font-mono bg-white px-2 py-0.5 rounded border">₹{oneTimeFees.admission}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-semibold text-navy">Total One-time:</span>
+                                            <span className="font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">₹{oneTimeFees.total}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="overflow-x-auto">
+                                    <Table>
+                                        <TableHeader>
+                                            <TableRow className="bg-gray-100/50">
+                                                <TableHead className="font-bold text-navy w-24">S.N.</TableHead>
+                                                <TableHead className="font-bold text-navy w-32">Class</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">I Inst. (Apr-Jun)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">II Inst. (Jul-Sep)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">III Inst. (Oct-Dec)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">IV Inst. (Jan-Mar)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right bg-gray-50">Total</TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        <TableBody>
+                                            {tuitionFees.map((fee) => (
+                                                <TableRow key={fee.id} className="hover:bg-gray-50 transition-colors">
+                                                    <TableCell className="text-gray-500 font-medium">{fee.id}</TableCell>
+                                                    <TableCell className="font-bold text-navy">{fee.class}</TableCell>
+                                                    <TableCell className="text-right text-muted-foreground">{fee.installments.apr_june}</TableCell>
+                                                    <TableCell className="text-right text-muted-foreground">{fee.installments.july_sept}</TableCell>
+                                                    <TableCell className="text-right text-muted-foreground">{fee.installments.oct_dec}</TableCell>
+                                                    <TableCell className="text-right text-muted-foreground">{fee.installments.jan_mar}</TableCell>
+                                                    <TableCell className="text-right font-bold text-navy bg-gray-50/50">
+                                                        ₹{fee.total.toLocaleString("en-IN")}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </div>
+                            </TabsContent>
+
+                            <TabsContent value="bus" className="m-0 focus-visible:ring-0">
+                                <div className="p-4 border-b bg-gray-50 flex items-center gap-3">
+                                    <Search className="w-5 h-5 text-gray-400" />
+                                    <Input
+                                        placeholder="Search village name..."
+                                        className="max-w-sm bg-white"
+                                        value={busSearch}
+                                        onChange={(e) => setBusSearch(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="overflow-x-auto h-[600px] overflow-y-auto">
+                                    <Table>
+                                        <TableHeader className="sticky top-0 bg-white z-10 shadow-sm">
+                                            <TableRow className="bg-gray-100/50 hover:bg-gray-100/50">
+                                                <TableHead className="font-bold text-navy w-24">S.N.</TableHead>
+                                                <TableHead className="font-bold text-navy w-48">Village Name</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">I Inst. (Apr-Jun)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">II Inst. (Jul-Sep)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">III Inst. (Oct-Dec)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right">IV Inst. (Jan-Mar)</TableHead>
+                                                <TableHead className="font-bold text-navy text-right bg-gray-50">Total</TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        <TableBody>
+                                            {filteredBusFees.length > 0 ? (
+                                                filteredBusFees.map((fee) => (
+                                                    <TableRow key={fee.id} className="hover:bg-gray-50 transition-colors">
+                                                        <TableCell className="text-gray-500 font-medium">{fee.id}</TableCell>
+                                                        <TableCell className="font-bold text-navy">{fee.village}</TableCell>
+                                                        <TableCell className="text-right text-muted-foreground">{fee.installments.apr_june}</TableCell>
+                                                        <TableCell className="text-right text-muted-foreground">{fee.installments.july_sept}</TableCell>
+                                                        <TableCell className="text-right text-muted-foreground">{fee.installments.oct_dec}</TableCell>
+                                                        <TableCell className="text-right text-muted-foreground">{fee.installments.jan_mar}</TableCell>
+                                                        <TableCell className="text-right font-bold text-navy bg-gray-50/50">
+                                                            ₹{fee.total.toLocaleString("en-IN")}
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))
+                                            ) : (
+                                                <TableRow>
+                                                    <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                                                        No village found matching "{busSearch}"
+                                                    </TableCell>
+                                                </TableRow>
+                                            )}
+                                        </TableBody>
+                                    </Table>
+                                </div>
+                            </TabsContent>
+                        </Tabs>
+
                         <div className="p-4 bg-yellow-50 text-xs text-yellow-800 border-t border-yellow-100">
                             * The above fees are subject to change. Transport & Exam fees are charged separately as per usage.
                         </div>

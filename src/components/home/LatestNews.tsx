@@ -43,38 +43,29 @@ const defaultNews = [
     }
 ];
 
-export const LatestNews = () => {
-    const [newsItems, setNewsItems] = useState<any[]>(defaultNews);
-    const [isLoading, setIsLoading] = useState(true);
+interface LatestNewsProps {
+    initialNews: any[];
+}
 
-    useEffect(() => {
-        const loadNews = async () => {
-            try {
-                const apiNews = await getCMSNews();
-                if (apiNews.length > 0) {
-                    const mapped = apiNews.slice(0, 3).map((item) => ({
-                        id: item.id,
-                        category: "Update",
-                        date: item.date,
-                        title: item.title,
-                        description: item.description,
-                        imageUrl: item.imageUrl,
-                        icon: Bell,
-                        color: "bg-blue-50 text-blue-600"
-                    }));
-                    setNewsItems(mapped);
-                } else {
-                    setNewsItems(defaultNews);
-                }
-            } catch (error) {
-                console.error("Failed to load news, using defaults", error);
-                setNewsItems(defaultNews);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        loadNews();
-    }, []);
+export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
+    const [newsItems, setNewsItems] = useState<any[]>(initialNews.length > 0 ? initialNews.map(item => ({
+        id: item.id,
+        category: "Update",
+        date: item.date,
+        title: item.title,
+        description: item.description,
+        imageUrl: item.imageUrl,
+        icon: item.icon || Bell, // Fallback if server doesn't provide
+        color: "bg-blue-50 text-blue-600"
+    })) : defaultNews);
+
+    const [isLoading, setIsLoading] = useState(false); // No client fetch needed if SSR data provided
+
+    // Fallback client fetch if no initial data and we want to try?
+    // For now, assume SSR is primary source of truth for "instant" load.
+
+    // If we want subsequent updates or real-time? Usually not needed for news.
+    // Keeping it simple: Use props if available, else defaults.
 
     // Don't render the section if we have finished loading and there is no news
     if (!isLoading && newsItems.length === 0) {
@@ -91,7 +82,7 @@ export const LatestNews = () => {
                     </h2>
                 </div>
                 <Link href="/news-events">
-                    <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-white group">
+                    <Button className="bg-navy/5 hover:bg-navy text-navy hover:text-white font-bold transition-all group">
                         View All News <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                 </Link>

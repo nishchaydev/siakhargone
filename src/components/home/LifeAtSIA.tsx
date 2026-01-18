@@ -10,35 +10,46 @@ import { Button } from "@/components/ui/button";
 
 import { cloudinary } from "@/lib/cloudinary-images";
 
-const lifeImages = [
-    {
-        src: cloudinary.sessionStart[0],
-        alt: "Morning Assembly",
-        caption: "Morning Assembly",
-        size: "col-span-2 md:col-span-2 row-span-1 md:row-span-2"
-    },
-    {
-        src: cloudinary.infrastructure.library[0],
-        alt: "Library Time",
-        caption: "Library & Research",
-        size: "col-span-1"
-    },
-    {
-        src: cloudinary.lab.computer[0],
-        alt: "Computer Lab",
-        caption: "Innovation Labs",
-        size: "col-span-1"
-    },
-    {
-        src: cloudinary.sportsAchievements[2],
-        alt: "Sports Complex",
-        caption: "Sports & Fitness",
-        size: "col-span-2 md:col-span-2",
-        className: "object-top"
-    }
-];
 
-export const LifeAtSIA = () => {
+interface LifeAtSIAProps {
+    images?: {
+        assembly?: string;
+        library?: string;
+        labs?: string;
+        sports?: string;
+    };
+}
+
+export const LifeAtSIA = ({ images }: LifeAtSIAProps) => {
+    // Fallback to static if dynamic props not provided (or empty)
+    const lifeImages = [
+        {
+            src: images?.assembly || cloudinary.sessionStart[0],
+            alt: "Morning Assembly",
+            caption: "Morning Assembly",
+            size: "col-span-2 md:col-span-2 row-span-1 md:row-span-2"
+        },
+        {
+            src: images?.library || cloudinary.infrastructure.library[0],
+            alt: "Library Time",
+            caption: "Library & Research",
+            size: "col-span-1"
+        },
+        {
+            src: images?.labs || cloudinary.lab.computer[0],
+            alt: "Computer Lab",
+            caption: "Innovation Labs",
+            size: "col-span-1"
+        },
+        {
+            src: images?.sports || cloudinary.sportsAchievements[2],
+            alt: "Sports Complex",
+            caption: "Sports & Fitness",
+            size: "col-span-2 md:col-span-2",
+            className: "object-top"
+        }
+    ];
+
     return (
         <Section id="life-at-sia" className="bg-white">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">

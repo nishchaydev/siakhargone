@@ -32,37 +32,13 @@ interface ImagePlaceholder {
 
 interface AdmissionsPageClientProps {
     careerCounsellingImage?: ImagePlaceholder;
+    bannerImage?: string;
 }
 
-type FormStep = 1 | 2 | 3 | 4 | 5;
-
-interface formData {
-    // Student Info
-    studentName: string;
-    dob: string;
-    gender: "Male" | "Female" | "Other";
-    currentClass: string;
-    grade: string; // Applying for Class
-
-    // Academic Background
-    currentSchool: string;
-    board: string;
-
-    // Parent Info
-    fatherName: string;
-    fatherMobile: string;
-    fatherEmail: string;
-    motherName: string;
-    motherMobile: string;
-    motherEmail: string;
-    address: string;
-
-    // Additional Info
-    transportRequired: "Yes" | "No";
-    visitTime: string;
-}
-
-export default function AdmissionsPageClient({ careerCounsellingImage }: AdmissionsPageClientProps) {
+export default function AdmissionsPageClient({
+    careerCounsellingImage,
+    bannerImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
+}: AdmissionsPageClientProps) {
     const [step, setStep] = useState<FormStep>(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -92,23 +68,16 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
     // -------------------------------------------------------------------------
     // 🔴 PASTE YOUR GOOGLE WEP APP URL HERE
     // -------------------------------------------------------------------------
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_3P0A5riBZOD9QZvZU1tYPSrDeg4onMhrbQG4UxGqTEPsdq63qe1wvNsoBCNtUqmlAA/exec";
-
     const onSubmit = async (data: formData) => {
         setIsSubmitting(true);
 
         try {
-            if (GOOGLE_SCRIPT_URL) {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: "POST",
-                    mode: "no-cors", // Important for Google Sheets
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ ...data, type: "admission_enquiry_2026_27" }),
-                });
-            } else {
-                console.log("No Google Script URL provided. Data:", data);
-                await new Promise(resolve => setTimeout(resolve, 1500)); // Simulating
-            }
+            // Use internal API route
+            await fetch("/api/public/admissions", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
         } catch (error) {
             console.error("Error submitting form", error);
         }
@@ -159,7 +128,7 @@ export default function AdmissionsPageClient({ careerCounsellingImage }: Admissi
             <PageBanner
                 title="Admissions 2026-27"
                 subtitle="Join the Sanskar family. Begin your journey towards excellence today."
-                image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
+                image={bannerImage}
             />
 
             <Section id="admission-form" title="Admission Enquiry Form 2026-27" subtitle="Begin your journey with us" bgColor="bg-gray-50">

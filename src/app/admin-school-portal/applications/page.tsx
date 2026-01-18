@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, ExternalLink, Calendar, Mail, Phone, RefreshCw } from "lucide-react";
+import { Loader2, ExternalLink, Calendar, Mail, Phone, RefreshCw, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,6 +64,23 @@ export default function ApplicationsPage() {
             setData(prev => prev.map(item => item.id === id ? { ...item, status: newStatus } : item));
         } catch (e) {
             alert("Update failed");
+        } finally {
+            setUpdating(null);
+        }
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!confirm("Are you sure you want to delete this application?")) return;
+        setUpdating(id);
+        try {
+            await fetch("/api/admin/applications", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            });
+            await fetchData();
+        } catch (e) {
+            alert("Delete failed");
         } finally {
             setUpdating(null);
         }
@@ -146,9 +163,20 @@ export default function ApplicationsPage() {
                                         </TableCell>
                                         <TableCell>
                                             {/* Placeholder for future Notes feature */}
-                                            <Button variant="ghost" size="sm" className="text-xs text-gray-400" disabled>
-                                                Add Note
-                                            </Button>
+                                            <div className="flex items-center gap-2">
+                                                <Button variant="ghost" size="sm" className="text-xs text-gray-400" disabled>
+                                                    Note
+                                                </Button>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                                                    disabled={updating === item.id}
+                                                    onClick={() => handleDelete(item.id)}
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </Button>
+                                            </div>
                                         </TableCell>
                                     </TableRow>
                                 ))}

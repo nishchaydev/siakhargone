@@ -43,6 +43,7 @@ const KNOWLEDGE_BASE = [
     answer: "Admissions for the 2026-27 session are currently OPEN. You can enquire directly here!",
     options: [
       { label: "Start Enquiry 📝", value: "I want to enquire for admission" },
+      { label: "Chat on WhatsApp 💬", value: "whatsapp" },
       { label: "Check Age Criteria", value: "What is the age criteria?" }
     ]
   },
@@ -51,6 +52,7 @@ const KNOWLEDGE_BASE = [
     answer: "Our fee structure is designed to be transparent. It varies by grade level. Please download the detailed fee structure below.",
     options: [
       { label: "Start Enquiry", value: "I want to enquire for admission" },
+      { label: "Chat on WhatsApp 💬", value: "whatsapp" }
     ]
   },
   {
@@ -100,6 +102,7 @@ const findBestMatch = (text: string): { answer: string, options?: QuickOption[] 
     answer: "I'm not sure I understood that correctly. Here are some topics I can help with:",
     options: [
       { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
+      { label: "Chat on WhatsApp 💬", value: "whatsapp" },
       { label: "Fee Structure", value: "Fees" },
       { label: "Contact Support", value: "Contact" },
       { label: "Facilities", value: "Facilities" },
@@ -115,6 +118,7 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
       content: "Hello! I’m SIA Assistant! Ask me anything about the school.",
       options: [
         { label: "Admissions Enquiry 📝", value: "I want to enquire for admission" },
+        { label: "Chat on WhatsApp 💬", value: "whatsapp" },
         { label: "Fee Structure 💰", value: "Fees" },
         { label: "Facilities 🏫", value: "Facilities" },
         { label: "Contact Us 📞", value: "Contact" }
@@ -203,7 +207,8 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
       setIsTyping(false);
 
       if (result.success) {
-        addBotMessage("Thank you! Your enquiry has been registered. Our team will contact you shortly.", [
+        addBotMessage("Thank you! Your enquiry has been registered. Our team will contact you shortly. You can also chat with us directly on WhatsApp for faster response.", [
+          { label: "Continue on WhatsApp 💬", value: "whatsapp" },
           { label: "Back to Menu", value: "Menu" }
         ]);
       } else {
@@ -219,6 +224,11 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
 
   const handleSendMessage = async (text: string) => {
     if (!text.trim()) return;
+
+    if (text === "whatsapp") {
+      window.open("https://wa.me/917049110104?text=Hi, I want admission information.", "_blank");
+      return;
+    }
 
     // 1. Add User Message
     const userMessage: LocalChatMessage = {

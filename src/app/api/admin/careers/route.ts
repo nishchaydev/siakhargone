@@ -11,18 +11,18 @@ export async function GET() {
         // Fetch Careers
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId,
-            range: `${SHEET_TAB_IDS.CAREERS}!A2:F`, // Role, Experience, Description, Active, Type, Department
+            range: `Careers!A2:H`,
         });
 
         const rows = response.data.values || [];
-        const careers = rows.map((row, i) => ({
-            id: i + 2,
-            role: row[0],
-            experience: row[1],
-            description: row[2],
-            isActive: row[3] === "TRUE",
-            type: row[4] || "Full Time",
-            department: row[5] || "Academic",
+        const careers = rows.map((row) => ({
+            id: row[0],
+            role: row[1],
+            department: row[2],
+            type: row[3],
+            experience: row[4],
+            description: row[5],
+            isActive: row[6] === "Active",
         })).filter(j => j.isActive); // Only show active jobs
 
         return NextResponse.json({ data: careers });
@@ -38,12 +38,16 @@ export async function POST(req: Request) {
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
         if (!spreadsheetId) return NextResponse.json({ error: "Missing ID" }, { status: 500 });
 
+        const id = crypto.randomUUID();
+        const createdAt = new Date().toISOString();
+
+        // Setup Schema: Id, JobTitle, Department, Type, Experience, Description, Status, CreatedAt
         await sheets.spreadsheets.values.append({
             spreadsheetId,
-            range: `${SHEET_TAB_IDS.CAREERS}!A:F`,
+            range: `Careers!A:H`,
             valueInputOption: "USER_ENTERED",
             requestBody: {
-                values: [[role, experience, description, isActive ? "TRUE" : "FALSE", type, department]],
+                values: [[id, role, department, type, experience, description, isActive ? "Active" : "Inactive", createdAt]],
             },
         });
 

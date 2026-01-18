@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format, isAfter, subDays, parseISO } from "date-fns";
 import { FileText, Calendar, Filter, Download, Bell, X, Share2, Printer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -81,14 +81,49 @@ export function NoticeBoard() {
     const [filterYear, setFilterYear] = useState("all");
     const [filterCategory, setFilterCategory] = useState("all");
     const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
+    const [notices, setNotices] = useState<Notice[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadNotices = async () => {
+            try {
+                // Import dynamically to avoid server-client mismatches if needed, though here it's fine
+                const { getCMSNotices } = await import("@/lib/cms-fetch");
+                const cmsData = await getCMSNotices();
+
+                // Transform CMS data to UI format
+                const formatted: Notice[] = cmsData.map(item => ({
+                    id: String(item.id),
+                    title: item.text,
+                    date: item.date,
+                    // Default to 'General' if category logic isn't in CMS yet, or map simple logic
+                    category: item.isImportant ? "Exam" : "General", // Simple mapping for now
+                    fileUrl: item.link === "#" ? undefined : item.link,
+                    isImportant: item.isImportant,
+                    content: item.text // Using text as content for now
+                }));
+                setNotices(formatted);
+            } catch (err) {
+                console.error("Failed to load notices", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadNotices();
+    }, []);
 
     const isNew = (dateStr: string) => {
-        const date = parseISO(dateStr);
-        const sevenDaysAgo = subDays(new Date(), 30);
-        return isAfter(date, sevenDaysAgo);
+        try {
+            const date = parseISO(dateStr);
+            const sevenDaysAgo = subDays(new Date(), 30); // Keeping 30 days logic as per original
+            return isAfter(date, sevenDaysAgo);
+        } catch (e) { return false; }
     };
 
-    const filteredNotices = dummyNotices.filter(notice => {
+    // Use fetched notices instead of dummy
+    const displayedNotices = notices.length > 0 ? notices : [];
+
+    const filteredNotices = displayedNotices.filter(notice => {
         if (filterYear !== "all") {
             if (!notice.date.includes(filterYear)) return false;
         }
@@ -154,20 +189,41 @@ export function NoticeBoard() {
                                         </div>
 
                                         {selectedNotice.fileUrl && (
-                                            <div className="mt-8 pt-8 border-t flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg border border-dashed">
-                                                <div className="bg-white p-4 rounded-full shadow-sm mb-4">
-                                                    <FileText size={32} className="text-navy" />
-                                                </div>
-                                                <h4 className="font-semibold text-lg mb-2">Attached Document</h4>
-                                                <p className="text-muted-foreground text-sm mb-4 text-center max-w-sm">
-                                                    Official document relevant to this notice is available for download.
-                                                </p>
-                                                <Button className="bg-navy hover:bg-navy-dark text-white gap-2" asChild>
-                                                    <a href={selectedNotice.fileUrl} target="_blank" rel="noopener noreferrer">
-                                                        <Download size={18} />
-                                                        Download Attachment
-                                                    </a>
-                                                </Button>
+                                            <div className="mt-8 pt-8 border-t">
+                                                {/* Simple check for image extensions or cloudinary image path */}
+                                                {(selectedNotice.fileUrl.match(/\.(jpeg|jpg|gif|png|webp|avif)$/i) || selectedNotice.fileUrl.includes("/image/upload/")) ? (
+                                                    <div className="flex flex-col items-center space-y-4">
+                                                        <h4 className="font-semibold text-lg self-start text-navy">Notice Image</h4>
+                                                        <div className="relative w-full rounded-xl overflow-hidden border shadow-sm bg-gray-100">
+                                                            <img
+                                                                src={selectedNotice.fileUrl}
+                                                                alt={selectedNotice.title}
+                                                                className="w-full h-auto max-h-[600px] object-contain"
+                                                            />
+                                                        </div>
+                                                        <Button variant="outline" asChild>
+                                                            <a href={selectedNotice.fileUrl} target="_blank" rel="noopener noreferrer">
+                                                                <Download size={16} className="mr-2" /> Download Image
+                                                            </a>
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg border border-dashed">
+                                                        <div className="bg-white p-4 rounded-full shadow-sm mb-4">
+                                                            <FileText size={32} className="text-navy" />
+                                                        </div>
+                                                        <h4 className="font-semibold text-lg mb-2">Attached Document</h4>
+                                                        <p className="text-muted-foreground text-sm mb-4 text-center max-w-sm">
+                                                            Official document relevant to this notice is available for download.
+                                                        </p>
+                                                        <Button className="bg-navy hover:bg-navy-dark text-white gap-2" asChild>
+                                                            <a href={selectedNotice.fileUrl} target="_blank" rel="noopener noreferrer">
+                                                                <Download size={18} />
+                                                                Download Attachment
+                                                            </a>
+                                                        </Button>
+                                                    </div>
+                                                )}
                                             </div>
                                         )}
                                     </div>
@@ -211,7 +267,11 @@ export function NoticeBoard() {
 
             {/* Notices List */}
             <div className="space-y-4">
-                {filteredNotices.length > 0 ? (
+                {loading ? (
+                    <div className="text-center py-12 text-muted-foreground bg-gray-50 rounded-xl border border-dashed animate-pulse">
+                        <p>Loading notices...</p>
+                    </div>
+                ) : filteredNotices.length > 0 ? (
                     filteredNotices.map((notice, index) => (
                         <MotionDiv
                             key={notice.id}

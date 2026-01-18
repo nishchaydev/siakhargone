@@ -28,8 +28,14 @@ interface Highlight {
   description: string;
 }
 
+import { getSiteAssets } from '@/lib/cms-fetch';
+
+export const dynamic = 'force-dynamic';
+
 export default async function AcademicsPage() {
   const albums = await loadAlbums();
+  const assets = await getSiteAssets().catch(() => []);
+  const bannerImage = assets.find(a => a.key === 'banner_academics')?.imageUrl;
 
   // Extract photos for auto-scroll
   const labAlbum = albums.find(a => a.albumName === "Labs & Facilities");
@@ -47,6 +53,7 @@ export default async function AcademicsPage() {
         infrastructureItems={infrastructureItems}
         methodologyImage={methodologyImage}
         infrastructurePhotos={infrastructurePhotos}
+        bannerImage={bannerImage}
       />
     </div>
   );
