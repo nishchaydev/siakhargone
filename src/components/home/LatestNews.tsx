@@ -37,10 +37,9 @@ export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
     // If we want subsequent updates or real-time? Usually not needed for news.
     // Keeping it simple: Use props if available, else defaults.
 
-    // Don't render the section if we have finished loading and there is no news
-    if (!isLoading && newsItems.length === 0) {
-        return null;
-    }
+    // if (!isLoading && newsItems.length === 0) {
+    //     return null;
+    // }
 
     return (
         <Section className="bg-white" id="latest-news">
@@ -59,57 +58,67 @@ export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-                {newsItems.map((item, index) => (
-                    <Link
-                        href="/news-events"
-                        key={item.id}
-                        className="block h-full"
-                    >
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover-lift group cursor-pointer h-full flex flex-col overflow-hidden"
+                {newsItems.length === 0 ? (
+                    <div className="col-span-3 text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                        <div className="flex flex-col items-center justify-center text-gray-400">
+                            <Bell className="w-12 h-12 mb-4 opacity-20" />
+                            <p className="text-lg font-medium">No recent updates available</p>
+                            <p className="text-sm">Check back soon for the latest campus buzz</p>
+                        </div>
+                    </div>
+                ) : (
+                    newsItems.map((item, index) => (
+                        <Link
+                            href="/news-events"
+                            key={item.id}
+                            className="block h-full"
                         >
-                            {item.imageUrl ? (
-                                <div className="h-48 -mx-6 -mt-6 mb-4 relative overflow-hidden">
-                                    <img
-                                        src={item.imageUrl}
-                                        alt={item.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                    <div className="absolute top-4 left-4">
-                                        <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none shadow-md`}>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover-lift group cursor-pointer h-full flex flex-col overflow-hidden"
+                            >
+                                {item.imageUrl ? (
+                                    <div className="h-48 -mx-6 -mt-6 mb-4 relative overflow-hidden">
+                                        <img
+                                            src={item.imageUrl}
+                                            alt={item.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                        <div className="absolute top-4 left-4">
+                                            <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none shadow-md`}>
+                                                {item.category}
+                                            </Badge>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="flex justify-between items-start mb-4">
+                                        <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none`}>
                                             {item.category}
                                         </Badge>
+                                        <div className="flex items-center text-sm text-gray-500">
+                                            <Calendar className="w-4 h-4 mr-1" />
+                                            {item.date}
+                                        </div>
                                     </div>
+                                )}
+
+                                <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-accent transition-colors line-clamp-2">
+                                    {item.title}
+                                </h3>
+
+                                <p className="text-gray-600 mb-6 text-sm line-clamp-3 flex-grow">
+                                    {item.description}
+                                </p>
+
+                                <div className="inline-flex items-center text-sm font-bold text-navy hover:text-gold-accent transition-colors mt-auto">
+                                    Read More <ChevronRight className="ml-1 w-4 h-4" />
                                 </div>
-                            ) : (
-                                <div className="flex justify-between items-start mb-4">
-                                    <Badge variant="secondary" className={`${item.color} hover:${item.color} border-none`}>
-                                        {item.category}
-                                    </Badge>
-                                    <div className="flex items-center text-sm text-gray-500">
-                                        <Calendar className="w-4 h-4 mr-1" />
-                                        {item.date}
-                                    </div>
-                                </div>
-                            )}
-
-                            <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-accent transition-colors line-clamp-2">
-                                {item.title}
-                            </h3>
-
-                            <p className="text-gray-600 mb-6 text-sm line-clamp-3 flex-grow">
-                                {item.description}
-                            </p>
-
-                            <div className="inline-flex items-center text-sm font-bold text-navy hover:text-gold-accent transition-colors mt-auto">
-                                Read More <ChevronRight className="ml-1 w-4 h-4" />
-                            </div>
-                        </motion.div>
-                    </Link>
-                ))}
+                            </motion.div>
+                        </Link>
+                    ))
+                )}
             </div>
         </Section>
     );

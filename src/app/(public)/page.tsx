@@ -11,6 +11,7 @@ const WhyChoose = nextDynamic(() => import("@/components/home/WhyChoose").then(m
   loading: () => <div className="py-20"><Skeleton className="h-[400px] w-full max-w-7xl mx-auto rounded-xl" /></div>
 });
 const PrincipalMessage = nextDynamic(() => import("@/components/home/PrincipalMessage").then(mod => mod.PrincipalMessage));
+const StudentAchievers = nextDynamic(() => import("@/components/home/StudentAchievers").then(mod => mod.StudentAchievers));
 const CTASection = nextDynamic(() => import("@/components/home/CTASection").then(mod => mod.CTASection));
 const Academics = nextDynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
 const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
@@ -85,7 +86,7 @@ export default async function Home() {
       <WhyChoose />
       <PrincipalMessage />
       <Academics />
-      {/* StudentAchievers removed */}
+      <StudentAchievers />
       <LatestNews initialNews={newsData.slice(0, 3)} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
