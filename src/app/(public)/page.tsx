@@ -23,7 +23,8 @@ const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").
 
 import { albums, testimonials } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
-import { getCMSNews, CMSNewsItem, getSiteAssets, SiteAsset, getCMSAchievers, CMSAchiever } from "@/lib/cms-fetch";
+import { getNewsService } from "@/services/newsService";
+import { CMSNewsItem, getSiteAssets, SiteAsset, getCMSAchievers, CMSAchiever } from "@/lib/cms-fetch";
 
 // Force dynamic rendering since we are fetching news which updates frequently
 export const dynamic = 'force-dynamic';
@@ -31,7 +32,8 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   // Hybrid Fetching: News is dynamic, Assets/Achievers are static/manual
   const [newsData] = await Promise.all([
-    getCMSNews().catch(e => { console.error("News Fetch Error:", e); return [] as CMSNewsItem[]; })
+    // Direct Service Call (No Fetch API Overhead/Error)
+    getNewsService().catch(e => { console.error("News Fetch Error:", e); return []; })
   ]);
 
   // Static data for assets and achievers (Manually updated by user)
