@@ -324,8 +324,8 @@ export default function ResultsManager() {
                                 </Label>
                                 {form.resultLink ? (
                                     <div className="flex items-center gap-2 mt-1">
-                                        <Input disabled value={form.resultLink} className="bg-gray-50 text-gray-500" />
-                                        <Button type="button" variant="ghost" className="text-red-500" onClick={() => setForm({ ...form, resultLink: "" })}>
+                                        <Input disabled value={form.resultLink} className="bg-gray-50 text-gray-500 flex-1" />
+                                        <Button type="button" variant="outline" className="text-red-500 hover:text-red-600 hover:bg-red-50 hover:border-red-200" onClick={() => setForm({ ...form, resultLink: "" })}>
                                             Remove
                                         </Button>
                                     </div>
@@ -367,12 +367,12 @@ export default function ResultsManager() {
                                 )}
                             </div>
 
-                            <div className="col-span-2 pt-4 flex justify-end gap-2">
+                            <DialogFooter className="col-span-2 pt-4">
                                 <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
                                 <Button type="submit" className="bg-blue-600 hover:bg-blue-700 font-bold" disabled={submitting}>
                                     {submitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Save Result"}
                                 </Button>
-                            </div>
+                            </DialogFooter>
                         </form>
                     </DialogContent>
                 </Dialog>

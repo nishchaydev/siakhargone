@@ -43,7 +43,7 @@ async function fetchNewsFromGoogleSheets(): Promise<NewsItem[]> {
 }
 
 export async function getNewsService(): Promise<NewsItem[]> {
-    return getCachedData("news_data", fetchNewsFromGoogleSheets, 3600 * 1000); // 1 hour 
+    return getCachedData("news_data", fetchNewsFromGoogleSheets, 30 * 1000); // 30 seconds 
 }
 
 export async function addNewsService(item: { title: string, description: string, date: string, imageUrl: string }) {

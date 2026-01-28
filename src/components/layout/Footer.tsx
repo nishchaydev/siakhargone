@@ -123,7 +123,7 @@ export default function Footer() {
               <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-white">Terms of Use</Link>
               <span className="flex items-center gap-1">
-                Managed by <a href="https://bynn.vercel.app/" target="_blank" className="text-gold hover:underline font-bold">BYN Agency</a>
+                Managed by <a href="https://bynn.vercel.app/" target="_blank" className="text-gold hover:underline font-bold">Emitra technologies</a>
               </span>
             </div>
           </div>
