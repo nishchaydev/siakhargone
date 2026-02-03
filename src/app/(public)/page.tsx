@@ -126,7 +126,7 @@ export default async function Home() {
       <LatestNews initialNews={latestUpdates} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
-      <PressLogos />
+      {/* <PressLogos /> - Removed as per user request */}
       <HomeFAQ />
       <CTASection />
     </>
