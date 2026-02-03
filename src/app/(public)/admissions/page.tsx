@@ -1,7 +1,7 @@
 
 import type { Metadata } from 'next';
 import AdmissionsPageClient from './AdmissionsPageClient';
-import data from '@/lib/placeholder-images.json';
+
 
 export const metadata: Metadata = {
   title: 'Admissions Open 2026-27 - Apply Online',

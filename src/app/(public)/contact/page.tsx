@@ -2,7 +2,6 @@
 import type { Metadata } from 'next';
 import ContactPageClient from './ContactPageClient';
 import { cloudinary } from '@/lib/cloudinary-images';
-import data from '@/lib/placeholder-images.json';
 import Image from 'next/image';
 import PageBanner from '@/components/common/PageBanner';
 
