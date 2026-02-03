@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
-import data from '@/lib/placeholder-images.json';
+
 import { VideoModal } from "./VideoModal";
 import Link from "next/link";
 
@@ -15,7 +15,11 @@ const fadeInUp = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-const virtualTourImage = data.placeholderImages.find(img => img.id === 'virtual-tour-thumbnail');
+const virtualTourImage = {
+  imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp",
+  description: "Virtual Tour Thumbnail",
+  imageHint: "Virtual Tour"
+};
 const youtubeVideoUrl = "https://www.youtube.com/embed/RlF7vCdM86Q?autoplay=1&mute=1";
 
 export function VirtualTourSection() {
@@ -25,11 +29,11 @@ export function VirtualTourSection() {
     <>
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto max-w-7xl px-4">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
-            variants={fadeInUp} 
-            initial="initial" 
-            whileInView="animate" 
+            variants={fadeInUp}
+            initial="initial"
+            whileInView="animate"
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">A Day in the Life of SIA</h2>
@@ -37,9 +41,9 @@ export function VirtualTourSection() {
               Watch our campus reel to get a feel for student life at Sanskar International Academy.
             </p>
           </motion.div>
-          
+
           {virtualTourImage && (
-            <motion.div 
+            <motion.div
               className="relative aspect-video w-full max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden group cursor-pointer"
               variants={fadeInUp}
               initial="initial"
@@ -67,15 +71,15 @@ export function VirtualTourSection() {
           )}
 
           <motion.div className="mt-8 text-center" variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }}>
-              <Button asChild size="lg" className="rounded-xl">
-                <Link href="/virtual-tour">
-                    Experience Our Campus
-                </Link>
-              </Button>
-            </motion.div>
+            <Button asChild size="lg" className="rounded-xl">
+              <Link href="/virtual-tour">
+                Experience Our Campus
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
-      <VideoModal 
+      <VideoModal
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
         videoUrl={youtubeVideoUrl}
