@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { sanitizeHTML } from "@/lib/security";
 
 interface BlogPostPageProps {
     params: Promise<{
@@ -67,8 +68,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         prose-headings:font-display prose-headings:font-bold prose-headings:text-navy
                         prose-a:text-gold-dark prose-a:no-underline hover:prose-a:underline
                         prose-img:rounded-xl prose-img:shadow-lg"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHTML(post.content) }}
                     />
+
 
                     <div className="mt-16 pt-10 border-t border-gray-200">
                         <div className="bg-navy p-8 rounded-2xl text-center text-white relative overflow-hidden">

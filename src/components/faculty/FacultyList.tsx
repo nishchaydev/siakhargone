@@ -62,6 +62,7 @@ const departments: Department[] = [
         ]
     },
 ];
+import { escapeJsonForScript } from "@/lib/security";
 
 export function FacultyList() {
     const facultySchema = {
@@ -97,7 +98,7 @@ export function FacultyList() {
         <div className="w-full">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(facultySchema) }}
+                dangerouslySetInnerHTML={{ __html: escapeJsonForScript(JSON.stringify(facultySchema)) }}
             />
             <Tabs defaultValue="science" className="w-full flex flex-col items-center">
                 <TabsList className="flex flex-wrap justify-center h-auto p-2 bg-navy/5 gap-2 mb-8 rounded-xl w-full max-w-4xl">

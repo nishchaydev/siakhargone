@@ -2,6 +2,10 @@
 User-agent: *
 Allow: /
 
+# Block admin/CMS routes
+Disallow: /cms
+Disallow: /admin-school-portal
+
 # Host
 Host: https://siakhargone.in
 

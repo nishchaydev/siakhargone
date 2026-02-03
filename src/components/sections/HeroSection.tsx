@@ -76,8 +76,6 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 allowFullScreen
-
-                                loading="lazy"
                             />
                         );
                     } else if (videoSrc && !videoSrc.includes("http")) {

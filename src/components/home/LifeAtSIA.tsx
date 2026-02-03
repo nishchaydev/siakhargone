@@ -25,7 +25,7 @@ export const LifeAtSIA = ({ images }: LifeAtSIAProps) => {
     const lifeImages = [
         {
             src: images?.assembly || cloudinary.sessionStart[0],
-            alt: "Morning Assembly leading CBSE school Khargone",
+            alt: "Morning assembly at CBSE school, Khargone",
             caption: "Morning Assembly",
             size: "col-span-2 md:col-span-2 row-span-1 md:row-span-2"
         },

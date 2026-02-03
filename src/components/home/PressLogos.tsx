@@ -18,7 +18,7 @@ export function PressLogos() {
                     Recognized by Leading Media
                 </p>
 
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 hover:grayscale-0 transition-all duration-500">
+                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 grayscale hover:grayscale-0 transition-all duration-500">
                     {pressMentions.map((item, index) => (
                         <motion.div
                             key={index}

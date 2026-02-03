@@ -29,7 +29,7 @@ export const PrincipalMessage = () => {
           <div className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
             <Image
               src={schoolLogo}
-              alt="Principal Mr. Shivam Jaiswal - Sanskar International Academy Khargone"
+              alt="Sanskar International Academy logo"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority

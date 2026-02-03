@@ -138,11 +138,6 @@ export default function RootLayout({
               "telephone": "+91-70491-10104",
               "email": "emitratechnologies@gmail.com",
               "priceRange": "₹₹",
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.5",
-                "reviewCount": "63"
-              },
               "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+91-8602175892",

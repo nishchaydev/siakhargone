@@ -231,7 +231,7 @@ export default function EventsManager() {
                                                 <div className="w-full md:w-48 h-32 bg-gray-200 shrink-0 relative">
                                                     <Image
                                                         src={item.imageUrl}
-                                                        alt=""
+                                                        alt={item.title || "Event image"}
                                                         fill
                                                         className="object-cover"
                                                         unoptimized

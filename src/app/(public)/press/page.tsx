@@ -85,7 +85,7 @@ export default function PressPage() {
                                         </p>
                                     </div>
                                     <div className="shrink-0 self-center md:self-start">
-                                        <Button variant="outline" className="gap-2" disabled title="Article coming soon">
+                                        <Button variant="outline" className="gap-2" disabled title="Article coming soon" aria-label="Article coming soon - Read More button currently unavailable">
                                             Read More <ExternalLink className="w-4 h-4" />
                                         </Button>
                                     </div>
