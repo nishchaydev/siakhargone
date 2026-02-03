@@ -57,7 +57,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 allowFullScreen
-                                style={{ pointerEvents: 'none' }}
+
                                 loading="lazy"
                             />
                         );
