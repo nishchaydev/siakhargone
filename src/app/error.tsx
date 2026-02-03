@@ -43,10 +43,9 @@ export default function Error({
                     </Button>
 
                     <Button
-                        variant="outline"
                         size="lg"
                         asChild
-                        className="min-w-[140px]"
+                        className="bg-gold hover:bg-gold-dark text-navy font-bold min-w-[140px] border-2 border-gold"
                     >
                         <Link href="/">
                             <Home className="mr-2 h-4 w-4" /> Go Home

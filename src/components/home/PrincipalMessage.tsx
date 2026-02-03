@@ -12,7 +12,7 @@ import { schoolData } from "@/data/schoolData";
 
 export const PrincipalMessage = () => {
   return (
-    <Section id="principal-message" className="bg-white relative overflow-hidden">
+    <Section id="principal-message" className="bg-white relative overflow-hidden py-12 md:py-16">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-navy/5 rounded-bl-full -mr-20 -mt-20 z-0" />
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/10 rounded-tr-full -ml-10 -mb-10 z-0" />
@@ -29,7 +29,7 @@ export const PrincipalMessage = () => {
           <div className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
             <Image
               src={schoolLogo}
-              alt="Principal of Sanskar International Academy"
+              alt="Principal Mr. Shivam Jaiswal - Sanskar International Academy Khargone"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority

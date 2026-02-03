@@ -3,8 +3,8 @@ export const schoolData = {
     name: "SIA Khargone",
     fullName: "Sukhdevi International Academy, Khargone",
     affiliation: "CBSE Affiliated",
-    affiliationNo: "1031165", // Please verify or update if needed
-    schoolCode: "51139", // Please verify or update if needed
+    affiliationNo: "1031345", // Verified from Footer
+    schoolCode: "51362", // Verified by User
     stats: {
         students: "1500+",
         teachers: "75+",

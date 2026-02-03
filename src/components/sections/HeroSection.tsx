@@ -6,7 +6,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { cloudinary } from "@/lib/cloudinary-images";
 
-export default function HeroSection({ data, stats }: { data: any, stats?: any[] }) {
+interface HeroStat {
+    value: string;
+    label: string;
+}
+
+interface HeroData {
+    grid?: string[];
+    video?: string;
+    sanskrit?: string;
+    title: string;
+    subtitle: string;
+    cta1Href: string;
+}
+
+interface HeroSectionProps {
+    data: HeroData;
+    stats?: HeroStat[];
+}
+
+export default function HeroSection({ data, stats }: HeroSectionProps) {
     // Fallback if no stats provided
     const displayStats = stats || [
         { value: "1100+", label: "Students" },
@@ -24,7 +43,7 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                 {/* 1. Base Image Layer (LCP Priority) - Always render for immediate paint */}
                 <Image
                     src={data.grid?.[0] || cloudinary.infrastructure.building[1]}
-                    alt=""
+                    alt="Sanskar International Academy Campus - Best CBSE School in Khargone"
                     fill
                     className="object-cover opacity-60 z-0"
                     priority
@@ -77,36 +96,41 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
             </div>
 
             {/* Content Container */}
-            <div className="relative z-30 container mx-auto px-6 h-full flex flex-col justify-center">
-                <div className="max-w-4xl pt-16 md:pt-20 pb-12 md:pb-24"> {/* Compact padding for shorter mobile hero */}
+            <div className="relative z-30 container mx-auto px-6 h-full flex flex-col justify-center items-center text-center">
+                <div className="w-full max-w-5xl pt-20 md:pt-24 pb-24 md:pb-48"> {/* Increased bottom padding to clear stats bar */}
                     {/* Sanskrit Motto - Hidden on mobile to save space */}
                     {data.sanskrit && (
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="hidden md:block mb-6"
+                            className="hidden md:block mb-4"
                         >
-                            <span className="text-gold font-headline text-3xl italic tracking-wide">
+                            <span className="text-gold font-headline text-2xl md:text-3xl italic tracking-wide">
                                 {data.sanskrit}
                             </span>
                         </motion.div>
                     )}
 
-                    <motion.h1
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] drop-shadow-xl text-white mb-3 md:mb-6"
+                        className="mb-4 md:mb-8 text-center relative z-20"
                     >
-                        {data.title}
-                    </motion.h1>
+                        <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-2 md:mb-4 drop-shadow-2xl text-white block">
+                            SANSKAR
+                        </h1>
+                        <h2 className="font-sans font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase tracking-[0.25em] md:tracking-[0.4em] text-light-gold drop-shadow-md block">
+                            International Academy
+                        </h2>
+                    </motion.div>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="text-base md:text-2xl text-white/90 max-w-2xl mb-6 md:mb-10 font-light leading-relaxed line-clamp-3 md:line-clamp-none"
+                        className="text-sm md:text-xl text-white/90 max-w-3xl mx-auto mb-8 font-light leading-relaxed line-clamp-3 md:line-clamp-none drop-shadow-md"
                     >
                         {data.subtitle}
                     </motion.p>
@@ -115,13 +139,13 @@ export default function HeroSection({ data, stats }: { data: any, stats?: any[] 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.6 }}
-                        className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-6"
+                        className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 relative z-50"
                     >
                         <Link
                             href={data.cta1Href}
                             target={isExternal(data.cta1Href) ? "_blank" : undefined}
                             rel={isExternal(data.cta1Href) ? "noopener noreferrer" : undefined}
-                            className="bg-gold text-navy-dark font-bold px-6 py-3 md:px-10 md:py-4 rounded-full shadow-lg hover:bg-white button-glow btn-magnetic transition-all transform w-full sm:w-auto text-center text-sm md:text-lg"
+                            className="inline-flex items-center justify-center bg-gold text-navy-dark font-bold px-6 py-3 md:px-10 md:py-4 rounded-full shadow-lg hover:bg-white button-glow btn-magnetic transition-all transform w-full sm:w-auto text-center text-sm md:text-lg"
                         >
                             Enquire Now
                         </Link>

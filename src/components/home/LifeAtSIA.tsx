@@ -25,25 +25,25 @@ export const LifeAtSIA = ({ images }: LifeAtSIAProps) => {
     const lifeImages = [
         {
             src: images?.assembly || cloudinary.sessionStart[0],
-            alt: "Morning Assembly",
+            alt: "Morning Assembly leading CBSE school Khargone",
             caption: "Morning Assembly",
             size: "col-span-2 md:col-span-2 row-span-1 md:row-span-2"
         },
         {
             src: images?.library || cloudinary.infrastructure.library[0],
-            alt: "Library Time",
+            alt: "Library at Sanskar International Academy Khargone",
             caption: "Library & Research",
             size: "col-span-1"
         },
         {
             src: images?.labs || cloudinary.lab.computer[0],
-            alt: "Computer Lab",
+            alt: "Modern Computer Lab - SIA Khargone",
             caption: "Innovation Labs",
             size: "col-span-1"
         },
         {
             src: images?.sports || cloudinary.sportsAchievements[2],
-            alt: "Sports Complex",
+            alt: "Sports Complex and Playground at SIA Khargone",
             caption: "Sports & Fitness",
             size: "col-span-2 md:col-span-2",
             className: "object-top"

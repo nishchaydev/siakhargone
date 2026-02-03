@@ -64,8 +64,41 @@ const departments: Department[] = [
 ];
 
 export function FacultyList() {
+    const facultySchema = {
+        "@context": "https://schema.org",
+        "@graph": departments.flatMap(dept => [
+            // Head of Department Schema
+            {
+                "@type": "Person",
+                "name": dept.head.name,
+                "jobTitle": dept.head.role,
+                "worksFor": {
+                    "@type": "EducationalOrganization",
+                    "name": "Sanskar International Academy"
+                },
+                "educationalCredential": dept.head.qualification,
+                "yearsOfExperience": dept.head.experience
+            },
+            // Department Members Schema
+            ...dept.members.map(member => ({
+                "@type": "Person",
+                "name": member.name,
+                "jobTitle": member.role,
+                "worksFor": {
+                    "@type": "EducationalOrganization",
+                    "name": "Sanskar International Academy"
+                },
+                "educationalCredential": member.qualification
+            }))
+        ])
+    };
+
     return (
         <div className="w-full">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(facultySchema) }}
+            />
             <Tabs defaultValue="science" className="w-full flex flex-col items-center">
                 <TabsList className="flex flex-wrap justify-center h-auto p-2 bg-navy/5 gap-2 mb-8 rounded-xl w-full max-w-4xl">
                     {departments.map((dept) => (

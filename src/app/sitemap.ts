@@ -27,7 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/virtual-tour',
         '/privacy',
         '/terms',
-        '/mandatory-disclosure'
+        '/mandatory-disclosure',
+        '/faq',
+        '/why-choose-sia',
+        '/blog',
+        '/press',
+        '/about/achievements',
+        '/best-school-in-khargone'
     ];
 
     return routes.map((route) => ({

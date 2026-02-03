@@ -1,3 +1,4 @@
+// Rebuild trigger: Fixed cmsData reference error
 import HeroSection from "@/components/sections/HeroSection";
 // Don't lazy load LatestNews to prevent "pop-in" if we have data instantly.
 import { LatestNews } from "@/components/home/LatestNews";
@@ -16,16 +17,18 @@ const CTASection = nextDynamic(() => import("@/components/home/CTASection").then
 const Academics = nextDynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
 const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
 const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
+const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod => mod.HomeFAQ));
+const PressLogos = nextDynamic(() => import("@/components/home/PressLogos").then(mod => mod.PressLogos));
 
-import { albums, testimonials } from "@/lib/static-data";
+import { albums, testimonials, faqs } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
 import { getNewsService } from "@/services/newsService";
 import { getEventsService } from "@/services/eventsService";
 import { getNoticesService } from "@/services/noticesService";
-// Removed deleted imports: getSiteAssets, getCMSAchievers
 
 // Force dynamic rendering since we are fetching news which updates frequently
 export const dynamic = 'force-dynamic';
+export const revalidate = 0; // Force no-cache for debugging
 
 export default async function Home() {
   // Hybrid Fetching: News, Events & Notices
@@ -44,7 +47,6 @@ export default async function Home() {
 
   const latestUpdates = allUpdates.slice(0, 3);
 
-  console.log(`[HomePage] Displaying ${latestUpdates.length} updates from ${newsItems.length} news & ${eventsItems.length} events.`);
 
   // Curate homepage gallery images
   const sessionStart = albums.find(a => a.albumName === "Session Start")?.photos || [];
@@ -64,8 +66,8 @@ export default async function Home() {
 
   const cmsData = {
     hero: {
-      title: "Where Excellence Begins.",
-      subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
+      title: "Sanskar International Academy",
+      subtitle: "One of the leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
       sanskrit: "विद्या ददाति विनयम्",
       video: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6", // User requested video
       grid: [
@@ -86,6 +88,9 @@ export default async function Home() {
     gallery: galleryImages
   };
 
+  console.log(`[HomePage] Rendering with Hero Title: ${cmsData?.hero?.title}`);
+  console.log(`[HomePage] Displaying ${latestUpdates.length} updates from ${newsItems.length} news & ${eventsItems.length} events.`);
+
   const lifeAtSIAImages = {
     assembly: cloudinary.sessionStart[0],
     library: cloudinary.infrastructure.library[0],
@@ -95,6 +100,23 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })
+        }}
+      />
       <HeroSection data={cmsData.hero} stats={cmsData.stats} />
       <AtAGlance />
       <WhyChoose />
@@ -104,6 +126,8 @@ export default async function Home() {
       <LatestNews initialNews={latestUpdates} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
+      <PressLogos />
+      <HomeFAQ />
       <CTASection />
     </>
   );

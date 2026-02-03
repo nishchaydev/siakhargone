@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { format, isAfter, subDays, parseISO } from "date-fns";
 import { FileText, Calendar, Filter, Download, Bell, X, Share2, Printer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -151,10 +152,10 @@ export function NoticeBoard() {
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Button variant="ghost" size="icon" title="Print" onClick={() => window.print()} className="hidden sm:flex">
+                                    <Button variant="ghost" size="icon" title="Print" onClick={() => window.print()} className="hidden sm:flex" aria-label="Print Notice">
                                         <Printer size={20} className="text-muted-foreground" />
                                     </Button>
-                                    <Button variant="ghost" size="icon" onClick={() => setSelectedNotice(null)}>
+                                    <Button variant="ghost" size="icon" onClick={() => setSelectedNotice(null)} aria-label="Close Notice Details">
                                         <X size={24} className="text-muted-foreground" />
                                     </Button>
                                 </div>
@@ -194,11 +195,13 @@ export function NoticeBoard() {
                                                 {(selectedNotice.fileUrl.match(/\.(jpeg|jpg|gif|png|webp|avif)$/i) || selectedNotice.fileUrl.includes("/image/upload/")) ? (
                                                     <div className="flex flex-col items-center space-y-4">
                                                         <h4 className="font-semibold text-lg self-start text-navy">Notice Image</h4>
-                                                        <div className="relative w-full rounded-xl overflow-hidden border shadow-sm bg-gray-100">
-                                                            <img
+                                                        <div className="relative w-full rounded-xl overflow-hidden border shadow-sm bg-gray-100 min-h-[400px]">
+                                                            <Image
                                                                 src={selectedNotice.fileUrl}
                                                                 alt={selectedNotice.title}
-                                                                className="w-full h-auto max-h-[600px] object-contain"
+                                                                fill
+                                                                className="object-contain"
+                                                                unoptimized
                                                             />
                                                         </div>
                                                         <Button variant="outline" asChild>

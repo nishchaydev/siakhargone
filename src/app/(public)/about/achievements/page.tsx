@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 };
 
 const achievementItems = [
-    { icon: "Award", category: "Academics", title: "National Science Olympiad", description: "Our students secured top ranks in the National Science Olympiad, showcasing their exceptional scientific aptitude." },
-    { icon: "Medal", category: "Sports", title: "State Level Football Champions", description: "The school's football team clinched the state-level championship with an undefeated record." },
-    { icon: "Palette", category: "Arts & Culture", title: "National Art Competition Winner", description: "A student's artwork was recognized as the best entry in the junior category of a prestigious national competition." },
-    { icon: "Globe", category: "Social Impact", title: "Community Service Award", description: "Our students were honored for their outstanding contributions to local community service and environmental initiatives." },
+    { icon: "Award", category: "Academics", title: "Achievement to be Announced", description: "Details regarding recent academic excellence awards will be updated soon." },
+    { icon: "Medal", category: "Sports", title: "Sports Achievement Pending", description: "Information about our sports team's recent championships is currently being updated." },
+    { icon: "Palette", category: "Arts & Culture", title: "Cultural Award Recognition", description: "Our students' achievements in national art and culture competitions will be featured here shortly." },
+    { icon: "Globe", category: "Social Impact", title: "Community Initiative Update", description: "Details about our latest community service projects and recognitions are coming soon." },
 ];
 
 export default function AchievementsPage() {
