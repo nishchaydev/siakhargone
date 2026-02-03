@@ -37,7 +37,10 @@ export default {
         },
         gold: {
           DEFAULT: '#D4AF37',
+          dark: '#997B20', // Darker gold for text on white (AA compliant for large text)
         },
+        ivory: '#F7F5F2',
+        cream: '#FFFDD0',
         bgIvory: {
           DEFAULT: '#F7F5F2',
         },

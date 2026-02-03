@@ -1,22 +1,14 @@
 'use client'
 import React from 'react'
 import HeroVideo from './HeroVideo'
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
-export function HeroSection() {
+// You can change 'modern' to 'classic' here to switch variants
+
+export function HeroSection({ data, stats }: { data?: any, stats?: any }) {
+  // Use the first grid image as the background if available
+  const heroImage = data?.grid?.[0];
+
   return (
-    <HeroVideo
-      cta={
-        <>
-          <Button asChild size="lg" className="text-lg px-8 py-6 h-auto shadow-xl hover:translate-y-[-2px] transition-all">
-            <Link href="/admissions">Enquire Now</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 h-auto border-2 border-white/80 bg-white/5 text-white hover:bg-white hover:text-royalBlue transition-all">
-            <Link href="/virtual-tour">Virtual Tour</Link>
-          </Button>
-        </>
-      }
-    />
+    <HeroVideo variant="modern" backgroundImage={heroImage} />
   )
 }

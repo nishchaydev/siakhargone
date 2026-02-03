@@ -7,12 +7,14 @@ import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface SectionProps {
-  id: string;
-  title: string;
+  id?: string;
+  title?: string;
   subtitle?: string;
   children: React.ReactNode;
   bgColor?: string;
   isFirstSection?: boolean;
+  className?: string; // Added to allow custom classes
+  style?: React.CSSProperties;
 }
 
 const sectionVariants = {
@@ -28,7 +30,7 @@ const sectionVariants = {
   },
 };
 
-export function Section({ id, title, subtitle, children, bgColor = 'bg-background', isFirstSection = false }: SectionProps) {
+export function Section({ id, title, subtitle, children, bgColor = 'bg-background', isFirstSection = false, className, style }: SectionProps) {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -41,13 +43,14 @@ export function Section({ id, title, subtitle, children, bgColor = 'bg-backgroun
     }
   }, [controls, inView]);
 
-  const sectionPadding = isFirstSection ? "pt-32 md:pt-40 pb-28 md:pb-32" : "py-28 md:py-32";
+  const sectionPadding = isFirstSection ? "pt-24 md:pt-40 pb-20 md:pb-32" : "py-16 md:py-32";
 
   return (
     <motion.section
       id={id}
       ref={ref}
-      className={cn("px-4 sm:px-6 lg:px-8", sectionPadding, bgColor)}
+      className={cn("px-4 sm:px-6 lg:px-8", sectionPadding, bgColor, className)}
+      style={style}
       initial="hidden"
       animate={controls}
       variants={sectionVariants}

@@ -35,15 +35,13 @@ export function Academics() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <Image
-          src="https://picsum.photos/seed/academics-banner/1600/700"
-          alt="Students learning in a classroom"
+        <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"
+          alt="Sanskar International Academy Campus"
           width={1600}
           height={700}
           className="w-full h-[450px] object-cover"
-          data-ai-hint="students classroom"
-          priority
-        />
+          data-ai-hint="school campus"
+          priority />
       </motion.div>
 
       {/* Section Title */}
@@ -51,7 +49,7 @@ export function Academics() {
         <h2 className="text-4xl md:text-5xl font-semibold text-navy font-headline">
           Our Academic Structure
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="mt-4 text-lg text-navy/80 max-w-2xl mx-auto">
           Fostering curiosity, creativity, and competence at every stage of learning.
         </p>
       </div>

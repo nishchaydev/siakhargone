@@ -1,0 +1,20 @@
+
+> nextn@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.9
+   - Environments: .env.local, .env.production
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 8.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/38) ...
+Error occurred prerendering page "/admin-school-portal/gallery". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: A Cloudinary Cloud name is required, please make sure NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME is set and configured in your environment.
+    at cR (N:\PROGRAMS\GIT and GITHUB\github Desktop\siakhargone\.next\server\app\admin-school-portal\gallery\page.js:2:132430)
+    at cT (N:\PROGRAMS\GIT and GITHUB\github Desktop\siakhargone\.next\server\app\admin-school-portal\gallery\page.js:2:136925) {
+  digest: '643791827'
+}
+Export encountered an error on /admin-school-portal/gallery/page: /admin-school-portal/gallery, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null

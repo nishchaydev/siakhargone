@@ -4,12 +4,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import CountUp from "react-countup";
-import { Users, UserCheck, Award } from "lucide-react";
+import { Users, UserCheck, Award, Calendar } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: 1200, label: "Students Enrolled", suffix: "+" },
+  { icon: Users, value: 1500, label: "Students Enrolled", suffix: "+" },
   { icon: UserCheck, value: 75, label: "Teachers", suffix: "+" },
-  { icon: Award, value: 25, label: "Awards", suffix: "+" },
+  { icon: Calendar, value: 15, label: "Years of Excellence", suffix: "+" },
+  { icon: Award, value: 50, label: "Awards Won", suffix: "+" },
 ];
 
 const containerVariants = {
@@ -33,7 +34,7 @@ export function Stats() {
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
-    <section className="bg-navy text-white section-xl">
+    <section className="bg-navy text-white py-20 md:py-28 relative overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           className="text-center mb-12"
@@ -48,7 +49,7 @@ export function Stats() {
         </motion.div>
         <motion.div
           ref={ref}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

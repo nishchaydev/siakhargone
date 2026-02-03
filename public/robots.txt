@@ -1,4 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
-Sitemap: https://siakhargone.web.app/sitemap.xml
+# Host
+Host: https://siakhargone.in
+
+# Sitemaps
+Sitemap: https://siakhargone.in/sitemap.xml

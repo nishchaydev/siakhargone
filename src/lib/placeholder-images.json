@@ -1,94 +1,13 @@
 {
-  "placeholderImages": [
-    {
-      "id": "hero-background",
-      "description": "Still fallback if video doesn’t load",
-      "imageUrl": "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBjYW1wdXN8ZW58MHx8fHwxNzYyNTQxNzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "school campus"
-    },
-    {
-      "id": "about-school",
-      "description": "A vibrant picture of the school building or campus.",
-      "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipPL_YnIfsCr8SR3s-btHLm7dxt-cXXqRILbumEw=s1360-w1360-h1020-rw",
-      "imageHint": "school building"
-    },
-    {
-      "id": "experiential-learning",
-      "description": "A teacher mentoring students in a collaborative setting.",
-      "imageUrl": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf",
-      "imageHint": "teacher students"
-    },
-    {
-      "id": "career-counselling",
-      "description": "A teacher mentoring students in a collaborative setting for career guidance.",
-      "imageUrl": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf",
-      "imageHint": "career guidance"
-    },
-    {
-      "id": "campus-infrastructure",
-      "description": "A wide shot of modern school campus infrastructure.",
-      "imageUrl": "https://images.unsplash.com/photo-1571260899304-425eee4c7efc",
-      "imageHint": "campus infrastructure"
-    },
-    {
-      "id": "admissions-hero",
-      "description": "A welcoming entrance to a school.",
-      "imageUrl": "https://images.unsplash.com/photo-1550805010-03f6217d7ffd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzY2hvb2wlMjBlbnRyYW5jZXxlbnwwfHx8fDE3NjI1NjY5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "school entrance"
-    },
-    {
-      "id": "virtual-tour-thumbnail",
-      "description": "A thumbnail of a school building for the virtual tour section.",
-      "imageUrl": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzY2hvb2x8ZW58MHx8fHwxNzYyNTM1Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "modern school"
-    },
-    {
-      "id": "contact-hero",
-      "description": "An office front desk.",
-      "imageUrl": "https://images.unsplash.com/photo-1582653547187-2bb73b2d7b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyZWNlcHRpb24lMjBkZXNrfGVufDB8fHx8MTc2MjUzMzk3MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "reception desk"
-    },
-    {
-      "id": "highlight-carousel-1",
-      "description": "Cultural Event / Annual Day",
-      "imageUrl": "https://images.unsplash.com/photo-1761124739303-0f63772ed166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjdWx0dXJhbCUyMGV2ZW50fGVufDB8fHx8MTc2MjQ5MjczNHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "cultural event"
-    },
-    {
-      "id": "highlight-carousel-2",
-      "description": "Sports Meet",
-      "imageUrl": "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzY2hvb2wlMjBzcG9ydHN8ZW58MHx8fHwxNzYyNTg2Njc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "school sports"
-    },
-    {
-      "id": "highlight-carousel-3",
-      "description": "Science / Innovation Lab",
-      "imageUrl": "https://images.unsplash.com/photo-1602052577122-f73b9710adba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY2llbmNlJTIwbGFifGVufDB8fHx8MTc2MjUzMzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "science lab"
-    },
-    {
-      "id": "principal-portrait",
-      "description": "Principal",
-      "imageUrl": "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MjU3MzY3N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "woman portrait"
-    },
-    {
-      "id": "chairman-portrait",
-      "description": "Chairman Praveen Asanade",
-      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYW4lMjBwb3J0cmFpdCUyMHN1aXR8ZW58MHx8fHwxNzYyNTg2MzEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "man portrait suit"
-    },
-    {
-      "id": "sports-infrastructure",
-      "description": "Sports Infrastructure",
-      "imageUrl": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1",
-      "imageHint": "gym fitness"
-    },
-    {
-      "id": "student-leadership",
-      "description": "Student Leadership",
-      "imageUrl": "https://images.unsplash.com/photo-1584697964403-959b6d3d5a84",
-      "imageHint": "students presentation"
-    }
-  ]
+  "grid": [
+    "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/classroom-1_k9z4s9.webp",
+    "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp",
+    "https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-1_xmyfg2.webp"
+  ],
+  "video": "https://res.cloudinary.com/dkits80xk/video/upload/v1765306917/hero-video_lfe9p3.mp4",
+  "title": "Welcome to Sanskar International Academy",
+  "subtitle": "Empowering students to achieve excellence in academics and life.",
+  "sanskrit": "Sa Vidya Ya Vimuktaye",
+  "cta1Href": "/admissions",
+  "cta2Href": "#video"
 }
