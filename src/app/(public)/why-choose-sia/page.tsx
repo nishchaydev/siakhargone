@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Section } from '@/components/common/Section';
 import PageBanner from '@/components/common/PageBanner';
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
@@ -13,46 +13,61 @@ export const metadata: Metadata = {
     },
 };
 
+const features = [
+    {
+        title: "Academic Excellence",
+        points: [
+            "50+ qualified teachers (B.Ed, M.Ed certified)",
+            "Regular parent-teacher meetings",
+            "Individual attention to students",
+            "Proven track record in board results"
+        ]
+    },
+    {
+        title: "Modern Infrastructure",
+        points: [
+            "4-acre campus on Khandwa Road",
+            "Computer labs with latest systems",
+            "Well-equipped science laboratories",
+            "5000+ books library",
+            "Sports complex and playground"
+        ]
+    },
+    {
+        title: "Safety & Transport",
+        points: [
+            "GPS-enabled buses",
+            "CCTV surveillance campus-wide",
+            "Female staff for girls' safety",
+            "Safe drop-off zones"
+        ]
+    },
+    {
+        title: "Holistic Development",
+        points: [
+            "Sports: Basketball, Cricket, Athletics",
+            "Cultural: Dance, Music, Art",
+            "Academic: Science clubs, Maths olympiad",
+            "Personality: Leadership, Public speaking"
+        ]
+    }
+];
+
+interface ComparisonItem {
+    feature: string;
+    sia: string;
+    other: string;
+}
+
+const comparisonData: ComparisonItem[] = [
+    { feature: "Teaching Staff", sia: "100% B.Ed/M.Ed Certified", other: "Mixed Qualifications" },
+    { feature: "Class Size", sia: "30-35 Students (Personal Attention)", other: "40+ Students" },
+    { feature: "Campus Area", sia: "4 Acres with Sports Complex", other: "Limited Space" },
+    { feature: "Safety", sia: "CCTV & GPS Buses", other: "Basic Security" },
+    { feature: "Digital Learning", sia: "Smart Classes & Labs", other: "Traditional Boards" }
+];
+
 export default function WhyChooseSIAPage() {
-    const features = [
-        {
-            title: "Academic Excellence",
-            points: [
-                "50+ qualified teachers (B.Ed, M.Ed certified)",
-                "Regular parent-teacher meetings",
-                "Individual attention to students",
-                "Proven track record in board results"
-            ]
-        },
-        {
-            title: "Modern Infrastructure",
-            points: [
-                "4-acre campus on Khandwa Road",
-                "Computer labs with latest systems",
-                "Well-equipped science laboratories",
-                "5000+ books library",
-                "Sports complex and playground"
-            ]
-        },
-        {
-            title: "Safety & Transport",
-            points: [
-                "GPS-enabled buses",
-                "CCTV surveillance campus-wide",
-                "Female staff for girls' safety",
-                "Safe drop-off zones"
-            ]
-        },
-        {
-            title: "Holistic Development",
-            points: [
-                "Sports: Basketball, Cricket, Athletics",
-                "Cultural: Dance, Music, Art",
-                "Academic: Science clubs, Maths olympiad",
-                "Personality: Leadership, Public speaking"
-            ]
-        }
-    ];
 
     return (
         <div className="min-h-screen bg-grain">
@@ -95,20 +110,13 @@ export default function WhyChooseSIAPage() {
                             <table className="w-full text-left border-collapse">
                                 <thead>
                                     <tr className="border-b border-white/20">
-                                        <th className="py-4 px-6 text-lg font-bold text-gold w-1/3">Feature</th>
-                                        <th className="py-4 px-6 text-lg font-bold bg-white/10 rounded-t-lg w-1/3 text-center">Sanskar International Academy (SIA)</th>
-                                        <th className="py-4 px-6 text-lg font-bold text-white/50 w-1/3 text-center">Other Schools</th>
+                                        <th scope="col" className="py-4 px-6 text-lg font-bold text-gold w-1/3">Feature</th>
+                                        <th scope="col" className="py-4 px-6 text-lg font-bold bg-white/10 rounded-t-lg w-1/3 text-center">Sanskar International Academy (SIA)</th>
+                                        <th scope="col" className="py-4 px-6 text-lg font-bold text-white/50 w-1/3 text-center">Other Schools</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-white/10">
-                                    {[
-                                        { feature: "Teacher Qualification", sia: "100% B.Ed/M.Ed Certified", other: "Mixed Qualification" },
-                                        { feature: "Student-Teacher Ratio", sia: "25:1 (Individual Attention)", other: "40:1 or higher" },
-                                        { feature: "Transport Safety", sia: "GPS + CCTV + Female Attendant", other: "Basic Bus Service" },
-                                        { feature: "Teaching Methodology", sia: "Activity-based & Digital", other: "Rote Learning" },
-                                        { feature: "Campus Area", sia: "4 Acres with Sports Complex", other: "Limited Space" },
-                                        { feature: "Fee Structure", sia: "Transparent & Affordable", other: "Hidden Charges" },
-                                    ].map((row, idx) => (
+                                    {comparisonData.map((row, idx) => (
                                         <tr key={idx} className="hover:bg-white/5 transition-colors">
                                             <td className="py-4 px-6 font-medium text-white/90">{row.feature}</td>
                                             <td className="py-4 px-6 text-center bg-white/5 font-bold text-gold">

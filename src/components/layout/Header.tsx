@@ -251,8 +251,8 @@ const Header = () => {
           <div className="flex flex-col justify-center ml-1">
             <span className="font-display font-bold text-2xl md:text-3xl leading-none tracking-tight text-white mb-[2px]">SANSKAR</span>
             <div className="flex flex-col leading-none">
-              <span className="font-sans text-[7px] md:text-[9px] font-bold uppercase tracking-[0.25em] text-gold/90">INTERNATIONAL</span>
-              <span className="font-sans text-[7px] md:text-[9px] font-bold uppercase tracking-[0.25em] text-gold/90">ACADEMY</span>
+              <span className="font-sans text-[9px] md:text-[11px] font-bold uppercase tracking-[0.25em] text-gold/90">INTERNATIONAL</span>
+              <span className="font-sans text-[9px] md:text-[11px] font-bold uppercase tracking-[0.25em] text-gold/90">ACADEMY</span>
             </div>
           </div>
         </Link>

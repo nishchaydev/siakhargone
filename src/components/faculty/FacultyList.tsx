@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -66,7 +66,7 @@ const departments: Department[] = [
 
 
 export function FacultyList() {
-    const facultySchema = {
+    const facultySchema = useMemo(() => ({
         "@context": "https://schema.org",
         "@graph": departments.flatMap(dept => [
             // Head of Department Schema
@@ -79,7 +79,7 @@ export function FacultyList() {
                     "name": "Sanskar International Academy"
                 },
                 "educationalCredential": dept.head.qualification,
-                "yearsOfExperience": dept.head.experience
+                "description": `Teaching Experience: ${dept.head.experience}`
             },
             // Department Members Schema
             ...dept.members.map(member => ({
@@ -93,7 +93,7 @@ export function FacultyList() {
                 "educationalCredential": member.qualification
             }))
         ])
-    };
+    }), []);
 
     return (
         <div className="w-full">

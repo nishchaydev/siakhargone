@@ -45,7 +45,7 @@ export default function Error({
                     <Button
                         size="lg"
                         asChild
-                        className="bg-gold hover:bg-gold-dark text-navy font-bold min-w-[140px] border-2 border-gold"
+                        className="bg-gold hover:bg-gold-dark text-navy font-bold min-w-[140px]"
                     >
                         <Link href="/">
                             <Home className="mr-2 h-4 w-4" /> Go Home

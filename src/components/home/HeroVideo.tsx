@@ -20,7 +20,8 @@ type Props = {
 export default function HeroVideo({
   variant = 'modern',
   backgroundImage = 'https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&w=640&q=60',
-}: Props) {
+  videoId = '5ObfN8wX0Jg'
+}: Props & { videoId?: string }) {
 
   const { name, cta } = schoolData
 
@@ -32,14 +33,17 @@ export default function HeroVideo({
     <section className="relative w-full h-[85vh] flex items-center overflow-hidden bg-gray-900">
 
       {/* Background Video */}
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/5ObfN8wX0Jg?autoplay=1&mute=1&loop=1&playlist=5ObfN8wX0Jg&controls=0&showinfo=0&rel=0&modestbranding=1"
-        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
-        style={{ border: 'none', transform: 'scale(1.5)', transformOrigin: 'center' }}
-        allow="autoplay; encrypted-media"
-        loading="lazy"
-        title={`${name} Video Background`}
-      />
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        poster={backgroundImage}
+      >
+        <source src="https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4#t=3" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       {/* Overlay - Changes based on variant */}
       <div

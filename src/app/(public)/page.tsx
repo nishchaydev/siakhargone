@@ -1,4 +1,4 @@
-// Rebuild trigger: Fixed cmsData reference error
+
 import HeroSection from "@/components/sections/HeroSection";
 // Don't lazy load LatestNews to prevent "pop-in" if we have data instantly.
 import { LatestNews } from "@/components/home/LatestNews";
@@ -18,7 +18,6 @@ const Academics = nextDynamic(() => import("@/components/home/Academics").then(m
 const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
 const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
 const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod => mod.HomeFAQ));
-const PressLogos = nextDynamic(() => import("@/components/home/PressLogos").then(mod => mod.PressLogos));
 
 import { albums, testimonials, faqs } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
@@ -39,11 +38,23 @@ export default async function Home() {
   ]);
 
   // Unified Feed Logic
-  const allUpdates = [
-    ...newsItems.map((item: any) => ({ ...item, type: 'News' })),
-    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' })),
-    ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: 'Important Notice' })) // Notices might not have description, provide fallback or mapping
-  ].sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  // Unified Feed Logic
+  interface UpdateItem {
+    id: string | number;
+    title: string;
+    text?: string;
+    date: string;
+    type: 'News' | 'Event' | 'Notice';
+    description?: string;
+    // Add other properties as needed from source items
+    [key: string]: any;
+  }
+
+  const allUpdates: UpdateItem[] = [
+    ...newsItems.map((item: any) => ({ ...item, type: 'News' } as UpdateItem)),
+    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' } as UpdateItem)),
+    ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: item.text || 'Important Notice' } as UpdateItem))
+  ].sort((a: UpdateItem, b: UpdateItem) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const latestUpdates = allUpdates.slice(0, 3);
 
@@ -88,8 +99,7 @@ export default async function Home() {
     gallery: galleryImages
   };
 
-  console.log(`[HomePage] Rendering with Hero Title: ${cmsData?.hero?.title}`);
-  console.log(`[HomePage] Displaying ${latestUpdates.length} updates from ${newsItems.length} news & ${eventsItems.length} events.`);
+
 
   const lifeAtSIAImages = {
     assembly: cloudinary.sessionStart[0],
@@ -126,7 +136,6 @@ export default async function Home() {
       <LatestNews initialNews={latestUpdates} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
-      {/* <PressLogos /> - Removed as per user request */}
       <HomeFAQ />
       <CTASection />
     </>

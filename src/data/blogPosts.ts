@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
             <p>Other schools worth considering include Gokuldas Public School and Swami Vivekananda School, each with their own strengths in academics and co-curricular activities.</p>
 
             <h2>Conclusion</h2>
-            <p>While there are several options, <strong>Sanskar International Academy</strong> leads the chart due to its modern infrastructure, focus on English fluency, and consistent academic excellence. If you are looking for a school that prepares your child for the future ranking #1 in current lists.</p>
+            <p>While there are several options, <strong>Sanskar International Academy</strong> leads the chart due to its modern infrastructure, focus on English fluency, and consistent academic excellence. If you are looking for a school that prepares your child for the future, SIA ranks #1 in current lists.</p>
             
             <div class="bg-amber-50 p-6 rounded-lg border-l-4 border-gold mt-8">
                 <h3 class="font-bold text-navy text-xl mb-2">Admissions Open for 2026-27</h3>

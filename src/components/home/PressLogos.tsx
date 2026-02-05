@@ -32,7 +32,7 @@ export function PressLogos() {
                                 <Newspaper className="w-6 h-6" />
                                 <span>{item.name}</span>
                             </div>
-                            <span className="text-[10px] uppercase tracking-wide text-slate-400 group-hover:text-slate-600 transition-colors">
+                            <span className="text-xs uppercase tracking-wide text-slate-400 group-hover:text-slate-600 transition-colors">
                                 {item.label}
                             </span>
                         </motion.div>

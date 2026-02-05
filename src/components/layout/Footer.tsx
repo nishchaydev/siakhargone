@@ -57,8 +57,8 @@ export default function Footer() {
                   to academic excellence and holistic development.
                 </p>
                 <div className="text-sm space-y-1">
-                  <p><strong>Address:</strong> Gowadi Fata, Khargone - Khandwa Highway, Badgaon, Khargone, MP - 451001</p>
-                  <p><strong>Phone:</strong> +91 70491 10104</p>
+                  <p><strong>Address:</strong> {schoolData.contact.address}</p>
+                  <p><strong>Phone:</strong> {schoolData.contact.phone[0]}</p>
                   <p><strong>CBSE Affiliation:</strong> 1031345</p>
                 </div>
               </div>

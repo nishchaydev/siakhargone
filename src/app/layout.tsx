@@ -69,19 +69,13 @@ export const metadata: Metadata = {
     images: [openGraphImage],
   },
   icons: {
-    icon: [
-      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png', sizes: '32x32', type: 'image/png' },
-      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png', sizes: '16x16', type: 'image/png' },
-      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png', sizes: '192x192', type: 'image/png' },
-    ],
+    icon: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
     shortcut: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
-    apple: [
-      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'icon', url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png', sizes: '192x192', type: 'image/png' },
-      { rel: 'icon', url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png', sizes: '512x512', type: 'image/png' },
-    ],
+    apple: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
+    },
   },
   robots: {
     index: true,

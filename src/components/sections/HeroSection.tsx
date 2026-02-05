@@ -48,7 +48,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     className="object-cover opacity-60 z-0"
                     priority
                     fetchPriority="high"
-                    sizes="(max-width: 768px) 100vw, 100vw"
+                    sizes="100vw"
                 />
 
                 {/* 2. Video Layer (Overlay) */}
@@ -56,25 +56,23 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     const videoSrc = data.video || "";
                     let videoId = "";
 
-                    // Explicit check for the user's requested video ID
-                    if (videoSrc.includes("6-i18-xt8sI")) {
-                        videoId = "6-i18-xt8sI";
-                    } else if (videoSrc.includes("5ObfN8wX0Jg")) {
-                        videoId = "5ObfN8wX0Jg";
-                    } else if (videoSrc.includes("youtube.com") || videoSrc.includes("youtu.be")) {
-                        // Robust ID extraction for other videos
+                    // Generic YouTube ID extraction
+                    const getYoutubeId = (url: string) => {
+                        if (!url) return "";
                         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-                        const match = videoSrc.match(regExp);
-                        videoId = (match && match[2].length === 11) ? match[2] : "";
-                    }
+                        const match = url.match(regExp);
+                        return (match && match[2].length === 11) ? match[2] : "";
+                    };
+
+                    if (videoSrc.includes("6-i18-xt8sI")) videoId = "6-i18-xt8sI";
+                    else if (videoSrc.includes("5ObfN8wX0Jg")) videoId = "5ObfN8wX0Jg";
+                    else videoId = getYoutubeId(videoSrc);
 
                     if (videoId) {
                         return (
                             <iframe
-                                className="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-center pointer-events-none blur-[1px] z-10"
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1${videoId === '5ObfN8wX0Jg' ? '&start=3' : ''}`}
                                 title="YouTube video player"
-                                frameBorder="0"
+                                className="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-center pointer-events-none blur-[1px] z-10 border-none"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 allowFullScreen
@@ -120,10 +118,12 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     >
                         <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-2 md:mb-4 drop-shadow-2xl text-white block">
                             {data.title.split(' ')[0]}
+                            {data.title.split(' ').length > 1 && (
+                                <span className="font-sans font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase tracking-[0.25em] md:tracking-[0.4em] text-light-gold drop-shadow-md block mt-2">
+                                    {data.title.split(' ').slice(1).join(' ')}
+                                </span>
+                            )}
                         </h1>
-                        <h2 className="font-sans font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase tracking-[0.25em] md:tracking-[0.4em] text-light-gold drop-shadow-md block">
-                            {data.title.split(' ').slice(1).join(' ')}
-                        </h2>
                     </motion.div>
 
                     <motion.p
@@ -157,7 +157,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
             <div className="absolute bottom-0 w-full z-40 border-t border-white/10 bg-navy-dark/80 backdrop-blur-md">
                 <div className="container mx-auto">
                     <div className="grid grid-cols-4 divide-x divide-white/10">  {/* Always 4 cols to save vertical space */}
-                        {displayStats.map((stat: any, idx: number) => (
+                        {displayStats.map((stat: HeroStat, idx: number) => (
                             <div key={idx} className="py-3 md:py-6 px-1 md:px-4 text-center">
                                 <div className="text-lg md:text-3xl font-display font-bold text-gold">{stat.value}</div>
                                 <p className="text-white/70 text-[10px] md:text-sm uppercase tracking-wider font-medium leading-tight">{stat.label}</p>

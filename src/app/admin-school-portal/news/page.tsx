@@ -243,7 +243,7 @@ export default function NewsManager() {
                                                 <div className="w-full md:w-48 h-32 bg-gray-200 shrink-0 relative">
                                                     <Image
                                                         src={item.imageUrl}
-                                                        alt=""
+                                                        alt={item.title || "News article image"}
                                                         fill
                                                         className="object-cover"
                                                         unoptimized
