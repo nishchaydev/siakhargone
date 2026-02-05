@@ -69,7 +69,7 @@ export default async function Home() {
       title: "Sanskar International Academy",
       subtitle: "One of the leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
       sanskrit: "विद्या ददाति विनयम्",
-      video: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6", // User requested video
+      video: "https://www.youtube.com/embed/5ObfN8wX0Jg?si=auIIJ-lhRmK36LEy&start=3", // User requested video
       grid: [
         cloudinary.infrastructure.building[0],
         cloudinary.infrastructure.classrooms[0],

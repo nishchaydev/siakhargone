@@ -31,15 +31,13 @@ export default function HeroVideo({
   return (
     <section className="relative w-full h-[85vh] flex items-center overflow-hidden bg-gray-900">
 
-      {/* Background Image */}
-      <Image
-        src={backgroundImage}
-        alt={`${name} Campus`}
-        fill
-        className="object-cover z-0"
-        priority
-        fetchPriority="high"
-        sizes="100vw"
+      {/* Background Video */}
+      <iframe
+        src="https://www.youtube.com/embed/5ObfN8wX0Jg?autoplay=1&mute=1&loop=1&playlist=5ObfN8wX0Jg&controls=0&showinfo=0&rel=0&modestbranding=1"
+        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+        style={{ border: 'none', transform: 'scale(1.5)' }}
+        allow="autoplay; encrypted-media"
+        title={`${name} Video Background`}
       />
 
       {/* Overlay - Changes based on variant */}

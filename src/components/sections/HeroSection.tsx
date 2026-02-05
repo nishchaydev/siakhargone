@@ -59,6 +59,8 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     // Explicit check for the user's requested video ID
                     if (videoSrc.includes("6-i18-xt8sI")) {
                         videoId = "6-i18-xt8sI";
+                    } else if (videoSrc.includes("5ObfN8wX0Jg")) {
+                        videoId = "5ObfN8wX0Jg";
                     } else if (videoSrc.includes("youtube.com") || videoSrc.includes("youtu.be")) {
                         // Robust ID extraction for other videos
                         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -69,8 +71,8 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     if (videoId) {
                         return (
                             <iframe
-                                className="absolute inset-0 w-full h-full object-cover scale-[1.35] origin-center pointer-events-none blur-[1px] z-10"
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1`}
+                                className="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-center pointer-events-none blur-[1px] z-10"
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1${videoId === '5ObfN8wX0Jg' ? '&start=3' : ''}`}
                                 title="YouTube video player"
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
