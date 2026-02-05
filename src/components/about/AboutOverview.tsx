@@ -17,9 +17,15 @@ interface AboutOverviewProps {
         src: string | null;
         alt: string;
     } | null;
+    stats?: {
+        students: string;
+        teachers: string;
+        established: string;
+        campusSize: string;
+    };
 }
 
-export function AboutOverview({ content, schoolImage }: AboutOverviewProps) {
+export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProps) {
     return (
         <Section id="overview" isFirstSection={true}>
             <div className="grid md:grid-cols-2 gap-12 items-start relative">
@@ -27,9 +33,9 @@ export function AboutOverview({ content, schoolImage }: AboutOverviewProps) {
                     <p className="intro-text mb-6 font-medium text-navy-dark leading-relaxed">
                         <strong>Sanskar International Academy is one of the leading CBSE English-medium
                             schools in Khargone, known for disciplined academics, modern infrastructure, and
-                            holistic student development.</strong> Since our establishment in 2016, we have grown
-                        to educate 1100+ students with a dedicated team of 50+ qualified teachers. Located
-                        on Khandwa Road, our 4-acre campus features state-of-the-art facilities including
+                            holistic student development.</strong> Since our establishment in {stats?.established || '2016'}, we have grown
+                        to educate {stats?.students || '1100+'} students with a dedicated team of {stats?.teachers || '50+'} qualified teachers. Located
+                        on Khandwa Road, our {stats?.campusSize || '4-acre'} campus features state-of-the-art facilities including
                         computer labs, science laboratories, library, sports complex, and GPS-enabled
                         transport covering 15+ routes across Khargone district.
                     </p>
@@ -39,6 +45,7 @@ export function AboutOverview({ content, schoolImage }: AboutOverviewProps) {
                         <h3 className="text-xl font-display font-bold text-navy mb-4 border-l-4 border-gold pl-3">Quick Facts (Digital Fact Sheet)</h3>
                         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                             <table className="w-full text-left text-sm">
+                                <caption className="sr-only">School Quick Facts</caption>
                                 <tbody className="divide-y divide-gray-100">
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy w-1/3">Entity Name</th>

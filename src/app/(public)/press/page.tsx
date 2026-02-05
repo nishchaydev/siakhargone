@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 const pressItems = [
     {
+        id: "pending-media-1",
         title: "Media Feature Pending",
         source: "News Channel / Publication",
         date: "Coming Soon",
@@ -20,6 +21,7 @@ const pressItems = [
         color: "bg-blue-50 text-blue-600"
     },
     {
+        id: "infra-review-2026",
         title: "Infrastructure Excellence",
         source: "Education Magazine",
         date: "Coming Soon",
@@ -28,6 +30,7 @@ const pressItems = [
         color: "bg-gold/10 text-gold-dark"
     },
     {
+        id: "achievements-coverage",
         title: "Student Achievements Coverage",
         source: "Local Media",
         date: "Coming Soon",
@@ -36,6 +39,7 @@ const pressItems = [
         color: "bg-green-50 text-green-600"
     },
     {
+        id: "awards-recognition",
         title: "Awards Recognition",
         source: "Industry Body",
         date: "Pending Update",
@@ -51,7 +55,7 @@ export default function PressPage() {
             <PageBanner
                 title="Press & Media"
                 subtitle="Celebrating our achievements and recognition in the community."
-                image="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop"
+                image="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"
             />
 
             <Section className="py-16 md:py-24">
@@ -67,7 +71,7 @@ export default function PressPage() {
                         {pressItems.map((item, index) => {
                             const Icon = item.icon;
                             return (
-                                <div key={index} className="group bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col md:flex-row gap-6 items-start">
+                                <div key={item.id} className="group bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col md:flex-row gap-6 items-start">
                                     <div className={`p-4 rounded-full shrink-0 ${item.color}`}>
                                         <Icon className="w-8 h-8" />
                                     </div>

@@ -32,14 +32,18 @@ const mukta = Mukta({
 
 const openGraphImage = 'https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png';
 
+const currentYear = new Date().getFullYear();
+const nextYear = currentYear + 1;
+const admissionYear = `${currentYear}-${String(nextYear).slice(-2)}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://siakhargone.in'),
   title: {
-    default: 'Best CBSE School in Khargone | Sanskar International Academy | Admissions 2026-27',
+    default: `Best CBSE School in Khargone | Sanskar International Academy | Admissions ${admissionYear}`,
     template: '%s | Sanskar International Academy',
   },
-  description: 'Sanskar International Academy - Top rated CBSE school in Khargone with 1100+ students, 50+ teachers, modern infrastructure. English-medium education from nursery to class 12. Admissions open 2026-27. Visit our Khandwa Road campus.',
-  keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', 'school admission Khargone 2026'],
+  description: `Sanskar International Academy - Top rated CBSE school in Khargone with 1100+ students, 50+ teachers, modern infrastructure. English-medium education from nursery to class 12. Admissions open ${admissionYear}. Visit our Khandwa Road campus.`,
+  keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`],
   authors: [{ name: 'Sanskar International Academy' }],
   alternates: {
     canonical: 'https://siakhargone.in/',

@@ -17,8 +17,7 @@ export function sanitizeHTML(html: string): string {
             '*': ['class', 'id'],
             'a': ['href', 'name', 'target', 'rel'],
             'img': ['src', 'alt', 'title', 'width', 'height'],
-            'div': ['class', 'id'],
-            'span': ['class', 'id'],
+
         },
         allowedSchemes: ['http', 'https', 'mailto'],
         allowedSchemesByTag: {

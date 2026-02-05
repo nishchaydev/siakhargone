@@ -1,106 +1,19 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { MotionDiv } from '@/components/common/Motion';
 import { User2, BadgeCheck } from "lucide-react";
-import { escapeJsonForScript } from "@/lib/security";
 
-interface FacultyMember {
-    name: string;
-    role: string;
-    qualification: string;
-    experience?: string;
-    image?: string;
-}
+import { departments } from "@/data/departments";
 
-interface Department {
-    id: string;
-    label: string;
-    head: FacultyMember;
-    members: FacultyMember[];
-}
-
-const departments: Department[] = [
-    {
-        id: "science",
-        label: "Science",
-        head: { name: "Mr. R.K. Sharma", role: "HOD Science (Physics)", qualification: "M.Sc. Physics, B.Ed", experience: "15 Years" },
-        members: [
-            { name: "Mrs. Anjali Gupta", role: "Chemistry PGT", qualification: "M.Sc. Chemistry" },
-            { name: "Mr. Vimal Verma", role: "Biology PGT", qualification: "M.Sc. Biotech" },
-            { name: "Ms. Priya Singh", role: "Science TGT", qualification: "B.Sc., B.Ed" },
-        ]
-    },
-    {
-        id: "maths",
-        label: "Mathematics",
-        head: { name: "Mrs. S. Iyer", role: "HOD Mathematics", qualification: "M.Sc. Maths, M.Ed", experience: "12 Years" },
-        members: [
-            { name: "Mr. Amit Patel", role: "Maths PGT", qualification: "M.Sc. Maths" },
-            { name: "Mrs. Ritu Jain", role: "Maths TGT", qualification: "B.Sc., B.Ed" },
-        ]
-    },
-    {
-        id: "humanities",
-        label: "Humanities / English",
-        head: { name: "Dr. A.K. Mishra", role: "HOD English", qualification: "Ph.D. English Lit.", experience: "20 Years" },
-        members: [
-            { name: "Mrs. Kavita Roy", role: "History PGT", qualification: "M.A. History" },
-            { name: "Mr. Suresh Yadav", role: "Hindi PGT", qualification: "M.A. Hindi" },
-        ]
-    },
-    {
-        id: "primary",
-        label: "Primary Wing",
-        head: { name: "Mrs. Neeta Kapoor", role: "Headmistress - Primary", qualification: "M.A. Psych, B.Ed", experience: "18 Years" },
-        members: [
-            { name: "Mrs. Sunita Rao", role: "Primary Coordinator", qualification: "B.A., B.Ed" },
-            { name: "Ms. Daisy Thomas", role: "PRT - English", qualification: "B.A. English" },
-            { name: "Mrs. Pooja Sharma", role: "PRT - EVS", qualification: "B.Sc., B.Ed" },
-        ]
-    },
-];
 
 
 export function FacultyList() {
-    const facultySchema = useMemo(() => ({
-        "@context": "https://schema.org",
-        "@graph": departments.flatMap(dept => [
-            // Head of Department Schema
-            {
-                "@type": "Person",
-                "name": dept.head.name,
-                "jobTitle": dept.head.role,
-                "worksFor": {
-                    "@type": "EducationalOrganization",
-                    "name": "Sanskar International Academy"
-                },
-                "educationalCredential": dept.head.qualification,
-                "description": `Teaching Experience: ${dept.head.experience}`
-            },
-            // Department Members Schema
-            ...dept.members.map(member => ({
-                "@type": "Person",
-                "name": member.name,
-                "jobTitle": member.role,
-                "worksFor": {
-                    "@type": "EducationalOrganization",
-                    "name": "Sanskar International Academy"
-                },
-                "educationalCredential": member.qualification
-            }))
-        ])
-    }), []);
-
     return (
         <div className="w-full">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: escapeJsonForScript(JSON.stringify(facultySchema)) }}
-            />
             <Tabs defaultValue="science" className="w-full flex flex-col items-center">
                 <TabsList className="flex flex-wrap justify-center h-auto p-2 bg-navy/5 gap-2 mb-8 rounded-xl w-full max-w-4xl">
                     {departments.map((dept) => (
@@ -135,7 +48,7 @@ export function FacultyList() {
                                     </CardHeader>
                                     <CardContent className="text-center text-sm text-muted-foreground space-y-1">
                                         <p className="font-semibold text-gray-700">{dept.head.qualification}</p>
-                                        <p>Teaching Experience: {dept.head.experience}</p>
+                                        <p>Teaching Experience: {dept.head?.experience || "N/A"}</p>
                                     </CardContent>
                                 </Card>
                             </div>

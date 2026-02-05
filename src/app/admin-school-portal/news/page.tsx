@@ -245,6 +245,7 @@ export default function NewsManager() {
                                                         src={item.imageUrl}
                                                         alt={item.title || "News article image"}
                                                         fill
+                                                        sizes="(max-width: 768px) 100vw, 300px"
                                                         className="object-cover"
                                                         unoptimized
                                                     />

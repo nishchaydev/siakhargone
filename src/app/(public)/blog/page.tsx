@@ -21,33 +21,44 @@ export default function BlogIndexPage() {
             <section className="section-xl bg-white">
                 <div className="container max-w-6xl mx-auto px-6">
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {blogPosts.map((post) => (
-                            <Link href={`/blog/${post.slug}`} key={post.slug} className="group flex flex-col h-full border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                                <div className="relative h-60 w-full overflow-hidden bg-gray-100">
-                                    <Image
-                                        src={post.coverImage}
-                                        alt={post.title}
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                    <div className="absolute top-4 left-4 bg-gold text-navy font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
-                                        Article
+                        {blogPosts.length > 0 ? (
+                            blogPosts.map((post) => (
+                                <Link href={`/blog/${post.slug}`} key={post.slug} className="group flex flex-col h-full border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                                    <div className="relative h-60 w-full overflow-hidden bg-gray-100">
+                                        <Image
+                                            src={post.coverImage}
+                                            alt={post.title}
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        />
+                                        <div className="absolute top-4 left-4 bg-gold text-navy font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                                            Article
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="p-6 flex-1 flex flex-col bg-white">
-                                    <p className="text-sm text-muted-foreground mb-3">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                                    <h2 className="text-xl font-display font-bold text-navy mb-3 group-hover:text-gold-dark transition-colors line-clamp-2">
-                                        {post.title}
-                                    </h2>
-                                    <p className="text-muted-foreground line-clamp-3 mb-6 flex-1">
-                                        {post.excerpt}
-                                    </p>
-                                    <span className="text-gold-dark font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                                        Read More →
-                                    </span>
-                                </div>
-                            </Link>
-                        ))}
+                                    <div className="p-6 flex-1 flex flex-col bg-white">
+                                        <p className="text-sm text-muted-foreground mb-3">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                        <h2 className="text-xl font-display font-bold text-navy mb-3 group-hover:text-gold-dark transition-colors line-clamp-2">
+                                            {post.title}
+                                        </h2>
+                                        <p className="text-muted-foreground line-clamp-3 mb-6 flex-1">
+                                            {post.excerpt}
+                                        </p>
+                                        <span className="text-gold-dark font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                            Read More →
+                                        </span>
+                                    </div>
+                                </Link>
+                            ))
+                        ) : (
+                            <div className="col-span-full py-12 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                                <h3 className="text-xl font-display font-bold text-navy mb-2">No Articles Found</h3>
+                                <p className="text-muted-foreground mb-6">Check back soon for the latest insights and news from SIA.</p>
+                                <Link href="/" className="inline-flex items-center text-gold font-bold hover:underline">
+                                    Return Home
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>

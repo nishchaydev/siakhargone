@@ -36,10 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/best-school-in-khargone'
     ];
 
-    return routes.map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: route === '' ? 'daily' : 'weekly',
-        priority: route === '' ? 1 : 0.8,
-    }));
+    return routes.map((route) => {
+        const isHighPriority = ['/admissions', '/contact', '/careers', '/academics'].includes(route);
+        return {
+            url: `${baseUrl}${route}`,
+            lastModified: new Date(),
+            changeFrequency: route === '' ? 'daily' : 'weekly',
+            priority: route === '' ? 1 : isHighPriority ? 0.9 : 0.8,
+        };
+    });
 }

@@ -233,6 +233,7 @@ export default function EventsManager() {
                                                         src={item.imageUrl}
                                                         alt={item.title || "Event image"}
                                                         fill
+                                                        sizes="(max-width: 768px) 100vw, 300px"
                                                         className="object-cover"
                                                         unoptimized
                                                     />

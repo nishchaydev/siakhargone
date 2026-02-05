@@ -28,6 +28,16 @@ import { getNoticesService } from "@/services/noticesService";
 // Force dynamic rendering since we are fetching news which updates frequently
 export const dynamic = 'force-dynamic';
 
+interface UpdateItem {
+  id: string | number;
+  title: string;
+  text?: string;
+  date: string;
+  type: 'News' | 'Event' | 'Notice';
+  description?: string;
+  [key: string]: unknown;
+}
+
 
 export default async function Home() {
   // Hybrid Fetching: News, Events & Notices
@@ -37,18 +47,6 @@ export default async function Home() {
     getNoticesService().catch((e: unknown) => { console.error("Notices Fetch Error:", e); return []; })
   ]);
 
-  // Unified Feed Logic
-  // Unified Feed Logic
-  interface UpdateItem {
-    id: string | number;
-    title: string;
-    text?: string;
-    date: string;
-    type: 'News' | 'Event' | 'Notice';
-    description?: string;
-    // Add other properties as needed from source items
-    [key: string]: any;
-  }
 
   const allUpdates: UpdateItem[] = [
     ...newsItems.map((item: any) => ({ ...item, type: 'News' } as UpdateItem)),

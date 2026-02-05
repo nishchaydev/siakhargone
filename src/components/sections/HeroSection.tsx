@@ -71,6 +71,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     if (videoId) {
                         return (
                             <iframe
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1`}
                                 title="YouTube video player"
                                 className="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-center pointer-events-none blur-[1px] z-10 border-none"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

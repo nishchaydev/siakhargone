@@ -15,12 +15,6 @@ const careerCounsellingImage = {
   imageHint: "Counselling"
 };
 
-// getSiteAssets removed
-
-export const dynamic = 'force-dynamic';
-
 export default async function AdmissionsPage() {
-  const bannerImage = undefined;
-
-  return <AdmissionsPageClient careerCounsellingImage={careerCounsellingImage} bannerImage={bannerImage} />;
+  return <AdmissionsPageClient careerCounsellingImage={careerCounsellingImage} />;
 }

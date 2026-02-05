@@ -193,28 +193,28 @@ export const homeFacilities = [
 
 export const testimonials = [
     {
-        id: "1",
+        id: "testimonial-1",
         quote: "For us, Sanskar International Academy is one of the leading CBSE English-medium schools in Khargone. The discipline and teaching quality stand out.",
         name: "Mr. Rakesh Gupta",
         relation: "Parent",
         avatarUrl: cloudinary.misc.parentAvatar
     },
     {
-        id: "2",
+        id: "testimonial-2",
         quote: "Sanskar International Academy has provided my child with a perfect balance of academics and co-curricular activities. The teachers are incredibly supportive and dedicated.",
         name: "Mrs. Anjali Sharma",
         relation: "Parent of Class 8 Student",
         avatarUrl: cloudinary.misc.parentAvatar // fallback
     },
     {
-        id: "3",
+        id: "testimonial-3",
         quote: "The infrastructure and facilities are top-notch. My son loves the computer lab and sports complex. It's truly a world-class environment for learning.",
         name: "Mr. Rajesh Patel",
         relation: "Parent of Class 5 Student",
         avatarUrl: cloudinary.misc.parentAvatar // fallback
     },
     {
-        id: "4",
+        id: "testimonial-4",
         quote: "I am impressed by the school's focus on values and holistic development. It's not just about grades; it's about building character.",
         name: "Mrs. Sunita Verma",
         relation: "Parent of Class 10 Student",

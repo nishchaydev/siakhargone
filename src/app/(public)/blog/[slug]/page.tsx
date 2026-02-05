@@ -59,7 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <div className="flex items-center gap-4 text-muted-foreground text-sm">
                             <span>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                             <span>•</span>
-                            <span>By SIA Editorial Team</span>
+                            <span>By {post.author || 'SIA Editorial Team'}</span>
                         </div>
                     </div>
 

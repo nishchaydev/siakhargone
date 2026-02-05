@@ -3,10 +3,7 @@
 // import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { ExternalLink, CreditCard, Download, Search, Bus, GraduationCap } from "lucide-react";
+import { ExternalLink, CreditCard } from "lucide-react";
 import { motion } from "framer-motion";
 // import { tuitionFees, busFees, oneTimeFees } from "@/data/fees";
 // import { FeeCalculator } from "@/components/fees/FeeCalculator";

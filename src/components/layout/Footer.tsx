@@ -53,13 +53,13 @@ export default function Footer() {
                 <p>
                   Sanskar International Academy is one of the best CBSE schools in Khargone,
                   offering quality English-medium education from nursery to class 12. With
-                  1100+ students, 50+ teachers, and modern infrastructure, we are committed
+                  {schoolData.stats.students} students, {schoolData.stats.teachers} teachers, and modern infrastructure, we are committed
                   to academic excellence and holistic development.
                 </p>
                 <div className="text-sm space-y-1">
                   <p><strong>Address:</strong> {schoolData.contact.address}</p>
                   <p><strong>Phone:</strong> {schoolData.contact.phone[0]}</p>
-                  <p><strong>CBSE Affiliation:</strong> 1031345</p>
+                  <p><strong>CBSE Affiliation:</strong> {schoolData.affiliationNo}</p>
                 </div>
               </div>
 
@@ -116,7 +116,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-3 text-base text-white/80">
                   <Mail className="w-5 h-5 text-gold shrink-0" />
-                  <a href="mailto:siakhargone@gmail.com" className="hover:text-white">siakhargone@gmail.com</a>
+                  <a href={`mailto:${schoolData.contact.email}`} className="hover:text-white">{schoolData.contact.email}</a>
                 </div>
               </div>
             </div>

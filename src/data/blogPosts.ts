@@ -1,8 +1,11 @@
+type ISODate = `${number}-${number}-${number}`;
+
 export interface BlogPost {
     slug: string;
     title: string;
     excerpt: string;
-    date: string;
+    date: ISODate;
+    author?: string; // Optional author field
     content: string; // HTML string for flexibility
     coverImage: string;
 }

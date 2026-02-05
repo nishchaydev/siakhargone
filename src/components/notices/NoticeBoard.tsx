@@ -200,6 +200,7 @@ export function NoticeBoard() {
                                                                 src={selectedNotice.fileUrl}
                                                                 alt={selectedNotice.title}
                                                                 fill
+                                                                sizes="(max-width: 768px) 100vw, 800px"
                                                                 className="object-contain"
                                                                 unoptimized
                                                             />

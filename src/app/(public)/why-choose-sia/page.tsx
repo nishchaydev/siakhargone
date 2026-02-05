@@ -13,7 +13,12 @@ export const metadata: Metadata = {
     },
 };
 
-const features = [
+interface Feature {
+    title: string;
+    points: string[];
+}
+
+const features: Feature[] = [
     {
         title: "Academic Excellence",
         points: [
@@ -68,7 +73,6 @@ const comparisonData: ComparisonItem[] = [
 ];
 
 export default function WhyChooseSIAPage() {
-
     return (
         <div className="min-h-screen bg-grain">
             <PageBanner
@@ -88,7 +92,7 @@ export default function WhyChooseSIAPage() {
                                 <ul className="space-y-4">
                                     {feature.points.map((point, pIdx) => (
                                         <li key={pIdx} className="flex items-start gap-3 text-navy/80 font-medium">
-                                            <CheckCircle2 className="w-6 h-6 text-gold shrink-0 mt-0.5" />
+                                            <CheckCircle2 className="w-6 h-6 text-gold shrink-0 mt-0.5" aria-hidden="true" />
                                             <span>{point}</span>
                                         </li>
                                     ))}
@@ -108,6 +112,7 @@ export default function WhyChooseSIAPage() {
 
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
+                                <caption className="sr-only">Feature comparison: Sanskar International Academy vs Other Schools</caption>
                                 <thead>
                                     <tr className="border-b border-white/20">
                                         <th scope="col" className="py-4 px-6 text-lg font-bold text-gold w-1/3">Feature</th>
@@ -121,7 +126,7 @@ export default function WhyChooseSIAPage() {
                                             <td className="py-4 px-6 font-medium text-white/90">{row.feature}</td>
                                             <td className="py-4 px-6 text-center bg-white/5 font-bold text-gold">
                                                 <div className="flex items-center justify-center gap-2">
-                                                    <CheckCircle2 className="w-5 h-5" /> {row.sia}
+                                                    <CheckCircle2 className="w-5 h-5" aria-hidden="true" /> {row.sia}
                                                 </div>
                                             </td>
                                             <td className="py-4 px-6 text-center text-white/50">

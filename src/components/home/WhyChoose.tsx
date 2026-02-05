@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Lightbulb, Shield, Trophy, Users } from "lucide-react";
+import { Globe, Shield, Building2, Users } from "lucide-react";
 import { Section } from "@/components/common/Section";
 import { Card } from "@/components/ui/card";
 
@@ -13,7 +13,7 @@ const features = [
         description: "Experienced educators who understand the CBSE curriculum and mentor students for board exam success.",
     },
     {
-        icon: Lightbulb,
+        icon: Globe,
         title: "English-Medium Instruction",
         description: "A strict focus on English fluency to prepare students for global opportunities and higher education.",
     },
@@ -23,7 +23,7 @@ const features = [
         description: "We prioritize character building, manners, and discipline alongside academic excellence.",
     },
     {
-        icon: Trophy,
+        icon: Building2,
         title: "Infrastructure & Safety",
         description: "Secure 4-acre campus with modern labs, library, sports complex, and GPS-enabled transport.",
     },
@@ -90,17 +90,7 @@ export function WhyChoose() {
                 })}
             </motion.div>
 
-            <motion.div
-                className="max-w-4xl mx-auto text-center mt-8 relative z-10"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-            >
-                <p className="text-lg font-medium text-navy/80 italic">
-                    "Sanskar International Academy aligns with these expectations, which is why many parents consider it among the leading CBSE English-medium schools in Khargone."
-                </p>
-            </motion.div>
+
         </Section>
     );
 }
