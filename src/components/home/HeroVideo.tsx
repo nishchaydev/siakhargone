@@ -33,10 +33,11 @@ export default function HeroVideo({
 
       {/* Background Video */}
       <iframe
-        src="https://www.youtube.com/embed/5ObfN8wX0Jg?autoplay=1&mute=1&loop=1&playlist=5ObfN8wX0Jg&controls=0&showinfo=0&rel=0&modestbranding=1"
-        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-        style={{ border: 'none', transform: 'scale(1.5)' }}
+        src="https://www.youtube-nocookie.com/embed/5ObfN8wX0Jg?autoplay=1&mute=1&loop=1&playlist=5ObfN8wX0Jg&controls=0&showinfo=0&rel=0&modestbranding=1"
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        style={{ border: 'none', transform: 'scale(1.5)', transformOrigin: 'center' }}
         allow="autoplay; encrypted-media"
+        loading="lazy"
         title={`${name} Video Background`}
       />
 

@@ -22,7 +22,10 @@ export function sanitizeHTML(html: string): string {
         },
         allowedSchemes: ['http', 'https', 'mailto'],
         allowedSchemesByTag: {
-            img: ['http', 'https', 'data']
+            img: ['http', 'https']
+        },
+        transformTags: {
+            'a': sanitizeHtml.simpleTransform('a', { rel: 'noopener noreferrer' }, true)
         }
     });
 }

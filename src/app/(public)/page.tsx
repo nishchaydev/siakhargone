@@ -28,7 +28,7 @@ import { getNoticesService } from "@/services/noticesService";
 
 // Force dynamic rendering since we are fetching news which updates frequently
 export const dynamic = 'force-dynamic';
-export const revalidate = 0; // Force no-cache for debugging
+
 
 export default async function Home() {
   // Hybrid Fetching: News, Events & Notices

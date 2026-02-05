@@ -119,10 +119,10 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                         className="mb-4 md:mb-8 text-center relative z-20"
                     >
                         <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-2 md:mb-4 drop-shadow-2xl text-white block">
-                            SANSKAR
+                            {data.title.split(' ')[0]}
                         </h1>
                         <h2 className="font-sans font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase tracking-[0.25em] md:tracking-[0.4em] text-light-gold drop-shadow-md block">
-                            International Academy
+                            {data.title.split(' ').slice(1).join(' ')}
                         </h2>
                     </motion.div>
 

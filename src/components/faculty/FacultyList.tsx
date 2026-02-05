@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { MotionDiv } from '@/components/common/Motion';
 import { User2, BadgeCheck } from "lucide-react";
+import { escapeJsonForScript } from "@/lib/security";
 
 interface FacultyMember {
     name: string;
@@ -62,7 +63,7 @@ const departments: Department[] = [
         ]
     },
 ];
-import { escapeJsonForScript } from "@/lib/security";
+
 
 export function FacultyList() {
     const facultySchema = {

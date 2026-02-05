@@ -10,7 +10,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
     {
         slug: "top-10-cbse-schools-in-khargone-comparison-2026",
-        title: "Top 10 CBSE Schools in Khargone: A Comprehensive Comparison 2026",
+        title: "Top CBSE Schools in Khargone: A Comprehensive Comparison 2026",
         excerpt: "Finding the right school is crucial. Here is an unbiased look at the top CBSE schools in Khargone based on academics, facilities, and parent reviews.",
         date: "2026-02-03",
         coverImage: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png", // Using logo as placeholder or campus image
@@ -35,7 +35,12 @@ export const blogPosts: BlogPost[] = [
             <p>Known for its disciplined environment and standard CBSE curriculum, KV is a preferred choice for government employees. It offers good basic facilities but admission is often restricted to transferable central government employees.</p>
 
             <h2>3. St. Jude's Higher Secondary School</h2>
-            <p class="text-muted-foreground">Detailed comparison coming soon...</p>
+             <p><strong>Location:</strong> Bistan Road<br>
+            <strong>Highlights:</strong> Academic Discipline, Sports Facilities</p>
+            <p>St. Jude's has a long-standing reputation for academic discipline and offers a robust curriculum for higher secondary education.</p>
+
+             <h2>Other Notable Schools</h2>
+            <p>Other schools worth considering include Gokuldas Public School and Swami Vivekananda School, each with their own strengths in academics and co-curricular activities.</p>
 
             <h2>Conclusion</h2>
             <p>While there are several options, <strong>Sanskar International Academy</strong> leads the chart due to its modern infrastructure, focus on English fluency, and consistent academic excellence. If you are looking for a school that prepares your child for the future ranking #1 in current lists.</p>
@@ -48,12 +53,12 @@ export const blogPosts: BlogPost[] = [
     },
     {
         slug: "how-to-choose-best-school-in-khargone",
-        title: "How to Choose the Best School in Khargone for Your Child: 15 Essential Factors",
-        excerpt: "Don't just go by the name. Check these 15 critical factors before admitting your child to any school in Khargone.",
+        title: "How to Choose the Best School in Khargone for Your Child: 6 Essential Factors",
+        excerpt: "Don't just go by the name. Check these 6 critical factors before admitting your child to any school in Khargone.",
         date: "2026-02-05", // Future dated schedule
         coverImage: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp",
         content: `
-            <p>Every parent wants the best for their child. But with so many schools claiming to be the "No. 1 School in Khargone", how do you decide? Here is a checklist of 15 essential factors to consider.</p>
+            <p>Every parent wants the best for their child. But with so many schools claiming to be the "No. 1 School in Khargone", how do you decide? Here is a checklist of 6 essential factors to consider.</p>
 
             <h3>1. Academic Reputation & Board Results</h3>
             <p>Look for a school with a consistent track record. Schools like <strong>Sanskar International Academy</strong> have consistently delivered 100% pass percentages in Class 10 and 12 CBSE board exams.</p>
