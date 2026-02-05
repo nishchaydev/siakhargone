@@ -14,10 +14,10 @@ export function sanitizeHTML(html: string): string {
         ]),
         allowedAttributes: {
             ...sanitizeHtml.defaults.allowedAttributes,
-            '*': ['class', 'id'],
-            'a': ['href', 'name', 'target', 'rel'],
-            'img': ['src', 'alt', 'title', 'width', 'height'],
-
+            '*': ['class'],
+            'a': ['href', 'name', 'target', 'rel', 'id'],
+            'img': ['src', 'alt', 'title', 'width', 'height', 'id'],
+            'h1': ['id'], 'h2': ['id'], 'h3': ['id'], 'h4': ['id'], 'h5': ['id'], 'h6': ['id'], // Allow IDs on headings for anchors
         },
         allowedSchemes: ['http', 'https', 'mailto'],
         allowedSchemesByTag: {

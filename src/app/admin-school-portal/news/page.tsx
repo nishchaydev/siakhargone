@@ -178,7 +178,7 @@ export default function NewsManager() {
                                             <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:bg-gray-50 transition-colors">
                                                 <CldUploadWidget
                                                     uploadPreset="siakhargone_uploads"
-                                                    onSuccess={(result: any) => {
+                                                    onSuccess={(result: { info?: { secure_url?: string } }) => {
                                                         const url = result?.info?.secure_url;
                                                         if (url) setForm({ ...form, imageUrl: url });
                                                     }}

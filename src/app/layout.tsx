@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://siakhargone.in/',
-    title: 'Best CBSE School in Khargone | Sanskar International Academy | Admissions 2026-27',
-    description: 'Sanskar International Academy - Top rated CBSE school in Khargone with 1100+ students, 50+ teachers, modern infrastructure. English-medium education from nursery to class 12. Admissions open 2026-27. Visit our Khandwa Road campus.',
+    title: `Best CBSE School in Khargone | Sanskar International Academy | Admissions ${admissionYear}`,
+    description: `Sanskar International Academy - Top rated CBSE school in Khargone with 1100+ students, 50+ teachers, modern infrastructure. English-medium education from nursery to class 12. Admissions open ${admissionYear}. Visit our Khandwa Road campus.`,
     siteName: 'Sanskar International Academy',
     images: [{
       url: openGraphImage,
@@ -73,12 +73,18 @@ export const metadata: Metadata = {
     images: [openGraphImage],
   },
   icons: {
-    icon: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
+    icon: [
+      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_16,h_16,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '16x16', type: 'image/png' },
+      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_32,h_32,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '32x32', type: 'image/png' },
+      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_48,h_48,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '48x48', type: 'image/png' },
+    ],
     shortcut: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
-    apple: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
+    apple: [
+      { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '180x180', type: 'image/png' },
+    ],
     other: {
       rel: 'apple-touch-icon-precomposed',
-      url: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
+      url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png',
     },
   },
   robots: {

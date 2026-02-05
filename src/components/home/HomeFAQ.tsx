@@ -17,7 +17,7 @@ export function HomeFAQ() {
         <Section title="Frequently Asked Questions" subtitle="Common queries about CBSE education in Khargone" className="bg-white">
             <div className="max-w-3xl mx-auto">
                 <Accordion type="single" collapsible className="w-full">
-                    {faqs.map((faq, index) => (
+                    {faqs.map((faq) => (
                         <AccordionItem key={faq.id} value={faq.id}>
                             <AccordionTrigger className="text-left font-display font-semibold text-navy hover:text-gold transition-colors text-lg">
                                 {faq.question}

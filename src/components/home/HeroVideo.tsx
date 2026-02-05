@@ -3,7 +3,6 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import { schoolData } from '@/data/schoolData'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -15,13 +14,16 @@ type Props = {
   variant?: HeroVariant
   // Allow overriding image if needed, otherwise default
   backgroundImage?: string
+  videoId?: string
+  fallbackVideoUrl?: string
 }
 
 export default function HeroVideo({
   variant = 'modern',
   backgroundImage = 'https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&w=640&q=60',
-  videoId = '5ObfN8wX0Jg'
-}: Props & { videoId?: string }) {
+  videoId = '5ObfN8wX0Jg',
+  fallbackVideoUrl = "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4"
+}: Props) {
 
   const { name, cta } = schoolData
 
@@ -34,27 +36,50 @@ export default function HeroVideo({
 
       {/* Background Video */}
       {/* Background Video */}
-      {videoId && !videoId.includes('.') ? (
-        <iframe
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none scale-[1.3]" // Scaled to remove black bars/controls
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1&rel=0`}
-          title="Hero Background Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      ) : (
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          poster={backgroundImage}
-        >
-          <source src={videoId?.includes('http') ? videoId : "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4#t=3"} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      )}
+      {(() => {
+        // Explicit validation and extraction
+        const getYoutubeId = (url: string) => {
+          const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+          const match = url.match(regExp);
+          return (match && match[2].length === 11) ? match[2] : "";
+        };
+
+        const resolvedVideoId = (videoId.includes('.') || videoId.includes('/')) ? getYoutubeId(videoId) : (videoId.match(/^[A-Za-z0-9_-]{11}$/) ? videoId : "");
+
+        if (resolvedVideoId) {
+          return (
+            <iframe
+              className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none scale-[1.3]" // Scaled to remove black bars/controls
+              src={`https://www.youtube.com/embed/${resolvedVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${resolvedVideoId}&playsinline=1&rel=0`}
+              title="Hero Background Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          );
+        }
+
+        return (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            poster={backgroundImage}
+            onLoadedMetadata={(e) => { e.currentTarget.currentTime = 3; }}
+          >
+            <source src={fallbackVideoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        );
+      })()}
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover z-0"
+      poster={backgroundImage}
+      >
+      <source src={videoId?.includes('http') ? videoId : "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4#t=3"} type="video/mp4" />
+      Your browser does not support the video tag.
+
 
       {/* Overlay - Changes based on variant */}
       <div

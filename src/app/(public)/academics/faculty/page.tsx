@@ -7,12 +7,14 @@ export const metadata: Metadata = {
     description: 'Meet the experienced and dedicated teaching staff at Sanskar International Academy.',
 };
 
+import { escapeJsonForScript } from '@/lib/security';
+
 export default function FacultyPage() {
     const facultySchema = {
         "@context": "https://schema.org",
         "@graph": departments.flatMap(dept => [
             // Head of Department Schema
-            {
+            ...(dept.head ? [{
                 "@type": "Person",
                 "name": dept.head.name,
                 "jobTitle": dept.head.role,
@@ -21,8 +23,8 @@ export default function FacultyPage() {
                     "name": "Sanskar International Academy"
                 },
                 "educationalCredential": dept.head.qualification,
-                "description": `Teaching Experience: ${dept.head?.experience || 'N/A'}`
-            },
+                "description": `Teaching Experience: ${dept.head.experience || 'N/A'}`
+            }] : []),
             // Department Members Schema
             ...dept.members.map(member => ({
                 "@type": "Person",
@@ -41,7 +43,7 @@ export default function FacultyPage() {
         <div className="bg-grain min-h-screen pt-20">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(facultySchema) }}
+                dangerouslySetInnerHTML={{ __html: escapeJsonForScript(JSON.stringify(facultySchema)) }}
             />
             <div className="container mx-auto px-4 py-12">
                 <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">

@@ -10,7 +10,17 @@ export const metadata: Metadata = {
     description: 'See how Sanskar International Academy is recognized as a top CBSE school in Khargone by leading newspapers and media outlets.',
 };
 
-const pressItems = [
+interface PressItem {
+    id: string;
+    title: string;
+    source: string;
+    date: string;
+    excerpt: string;
+    icon: typeof Newspaper; // component type
+    color: string;
+}
+
+const pressItems: PressItem[] = [
     {
         id: "pending-media-1",
         title: "Media Feature Pending",
@@ -68,7 +78,7 @@ export default function PressPage() {
                     </div>
 
                     <div className="grid gap-6">
-                        {pressItems.map((item, index) => {
+                        {pressItems.map((item) => {
                             const Icon = item.icon;
                             return (
                                 <div key={item.id} className="group bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col md:flex-row gap-6 items-start">

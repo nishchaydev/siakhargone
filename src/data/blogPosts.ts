@@ -1,4 +1,13 @@
-type ISODate = `${number}-${number}-${number}`;
+export type ISODate = string & { readonly __brand: 'ISODate' };
+
+export function toISODate(date: string): ISODate {
+    // strict regex for YYYY-MM-DD
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(date)) {
+        throw new Error(`Invalid ISODate format: ${date}. Expected YYYY-MM-DD.`);
+    }
+    return date as ISODate;
+}
 
 export interface BlogPost {
     slug: string;
@@ -15,7 +24,7 @@ export const blogPosts: BlogPost[] = [
         slug: "top-10-cbse-schools-in-khargone-comparison-2026",
         title: "Top CBSE Schools in Khargone: A Comprehensive Comparison 2026",
         excerpt: "Finding the right school is crucial. Here is an unbiased look at the top CBSE schools in Khargone based on academics, facilities, and parent reviews.",
-        date: "2026-02-03",
+        date: toISODate("2026-02-03"),
         coverImage: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png", // Using logo as placeholder or campus image
         content: `
             <p>Choosing the best school for your child is one of the most important decisions you will make as a parent. Khargone has several good educational institutions, but finding one that offers a perfect balance of academics, sports, and values can be challenging. In this guide, we rank the <strong>best CBSE schools in Khargone</strong> for the 2026-27 academic session.</p>
@@ -58,7 +67,7 @@ export const blogPosts: BlogPost[] = [
         slug: "how-to-choose-best-school-in-khargone",
         title: "How to Choose the Best School in Khargone for Your Child: 6 Essential Factors",
         excerpt: "Don't just go by the name. Check these 6 critical factors before admitting your child to any school in Khargone.",
-        date: "2026-02-05", // Future dated schedule
+        date: toISODate("2026-02-05"), // Future dated schedule
         coverImage: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp",
         content: `
             <p>Every parent wants the best for their child. But with so many schools claiming to be the "No. 1 School in Khargone", how do you decide? Here is a checklist of 6 essential factors to consider.</p>
@@ -91,7 +100,7 @@ export const blogPosts: BlogPost[] = [
         slug: "understanding-cbse-curriculum-competitive-exams",
         title: "Understanding CBSE Curriculum: Why It's Best for Competitive Exams",
         excerpt: "Why do most IIT-JEE and NEET toppers come from CBSE schools? Understand the curriculum advantage.",
-        date: "2026-02-10",
+        date: toISODate("2026-02-10"),
         coverImage: "https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png",
         content: `
             <p>The Central Board of Secondary Education (CBSE) is the most preferred educational board in India. But why is it considered the best for competitive exams like JEE, NEET, and UPSC?</p>

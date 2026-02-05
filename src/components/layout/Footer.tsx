@@ -59,7 +59,7 @@ export default function Footer() {
                 <div className="text-sm space-y-1">
                   <p><strong>Address:</strong> {schoolData.contact.address}</p>
                   <p><strong>Phone:</strong> {schoolData.contact.phone[0]}</p>
-                  <p><strong>CBSE Affiliation:</strong> {schoolData.affiliationNo}</p>
+                  <p><strong>CBSE Affiliation:</strong> {schoolData.affiliationNo} | <strong>School Code:</strong> {schoolData.schoolCode}</p>
                 </div>
               </div>
 

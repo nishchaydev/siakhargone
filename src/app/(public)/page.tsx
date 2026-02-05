@@ -17,7 +17,9 @@ const CTASection = nextDynamic(() => import("@/components/home/CTASection").then
 const Academics = nextDynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
 const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
 const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
-const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod => mod.HomeFAQ));
+const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod => mod.HomeFAQ), {
+  loading: () => <div className="py-20"><Skeleton className="h-[300px] w-full max-w-3xl mx-auto rounded-xl" /></div>
+});
 
 import { albums, testimonials, faqs } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
@@ -28,15 +30,29 @@ import { getNoticesService } from "@/services/noticesService";
 // Force dynamic rendering since we are fetching news which updates frequently
 export const dynamic = 'force-dynamic';
 
-interface UpdateItem {
+// Basic shapes for the incoming data
+interface BaseItem {
   id: string | number;
-  title: string;
-  text?: string;
   date: string;
-  type: 'News' | 'Event' | 'Notice';
+  title: string; // mapped from text or title
   description?: string;
-  [key: string]: unknown;
+  [key: string]: unknown; // Allow extra props from services if needed, but typed safely in union
 }
+
+interface NewsItem extends BaseItem {
+  type: 'News';
+}
+
+interface EventItem extends BaseItem {
+  type: 'Event';
+}
+
+interface NoticeItem extends BaseItem {
+  type: 'Notice';
+  text?: string;
+}
+
+type UpdateItem = NewsItem | EventItem | NoticeItem;
 
 
 export default async function Home() {

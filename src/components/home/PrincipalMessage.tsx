@@ -81,7 +81,7 @@ export const PrincipalMessage = () => {
             </Button>
             <div className="flex flex-col justify-center pl-4 border-l-4 border-gold">
               <span className="font-display font-bold text-navy text-lg">{schoolData.principal.name}</span>
-              <span className="text-sm text-muted-foreground">Principal, SIA Khargone</span>
+              <span className="text-sm text-muted-foreground">{schoolData.principal.title || "Principal, SIA Khargone"}</span>
             </div>
           </div>
         </motion.div>

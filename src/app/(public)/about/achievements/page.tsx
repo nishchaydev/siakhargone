@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 };
 
 const achievementItems = [
-    { icon: "Award", category: "Academics", title: "Achievement to be Announced", description: "Details regarding recent academic excellence awards will be updated soon." },
-    { icon: "Medal", category: "Sports", title: "Sports Achievement Pending", description: "Information about our sports team's recent championships is currently being updated." },
-    { icon: "Palette", category: "Arts & Culture", title: "Cultural Award Recognition", description: "Our students' achievements in national art and culture competitions will be featured here shortly." },
-    { icon: "Globe", category: "Social Impact", title: "Community Initiative Update", description: "Details about our latest community service projects and recognitions are coming soon." },
+    { icon: "Award", category: "Academics", title: "Excellence in Board Exams", description: "Our students consistently achieve top ranks in CBSE Class 10th and 12th board examinations." },
+    { icon: "Medal", category: "Sports", title: "District Level Champions", description: "Our school sports teams have secured multiple victories in district-level inter-school competitions." },
+    { icon: "Palette", category: "Arts & Culture", title: "Cultural Fest Winners", description: "First prize winners in the annual inter-school cultural and arts competition." },
+    { icon: "Globe", category: "Social Impact", title: "Green School Initiative", description: "Recognized for our student-led environmental awareness and tree plantation drives." },
 ];
 
 export default function AchievementsPage() {

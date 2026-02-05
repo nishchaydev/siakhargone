@@ -7,6 +7,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import PageBanner from "@/components/common/PageBanner";
+import { escapeJsonForScript } from "@/lib/security";
 
 export const metadata: Metadata = {
     title: "Frequently Asked Questions | Sanskar International Academy",
@@ -83,7 +84,7 @@ export default function FAQPage() {
         <div className="min-h-screen bg-grain">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: escapeJsonForScript(JSON.stringify(jsonLd)) }}
             />
 
             <PageBanner

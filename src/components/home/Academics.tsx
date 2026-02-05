@@ -70,7 +70,6 @@ export function Academics() {
       >
         <CarouselContent>
           {academicTiers.map((tier, index) => {
-            const Icon = tier.icon;
             return (
               <CarouselItem key={tier.title} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1 h-full">
@@ -80,7 +79,6 @@ export function Academics() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 + (index * 0.1) }}
                     >
-                      {/* Icons removed for cleaner look as requested */}
                     </motion.div>
                     <h3 className="text-2xl font-bold text-foreground mb-3">{tier.title}</h3>
                     <p className="text-muted-foreground">

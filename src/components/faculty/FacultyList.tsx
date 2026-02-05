@@ -36,22 +36,24 @@ export function FacultyList() {
                             className="space-y-8"
                         >
                             {/* HOD Card */}
-                            <div className="flex justify-center">
-                                <Card className="w-full max-w-2xl border-t-4 border-t-gold shadow-lg bg-gradient-to-br from-white to-orange-50/30">
-                                    <CardHeader className="text-center pb-2">
-                                        <div className="mx-auto w-24 h-24 rounded-full bg-navy/10 flex items-center justify-center mb-3">
-                                            <User2 size={40} className="text-navy" />
-                                        </div>
-                                        <BadgeCheck className="w-6 h-6 text-gold mx-auto mb-1" />
-                                        <CardTitle className="text-2xl text-navy">{dept.head.name}</CardTitle>
-                                        <CardDescription className="text-lg font-medium text-primary">{dept.head.role}</CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="text-center text-sm text-muted-foreground space-y-1">
-                                        <p className="font-semibold text-gray-700">{dept.head.qualification}</p>
-                                        <p>Teaching Experience: {dept.head?.experience || "N/A"}</p>
-                                    </CardContent>
-                                </Card>
-                            </div>
+                            {dept.head && (
+                                <div className="flex justify-center">
+                                    <Card className="w-full max-w-2xl border-t-4 border-t-gold shadow-lg bg-gradient-to-br from-white to-orange-50/30">
+                                        <CardHeader className="text-center pb-2">
+                                            <div className="mx-auto w-24 h-24 rounded-full bg-navy/10 flex items-center justify-center mb-3">
+                                                <User2 size={40} className="text-navy" />
+                                            </div>
+                                            <BadgeCheck className="w-6 h-6 text-gold mx-auto mb-1" />
+                                            <CardTitle className="text-2xl text-navy">{dept.head.name}</CardTitle>
+                                            <CardDescription className="text-lg font-medium text-primary">{dept.head.role}</CardDescription>
+                                        </CardHeader>
+                                        <CardContent className="text-center text-sm text-muted-foreground space-y-1">
+                                            <p className="font-semibold text-gray-700">{dept.head.qualification}</p>
+                                            <p>Teaching Experience: {dept.head.experience || "N/A"}</p>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            )}
 
                             {/* Team Grid */}
                             <div>

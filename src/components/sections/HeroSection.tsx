@@ -59,7 +59,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     // Generic YouTube ID extraction
                     const getYoutubeId = (url: string) => {
                         if (!url) return "";
-                        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                        const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                         const match = url.match(regExp);
                         return (match && match[2].length === 11) ? match[2] : "";
                     };
@@ -118,12 +118,21 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                         className="mb-4 md:mb-8 text-center relative z-20"
                     >
                         <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-2 md:mb-4 drop-shadow-2xl text-white block">
-                            {data.title.split(' ')[0]}
-                            {data.title.split(' ').length > 1 && (
-                                <span className="font-sans font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase tracking-[0.25em] md:tracking-[0.4em] text-light-gold drop-shadow-md block mt-2">
-                                    {data.title.split(' ').slice(1).join(' ')}
-                                </span>
-                            )}
+                            {(() => {
+                                const titleParts = data.title.split(' ');
+                                const mainTitle = titleParts[0];
+                                const subTitle = titleParts.slice(1).join(' ');
+                                return (
+                                    <>
+                                        {mainTitle}
+                                        {titleParts.length > 1 && (
+                                            <span className="font-sans font-bold text-xs sm:text-base md:text-xl lg:text-2xl uppercase tracking-[0.25em] md:tracking-[0.4em] text-light-gold drop-shadow-md block mt-2">
+                                                {subTitle}
+                                            </span>
+                                        )}
+                                    </>
+                                )
+                            })()}
                         </h1>
                     </motion.div>
 
@@ -158,7 +167,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
             <div className="absolute bottom-0 w-full z-40 border-t border-white/10 bg-navy-dark/80 backdrop-blur-md">
                 <div className="container mx-auto">
                     <div className="grid grid-cols-4 divide-x divide-white/10">  {/* Always 4 cols to save vertical space */}
-                        {displayStats.map((stat: HeroStat, idx: number) => (
+                        {displayStats.map((stat, idx) => (
                             <div key={idx} className="py-3 md:py-6 px-1 md:px-4 text-center">
                                 <div className="text-lg md:text-3xl font-display font-bold text-gold">{stat.value}</div>
                                 <p className="text-white/70 text-[10px] md:text-sm uppercase tracking-wider font-medium leading-tight">{stat.label}</p>

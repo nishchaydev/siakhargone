@@ -36,13 +36,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/best-school-in-khargone'
     ];
 
+    const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics'];
+    const LOW_PRIORITY_ROUTES = ['/privacy', '/terms', '/mandatory-disclosure', '/tc'];
+
     return routes.map((route) => {
-        const isHighPriority = ['/admissions', '/contact', '/careers', '/academics'].includes(route);
+        const isHighPriority = HIGH_PRIORITY_ROUTES.includes(route);
+        const isLowPriority = LOW_PRIORITY_ROUTES.includes(route);
+
+        let changeFrequency: 'daily' | 'weekly' | 'monthly' | 'yearly' = 'weekly';
+        if (route === '' || route === '/notices' || route === '/news-events') changeFrequency = 'daily';
+        else if (isLowPriority) changeFrequency = 'monthly';
+
         return {
             url: `${baseUrl}${route}`,
             lastModified: new Date(),
-            changeFrequency: route === '' ? 'daily' : 'weekly',
-            priority: route === '' ? 1 : isHighPriority ? 0.9 : 0.8,
+            changeFrequency,
+            priority: route === '' ? 1 : isHighPriority ? 0.9 : isLowPriority ? 0.5 : 0.8,
         };
     });
 }

@@ -51,12 +51,14 @@ export default function BlogIndexPage() {
                                 </Link>
                             ))
                         ) : (
-                            <div className="col-span-full py-12 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                                <h3 className="text-xl font-display font-bold text-navy mb-2">No Articles Found</h3>
-                                <p className="text-muted-foreground mb-6">Check back soon for the latest insights and news from SIA.</p>
-                                <Link href="/" className="inline-flex items-center text-gold font-bold hover:underline">
-                                    Return Home
-                                </Link>
+                            <div className="col-span-full py-20 text-center bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+                                <div className="max-w-md mx-auto">
+                                    <h3 className="text-2xl font-display font-bold text-navy mb-3">No Articles Found</h3>
+                                    <p className="text-muted-foreground mb-8">We are currently curating new insights and stories. Please check back soon for updates.</p>
+                                    <Link href="/" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-navy bg-gold hover:bg-gold-dark transition-colors shadow-lg">
+                                        Return to Home
+                                    </Link>
+                                </div>
                             </div>
                         )}
                     </div>
