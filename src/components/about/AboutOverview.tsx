@@ -27,6 +27,8 @@ interface AboutOverviewProps {
 }
 
 export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProps) {
+    const effectiveStats = stats ?? schoolData.stats;
+
     return (
         <Section id="overview" isFirstSection={true}>
             <div className="grid md:grid-cols-2 gap-12 items-start relative">
@@ -34,9 +36,9 @@ export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProp
                     <p className="intro-text mb-6 font-medium text-navy-dark leading-relaxed">
                         <strong>Sanskar International Academy is one of the leading CBSE English-medium
                             schools in Khargone, known for disciplined academics, modern infrastructure, and
-                            holistic student development.</strong> Since our establishment in {schoolData.stats.established}, we have grown
-                        to educate {schoolData.stats.students} students with a dedicated team of {schoolData.stats.teachers} qualified teachers. Located
-                        on Khandwa Road, our {schoolData.stats.campusSize} campus features state-of-the-art facilities including
+                            holistic student development.</strong> Since our establishment in {effectiveStats.established}, we have grown
+                        to educate {effectiveStats.students} students with a dedicated team of {effectiveStats.teachers} qualified teachers. Located
+                        on Khandwa Road, our {effectiveStats.campusSize} campus features state-of-the-art facilities including
                         computer labs, science laboratories, library, sports complex, and GPS-enabled
                         transport covering 15+ routes across Khargone district.
                     </p>
@@ -62,7 +64,7 @@ export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProp
                                     </tr>
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy">Establishment</th>
-                                        <td className="py-3 px-4 text-slate-600">{schoolData.stats.established}</td>
+                                        <td className="py-3 px-4 text-slate-600">{effectiveStats.established}</td>
                                     </tr>
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy">Principal</th>
@@ -70,7 +72,7 @@ export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProp
                                     </tr>
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy">Campus Area</th>
-                                        <td className="py-3 px-4 text-slate-600">{schoolData.stats.campusSize}</td>
+                                        <td className="py-3 px-4 text-slate-600">{effectiveStats.campusSize}</td>
                                     </tr>
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy">Location</th>

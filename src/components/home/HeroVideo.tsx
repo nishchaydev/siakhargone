@@ -73,14 +73,6 @@ export default function HeroVideo({
           </video>
         );
       })()}
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover z-0"
-      poster={backgroundImage}
-      >
-      <source src={videoId?.includes('http') ? videoId : "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4#t=3"} type="video/mp4" />
-      Your browser does not support the video tag.
-
-
       {/* Overlay - Changes based on variant */}
       <div
         className={cn(

@@ -25,6 +25,7 @@ export const schoolData = {
     },
     principal: {
         name: "Mr. Shivam Jaiswal",
+        title: "Principal, SIA",
         messageQuote: "Education is the bridge to the future.",
     },
     cta: {

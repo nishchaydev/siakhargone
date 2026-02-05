@@ -64,6 +64,16 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                         return (match && match[2].length === 11) ? match[2] : "";
                     };
 
+                    let startParam = "";
+                    if (videoSrc.includes("http")) {
+                        try {
+                            const urlObj = new URL(videoSrc);
+                            startParam = urlObj.searchParams.get("start") || urlObj.searchParams.get("t") || "";
+                        } catch (e) {
+                            // ignore invalid urls
+                        }
+                    }
+
                     if (videoSrc.includes("6-i18-xt8sI")) videoId = "6-i18-xt8sI";
                     else if (videoSrc.includes("5ObfN8wX0Jg")) videoId = "5ObfN8wX0Jg";
                     else videoId = getYoutubeId(videoSrc);
@@ -71,7 +81,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     if (videoId) {
                         return (
                             <iframe
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1`}
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1${startParam ? `&start=${startParam}` : ''}`}
                                 title="YouTube video player"
                                 className="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-center pointer-events-none blur-[1px] z-10 border-none"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

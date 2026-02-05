@@ -6,6 +6,15 @@ export function toISODate(date: string): ISODate {
     if (!regex.test(date)) {
         throw new Error(`Invalid ISODate format: ${date}. Expected YYYY-MM-DD.`);
     }
+
+    // Semantic validation
+    const d = new Date(date);
+    const isValidDate = !isNaN(d.getTime()) && d.toISOString().slice(0, 10) === date;
+
+    if (!isValidDate) {
+        throw new Error(`Invalid date value: ${date}. The date does not exist.`);
+    }
+
     return date as ISODate;
 }
 
