@@ -37,7 +37,11 @@ export default function BlogIndexPage() {
                                         </div>
                                     </div>
                                     <div className="p-6 flex-1 flex flex-col bg-white">
-                                        <p className="text-sm text-muted-foreground mb-3">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                        <p className="text-sm text-muted-foreground mb-3">{(() => {
+                                            if (!post.date) return "";
+                                            const d = new Date(post.date);
+                                            return isNaN(d.getTime()) ? "Unknown Date" : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                                        })()}</p>
                                         <h2 className="text-xl font-display font-bold text-navy mb-3 group-hover:text-gold-dark transition-colors line-clamp-2">
                                             {post.title}
                                         </h2>

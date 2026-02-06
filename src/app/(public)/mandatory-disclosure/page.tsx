@@ -82,7 +82,7 @@ export default function MandatoryDisclosurePage() {
                 </div>
 
                 <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 md:p-8 mb-8 text-left">
-                    <h2 className="text-2xl font-bold text-navy mb-6 border-b border-gold/30 pb-2">General Information</h2>
+                    <h2 className="text-2xl font-bold text-navy mb-6 border-b border-gold/30 pb-2">School Summary</h2>
                     <div className="grid md:grid-cols-2 gap-x-12 gap-y-4">
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">Name of the School</span>

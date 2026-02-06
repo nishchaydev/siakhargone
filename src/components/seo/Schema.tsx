@@ -48,7 +48,7 @@ export default function Schema({ type, data }: SchemaProps) {
                 schoolData.social.facebook,
                 schoolData.social.instagram,
                 schoolData.social.youtube
-            ]
+            ].filter(Boolean)
         };
     } else if (type === 'Person') {
         // Principal Schema
@@ -76,10 +76,11 @@ export default function Schema({ type, data }: SchemaProps) {
             }))
         };
     } else if (type === 'FAQ') {
+        const faqs = Array.isArray(data) ? data : [];
         schemaData = {
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": data?.map((faq: any) => ({
+            "mainEntity": faqs.map((faq: any) => ({
                 "@type": "Question",
                 "name": faq.question,
                 "acceptedAnswer": {
@@ -94,8 +95,7 @@ export default function Schema({ type, data }: SchemaProps) {
             "@type": "NewsArticle",
             "headline": data?.title ?? '',
             "image": data?.imageUrl ? [data.imageUrl] : [],
-            "datePublished": data?.date ?? new Date().toISOString(),
-            "dateModified": data?.date ?? new Date().toISOString(),
+            ...(data?.date ? { "datePublished": data.date, "dateModified": data.date } : {}),
             "author": [{
                 "@type": "Organization",
                 "name": "Sanskar International Academy",
@@ -109,7 +109,7 @@ export default function Schema({ type, data }: SchemaProps) {
             "name": data?.name ?? '',
             "description": data?.description ?? '',
             "thumbnailUrl": data?.thumbnailUrl ? [data.thumbnailUrl] : [],
-            "uploadDate": data?.uploadDate ?? new Date().toISOString(),
+            "uploadDate": data?.uploadDate ?? undefined,
             "contentUrl": data?.contentUrl ?? '',
             "embedUrl": data?.embedUrl ?? ''
         };
@@ -118,7 +118,7 @@ export default function Schema({ type, data }: SchemaProps) {
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData).replace(/<\/script>/gi, '<\\/script>').replace(/<!--/g, '<\\!--') }}
         />
     );
 }

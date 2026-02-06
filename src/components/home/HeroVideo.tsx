@@ -47,7 +47,6 @@ export default function HeroVideo({
       </div>
 
       {/* Background Video */}
-      {/* Background Video */}
       {(() => {
         // Explicit validation and extraction
         const getYoutubeId = (url: string) => {
@@ -57,6 +56,8 @@ export default function HeroVideo({
         };
 
         const resolvedVideoId = (videoId.includes('.') || videoId.includes('/')) ? getYoutubeId(videoId) : (videoId.match(/^[A-Za-z0-9_-]{11}$/) ? videoId : "");
+
+        const SKIP_INTRO_SECONDS = 3; // skip 3s intro/logo frame to show content immediately
 
         if (resolvedVideoId) {
           return (
@@ -82,7 +83,7 @@ export default function HeroVideo({
             playsInline
             className="absolute inset-0 w-full h-full object-cover z-0"
             poster={backgroundImage}
-            onLoadedMetadata={(e) => { e.currentTarget.currentTime = 3; }}
+            onLoadedMetadata={(e) => { e.currentTarget.currentTime = SKIP_INTRO_SECONDS; }}
           >
             <source src={fallbackVideoUrl} type="video/mp4" />
             Your browser does not support the video tag.

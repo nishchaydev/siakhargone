@@ -31,7 +31,7 @@ export default function FacultyPage() {
                         name: leader.name,
                         jobTitle: leader.role,
                         image: leader.image,
-                        description: leader.message
+                        ...(leader.message ? { description: leader.message } : {})
                     }}
                 />
             ))}

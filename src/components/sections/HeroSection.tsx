@@ -128,7 +128,10 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     >
                         <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-2 md:mb-4 drop-shadow-2xl text-white block">
                             {(() => {
-                                const titleParts = data.title.split(' ');
+                                const rawTitle = (data.title || '').trim();
+                                if (!rawTitle) return null; // Or return a default
+
+                                const titleParts = rawTitle.split(' ');
                                 const mainTitle = titleParts[0];
                                 const subTitle = titleParts.slice(1).join(' ');
                                 return (

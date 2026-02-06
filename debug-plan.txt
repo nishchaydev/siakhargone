@@ -4,7 +4,7 @@ const { getNewsService } = require('./src/services/newsService');
 // But run_command in the project root should have access if dotenv is set up or I can rely on next dev environment? 
 // No, standalone script won't have env vars. I need to rely on the running app or checking source.
 // I cannot run typescript directly easily without ts-node.
-// I will creating a small API route or a test file in the project that I can hit.
+// I will create a small API route or a test file in the project that I can hit.
 // Or actually, I can just use `run_command` to `curl` the running localhost API if the server is running.
 // The user has `npm run dev` running.
 // I will curl the API endpoints.

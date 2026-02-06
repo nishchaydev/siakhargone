@@ -172,7 +172,7 @@ export default function ContactPageClient() {
                 </h3>
                 <p className="text-white/80 text-sm mb-4">Help other parents find the best school for their children by leaving us a review.</p>
                 <a
-                  href={schoolData.contact.googleMapLink}
+                  href={schoolData.contact.googleReviewLink || schoolData.contact.googleMapLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-xs font-bold bg-white text-navy px-4 py-2 rounded-full hover:bg-gold transition-colors"

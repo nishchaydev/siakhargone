@@ -17,6 +17,7 @@ export const schoolData = {
         altEmail: "info@siakhargone.in",
         address: "Gowadi Fata, Khargone - Khandwa Road, Badgaon, Khargone, MP - 451001",
         googleMapLink: "https://maps.google.com/maps?q=Sanskar+International+Academy,+Khargone+(SIA)",
+        googleReviewLink: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID", // TODO: Replace with actual Place ID link
     },
     social: {
         facebook: "https://www.facebook.com/people/Sanskar-International-Academy/61556184519960/",

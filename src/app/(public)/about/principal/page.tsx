@@ -21,11 +21,13 @@ export default async function PrincipalPage() {
     return (
         <div className="bg-grain min-h-screen pt-20">
             {/* SEO Schema */}
-            <Schema type="Person" data={{
-                name: principalMessage?.name,
-                image: principalMessage?.image,
-                description: principalMessage?.role
-            }} />
+            {/* SEO Schema */}
+            {principalMessage && <Schema type="Person" data={{
+                name: principalMessage.name,
+                image: principalMessage.image,
+                jobTitle: principalMessage.role,
+                description: principalMessage.role
+            }} />}
 
             <LeadershipMessage
                 messageData={principalMessage}

@@ -299,7 +299,7 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                 {filteredImages.map((img) => (
                                     <div key={img.id} className="group relative aspect-square rounded-xl overflow-hidden border bg-slate-100 shadow-sm transition-all hover:shadow-md">
                                         <Image
-                                            src={img.imageId.startsWith('http')
+                                            src={(typeof img.imageId === 'string' && img.imageId.startsWith('http'))
                                                 ? img.imageId
                                                 : `https://res.cloudinary.com/${cloudName}/image/upload/c_scale,w_400/${img.imageId}`}
                                             alt={img.alt || "Gallery Image"}

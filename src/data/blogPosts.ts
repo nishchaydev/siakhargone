@@ -76,7 +76,7 @@ export const blogPosts: BlogPost[] = [
         slug: "how-to-choose-best-school-in-khargone",
         title: "How to Choose the Best School in Khargone for Your Child: 6 Essential Factors",
         excerpt: "Don't just go by the name. Check these 6 critical factors before admitting your child to any school in Khargone.",
-        date: toISODate("2026-02-05"), // Future dated schedule
+        date: toISODate("2026-02-05"), // Scheduled date
         coverImage: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp",
         content: `
             <p>Every parent wants the best for their child. But with so many schools claiming to be the "No. 1 School in Khargone", how do you decide? Here is a checklist of 6 essential factors to consider.</p>
