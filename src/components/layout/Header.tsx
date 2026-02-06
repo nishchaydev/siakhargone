@@ -146,15 +146,13 @@ const Header = () => {
   const isHomePage = pathname === "/";
 
   useEffect(() => {
-    // Disabled CMS fetch to ensure 2026-27 consistency as per new requirements
-    /*
     const fetchNotices = async () => {
       try {
         const notices = await getCMSNotices();
         if (notices.length > 0) {
           const mapped = notices.map(n => ({
             id: n.id.toString(),
-            title: n.text,
+            title: n.text, // Use 'text' as that's what CMSNoticeItem has
             content: n.text,
             date: n.date,
             isUrgent: n.isImportant
@@ -164,19 +162,14 @@ const Header = () => {
           setAnnouncements(mockAnnouncements);
         }
       } catch (e) {
-        console.error(e);
+        console.error("Failed to fetch notices for header:", e);
         setAnnouncements(mockAnnouncements);
-    } catch (e) {
-      console.error(e);
-      setAnnouncements(mockAnnouncements);
-    } finally {
-      setLoadingAnnouncements(false);
-    }
-  };
-  fetchNotices();
-  */
-    setAnnouncements(mockAnnouncements);
-    setLoadingAnnouncements(false);
+      } finally {
+        setLoadingAnnouncements(false);
+      }
+    };
+
+    fetchNotices();
   }, []);
 
   const lastScrollY = React.useRef(0);
@@ -248,9 +241,12 @@ const Header = () => {
               priority />
           </div>
 
-          <div className="flex flex-col justify-center">
-            <span className="font-display font-bold text-xl md:text-2xl leading-none tracking-wide text-white">SANSKAR</span>
-            <span className="font-sans text-[8px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.2em] text-white/80">International Academy</span>
+          <div className="flex flex-col justify-center ml-1">
+            <span className="font-display font-bold text-2xl md:text-3xl leading-none tracking-tight text-white mb-[2px]">SANSKAR</span>
+            <div className="flex flex-col leading-none">
+              <span className="font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.25em] text-gold/90">INTERNATIONAL</span>
+              <span className="font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.25em] text-gold/90">ACADEMY</span>
+            </div>
           </div>
         </Link>
 
@@ -433,9 +429,12 @@ const Header = () => {
                         className="object-contain"
                         priority />
                     </div>
-                    <div className="flex flex-col text-left">
-                      <span className="font-display font-bold text-xl leading-none tracking-tight text-navy">SANSKAR</span>
-                      <span className="font-sans text-[9px] uppercase tracking-widest text-gray-500">International Academy</span>
+                    <div className="flex flex-col text-left ml-1">
+                      <span className="font-display font-bold text-2xl leading-none tracking-tight text-navy mb-[2px]">SANSKAR</span>
+                      <div className="flex flex-col leading-none">
+                        <span className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gold-dark/90">INTERNATIONAL</span>
+                        <span className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gold-dark/90">ACADEMY</span>
+                      </div>
                     </div>
                   </Link>
                 </div>
@@ -502,7 +501,7 @@ const Header = () => {
           </Sheet>
         </div>
       </div>
-    </header>
+    </header >
   );
 }
 

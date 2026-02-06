@@ -34,16 +34,17 @@ async function fetchNewsFromGoogleSheets(): Promise<NewsItem[]> {
             imageUrl: row[4],
         }));
 
-        // Reverse to show latest first
-        return news.reverse();
+        // Filter out empty rows and header rows
+        return news.filter(n => n.id && n.id !== 'Id' && n.id !== 'id').reverse();
     } catch (error) {
         console.error("Service News Fetch Error:", error);
-        throw error; // Throw to let cache handle stale data logic
+        // Do not throw, return empty array to allow build to pass even if credentials are missing
+        return [];
     }
 }
 
 export async function getNewsService(): Promise<NewsItem[]> {
-    return getCachedData("news_data", fetchNewsFromGoogleSheets, 30 * 1000); // 30 seconds 
+    return getCachedData("news_data", fetchNewsFromGoogleSheets, 10 * 1000); // 10 seconds 
 }
 
 export async function addNewsService(item: { title: string, description: string, date: string, imageUrl: string }) {

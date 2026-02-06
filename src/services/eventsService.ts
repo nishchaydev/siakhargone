@@ -43,27 +43,13 @@ async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
         // Sort by date? or Reverse?
         return events.reverse();
     } catch (error: any) {
-        console.error("Service Events Fetch Error:", error.message);
-
-        // Debugging: List available sheets if the specific sheet fetch fails
-        try {
-            const sheets = await getGoogleSheetsInstance();
-            const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-            if (spreadsheetId) {
-                const metadata = await sheets.spreadsheets.get({ spreadsheetId });
-                const sheetTitles = metadata.data.sheets?.map(s => s.properties?.title) || [];
-                console.error(`FAILED to find sheet 'Events'. Available sheets are: ${sheetTitles.join(", ")}`);
-            }
-        } catch (metaError) {
-            console.error("Could not fetch spreadsheet metadata for debugging.", metaError);
-        }
-
+        console.error("Service Events Fetch Error:", error.message || error);
         return []; // Return empty array to prevent app crash
     }
 }
 
 export async function getEventsService(): Promise<EventItem[]> {
-    return getCachedData("events_data", fetchEventsFromGoogleSheets, 3600 * 1000); // 1 hour
+    return getCachedData("events_data", fetchEventsFromGoogleSheets, 10 * 1000); // 10 seconds
 }
 
 export async function addEventService(item: { title: string, date: string, time: string, location: string, description: string, imageUrl: string }) {

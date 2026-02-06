@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display, Mukta } from 'next/font/google';
 import './globals.css';
@@ -32,58 +31,75 @@ const mukta = Mukta({
 
 const openGraphImage = 'https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://siakhargone.in'),
-  title: {
-    default: 'Sanskar International Academy – Best CBSE School in Khandwa Road, Khargone',
-    template: '%s | Sanskar International Academy',
-  },
-  description: 'One of Khargone\'s top CBSE schools offering modern education, sports, arts, and academics for holistic child development.',
-  keywords: ['Sanskar International Academy', 'SIA Khargone', 'CBSE School Khargone', 'Best School in Khargone', 'International School MP', 'Education', 'Admissions'],
-  authors: [{ name: 'Sanskar International Academy' }],
-  alternates: {
-    canonical: 'https://siakhargone.in/',
-  },
-  openGraph: {
-    type: 'website',
-    url: 'https://siakhargone.in/',
-    title: 'Sanskar International Academy – Best CBSE School in Khandwa Road, Khargone',
-    description: 'One of Khargone\'s top CBSE schools offering modern education, sports, arts, and academics for holistic child development.',
-    siteName: 'Sanskar International Academy',
-    images: [{
-      url: openGraphImage,
-      width: 1200,
-      height: 630,
-      alt: 'Sanskar International Academy Campus',
-    }],
-    locale: 'en_IN',
-  },
-  other: {
-    organization: 'Sanskar International Academy',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Sanskar International Academy',
-    description: 'Khargone\'s Premier CBSE School. Admissions Open.',
-    images: [openGraphImage],
-  },
-  icons: {
-    icon: '/favicon/favicon.ico',
-    shortcut: '/favicon/favicon.ico',
-    apple: '/favicon/apple-touch-icon.png',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export function generateMetadata(): Metadata {
+  const currentYear = new Date().getFullYear();
+  const nextYear = currentYear + 1;
+  const admissionYear = `${currentYear}-${String(nextYear).slice(-2)}`;
+
+  return {
+    metadataBase: new URL('https://siakhargone.in'),
+    title: {
+      default: `Best CBSE School in Khargone | Sanskar International Academy | Admissions ${admissionYear}`,
+      template: '%s | Sanskar International Academy',
+    },
+    description: `Admissions Open ${admissionYear} | Sanskar International Academy, Khargone. CBSE Affiliated (1031345). Nominal Fees, Expert Faculty, & Best-in-Class Sports Facilities. Apply Now for a holistic education.`,
+    keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`, 'CBSE Affiliation 1031345'],
+    authors: [{ name: 'Sanskar International Academy' }],
+    alternates: {
+      canonical: 'https://siakhargone.in/',
+    },
+    manifest: '/favicon/site.webmanifest',
+    openGraph: {
+      type: 'website',
+      url: 'https://siakhargone.in/',
+      title: `Best CBSE School in Khargone | Sanskar International Academy | Admissions ${admissionYear}`,
+      description: `Sanskar International Academy - Top rated CBSE school in Khargone with 1100+ students, 50+ teachers, modern infrastructure. English-medium education from nursery to class 12. Admissions open ${admissionYear}. Visit our Khandwa Road campus.`,
+      siteName: 'Sanskar International Academy',
+      images: [{
+        url: openGraphImage,
+        width: 1200,
+        height: 630,
+        alt: 'Sanskar International Academy Campus',
+      }],
+      locale: 'en_IN',
+    },
+    other: {
+      organization: 'Sanskar International Academy',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Sanskar International Academy',
+      description: 'Khargone\'s Premier CBSE School. Admissions Open.',
+      images: [openGraphImage],
+    },
+    icons: {
+      icon: [
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_16,h_16,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '16x16', type: 'image/png' },
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_32,h_32,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '32x32', type: 'image/png' },
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_48,h_48,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '48x48', type: 'image/png' },
+      ],
+      shortcut: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
+      apple: [
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '180x180', type: 'image/png' },
+      ],
+      other: {
+        rel: 'apple-touch-icon-precomposed',
+        url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png',
+      },
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-};
+  };
+}
 
 export default function RootLayout({
   children,
@@ -112,22 +128,27 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "EducationalOrganization",
               "name": "Sanskar International Academy",
+              "alternateName": "SIA Khargone",
               "url": "https://siakhargone.in",
               "logo": "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+91-9644004990",
-                "contactType": "admissions",
-                "areaServed": "IN",
-                "availableLanguage": ["en", "hi"]
-              },
+              "description": "One of the leading CBSE English-medium schools in Khargone, known for disciplined academics, modern infrastructure, and holistic student development.",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Khandwa Road",
+                "streetAddress": "Gowadi Fata, Khargone - Khandwa Highway, Badgaon",
                 "addressLocality": "Khargone",
                 "addressRegion": "Madhya Pradesh",
                 "postalCode": "451001",
                 "addressCountry": "IN"
+              },
+              "telephone": "+91-70491-10104",
+              "email": "emitratechnologies@gmail.com",
+              "priceRange": "₹₹",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-8602175892",
+                "contactType": "admissions",
+                "areaServed": "IN",
+                "availableLanguage": ["en", "hi"]
               },
               "sameAs": [
                 "https://www.facebook.com/people/Sanskar-International-Academy/61556184519960/",

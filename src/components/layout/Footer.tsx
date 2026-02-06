@@ -49,11 +49,21 @@ export default function Footer() {
                 <span className="font-display font-bold text-5xl text-white tracking-tight">SANSKAR</span>
                 <span className="font-sans text-sm uppercase tracking-[0.3em] text-gold/90 font-semibold">International Academy</span>
               </div>
-              <p className="text-white/80 text-base leading-relaxed max-w-sm">
-                A premier CBSE institution committed to nurturing global citizens through a blend of academic excellence, cultural values, and modern innovation.
-              </p>
+              <div className="footer-about text-white/80 text-base leading-relaxed space-y-4">
+                <p>
+                  Sanskar International Academy is one of the best CBSE schools in Khargone,
+                  offering quality English-medium education from nursery to class 12. With
+                  {schoolData.stats.students} students, {schoolData.stats.teachers} teachers, and modern infrastructure, we are committed
+                  to academic excellence and holistic development.
+                </p>
+                <div className="text-sm space-y-1">
+                  <p><strong>Address:</strong> {schoolData.contact.address}</p>
+                  <p><strong>Phone:</strong> {schoolData.contact.phone[0]}</p>
+                  <p><strong>CBSE Affiliation:</strong> {schoolData.affiliationNo} | <strong>School Code:</strong> {schoolData.schoolCode}</p>
+                </div>
+              </div>
 
-              <div className="flex gap-4 pt-6">
+              <div className="flex gap-4 pt-4">
                 <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Facebook className="h-6 w-6" /></a>
                 <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram profile" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Instagram className="h-6 w-6" /></a>
                 <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Youtube className="h-6 w-6" /></a>
@@ -106,7 +116,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-3 text-base text-white/80">
                   <Mail className="w-5 h-5 text-gold shrink-0" />
-                  <a href="mailto:siakhargone@gmail.com" className="hover:text-white">siakhargone@gmail.com</a>
+                  <a href={`mailto:${schoolData.contact.email}`} className="hover:text-white">{schoolData.contact.email}</a>
                 </div>
               </div>
             </div>

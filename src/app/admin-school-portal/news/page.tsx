@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Trash2, Plus, Loader2, Newspaper, Pencil, Save, ExternalLink, UploadCloud, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CldUploadWidget } from 'next-cloudinary';
 import { Label } from "@/components/ui/label";
@@ -155,7 +156,13 @@ export default function NewsManager() {
                                         {form.imageUrl ? (
                                             <div className="relative group rounded-lg overflow-hidden border border-gray-200">
                                                 <div className="aspect-video w-full relative bg-gray-100">
-                                                    <img src={form.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                                                    <Image
+                                                        src={form.imageUrl}
+                                                        alt="Preview"
+                                                        fill
+                                                        className="object-cover"
+                                                        unoptimized
+                                                    />
                                                 </div>
                                                 <Button
                                                     type="button"
@@ -171,9 +178,10 @@ export default function NewsManager() {
                                             <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:bg-gray-50 transition-colors">
                                                 <CldUploadWidget
                                                     uploadPreset="siakhargone_uploads"
-                                                    onSuccess={(result: any) => {
-                                                        const url = result?.info?.secure_url;
-                                                        if (url) setForm({ ...form, imageUrl: url });
+                                                    onSuccess={(result) => {
+                                                        if (result.info && typeof result.info !== 'string' && result.info.secure_url) {
+                                                            setForm({ ...form, imageUrl: result.info.secure_url });
+                                                        }
                                                     }}
                                                     options={{
                                                         sources: ['local', 'url'],
@@ -234,7 +242,14 @@ export default function NewsManager() {
                                         <CardContent className="p-0 flex flex-col md:flex-row">
                                             {item.imageUrl && (
                                                 <div className="w-full md:w-48 h-32 bg-gray-200 shrink-0 relative">
-                                                    <img src={item.imageUrl} alt="" className="w-full h-full object-cover" />
+                                                    <Image
+                                                        src={item.imageUrl}
+                                                        alt={item.title || "News article image"}
+                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, 300px"
+                                                        className="object-cover"
+                                                        unoptimized
+                                                    />
                                                 </div>
                                             )}
                                             <div className="p-5 flex-1 flex flex-col justify-between">

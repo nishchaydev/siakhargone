@@ -81,55 +81,95 @@ export default function MandatoryDisclosurePage() {
                     </p>
                 </div>
 
-                {groupedDocuments.map((group, groupIndex) => (
-                    <Card key={groupIndex} className="overflow-hidden border-0 shadow-md">
-                        <CardHeader className="bg-navy/5 border-b border-navy/10 py-4 px-6">
-                            <CardTitle className="text-lg md:text-xl font-bold text-navy flex items-center gap-2">
-                                <FileText className="h-5 w-5 text-gold" />
-                                {group.title}
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-0">
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-left border-collapse">
-                                    <tbody className="divide-y divide-gray-100">
-                                        {group.items.map((doc, docIndex) => (
-                                            <tr key={docIndex} className="hover:bg-gray-50 transition-colors group">
-                                                <td className="p-4 md:p-5 font-medium text-gray-700 w-2/3 md:w-1/2">
-                                                    {doc.name}
-                                                </td>
-                                                <td className="p-4 md:p-5 text-right w-1/3 md:w-1/2">
-                                                    <div className="flex flex-col sm:flex-row justify-end gap-2">
-                                                        {doc.links ? (
-                                                            <>
-                                                                <Button asChild size="sm" className="h-9 gap-1.5 border-0 bg-gold hover:bg-gold/90 text-navy font-bold">
-                                                                    <a href={doc.links.preview} target="_blank" rel="noopener noreferrer">
-                                                                        <Eye className="h-3.5 w-3.5" />
-                                                                        <span className="hidden sm:inline">View</span>
-                                                                    </a>
-                                                                </Button>
-                                                                <Button asChild size="sm" className="h-9 gap-1.5 bg-navy hover:bg-navy-dark text-white">
-                                                                    <a href={doc.links.download} target="_blank" rel="noopener noreferrer">
-                                                                        <Download className="h-3.5 w-3.5" />
-                                                                        <span className="hidden sm:inline">Download</span>
-                                                                    </a>
-                                                                </Button>
-                                                            </>
-                                                        ) : (
-                                                            <span className="inline-flex self-center sm:self-auto items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500 border border-gray-200">
-                                                                Coming Soon
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 md:p-8 mb-8 text-left">
+                    <h2 className="text-2xl font-bold text-navy mb-6 border-b border-gold/30 pb-2">School Summary</h2>
+                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-4">
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">Name of the School</span>
+                            <span className="font-bold text-navy">Sanskar International Academy</span>
+                        </div>
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">Affiliation No.</span>
+                            <span className="font-bold text-navy">1031345</span>
+                        </div>
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">School Code</span>
+                            <span className="font-bold text-navy">50314</span>
+                        </div>
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">Affiliation Status</span>
+                            <span className="font-bold text-navy">Provisional (Up to 2028)</span>
+                        </div>
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">Address</span>
+                            <span className="font-bold text-navy text-right">Gowadi Fata, Khandwa Road, Khargone</span>
+                        </div>
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">Principal</span>
+                            <span className="font-bold text-navy">Mr. Shivam Jaiswal</span>
+                        </div>
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">Email</span>
+                            <span className="font-bold text-navy">emitratechnologies@gmail.com</span>
+                        </div>
+                        <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
+                            <span className="font-semibold text-gray-600">Phone</span>
+                            <span className="font-bold text-navy">+91 70491 10104</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="space-y-8">
+                    {groupedDocuments.map((group, groupIndex) => (
+                        <Card key={groupIndex} className="overflow-hidden border-0 shadow-md">
+                            <CardHeader className="bg-navy/5 border-b border-navy/10 py-4 px-6">
+                                <CardTitle className="text-lg md:text-xl font-bold text-navy flex items-center gap-2">
+                                    <FileText className="h-5 w-5 text-gold" />
+                                    {group.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-0">
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-left border-collapse">
+                                        <tbody className="divide-y divide-gray-100">
+                                            {group.items.map((doc, docIndex) => (
+                                                <tr key={docIndex} className="hover:bg-gray-50 transition-colors group">
+                                                    <td className="p-4 md:p-5 font-medium text-gray-700 w-2/3 md:w-1/2">
+                                                        {doc.name}
+                                                    </td>
+                                                    <td className="p-4 md:p-5 text-right w-1/3 md:w-1/2">
+                                                        <div className="flex flex-col sm:flex-row justify-end gap-2">
+                                                            {doc.links ? (
+                                                                <>
+                                                                    <Button asChild size="sm" className="h-9 gap-1.5 border-0 bg-gold hover:bg-gold/90 text-navy font-bold">
+                                                                        <a href={doc.links.preview} target="_blank" rel="noopener noreferrer">
+                                                                            <Eye className="h-3.5 w-3.5" />
+                                                                            <span className="hidden sm:inline">View</span>
+                                                                        </a>
+                                                                    </Button>
+                                                                    <Button asChild size="sm" className="h-9 gap-1.5 bg-navy hover:bg-navy-dark text-white">
+                                                                        <a href={doc.links.download} target="_blank" rel="noopener noreferrer">
+                                                                            <Download className="h-3.5 w-3.5" />
+                                                                            <span className="hidden sm:inline">Download</span>
+                                                                        </a>
+                                                                    </Button>
+                                                                </>
+                                                            ) : (
+                                                                <span className="inline-flex self-center sm:self-auto items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500 border border-gray-200">
+                                                                    {doc.status || "Coming Soon"}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
             </div>
         </main>
     );

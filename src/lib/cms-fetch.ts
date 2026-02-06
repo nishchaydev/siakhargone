@@ -17,9 +17,16 @@ export interface CMSNoticeItem {
     isImportant: boolean;
 }
 
+// Helper to get base URL (Relative for Client, Absolute for Server)
+const getBaseUrl = () => {
+    if (typeof window !== 'undefined') return ''; // Browser: use relative path
+    if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
+    return 'http://localhost:3000'; // Server fallback
+};
+
 export async function getCMSNews(): Promise<CMSNewsItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/news`, { next: { revalidate: 60 } });
+        const res = await fetch(`${getBaseUrl()}/api/admin/news`, { next: { revalidate: 10 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
@@ -35,7 +42,7 @@ export async function getCMSNews(): Promise<CMSNewsItem[]> {
 
 export async function getCMSNotices(): Promise<CMSNoticeItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/notices`, { next: { revalidate: 60 } });
+        const res = await fetch(`${getBaseUrl()}/api/admin/notices`, { next: { revalidate: 10 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
@@ -61,7 +68,7 @@ export interface CMSCareerItem {
 
 export async function getCMSCareers(): Promise<CMSCareerItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/careers`, { next: { revalidate: 60 } });
+        const res = await fetch(`${getBaseUrl()}/api/admin/careers`, { next: { revalidate: 10 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];
@@ -85,7 +92,7 @@ export interface CMSGalleryItem {
 
 export async function getCMSGallery(): Promise<CMSGalleryItem[]> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/admin/gallery`, { next: { revalidate: 60 } });
+        const res = await fetch(`${getBaseUrl()}/api/admin/gallery`, { next: { revalidate: 10 } });
         if (!res.ok) return [];
         const json = await res.json();
         return json.data || [];

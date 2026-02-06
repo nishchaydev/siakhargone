@@ -7,19 +7,35 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Quote } from 'lucide-react';
 
+import Schema from '@/components/seo/Schema';
+
 export const metadata = {
     title: 'Faculty & Staff | Sanskar International Academy',
     description: 'Meet the dedicated mentors and leaders shaping the future at SIA Khargone.',
 };
 
 export default function FacultyPage() {
-    // Group faculty by department for display
+    // Group faculty by display
     const leadership = facultyMembers.filter(f => f.department === 'Leadership');
     const coordinators = facultyMembers.filter(f => f.department === 'Coordinators');
     const teachingStaff = facultyMembers.filter(f => !['Leadership', 'Coordinators'].includes(f.department));
 
     return (
         <div className="bg-gray-50 min-h-screen">
+            {/* SEO Schema for Leadership */}
+            {leadership.map(leader => (
+                <Schema
+                    key={leader.id}
+                    type="Person"
+                    data={{
+                        name: leader.name,
+                        jobTitle: leader.role,
+                        image: leader.image,
+                        ...(leader.message ? { description: leader.message } : {})
+                    }}
+                />
+            ))}
+
             {/* Hero Section */}
             <Section
                 id="faculty-hero"

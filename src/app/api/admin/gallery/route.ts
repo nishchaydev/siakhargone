@@ -34,7 +34,9 @@ export async function GET() {
             alt: row[1], // Title column stores Alt
         }));
 
-        return NextResponse.json({ data: images.reverse() });
+        const validImages = images.filter(img => img.id && img.id !== 'Id' && img.id !== 'id');
+
+        return NextResponse.json({ data: validImages.reverse() });
     } catch (error: any) {
         console.error("API Gallery Fetch Error FULL:", error);
         return NextResponse.json({ error: "Failed to fetch gallery", details: error.message }, { status: 500 });

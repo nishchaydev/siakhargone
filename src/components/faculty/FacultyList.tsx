@@ -7,61 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { MotionDiv } from '@/components/common/Motion';
 import { User2, BadgeCheck } from "lucide-react";
 
-interface FacultyMember {
-    name: string;
-    role: string;
-    qualification: string;
-    experience?: string;
-    image?: string;
-}
+import { departments } from "@/data/departments";
 
-interface Department {
-    id: string;
-    label: string;
-    head: FacultyMember;
-    members: FacultyMember[];
-}
 
-const departments: Department[] = [
-    {
-        id: "science",
-        label: "Science",
-        head: { name: "Mr. R.K. Sharma", role: "HOD Science (Physics)", qualification: "M.Sc. Physics, B.Ed", experience: "15 Years" },
-        members: [
-            { name: "Mrs. Anjali Gupta", role: "Chemistry PGT", qualification: "M.Sc. Chemistry" },
-            { name: "Mr. Vimal Verma", role: "Biology PGT", qualification: "M.Sc. Biotech" },
-            { name: "Ms. Priya Singh", role: "Science TGT", qualification: "B.Sc., B.Ed" },
-        ]
-    },
-    {
-        id: "maths",
-        label: "Mathematics",
-        head: { name: "Mrs. S. Iyer", role: "HOD Mathematics", qualification: "M.Sc. Maths, M.Ed", experience: "12 Years" },
-        members: [
-            { name: "Mr. Amit Patel", role: "Maths PGT", qualification: "M.Sc. Maths" },
-            { name: "Mrs. Ritu Jain", role: "Maths TGT", qualification: "B.Sc., B.Ed" },
-        ]
-    },
-    {
-        id: "humanities",
-        label: "Humanities / English",
-        head: { name: "Dr. A.K. Mishra", role: "HOD English", qualification: "Ph.D. English Lit.", experience: "20 Years" },
-        members: [
-            { name: "Mrs. Kavita Roy", role: "History PGT", qualification: "M.A. History" },
-            { name: "Mr. Suresh Yadav", role: "Hindi PGT", qualification: "M.A. Hindi" },
-        ]
-    },
-    {
-        id: "primary",
-        label: "Primary Wing",
-        head: { name: "Mrs. Neeta Kapoor", role: "Headmistress - Primary", qualification: "M.A. Psych, B.Ed", experience: "18 Years" },
-        members: [
-            { name: "Mrs. Sunita Rao", role: "Primary Coordinator", qualification: "B.A., B.Ed" },
-            { name: "Ms. Daisy Thomas", role: "PRT - English", qualification: "B.A. English" },
-            { name: "Mrs. Pooja Sharma", role: "PRT - EVS", qualification: "B.Sc., B.Ed" },
-        ]
-    },
-];
 
 export function FacultyList() {
     return (
@@ -88,22 +36,24 @@ export function FacultyList() {
                             className="space-y-8"
                         >
                             {/* HOD Card */}
-                            <div className="flex justify-center">
-                                <Card className="w-full max-w-2xl border-t-4 border-t-gold shadow-lg bg-gradient-to-br from-white to-orange-50/30">
-                                    <CardHeader className="text-center pb-2">
-                                        <div className="mx-auto w-24 h-24 rounded-full bg-navy/10 flex items-center justify-center mb-3">
-                                            <User2 size={40} className="text-navy" />
-                                        </div>
-                                        <BadgeCheck className="w-6 h-6 text-gold mx-auto mb-1" />
-                                        <CardTitle className="text-2xl text-navy">{dept.head.name}</CardTitle>
-                                        <CardDescription className="text-lg font-medium text-primary">{dept.head.role}</CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="text-center text-sm text-muted-foreground space-y-1">
-                                        <p className="font-semibold text-gray-700">{dept.head.qualification}</p>
-                                        <p>Teaching Experience: {dept.head.experience}</p>
-                                    </CardContent>
-                                </Card>
-                            </div>
+                            {dept.head && (
+                                <div className="flex justify-center">
+                                    <Card className="w-full max-w-2xl border-t-4 border-t-gold shadow-lg bg-gradient-to-br from-white to-orange-50/30">
+                                        <CardHeader className="text-center pb-2">
+                                            <div className="mx-auto w-24 h-24 rounded-full bg-navy/10 flex items-center justify-center mb-3">
+                                                <User2 size={40} className="text-navy" />
+                                            </div>
+                                            <BadgeCheck className="w-6 h-6 text-gold mx-auto mb-1" />
+                                            <CardTitle className="text-2xl text-navy">{dept.head.name}</CardTitle>
+                                            <CardDescription className="text-lg font-medium text-primary">{dept.head.role}</CardDescription>
+                                        </CardHeader>
+                                        <CardContent className="text-center text-sm text-muted-foreground space-y-1">
+                                            <p className="font-semibold text-gray-700">{dept.head.qualification}</p>
+                                            <p>Teaching Experience: {dept.head.experience || "N/A"}</p>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            )}
 
                             {/* Team Grid */}
                             <div>

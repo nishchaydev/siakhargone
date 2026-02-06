@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 };
 
 const achievementItems = [
-    { icon: "Award", category: "Academics", title: "National Science Olympiad", description: "Our students secured top ranks in the National Science Olympiad, showcasing their exceptional scientific aptitude." },
-    { icon: "Medal", category: "Sports", title: "State Level Football Champions", description: "The school's football team clinched the state-level championship with an undefeated record." },
-    { icon: "Palette", category: "Arts & Culture", title: "National Art Competition Winner", description: "A student's artwork was recognized as the best entry in the junior category of a prestigious national competition." },
-    { icon: "Globe", category: "Social Impact", title: "Community Service Award", description: "Our students were honored for their outstanding contributions to local community service and environmental initiatives." },
+    { icon: "Award", category: "Academics", title: "Excellence in Board Exams", description: "Our students consistently achieve top ranks in CBSE Class 10th and 12th board examinations." },
+    { icon: "Medal", category: "Sports", title: "District Level Champions", description: "Our school sports teams have secured multiple victories in district-level inter-school competitions." },
+    { icon: "Palette", category: "Arts & Culture", title: "Cultural Fest Winners", description: "First prize winners in the annual inter-school cultural and arts competition." },
+    { icon: "Globe", category: "Social Impact", title: "Green School Initiative", description: "Recognized for our student-led environmental awareness and tree plantation drives." },
 ];
 
 export default function AchievementsPage() {

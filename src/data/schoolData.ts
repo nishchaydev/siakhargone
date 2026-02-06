@@ -1,10 +1,10 @@
 export const schoolData = {
     academicYear: "2026-27",
     name: "SIA Khargone",
-    fullName: "Sukhdevi International Academy, Khargone",
+    fullName: "Sanskar International Academy",
     affiliation: "CBSE Affiliated",
-    affiliationNo: "1031165", // Please verify or update if needed
-    schoolCode: "51139", // Please verify or update if needed
+    affiliationNo: "1031345", // Verified from Footer
+    schoolCode: "51362", // Verified by User
     stats: {
         students: "1500+",
         teachers: "75+",
@@ -12,19 +12,21 @@ export const schoolData = {
         campusSize: "10 Acres",
     },
     contact: {
-        phone: ["+91 70491 10104"],
-        email: "info@siakhargone.in", // Professional email preferred
-        altEmail: "siakhargone@gmail.com",
-        address: "Gowadi Fata, Khargone - Khandwa Hwy, Badgaon [Nagjhiri], Khargone, MP - 451001",
+        phone: ["+91 70491 10104", "+91 86021 75892"],
+        email: "emitratechnologies@gmail.com", // Verified Primary
+        altEmail: "info@siakhargone.in",
+        address: "Gowadi Fata, Khargone - Khandwa Road, Badgaon, Khargone, MP - 451001",
         googleMapLink: "https://maps.google.com/maps?q=Sanskar+International+Academy,+Khargone+(SIA)",
+        googleReviewLink: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID", // TODO: Replace with actual Place ID link
     },
     social: {
-        facebook: "https://www.facebook.com/siakhargone/",
-        instagram: "https://www.instagram.com/sanskarinternationalacademy/?hl=en",
+        facebook: "https://www.facebook.com/people/Sanskar-International-Academy/61556184519960/",
+        instagram: "https://www.instagram.com/sanskar_international_academy/",
         youtube: "https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw",
     },
     principal: {
         name: "Mr. Shivam Jaiswal",
+        title: "Principal, SIA",
         messageQuote: "Education is the bridge to the future.",
     },
     cta: {

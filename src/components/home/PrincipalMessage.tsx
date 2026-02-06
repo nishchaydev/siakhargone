@@ -12,7 +12,7 @@ import { schoolData } from "@/data/schoolData";
 
 export const PrincipalMessage = () => {
   return (
-    <Section id="principal-message" className="bg-white relative overflow-hidden">
+    <Section id="principal-message" className="bg-white relative overflow-hidden py-12 md:py-16">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-navy/5 rounded-bl-full -mr-20 -mt-20 z-0" />
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/10 rounded-tr-full -ml-10 -mb-10 z-0" />
@@ -29,7 +29,7 @@ export const PrincipalMessage = () => {
           <div className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
             <Image
               src={schoolLogo}
-              alt="Principal of Sanskar International Academy"
+              alt="Sanskar International Academy logo"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority
@@ -81,7 +81,7 @@ export const PrincipalMessage = () => {
             </Button>
             <div className="flex flex-col justify-center pl-4 border-l-4 border-gold">
               <span className="font-display font-bold text-navy text-lg">{schoolData.principal.name}</span>
-              <span className="text-sm text-muted-foreground">Principal, SIA Khargone</span>
+              <span className="text-sm text-muted-foreground">{schoolData.principal.title || "Principal, SIA Khargone"}</span>
             </div>
           </div>
         </motion.div>

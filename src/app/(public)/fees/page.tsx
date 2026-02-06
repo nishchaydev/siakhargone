@@ -1,22 +1,21 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { ExternalLink, CreditCard, Download, Search, Bus, GraduationCap } from "lucide-react";
+import { ExternalLink, CreditCard } from "lucide-react";
 import { motion } from "framer-motion";
-import { tuitionFees, busFees, oneTimeFees } from "@/data/fees";
-import { FeeCalculator } from "@/components/fees/FeeCalculator";
+// import { tuitionFees, busFees, oneTimeFees } from "@/data/fees";
+// import { FeeCalculator } from "@/components/fees/FeeCalculator";
 
 export default function FeesPage() {
+    /*
     const [busSearch, setBusSearch] = useState("");
 
     const filteredBusFees = busFees.filter(fee =>
         fee.village.toLowerCase().includes(busSearch.toLowerCase())
     );
+    */
 
     return (
         <div className="min-h-screen bg-grain pt-24 pb-12 px-4">
@@ -31,9 +30,9 @@ export default function FeesPage() {
                 </div>
 
                 {/* Fee Calculator Section - Prominently Displayed */}
-                <div className="mb-20 max-w-4xl mx-auto">
+                {/* <div className="mb-20 max-w-4xl mx-auto">
                     <FeeCalculator />
-                </div>
+                </div> */}
 
                 {/* Action Card */}
                 <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -85,7 +84,7 @@ export default function FeesPage() {
                 </div>
 
                 {/* Fees Tabs */}
-                <Card className="overflow-hidden shadow-xl border-t-4 border-t-navy">
+                {/* <Card className="overflow-hidden shadow-xl border-t-4 border-t-navy">
                     <CardHeader className="bg-gray-50 border-b pb-0">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
                             <div>
@@ -217,7 +216,7 @@ export default function FeesPage() {
                             * The above fees are subject to change. Transport & Exam fees are charged separately as per usage.
                         </div>
                     </CardContent>
-                </Card>
+                </Card> */}
 
             </div>
         </div>

@@ -154,7 +154,7 @@ export const committeeDocuments: any[] = [];
 
 export const messages = {
     'principal-message': {
-        message: `<p>Welcome to our vibrant school community! At <strong>Sanskar International Academy</strong>, we believe that education nurtures responsible, confident, and compassionate individuals ready for a changing world.</p><p>Our dedicated teachers create an inspiring environment, balancing academics with creativity, leadership, and character building. We value the strong partnership between school and parents in guiding children to become lifelong learners.</p><p>Our commitment remains constant: to provide quality education and strong moral values. I invite you to explore our website and join us in creating a bright future for every child.</p>`,
+        message: `<p>Welcome to our vibrant school community! <strong>Over the years, Sanskar International Academy has grown into one of the leading CBSE English-medium schools in Khargone.</strong> We believe that education nurtures responsible, confident, and compassionate individuals ready for a changing world.</p><p>Our dedicated teachers create an inspiring environment, balancing academics with creativity, leadership, and character building. We value the strong partnership between school and parents in guiding children to become lifelong learners.</p><p>Our commitment remains constant: to provide quality education and strong moral values. I invite you to explore our website and join us in creating a bright future for every child.</p>`,
         image: cloudinary.misc.parentAvatar, // Updated per user request
         name: "Mr. Shivam Jaiswal",
         role: "Principal"
@@ -193,24 +193,54 @@ export const homeFacilities = [
 
 export const testimonials = [
     {
-        id: "1",
+        id: "testimonial-1",
+        quote: "For us, Sanskar International Academy is one of the leading CBSE English-medium schools in Khargone. The discipline and teaching quality stand out.",
+        name: "Mr. Rakesh Gupta",
+        relation: "Parent",
+        avatarUrl: cloudinary.misc.parentAvatar
+    },
+    {
+        id: "testimonial-2",
         quote: "Sanskar International Academy has provided my child with a perfect balance of academics and co-curricular activities. The teachers are incredibly supportive and dedicated.",
         name: "Mrs. Anjali Sharma",
         relation: "Parent of Class 8 Student",
         avatarUrl: cloudinary.misc.parentAvatar // fallback
     },
     {
-        id: "2",
+        id: "testimonial-3",
         quote: "The infrastructure and facilities are top-notch. My son loves the computer lab and sports complex. It's truly a world-class environment for learning.",
         name: "Mr. Rajesh Patel",
         relation: "Parent of Class 5 Student",
         avatarUrl: cloudinary.misc.parentAvatar // fallback
     },
     {
-        id: "3",
+        id: "testimonial-4",
         quote: "I am impressed by the school's focus on values and holistic development. It's not just about grades; it's about building character.",
         name: "Mrs. Sunita Verma",
         relation: "Parent of Class 10 Student",
         avatarUrl: cloudinary.misc.parentAvatar // fallback
+    }
+];
+
+export const faqs = [
+    {
+        id: "faq-1",
+        question: "Which CBSE school is best for disciplined academics in Khargone?",
+        answer: "Sanskar International Academy is often regarded as one of the leading CBSE English-medium schools in Khargone due to its focus on disciplined academics, modern infrastructure, and holistic student development.",
+    },
+    {
+        id: "faq-2",
+        question: "What facilities should I look for in a top Khargone school?",
+        answer: "A top school should offer smart classrooms, fully equipped science and computer labs, a wide-ranging library, and dedicated sports facilities. SIA provides all these on a secure 4-acre campus.",
+    },
+    {
+        id: "faq-3",
+        question: "Does the school provide transport for students from nearby tehsils?",
+        answer: "Yes, SIA operates a fleet of GPS-enabled buses covering 15+ routes across Khargone and surrounding areas, ensuring safe and reliable transport for all students.",
+    },
+    {
+        id: "faq-4",
+        question: "How does the school prepare students for competitive exams?",
+        answer: "Our curriculum is aligned with CBSE standards that form the base for exams like JEE and NEET. We emphasize concept clarity and critical thinking rather than rote learning.",
     }
 ];

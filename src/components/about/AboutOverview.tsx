@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Section } from "@/components/common/Section";
 import { MotionDiv } from '@/components/common/Motion';
+import { schoolData } from "@/data/schoolData";
 
 const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -17,14 +18,74 @@ interface AboutOverviewProps {
         src: string | null;
         alt: string;
     } | null;
+    stats?: {
+        students: string;
+        teachers: string;
+        established: string;
+        campusSize: string;
+    };
 }
 
-export function AboutOverview({ content, schoolImage }: AboutOverviewProps) {
+export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProps) {
+    const effectiveStats = stats ?? schoolData.stats;
+
     return (
         <Section id="overview" isFirstSection={true}>
             <div className="grid md:grid-cols-2 gap-12 items-start relative">
                 <MotionDiv variants={fadeInUp} className="prose lg:prose-lg max-w-none text-muted-foreground">
+                    <p className="intro-text mb-6 font-medium text-navy-dark leading-relaxed">
+                        <strong>Sanskar International Academy is one of the leading CBSE English-medium
+                            schools in Khargone, known for disciplined academics, modern infrastructure, and
+                            holistic student development.</strong> Since our establishment in {effectiveStats.established}, we have grown
+                        to educate {effectiveStats.students} students with a dedicated team of {effectiveStats.teachers} qualified teachers. Located
+                        on Khandwa Road, our {effectiveStats.campusSize} campus features state-of-the-art facilities including
+                        computer labs, science laboratories, library, sports complex, and GPS-enabled
+                        transport covering 15+ routes across Khargone district.
+                    </p>
                     <div dangerouslySetInnerHTML={{ __html: content }} />
+
+                    <div className="mt-8 mb-8">
+                        <h3 className="text-xl font-display font-bold text-navy mb-4 border-l-4 border-gold pl-3">Quick Facts (Digital Fact Sheet)</h3>
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                            <table className="w-full text-left text-sm">
+                                <caption className="sr-only">School Quick Facts</caption>
+                                <tbody className="divide-y divide-gray-100">
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy w-1/3">Entity Name</th>
+                                        <td className="py-3 px-4 text-slate-600">Sanskar International Academy (SIA)</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy">Affiliation</th>
+                                        <td className="py-3 px-4 text-slate-600">CBSE, New Delhi (Affiliation No. 1031345)</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy">School Code</th>
+                                        <td className="py-3 px-4 text-slate-600">{schoolData.schoolCode}</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy">Establishment</th>
+                                        <td className="py-3 px-4 text-slate-600">{effectiveStats.established}</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy">Principal</th>
+                                        <td className="py-3 px-4 text-slate-600">Mr. Shivam Jaiswal</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy">Campus Area</th>
+                                        <td className="py-3 px-4 text-slate-600">{effectiveStats.campusSize}</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy">Location</th>
+                                        <td className="py-3 px-4 text-slate-600">Gowadi Fata, Khargone - Khandwa Highway, Badgaon, Khargone, MP - 451001</td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition-colors">
+                                        <th className="py-3 px-4 font-semibold text-navy">Contact</th>
+                                        <td className="py-3 px-4 text-slate-600">+91 70491 10104, siakhargone@gmail.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                     <div className="mt-6 p-4 bg-amber-50 border-l-4 border-gold rounded-r-lg">
                         <p className="text-navy font-medium">

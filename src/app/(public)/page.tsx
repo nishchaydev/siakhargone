@@ -1,4 +1,6 @@
+
 import HeroSection from "@/components/sections/HeroSection";
+import Schema from "@/components/seo/Schema";
 // Don't lazy load LatestNews to prevent "pop-in" if we have data instantly.
 import { LatestNews } from "@/components/home/LatestNews";
 
@@ -16,16 +18,44 @@ const CTASection = nextDynamic(() => import("@/components/home/CTASection").then
 const Academics = nextDynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
 const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
 const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
+const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod => mod.HomeFAQ), {
+  loading: () => <div className="py-20"><Skeleton className="h-[300px] w-full max-w-3xl mx-auto rounded-xl" /></div>
+});
 
-import { albums, testimonials } from "@/lib/static-data";
+import { albums, testimonials, faqs } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
 import { getNewsService } from "@/services/newsService";
 import { getEventsService } from "@/services/eventsService";
 import { getNoticesService } from "@/services/noticesService";
-// Removed deleted imports: getSiteAssets, getCMSAchievers
 
 // Force dynamic rendering since we are fetching news which updates frequently
-export const dynamic = 'force-dynamic';
+// CHANGED: Reduced revalidation time to 10 seconds for "ASAP" updates.
+export const revalidate = 10;
+
+// Basic shapes for the incoming data
+interface BaseItem {
+  id: string | number;
+  date: string;
+  title: string; // mapped from text or title
+  description?: string;
+  [key: string]: unknown; // Allow extra props from services if needed, but typed safely in union
+}
+
+interface NewsItem extends BaseItem {
+  type: 'News';
+}
+
+interface EventItem extends BaseItem {
+  type: 'Event';
+}
+
+interface NoticeItem extends BaseItem {
+  type: 'Notice';
+  text?: string;
+}
+
+type UpdateItem = NewsItem | EventItem | NoticeItem;
+
 
 export default async function Home() {
   // Hybrid Fetching: News, Events & Notices
@@ -35,16 +65,21 @@ export default async function Home() {
     getNoticesService().catch((e: unknown) => { console.error("Notices Fetch Error:", e); return []; })
   ]);
 
-  // Unified Feed Logic
-  const allUpdates = [
-    ...newsItems.map((item: any) => ({ ...item, type: 'News' })),
-    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' })),
-    ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: 'Important Notice' })) // Notices might not have description, provide fallback or mapping
-  ].sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const allUpdates: (UpdateItem & { timestamp: number })[] = [
+    ...newsItems.map((item: any) => ({ ...item, type: 'News' } as UpdateItem)),
+    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' } as UpdateItem)),
+    ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: item.text || 'Important Notice' } as UpdateItem))
+  ].map(item => {
+    const timestamp = item.date ? new Date(item.date).getTime() : 0;
+    return {
+      ...item,
+      timestamp: Number.isNaN(timestamp) ? 0 : timestamp
+    };
+  }).sort((a, b) => b.timestamp - a.timestamp);
 
   const latestUpdates = allUpdates.slice(0, 3);
 
-  console.log(`[HomePage] Displaying ${latestUpdates.length} updates from ${newsItems.length} news & ${eventsItems.length} events.`);
 
   // Curate homepage gallery images
   const sessionStart = albums.find(a => a.albumName === "Session Start")?.photos || [];
@@ -64,10 +99,10 @@ export default async function Home() {
 
   const cmsData = {
     hero: {
-      title: "Where Excellence Begins.",
-      subtitle: "Nurturing tomorrow's leaders through a blend of tradition and innovation.",
+      title: "Sanskar International Academy",
+      subtitle: "One of the leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
       sanskrit: "विद्या ददाति विनयम्",
-      video: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6", // User requested video
+      video: "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4", // User requested video
       grid: [
         cloudinary.infrastructure.building[0],
         cloudinary.infrastructure.classrooms[0],
@@ -86,6 +121,8 @@ export default async function Home() {
     gallery: galleryImages
   };
 
+
+
   const lifeAtSIAImages = {
     assembly: cloudinary.sessionStart[0],
     library: cloudinary.infrastructure.library[0],
@@ -95,6 +132,34 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })
+        }}
+      />
+      <Schema
+        type="VideoObject"
+        data={{
+          name: "Sanskar International Academy Republic Day 2026",
+          description: "Official Republic Day 2026 celebration video of Sanskar International Academy, Khargone.",
+          thumbnailUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png", // Fallback to logo or generate a thumbnail if available
+          uploadDate: "2026-01-26T00:00:00Z",
+          contentUrl: cmsData.hero.video,
+          embedUrl: cmsData.hero.video
+        }}
+      />
       <HeroSection data={cmsData.hero} stats={cmsData.stats} />
       <AtAGlance />
       <WhyChoose />
@@ -104,6 +169,7 @@ export default async function Home() {
       <LatestNews initialNews={latestUpdates} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <Testimonials testimonials={testimonials} isLoading={false} />
+      <HomeFAQ />
       <CTASection />
     </>
   );

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from "next/cache";
 import { getEventsService, addEventService, deleteEventService } from "@/services/eventsService";
 
 // Helper to prevent caching
@@ -18,6 +19,7 @@ export async function POST(req: Request) {
         const body = await req.json();
         // Validation could go here
         await addEventService(body);
+        revalidatePath('/', 'layout');
         return NextResponse.json({ success: true, message: 'Event added successfully' });
     } catch (error) {
         return NextResponse.json({ success: false, error: 'Failed to add event' }, { status: 500 });
@@ -30,6 +32,7 @@ export async function DELETE(req: Request) {
         if (!body.id) return NextResponse.json({ error: 'ID is required' }, { status: 400 });
 
         await deleteEventService(body.id);
+        revalidatePath('/', 'layout');
         return NextResponse.json({ success: true, message: 'Event deleted successfully' });
     } catch (error) {
         return NextResponse.json({ success: false, error: 'Failed to delete event' }, { status: 500 });

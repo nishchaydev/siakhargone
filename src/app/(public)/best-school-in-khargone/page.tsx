@@ -62,8 +62,8 @@ export default function BestSchoolInKhargonePage() {
                         </p>
                         <ul className="space-y-3 mt-6">
                             {[
-                                "Affiliated with CBSE New Delhi",
-                                " Experienced & Qualified Faculty",
+                                "Affiliated with CBSE New Delhi (Aff. No. 1031345)",
+                                "Experienced & Qualified Faculty",
                                 "Focus on Holistic Child Development",
                                 "Advanced Digital Learning Tools"
                             ].map((item, i) => (

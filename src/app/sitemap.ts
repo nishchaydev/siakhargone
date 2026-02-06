@@ -27,13 +27,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/virtual-tour',
         '/privacy',
         '/terms',
-        '/mandatory-disclosure'
+        '/mandatory-disclosure',
+        '/faq',
+        '/why-choose-sia',
+        '/blog',
+        '/press',
+        '/about/achievements',
+        '/best-school-in-khargone'
     ];
 
-    return routes.map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: route === '' ? 'daily' : 'weekly',
-        priority: route === '' ? 1 : 0.8,
-    }));
+    const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics'];
+    const LOW_PRIORITY_ROUTES = ['/privacy', '/terms', '/mandatory-disclosure', '/tc'];
+
+    const isTechnicalRoute = (route: string) => {
+        return ['/sitemap.xml', '/robots.txt', '/manifest.webmanifest', '/site.webmanifest'].some(p => route.endsWith(p));
+    };
+
+    return routes
+        .filter(route => !isTechnicalRoute(route))
+        .map((route) => {
+            const isHighPriority = HIGH_PRIORITY_ROUTES.includes(route);
+            const isLowPriority = LOW_PRIORITY_ROUTES.includes(route);
+
+            let changeFrequency: 'daily' | 'weekly' | 'monthly' | 'yearly' = 'weekly';
+            if (route === '' || route === '/notices' || route === '/news-events') changeFrequency = 'daily';
+            else if (isLowPriority) changeFrequency = 'monthly';
+
+            return {
+                url: `${baseUrl}${route}`,
+                lastModified: new Date(),
+                changeFrequency,
+                priority: route === '' ? 1 : isHighPriority ? 0.9 : isLowPriority ? 0.5 : 0.8,
+            };
+        });
 }
