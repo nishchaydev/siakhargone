@@ -156,7 +156,7 @@ export default function MandatoryDisclosurePage() {
                                                                 </>
                                                             ) : (
                                                                 <span className="inline-flex self-center sm:self-auto items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500 border border-gray-200">
-                                                                    Coming Soon
+                                                                    {doc.status || "Coming Soon"}
                                                                 </span>
                                                             )}
                                                         </div>

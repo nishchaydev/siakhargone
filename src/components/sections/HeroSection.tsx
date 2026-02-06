@@ -63,12 +63,12 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     };
 
                     let startParam = "";
-                    if (videoSrc.includes("http")) {
+                    if (videoSrc.startsWith("http")) {
                         try {
                             const urlObj = new URL(videoSrc);
                             startParam = urlObj.searchParams.get("start") || urlObj.searchParams.get("t") || "";
                         } catch (e) {
-                            // ignore invalid urls
+                            console.warn("Invalid Video URL:", videoSrc, e);
                         }
                     }
 

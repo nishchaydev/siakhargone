@@ -45,7 +45,7 @@ async function fetchNoticesFromGoogleSheets(): Promise<NoticeItem[]> {
 }
 
 export async function getNoticesService(): Promise<NoticeItem[]> {
-    return getCachedData("notices_data", fetchNoticesFromGoogleSheets, 3600 * 1000); // 1 hour
+    return getCachedData("notices_data", fetchNoticesFromGoogleSheets, 10 * 1000); // 10 seconds
 }
 
 export async function addNoticeService(item: { title: string, date: string, pdfUrl: string, important: boolean }) {

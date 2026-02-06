@@ -63,7 +63,7 @@ async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
 }
 
 export async function getEventsService(): Promise<EventItem[]> {
-    return getCachedData("events_data", fetchEventsFromGoogleSheets, 3600 * 1000); // 1 hour
+    return getCachedData("events_data", fetchEventsFromGoogleSheets, 10 * 1000); // 10 seconds
 }
 
 export async function addEventService(item: { title: string, date: string, time: string, location: string, description: string, imageUrl: string }) {

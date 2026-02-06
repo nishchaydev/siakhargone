@@ -29,9 +29,8 @@ import { getEventsService } from "@/services/eventsService";
 import { getNoticesService } from "@/services/noticesService";
 
 // Force dynamic rendering since we are fetching news which updates frequently
-// CHANGED: Switched to ISR (Incremental Static Regeneration) for better performance.
-// The page will be effectively static and regenerate at most once per hour.
-export const revalidate = 3600;
+// CHANGED: Reduced revalidation time to 10 seconds for "ASAP" updates.
+export const revalidate = 10;
 
 // Basic shapes for the incoming data
 interface BaseItem {
@@ -67,11 +66,17 @@ export default async function Home() {
   ]);
 
 
-  const allUpdates: UpdateItem[] = [
+  const allUpdates: (UpdateItem & { timestamp: number })[] = [
     ...newsItems.map((item: any) => ({ ...item, type: 'News' } as UpdateItem)),
     ...eventsItems.map((item: any) => ({ ...item, type: 'Event' } as UpdateItem)),
     ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: item.text || 'Important Notice' } as UpdateItem))
-  ].sort((a: UpdateItem, b: UpdateItem) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  ].map(item => {
+    const timestamp = item.date ? new Date(item.date).getTime() : 0;
+    return {
+      ...item,
+      timestamp: Number.isNaN(timestamp) ? 0 : timestamp
+    };
+  }).sort((a, b) => b.timestamp - a.timestamp);
 
   const latestUpdates = allUpdates.slice(0, 3);
 
@@ -150,7 +155,7 @@ export default async function Home() {
           name: "Sanskar International Academy Republic Day 2026",
           description: "Official Republic Day 2026 celebration video of Sanskar International Academy, Khargone.",
           thumbnailUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png", // Fallback to logo or generate a thumbnail if available
-          uploadDate: new Date().toISOString(),
+          uploadDate: "2026-01-26T00:00:00Z",
           contentUrl: cmsData.hero.video,
           embedUrl: cmsData.hero.video
         }}

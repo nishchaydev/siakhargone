@@ -57,7 +57,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             {post.title}
                         </h1>
                         <div className="flex items-center gap-4 text-muted-foreground text-sm">
-                            <span>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                            <span>{(() => {
+                                const d = new Date(post.date);
+                                return isNaN(d.getTime()) ? 'Date Unavailable' : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                            })()}</span>
                             <span>•</span>
                             <span>By {post.author || 'SIA Editorial Team'}</span>
                         </div>

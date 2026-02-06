@@ -2,7 +2,7 @@ import React from 'react';
 import { schoolData } from '@/data/schoolData';
 
 type SchemaProps = {
-    type: 'School' | 'Person' | 'Breadcrumb' | 'FAQ' | 'Article' | 'Event' | 'NewsArticle' | 'VideoObject';
+    type: 'School' | 'Person' | 'Breadcrumb' | 'FAQ' | 'NewsArticle' | 'VideoObject';
     data?: any;
 };
 
@@ -68,7 +68,7 @@ export default function Schema({ type, data }: SchemaProps) {
         schemaData = {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
-            "itemListElement": data?.items.map((item: any, index: number) => ({
+            "itemListElement": (data?.items || []).map((item: any, index: number) => ({
                 "@type": "ListItem",
                 "position": index + 1,
                 "name": item.name,
@@ -92,10 +92,10 @@ export default function Schema({ type, data }: SchemaProps) {
         schemaData = {
             "@context": "https://schema.org",
             "@type": "NewsArticle",
-            "headline": data.title,
-            "image": [data.imageUrl],
-            "datePublished": data.date,
-            "dateModified": data.date,
+            "headline": data?.title ?? '',
+            "image": data?.imageUrl ? [data.imageUrl] : [],
+            "datePublished": data?.date ?? new Date().toISOString(),
+            "dateModified": data?.date ?? new Date().toISOString(),
             "author": [{
                 "@type": "Organization",
                 "name": "Sanskar International Academy",
@@ -106,12 +106,12 @@ export default function Schema({ type, data }: SchemaProps) {
         schemaData = {
             "@context": "https://schema.org",
             "@type": "VideoObject",
-            "name": data.name,
-            "description": data.description,
-            "thumbnailUrl": [data.thumbnailUrl],
-            "uploadDate": data.uploadDate,
-            "contentUrl": data.contentUrl,
-            "embedUrl": data.embedUrl
+            "name": data?.name ?? '',
+            "description": data?.description ?? '',
+            "thumbnailUrl": data?.thumbnailUrl ? [data.thumbnailUrl] : [],
+            "uploadDate": data?.uploadDate ?? new Date().toISOString(),
+            "contentUrl": data?.contentUrl ?? '',
+            "embedUrl": data?.embedUrl ?? ''
         };
     }
 

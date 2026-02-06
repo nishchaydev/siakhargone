@@ -60,13 +60,17 @@ export default function HeroVideo({
 
         if (resolvedVideoId) {
           return (
-            <iframe
-              className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none scale-[1.3]" // Scaled to remove black bars/controls
-              src={`https://www.youtube.com/embed/${resolvedVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${resolvedVideoId}&playsinline=1&rel=0`}
-              title="Hero Background Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+            <div className="absolute inset-0 w-full h-full overflow-hidden">
+              <div className="relative w-full h-full min-w-[177.77vh] min-h-[56.25vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full border-0"
+                  src={`https://www.youtube.com/embed/${resolvedVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${resolvedVideoId}&playsinline=1&rel=0`}
+                  title="Hero Background Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
           );
         }
 

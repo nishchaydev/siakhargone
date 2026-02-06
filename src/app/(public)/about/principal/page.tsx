@@ -1,15 +1,12 @@
 import type { Metadata } from 'next';
 import { loadMessage } from '@/lib/content';
 import { LeadershipMessage } from '@/components/about/LeadershipMessage';
+import Schema from '@/components/seo/Schema';
 
 export const metadata: Metadata = {
     title: 'Principal\'s Message | SIA Khargone',
     description: 'A message from the Principal of Sanskar International Academy.',
 };
-
-import Schema from '@/components/seo/Schema';
-
-// ... (other imports)
 
 export default async function PrincipalPage() {
     const principalMsg = await loadMessage("principal-message");
