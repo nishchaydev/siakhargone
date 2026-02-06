@@ -1,5 +1,6 @@
 
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getGoogleSheetsInstance, SHEET_TAB_IDS } from "@/lib/google-sheets";
 
 export const dynamic = 'force-dynamic';
@@ -50,8 +51,10 @@ export async function POST(req: Request) {
             },
         });
 
+        revalidatePath('/', 'layout');
         return NextResponse.json({ success: true });
     } catch (error) {
+        console.error("Notice POST Error:", error);
         return NextResponse.json({ error: "Failed to add notice" }, { status: 500 });
     }
 }
@@ -88,6 +91,7 @@ export async function PUT(req: Request) {
             },
         });
 
+        revalidatePath('/', 'layout');
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Notice PUT Error:", error);
@@ -103,6 +107,7 @@ export async function DELETE(req: Request) {
         if (!id) return NextResponse.json({ error: "Missing ID" }, { status: 400 });
 
         await deleteRowById(SHEET_TAB_IDS.NOTICES, id);
+        revalidatePath('/', 'layout');
 
         return NextResponse.json({ success: true });
     } catch (error) {

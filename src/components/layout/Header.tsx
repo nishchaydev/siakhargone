@@ -152,7 +152,7 @@ const Header = () => {
         if (notices.length > 0) {
           const mapped = notices.map(n => ({
             id: n.id.toString(),
-            title: n.text,
+            title: n.text, // Use 'text' as that's what CMSNoticeItem has
             content: n.text,
             date: n.date,
             isUrgent: n.isImportant
@@ -162,12 +162,13 @@ const Header = () => {
           setAnnouncements(mockAnnouncements);
         }
       } catch (e) {
-        console.error(e);
+        console.error("Failed to fetch notices for header:", e);
         setAnnouncements(mockAnnouncements);
       } finally {
         setLoadingAnnouncements(false);
       }
     };
+
     fetchNotices();
   }, []);
 

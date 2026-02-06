@@ -1,5 +1,6 @@
 
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getNewsService, addNewsService, updateNewsService, deleteNewsService } from "@/services/newsService";
 
 export const dynamic = 'force-dynamic';
@@ -20,6 +21,7 @@ export async function POST(req: Request) {
     try {
         const { title, description, date, imageUrl } = await req.json();
         await addNewsService({ title, description, date, imageUrl });
+        revalidatePath('/', 'layout'); // Revalidate everything
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("News Append Error:", error);
@@ -32,6 +34,7 @@ export async function PUT(req: Request) {
     try {
         const { id, title, description, date, imageUrl } = await req.json();
         await updateNewsService({ id, title, description, date, imageUrl });
+        revalidatePath('/', 'layout');
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("News Update Error:", error);
@@ -43,6 +46,7 @@ export async function DELETE(req: Request) {
     try {
         const { id } = await req.json();
         await deleteNewsService(id);
+        revalidatePath('/', 'layout');
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("News Delete Error:", error);
