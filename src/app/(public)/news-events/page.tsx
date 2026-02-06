@@ -8,8 +8,14 @@ export const revalidate = 3600; // Revalidate every hour (ISR)
 export default async function NewsEventsPage() {
     // Fetch both News and Events in parallel
     const [newsItems, eventsItems] = await Promise.all([
-        getNewsService(),
-        getEventsService()
+        getNewsService().catch((e) => {
+            console.error("News Fetch Error:", e);
+            return [];
+        }),
+        getEventsService().catch((e) => {
+            console.error("Events Fetch Error:", e);
+            return [];
+        })
     ]);
 
     return (
