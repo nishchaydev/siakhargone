@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     default: `Best CBSE School in Khargone | Sanskar International Academy | Admissions ${admissionYear}`,
     template: '%s | Sanskar International Academy',
   },
-  description: `Sanskar International Academy - Top rated CBSE school in Khargone with 1100+ students, 50+ teachers, modern infrastructure. English-medium education from nursery to class 12. Admissions open ${admissionYear}. Visit our Khandwa Road campus.`,
-  keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`],
+  description: `Admissions Open ${admissionYear} | Sanskar International Academy, Khargone. CBSE Affiliated (1031345). Nominal Fees, Expert Faculty, & Best-in-Class Sports Facilities. Apply Now for a holistic education.`,
+  keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`, 'CBSE Affiliation 1031345'],
   authors: [{ name: 'Sanskar International Academy' }],
   alternates: {
     canonical: 'https://siakhargone.in/',

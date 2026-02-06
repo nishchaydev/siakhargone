@@ -6,6 +6,7 @@ import React from 'react'
 import { schoolData } from '@/data/schoolData'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 type HeroVariant = 'modern' | 'classic'
@@ -33,6 +34,17 @@ export default function HeroVideo({
 
   return (
     <section className="relative w-full h-[85vh] flex items-center overflow-hidden bg-gray-900">
+
+      {/* LCP Optimization: High priority background image loading behind the video */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={backgroundImage}
+          alt="Hero Background"
+          fill
+          className="object-cover opacity-60"
+          priority
+        />
+      </div>
 
       {/* Background Video */}
       {/* Background Video */}

@@ -2,7 +2,6 @@
 User-agent: *
 Allow: /
 
-
 # Host
 Host: https://siakhargone.in
 

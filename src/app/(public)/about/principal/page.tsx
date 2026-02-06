@@ -7,6 +7,10 @@ export const metadata: Metadata = {
     description: 'A message from the Principal of Sanskar International Academy.',
 };
 
+import Schema from '@/components/seo/Schema';
+
+// ... (other imports)
+
 export default async function PrincipalPage() {
     const principalMsg = await loadMessage("principal-message");
 
@@ -19,6 +23,13 @@ export default async function PrincipalPage() {
 
     return (
         <div className="bg-grain min-h-screen pt-20">
+            {/* SEO Schema */}
+            <Schema type="Person" data={{
+                name: principalMessage?.name,
+                image: principalMessage?.image,
+                description: principalMessage?.role
+            }} />
+
             <LeadershipMessage
                 messageData={principalMessage}
                 variant="principal"

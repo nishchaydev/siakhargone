@@ -1,5 +1,6 @@
 
 import HeroSection from "@/components/sections/HeroSection";
+import Schema from "@/components/seo/Schema";
 // Don't lazy load LatestNews to prevent "pop-in" if we have data instantly.
 import { LatestNews } from "@/components/home/LatestNews";
 
@@ -28,7 +29,9 @@ import { getEventsService } from "@/services/eventsService";
 import { getNoticesService } from "@/services/noticesService";
 
 // Force dynamic rendering since we are fetching news which updates frequently
-export const dynamic = 'force-dynamic';
+// CHANGED: Switched to ISR (Incremental Static Regeneration) for better performance.
+// The page will be effectively static and regenerate at most once per hour.
+export const revalidate = 3600;
 
 // Basic shapes for the incoming data
 interface BaseItem {
@@ -94,7 +97,7 @@ export default async function Home() {
       title: "Sanskar International Academy",
       subtitle: "One of the leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
       sanskrit: "विद्या ददाति विनयम्",
-      video: "https://www.youtube.com/embed/5ObfN8wX0Jg?si=auIIJ-lhRmK36LEy&start=3", // User requested video
+      video: "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4", // User requested video
       grid: [
         cloudinary.infrastructure.building[0],
         cloudinary.infrastructure.classrooms[0],
@@ -139,6 +142,17 @@ export default async function Home() {
               }
             }))
           })
+        }}
+      />
+      <Schema
+        type="VideoObject"
+        data={{
+          name: "Sanskar International Academy Republic Day 2026",
+          description: "Official Republic Day 2026 celebration video of Sanskar International Academy, Khargone.",
+          thumbnailUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png", // Fallback to logo or generate a thumbnail if available
+          uploadDate: new Date().toISOString(),
+          contentUrl: cmsData.hero.video,
+          embedUrl: cmsData.hero.video
         }}
       />
       <HeroSection data={cmsData.hero} stats={cmsData.stats} />

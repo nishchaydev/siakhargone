@@ -163,6 +163,23 @@ export default function ContactPageClient() {
                   </div>
                 </div>
               </div>
+
+              {/* Review CTA */}
+              <div className="bg-gradient-to-r from-navy to-navy-dark p-6 rounded-3xl shadow-lg border border-gold/30 text-white relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gold/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-gold/20 transition-all"></div>
+                <h3 className="text-xl font-display font-bold mb-2 flex items-center gap-2">
+                  <span className="text-gold">★</span> Love SIA?
+                </h3>
+                <p className="text-white/80 text-sm mb-4">Help other parents find the best school for their children by leaving us a review.</p>
+                <a
+                  href={schoolData.contact.googleMapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-bold bg-white text-navy px-4 py-2 rounded-full hover:bg-gold transition-colors"
+                >
+                  Rate us on Google <ArrowRight size={12} />
+                </a>
+              </div>
             </motion.div>
 
             {/* Right Column: Enquiry Form */}

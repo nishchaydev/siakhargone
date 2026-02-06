@@ -1,8 +1,9 @@
 import { getNewsService } from "@/services/newsService";
 import { getEventsService } from "@/services/eventsService";
 import NewsEventsPageClient from "./NewsEventsPageClient";
+import Schema from "@/components/seo/Schema";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour (ISR)
 
 export default async function NewsEventsPage() {
     // Fetch both News and Events in parallel
@@ -11,5 +12,17 @@ export default async function NewsEventsPage() {
         getEventsService()
     ]);
 
-    return <NewsEventsPageClient initialNews={newsItems} initialEvents={eventsItems} />;
+    return (
+        <>
+            {/* Generate Schema for latest 5 news items to avoid overly large DOM */}
+            {newsItems.slice(0, 5).map(item => (
+                <Schema
+                    key={item.id}
+                    type="NewsArticle"
+                    data={item}
+                />
+            ))}
+            <NewsEventsPageClient initialNews={newsItems} initialEvents={eventsItems} />
+        </>
+    );
 }

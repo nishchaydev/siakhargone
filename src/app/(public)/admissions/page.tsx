@@ -15,6 +15,23 @@ const careerCounsellingImage = {
   imageHint: "Counselling"
 };
 
+import Schema from '@/components/seo/Schema';
+
+// ...
+
+const faqs = [
+  { question: "What is the age criteria for admission?", answer: "For Nursery, the child must be 3+ years as of March 31st of the academic year. For Class 1, the age should be 6+ years." },
+  { question: "Is transport facility available?", answer: "Yes, we have a fleet of GPS-enabled buses covering the entire Khargone city and nearby rural areas within a 20km radius." },
+  { question: "What is the student-teacher ratio?", answer: "We maintain a healthy student-teacher ratio of 25:1 in Pre-Primary and 30:1 in higher classes to ensure personalized attention." },
+  { question: "Do you offer sports and co-curricular activities?", answer: "Absolutely. We have facilities for Cricket, Football, Basketball, skating, and Taekwondo. We also offer Music, Dance, Art & Craft, and Robotics." },
+  { question: "How can I pay the school fees?", answer: "Fees can be paid online via our school app/portal, or via Cheque/DD at the school reception. We also accept UPI and Card payments." }
+];
+
 export default async function AdmissionsPage() {
-  return <AdmissionsPageClient careerCounsellingImage={careerCounsellingImage} />;
+  return (
+    <>
+      <Schema type="FAQ" data={faqs} />
+      <AdmissionsPageClient careerCounsellingImage={careerCounsellingImage} />
+    </>
+  );
 }

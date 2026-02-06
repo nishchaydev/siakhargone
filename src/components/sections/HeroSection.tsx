@@ -54,8 +54,6 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                 {/* 2. Video Layer (Overlay) */}
                 {(() => {
                     const videoSrc = data.video || "";
-                    let videoId = "";
-
                     // Generic YouTube ID extraction
                     const getYoutubeId = (url: string) => {
                         if (!url) return "";
@@ -74,9 +72,8 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                         }
                     }
 
-                    if (videoSrc.includes("6-i18-xt8sI")) videoId = "6-i18-xt8sI";
-                    else if (videoSrc.includes("5ObfN8wX0Jg")) videoId = "5ObfN8wX0Jg";
-                    else videoId = getYoutubeId(videoSrc);
+
+                    const videoId = getYoutubeId(videoSrc);
 
                     if (videoId) {
                         return (
@@ -89,7 +86,8 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                                 allowFullScreen
                             />
                         );
-                    } else if (videoSrc && !videoSrc.includes("http")) {
+                    } else if (videoSrc) {
+                        // Fallback for direct video links (local or remote MP4)
                         return (
                             <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover blur-[0px] z-10">
                                 <source src={videoSrc} type="video/mp4" />
@@ -120,6 +118,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                             </span>
                         </motion.div>
                     )}
+
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
