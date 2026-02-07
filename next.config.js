@@ -77,6 +77,11 @@ const nextConfig = {
   redirects: async () => {
     return [
       {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/methodology-and-learning',
         destination: '/academics',
         permanent: true,

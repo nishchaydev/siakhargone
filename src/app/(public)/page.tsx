@@ -100,7 +100,7 @@ export default async function Home() {
   const cmsData = {
     hero: {
       title: "Sanskar International Academy",
-      subtitle: "One of the leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
+      subtitle: "One of the most well-known and leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
       sanskrit: "विद्या ददाति विनयम्",
       video: "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4", // User requested video
       grid: [

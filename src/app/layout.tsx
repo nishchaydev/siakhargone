@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import Preloader from "@/components/ui/Preloader";
-import GoogleAnalyticsLazy from "@/components/common/GoogleAnalyticsLazy"; // Lazy load GA
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -43,7 +43,7 @@ export function generateMetadata(): Metadata {
       template: '%s | Sanskar International Academy',
     },
     description: `Admissions Open ${admissionYear} | Sanskar International Academy, Khargone. CBSE Affiliated (1031345). Nominal Fees, Expert Faculty, & Best-in-Class Sports Facilities. Apply Now for a holistic education.`,
-    keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`, 'CBSE Affiliation 1031345'],
+    keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`, 'CBSE Affiliation 1031345', 'top schools in khargone reviews', 'khargone school ratings', 'well known schools khargone'],
     authors: [{ name: 'Sanskar International Academy' }],
     alternates: {
       canonical: 'https://siakhargone.in/',
@@ -120,7 +120,7 @@ export default function RootLayout({
         <Toaster />
         <SpeedInsights />
         <Analytics />
-        <GoogleAnalyticsLazy gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -140,6 +140,8 @@ export default function RootLayout({
                 "postalCode": "451001",
                 "addressCountry": "IN"
               },
+              "foundingDate": "2018",
+              "knowsAbout": ["CBSE Curriculum", "Holistic Education", "Sports Academy", "Smart Classrooms"],
               "telephone": "+91-70491-10104",
               "email": "emitratechnologies@gmail.com",
               "priceRange": "₹₹",

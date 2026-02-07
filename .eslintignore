@@ -1,0 +1,10 @@
+.next/
+node_modules/
+out/
+build/
+dist/
+*.config.js
+*.config.mjs
+*.tsbuildinfo
+.env.local
+.env.production

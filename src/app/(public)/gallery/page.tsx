@@ -21,23 +21,26 @@ export default async function GalleryPage() {
     if (spreadsheetId) {
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId,
-        range: `${SHEET_TAB_IDS.GALLERY}!A2:C`,
+        range: `${SHEET_TAB_IDS.GALLERY}!A2:H`,
       });
       const rows = response.data.values || [];
-      galleryItems = rows.map((row, index) => ({
-        id: `row-${index}`, // Generate a unique ID since sheet doesn't have one in this logic
-        imageId: row[0],
-        category: row[1],
-        alt: row[2]
-      })).reverse();
+      galleryItems = rows
+        .filter(row => row[0] && row[0] !== 'Id' && row[0] !== 'id') // Filter out header rows
+        .map((row) => ({
+          id: row[0],           // Column A: ID
+          alt: row[1],          // Column B: Title/Alt
+          category: row[2],     // Column C: Category
+          imageId: row[3],      // Column D: ImageUrl/ImageId
+        }))
+        .reverse();
     }
-  } catch (e) {
-    console.error("Failed to load CMS gallery from sheets", e);
+  } catch (error: unknown) {
+    console.error("Failed to load CMS gallery from sheets", error instanceof Error ? error.message : 'Unknown error');
   }
 
   let finalImages = [];
 
-  const cmsImages = galleryItems.map((item) => ({
+  const cmsImages = galleryItems.map((item): { id: string; imageUrl: string; description: string; imageHint: string } => ({
     id: `cms-${item.id}`,
     imageUrl: item.imageId.startsWith("http")
       ? item.imageId
@@ -48,7 +51,7 @@ export default async function GalleryPage() {
 
   // Always load static albums as well
   const albums = await loadAlbums();
-  const staticImages = albums.flatMap((album: any) =>
+  const staticImages = albums.flatMap((album: { albumName: string; photos?: string[]; category?: string }) =>
     album.photos?.map((photo: string, index: number) => ({
       id: `${album.albumName}-${index}`,
       imageUrl: photo,

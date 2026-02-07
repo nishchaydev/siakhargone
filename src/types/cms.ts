@@ -1,3 +1,15 @@
+// Cloudinary Metadata Interface
+export interface CloudinaryMeta {
+    width: number;
+    height: number;
+    format: string;
+    resource_type: string;
+    public_id: string;
+    secure_url: string;
+    created_at?: string;
+    bytes?: number;
+}
+
 export interface StrapiImage {
     data: {
         attributes: {
@@ -14,7 +26,7 @@ export interface StrapiResponse<T> {
         id: number;
         attributes: T;
     };
-    meta: any;
+    meta: CloudinaryMeta;
 }
 
 export interface StrapiArrayResponse<T> {
@@ -22,7 +34,19 @@ export interface StrapiArrayResponse<T> {
         id: number;
         attributes: T;
     }[];
-    meta: any;
+    meta: CloudinaryMeta;
+}
+
+export interface CMSImage {
+    id: number;
+    imageUrl: string;
+    meta: CloudinaryMeta;
+}
+
+export interface CMSGalleryImage {
+    id: number;
+    imageUrl: string;
+    meta: CloudinaryMeta;
 }
 
 export interface ComponentStats {

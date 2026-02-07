@@ -235,7 +235,7 @@ const Header = () => {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
             <Image src={schoolLogo}
-              alt=""
+              alt="Sanskar International Academy Logo"
               fill
               className="object-contain"
               priority />
@@ -424,7 +424,7 @@ const Header = () => {
                   <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
                     <div className="relative h-10 w-10 shrink-0 overflow-hidden">
                       <Image src={schoolLogo}
-                        alt=""
+                        alt="Sanskar International Academy Logo"
                         fill
                         className="object-contain"
                         priority />

@@ -42,10 +42,8 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
     const [editForm, setEditForm] = useState({ category: "General", alt: "" });
     const [saving, setSaving] = useState(false);
 
-    // Filter State
-    const [activeTab, setActiveTab] = useState("All");
     // Upload State
-    const [uploadCategory, setUploadCategory] = useState<string>("");
+    const [uploadCategory, setUploadCategory] = useState<string>("General");
 
     useEffect(() => {
         setMounted(true);
@@ -93,7 +91,7 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                 body: JSON.stringify({
                     spreadsheetSave: true,
                     imageId: publicId,
-                    category: uploadCategory || "General",
+                    category: uploadCategory,
                     alt: "Uploaded from Admin"
                 })
             });
@@ -154,9 +152,7 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
         );
     }
 
-    const filteredImages = activeTab === "All"
-        ? images
-        : images.filter(img => img.category === activeTab);
+    const filteredImages = images;
 
     return (
         <div className="min-h-screen bg-slate-50 p-6 md:p-12">
@@ -181,41 +177,27 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                     <Card className="lg:col-span-1 shadow-md border-0 bg-white h-fit sticky top-8">
                         <CardHeader>
                             <CardTitle>Add New Photo</CardTitle>
-                            <CardDescription>Upload image to Cloudinary & assign a slot.</CardDescription>
+                            <CardDescription>Upload image to the public gallery.</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="space-y-4">
-                                {/* Step 1: Placement Selector */}
-                                <div className="text-left">
-                                    <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">
-                                        Step 1: Choose Placement *
-                                    </Label>
-                                    <Select
-                                        value={uploadCategory}
-                                        onValueChange={setUploadCategory}
-                                    >
-                                        <SelectTrigger className="w-full bg-white">
-                                            <SelectValue placeholder="Select placement..." />
+                                {/* Category Selector */}
+                                <div className="space-y-2">
+                                    <Label>Category</Label>
+                                    <Select value={uploadCategory} onValueChange={setUploadCategory}>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select category" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {CMS_IMAGE_SLOTS.map(slot => (
-                                                <SelectItem key={slot.id} value={slot.id}>
-                                                    {slot.label}
-                                                </SelectItem>
+                                                <SelectItem key={slot.id} value={slot.id}>{slot.label}</SelectItem>
                                             ))}
                                         </SelectContent>
                                     </Select>
-                                    {!uploadCategory && (
-                                        <p className="text-[10px] text-red-500 mt-1">* Required to unlock upload</p>
-                                    )}
                                 </div>
 
-                                {/* Step 2: Upload Widget */}
-                                <div className={`transition-all duration-200 ${!uploadCategory ? 'opacity-50 grayscale pointer-events-none' : 'opacity-100'}`}>
-                                    <Label className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">
-                                        Step 2: Upload Image
-                                    </Label>
-
+                                {/* Upload Widget */}
+                                <div className="text-center">
                                     <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl p-6 text-center">
                                         {mounted && (
                                             <CldUploadWidget
@@ -232,19 +214,16 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                             >
                                                 {({ open }) => (
                                                     <Button
-                                                        onClick={() => {
-                                                            if (!uploadCategory) return;
-                                                            open();
-                                                        }}
+                                                        onClick={() => open()}
                                                         className="bg-navy hover:bg-navy-light w-full"
-                                                        disabled={uploading || !uploadCategory}
+                                                        disabled={uploading}
                                                     >
                                                         {uploading ? (
                                                             <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Uploading...</>
                                                         ) : (
                                                             <>
                                                                 <UploadCloud className="w-4 h-4 mr-2" />
-                                                                Open Uploader
+                                                                Upload Photo
                                                             </>
                                                         )}
                                                     </Button>
@@ -260,27 +239,8 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
 
                     {/* Right Column: Grid */}
                     <div className="lg:col-span-2 space-y-6">
-                        {/* Filter Tabs */}
-                        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-                            <Button
-                                variant={activeTab === "All" ? "default" : "secondary"}
-                                onClick={() => setActiveTab("All")}
-                                size="sm"
-                                className="rounded-full"
-                            >
-                                All Photos
-                            </Button>
-                            {CMS_IMAGE_SLOTS.map(slot => (
-                                <Button
-                                    key={slot.id}
-                                    variant={activeTab === slot.id ? "default" : "ghost"}
-                                    onClick={() => setActiveTab(slot.id)}
-                                    size="sm"
-                                    className="rounded-full whitespace-nowrap"
-                                >
-                                    {slot.label.split(":")[0]}
-                                </Button>
-                            ))}
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-lg font-semibold text-navy">Gallery Photos</h3>
                         </div>
 
                         {loading ? (
@@ -310,7 +270,7 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                         {/* Overlay */}
                                         <div className="absolute inset-0 bg-blue-900/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-4 text-center">
                                             <span className="text-xs font-bold tracking-wider text-yellow-500 uppercase bg-blue-950/50 px-2 py-1 rounded">
-                                                {CMS_IMAGE_SLOTS.find(s => s.id === img.category)?.label || img.category}
+                                                {img.category}
                                             </span>
                                             <p className="text-white text-xs line-clamp-2">{img.alt}</p>
                                             <Button size="sm" variant="secondary" className="mt-2" onClick={() => handleEditClick(img)}>
@@ -332,13 +292,13 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                         </DialogHeader>
                         <div className="space-y-4 py-4">
                             <div className="space-y-2">
-                                <Label>Website Slot (Placement)</Label>
+                                <Label>Category</Label>
                                 <Select
                                     value={editForm.category}
                                     onValueChange={(val) => setEditForm(prev => ({ ...prev, category: val }))}
                                 >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select a slot" />
+                                        <SelectValue placeholder="Select category" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         {CMS_IMAGE_SLOTS.map(slot => (
@@ -348,7 +308,6 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                         ))}
                                     </SelectContent>
                                 </Select>
-                                <p className="text-[10px] text-slate-400">Determines where this image appears on the website.</p>
                             </div>
                             <div className="space-y-2">
                                 <Label>Caption / Alt Text</Label>
