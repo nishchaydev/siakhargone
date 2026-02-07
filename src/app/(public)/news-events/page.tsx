@@ -4,6 +4,7 @@ import NewsEventsPageClient from "./NewsEventsPageClient";
 import Schema from "@/components/seo/Schema";
 
 export const revalidate = 10; // Revalidate every 10 seconds for near-instant updates
+export const dynamic = 'force-dynamic'; // Skip static generation at build time to avoid timeouts
 
 export default async function NewsEventsPage() {
     // Fetch both News and Events in parallel
