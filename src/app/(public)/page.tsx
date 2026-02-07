@@ -102,7 +102,7 @@ export default async function Home() {
       title: "Sanskar International Academy",
       subtitle: "One of the most well-known and leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
       sanskrit: "विद्या ददाति विनयम्",
-      video: "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4", // User requested video
+      video: "https://res.cloudinary.com/dkits80xk/video/upload/q_auto,vc_auto/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4", // User requested video
       grid: [
         cloudinary.infrastructure.building[0],
         cloudinary.infrastructure.classrooms[0],
