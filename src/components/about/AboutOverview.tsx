@@ -80,7 +80,7 @@ export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProp
                                     </tr>
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy">Contact</th>
-                                        <td className="py-3 px-4 text-slate-600">+91 70491 10104, siakhargone@gmail.com</td>
+                                        <td className="py-3 px-4 text-slate-600">{schoolData.contact.phone[0]}, {schoolData.contact.email}</td>
                                     </tr>
                                 </tbody>
                             </table>

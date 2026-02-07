@@ -13,7 +13,7 @@ export const schoolData = {
     },
     contact: {
         phone: ["+91 70491 10104", "+91 86021 75892"],
-        email: "emitratechnologies@gmail.com", // Verified Primary
+        email: "siakhargone@gmail.com", // Verified Primary
         altEmail: "info@siakhargone.in",
         address: "Gowadi Fata, Khargone - Khandwa Road, Badgaon, Khargone, MP - 451001",
         googleMapLink: "https://maps.google.com/maps?q=Sanskar+International+Academy,+Khargone+(SIA)",

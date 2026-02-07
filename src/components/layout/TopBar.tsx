@@ -5,6 +5,7 @@ import { Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
+import { schoolData } from '@/data/schoolData';
 
 interface TopBarProps {
   isTransparent?: boolean;
@@ -32,9 +33,9 @@ export default function TopBar({ isTransparent = false }: TopBarProps) {
             <Phone className="h-4 w-4 md:h-4 md:w-4" />
             <span className="text-[1.1rem] md:text-sm font-bold md:font-normal">070491 10104</span>
           </a>
-          <a href="mailto:siakhargone@gmail.com" className={cn("hidden sm:flex items-center gap-2", linkClasses)}>
+          <a href={`mailto:${schoolData.contact.email}`} className={cn("hidden sm:flex items-center gap-2", linkClasses)}>
             <Mail className="h-4 w-4" />
-            <span>siakhargone@gmail.com</span>
+            <span>{schoolData.contact.email}</span>
           </a>
         </div>
         <div className="hidden items-center gap-4 md:flex">
