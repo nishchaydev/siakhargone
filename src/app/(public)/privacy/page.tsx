@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React from "react";
+import { schoolData } from "@/data/schoolData";
 import { Section } from '@/components/common/Section';
 
 import PageBanner from '@/components/common/PageBanner';
@@ -61,7 +62,7 @@ export default function PrivacyPolicyPage() {
                         <br />
                         <strong>Email:</strong> info@sanskaracademy.in
                         <br />
-                        <strong>Phone:</strong> +91 70491 10104
+                        <strong>Phone:</strong> {schoolData.contact.phone[0]}
                     </p>
                 </div>
             </Section>

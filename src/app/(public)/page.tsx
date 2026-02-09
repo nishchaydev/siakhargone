@@ -3,6 +3,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import Schema from "@/components/seo/Schema";
 // Don't lazy load LatestNews to prevent "pop-in" if we have data instantly.
 import { LatestNews } from "@/components/home/LatestNews";
+import { PromotionalModal } from "@/components/common/PromotionalModal";
 
 import nextDynamic from 'next/dynamic';
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,6 +18,7 @@ const StudentAchievers = nextDynamic(() => import("@/components/home/StudentAchi
 const CTASection = nextDynamic(() => import("@/components/home/CTASection").then(mod => mod.CTASection));
 const Academics = nextDynamic(() => import("@/components/home/Academics").then(mod => mod.Academics));
 const LifeAtSIA = nextDynamic(() => import("@/components/home/LifeAtSIA").then(mod => mod.LifeAtSIA));
+const DigitalCampus = nextDynamic(() => import("@/components/home/DigitalCampus").then(mod => mod.DigitalCampus));
 const Testimonials = nextDynamic(() => import("@/components/home/Testimonials").then(mod => mod.Testimonials));
 const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod => mod.HomeFAQ), {
   loading: () => <div className="py-20"><Skeleton className="h-[300px] w-full max-w-3xl mx-auto rounded-xl" /></div>
@@ -168,9 +170,11 @@ export default async function Home() {
       <StudentAchievers />
       <LatestNews initialNews={latestUpdates} />
       <LifeAtSIA images={lifeAtSIAImages} />
+      <DigitalCampus />
       <Testimonials testimonials={testimonials} isLoading={false} />
       <HomeFAQ />
       <CTASection />
+      <PromotionalModal />
     </>
   );
 }

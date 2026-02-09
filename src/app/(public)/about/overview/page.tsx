@@ -6,6 +6,14 @@ import PageBanner from '@/components/common/PageBanner';
 export const metadata: Metadata = {
     title: 'About Us - Overview | SIA Khargone',
     description: 'Learn about Sanskar International Academy (SIA), a premier CBSE institution in Khargone combining academic excellence with cultural values.',
+    alternates: {
+        canonical: 'https://siakhargone.in/about/overview',
+    },
+    openGraph: {
+        title: 'About Us | Sanskar International Academy',
+        description: 'Discover the legacy and vision of SIA Khargone. Providing holistic excellence since 2004.',
+        url: 'https://siakhargone.in/about/overview',
+    }
 };
 
 export const dynamic = 'force-dynamic';

@@ -4,16 +4,16 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Trash2, Plus, Loader2, Newspaper, Pencil, Save, ExternalLink, UploadCloud, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, Trash2, Loader2, Newspaper, Pencil, UploadCloud } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CldUploadWidget } from 'next-cloudinary';
 import { Label } from "@/components/ui/label";
-import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "@/hooks/use-toast";
 
 interface NewsItem {
-    id: number;
+    id: string; // Changed to string as UUIDs are strings
     title: string;
     description: string;
     date: string;
@@ -24,9 +24,9 @@ export default function NewsManager() {
     const [news, setNews] = useState<NewsItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [form, setForm] = useState({ title: "", description: "", date: "", imageUrl: "" });
-    const [editingId, setEditingId] = useState<number | null>(null);
+    const [editingId, setEditingId] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);
-    const [deletingId, setDeletingId] = useState<number | null>(null);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     useEffect(() => {
         fetchNews();
@@ -34,11 +34,12 @@ export default function NewsManager() {
 
     const fetchNews = async () => {
         try {
-            const res = await fetch("/api/admin/news", { cache: 'no-store' }); // Assumes GET endpoint exists
+            const res = await fetch("/api/admin/news", { cache: 'no-store' });
             const json = await res.json();
             if (json.data) setNews(json.data);
         } catch (err) {
             console.error(err);
+            toast({ title: "Error", description: "Failed to fetch news", variant: "destructive" });
         } finally {
             setLoading(false);
         }
@@ -60,7 +61,7 @@ export default function NewsManager() {
         setEditingId(null);
     };
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (id: string) => {
         if (!confirm("Delete this news item?")) return;
         setDeletingId(id);
         try {
@@ -72,11 +73,12 @@ export default function NewsManager() {
 
             if (res.ok) {
                 setNews(news.filter(n => n.id !== id));
+                toast({ title: "Success", description: "News item deleted" });
             } else {
-                alert("Failed to delete");
+                toast({ title: "Error", description: "Failed to delete", variant: "destructive" });
             }
         } catch (error) {
-            alert("Error deleting item");
+            toast({ title: "Error", description: "Error deleting item", variant: "destructive" });
         } finally {
             setDeletingId(null);
         }
@@ -96,13 +98,14 @@ export default function NewsManager() {
             });
 
             if (res.ok) {
+                toast({ title: "Success", description: editingId ? "News updated" : "News published" });
                 handleCancelEdit();
                 fetchNews();
             } else {
-                alert("Failed to save");
+                toast({ title: "Error", description: "Failed to save", variant: "destructive" });
             }
         } catch (err) {
-            alert("Error submitting form");
+            toast({ title: "Error", description: "Error submitting form", variant: "destructive" });
         } finally {
             setSubmitting(false);
         }
@@ -110,7 +113,7 @@ export default function NewsManager() {
 
     return (
         <div className="min-h-screen bg-gray-50/50 p-6 md:p-10 font-sans">
-            <div className="max-w-5xl mx-auto space-y-8">
+            <div className="max-w-6xl mx-auto space-y-8">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
@@ -122,7 +125,7 @@ export default function NewsManager() {
                         <div>
                             <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-3">
                                 <Newspaper className="w-8 h-8 text-orange-600" />
-                                Latest News
+                                News Manager
                             </h1>
                             <p className="text-gray-500 mt-1 font-medium">Manage school updates and announcements.</p>
                         </div>

@@ -9,19 +9,21 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
+import heroBg from '@/assets/images/hero-bg.jpg'
+
 type HeroVariant = 'modern' | 'classic'
 
 type Props = {
   variant?: HeroVariant
   // Allow overriding image if needed, otherwise default
-  backgroundImage?: string
+  backgroundImage?: any // Changed to any to accept StaticImageData
   videoId?: string
   fallbackVideoUrl?: string
 }
 
 export default function HeroVideo({
   variant = 'modern',
-  backgroundImage = 'https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&w=640&q=60',
+  backgroundImage = heroBg,
   videoId = '5ObfN8wX0Jg',
   fallbackVideoUrl = "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4"
 }: Props) {

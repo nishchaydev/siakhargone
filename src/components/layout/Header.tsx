@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 // import schoolLogo from "@/assets/school-logo.png";
 const schoolLogo = "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png";
+import { schoolData } from "@/data/schoolData";
 import * as React from "react";
 import { Menu, Search, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -229,7 +230,6 @@ const Header = () => {
           : "bg-navy text-white border-b border-transparent"
       )}
     >
-      <AnnouncementMarquee announcements={announcements} isLoading={loadingAnnouncements} />
       <TopBar isTransparent={false} />
       <div className="container mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6 py-2">
         <Link href="/" className="flex items-center gap-3">
@@ -302,10 +302,10 @@ const Header = () => {
 
           {/* Sticky Header CTAs - Visible only when scrolled */}
           <div className={cn("hidden items-center gap-3 transition-all duration-300", isScrolled ? "flex" : "hidden opacity-0")}>
-            <a href="tel:07049110104" onClick={() => trackEvent('phone_click', { location: 'sticky_header' })} className="bg-gold/10 hover:bg-gold/20 text-gold p-2 rounded-full transition-colors" aria-label="Call Us">
+            <a href={`tel:${schoolData.contact.phone[0].replace(/\s+/g, '')}`} onClick={() => trackEvent('phone_click', { location: 'sticky_header' })} className="bg-gold/10 hover:bg-gold/20 text-gold p-2 rounded-full transition-colors" aria-label="Call Us">
               <Phone className="h-4 w-4" />
             </a>
-            <a href="https://wa.me/917049110104" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('whatsapp_click', { location: 'sticky_header' })} className="bg-green-500/10 hover:bg-green-500/20 text-green-500 p-2 rounded-full transition-colors" aria-label="WhatsApp Us">
+            <a href={`https://wa.me/${schoolData.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('whatsapp_click', { location: 'sticky_header' })} className="bg-green-500/10 hover:bg-green-500/20 text-green-500 p-2 rounded-full transition-colors" aria-label="WhatsApp Us">
               <MessageCircle className="h-4 w-4" />
             </a>
           </div>

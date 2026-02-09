@@ -9,6 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitChatbotLead } from "@/app/actions/chatbot-lead";
+import { schoolData } from "@/data/schoolData";
 
 interface ChatWindowProps {
   onClose: () => void;
@@ -68,7 +69,7 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ['contact', 'phone', 'email', 'address', 'location', 'reach'],
-    answer: "You can reach us at:\n📍 NH-52, Khandwa Road, Khargone\n📞 070491 10104\n📧 info@siakhargone.com",
+    answer: `You can reach us at:\n📍 ${schoolData.contact.address}\n📞 ${schoolData.contact.phone[0]}\n📧 ${schoolData.contact.email}`,
     options: [
       { label: "Request Callback", value: "I want to enquire for admission" }
     ]
@@ -237,7 +238,7 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
     if (!text.trim()) return;
 
     if (text === "whatsapp") {
-      window.open("https://wa.me/917049110104?text=Hi, I want admission information.", "_blank");
+      window.open(`https://wa.me/${schoolData.contact.whatsapp}?text=Hi, I want admission information.`, "_blank");
       return;
     }
 
@@ -306,7 +307,7 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => window.open('https://wa.me/917049110104', '_blank')}
+            onClick={() => window.open(`https://wa.me/${schoolData.contact.whatsapp}`, '_blank')}
             className="text-white hover:bg-white/20 h-8 w-8 rounded-full"
             title="Chat on WhatsApp"
           >

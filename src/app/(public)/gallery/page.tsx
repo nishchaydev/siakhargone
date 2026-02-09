@@ -7,8 +7,20 @@ import { loadAlbums } from "@/lib/content";
 import { getGoogleSheetsInstance, SHEET_TAB_IDS } from "@/lib/google-sheets";
 
 export const metadata = {
-  title: "Gallery",
-  description: "Explore moments of learning, creativity, and joy at SIA Khargone.",
+  title: "Gallery | Life at SIA",
+  description: "Explore moments of learning, creativity, and joy at SIA Khargone. View our campus, events, and student achievements.",
+  openGraph: {
+    title: "Gallery | Life at SIA",
+    description: "Explore moments of learning, creativity, and joy at SIA Khargone.",
+    images: [
+      {
+        url: cloudinary.annualFunction[0], // Main highlights
+        width: 1200,
+        height: 630,
+        alt: "SIA Khargone Gallery",
+      }
+    ]
+  }
 };
 
 export default async function GalleryPage() {

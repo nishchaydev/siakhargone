@@ -14,7 +14,7 @@ export default function PublicLayout({
         <>
             <ScrollToTop />
             <Header />
-            <main className="pt-[140px] md:pt-[125px] min-h-screen">{children}</main>
+            <main className="pt-[115px] md:pt-[115px] min-h-screen">{children}</main>
             <Footer />
             <Chatbot />
         </>

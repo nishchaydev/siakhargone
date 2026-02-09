@@ -56,7 +56,7 @@ export function AboutOverview({ content, schoolImage, stats }: AboutOverviewProp
                                     </tr>
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy">Affiliation</th>
-                                        <td className="py-3 px-4 text-slate-600">CBSE, New Delhi (Affiliation No. 1031345)</td>
+                                        <td className="py-3 px-4 text-slate-600">CBSE, New Delhi (Affiliation No. {schoolData.affiliationNo})</td>
                                     </tr>
                                     <tr className="hover:bg-slate-50 transition-colors">
                                         <th className="py-3 px-4 font-semibold text-navy">School Code</th>

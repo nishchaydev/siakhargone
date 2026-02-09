@@ -13,6 +13,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { schoolData } from "@/data/schoolData";
 
 export const metadata: Metadata = {
     title: 'Best School in Khargone – Sanskar International Academy | Top CBSE School',
@@ -62,7 +63,7 @@ export default function BestSchoolInKhargonePage() {
                         </p>
                         <ul className="space-y-3 mt-6">
                             {[
-                                "Affiliated with CBSE New Delhi (Aff. No. 1031345)",
+                                `Affiliated with CBSE New Delhi (Aff. No. ${schoolData.affiliationNo})`,
                                 "Experienced & Qualified Faculty",
                                 "Focus on Holistic Child Development",
                                 "Advanced Digital Learning Tools"

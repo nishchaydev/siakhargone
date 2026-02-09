@@ -9,10 +9,11 @@ export const schoolData = {
         students: "1500+",
         teachers: "75+",
         established: "2018", // Or appropriate year
-        campusSize: "10 Acres",
+        campusSize: "5 Acres",
     },
     contact: {
         phone: ["+91 70491 10104", "+91 86021 75892"],
+        whatsapp: "917049110104", // Normalized for API links
         email: "siakhargone@gmail.com", // Verified Primary
         altEmail: "info@siakhargone.in",
         address: "Gowadi Fata, Khargone - Khandwa Road, Badgaon, Khargone, MP - 451001",

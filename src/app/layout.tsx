@@ -7,6 +7,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import Preloader from "@/components/ui/Preloader";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import UrgencyBanner from "@/components/common/UrgencyBanner";
+import { schoolData } from "@/data/schoolData";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -43,7 +45,7 @@ export function generateMetadata(): Metadata {
       template: '%s | Sanskar International Academy',
     },
     description: `Admissions Open ${admissionYear} | Sanskar International Academy, Khargone. CBSE Affiliated (1031345). Nominal Fees, Expert Faculty, & Best-in-Class Sports Facilities. Apply Now for a holistic education.`,
-    keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`, 'CBSE Affiliation 1031345', 'top schools in khargone reviews', 'khargone school ratings', 'well known schools khargone'],
+    keywords: ['best school in Khargone', 'CBSE school Khargone', 'top school Khargone', 'English medium school Khargone', 'Sanskar International Academy', 'SIA Khargone', `school admission Khargone ${currentYear}`, 'CBSE Affiliation 1031345', 'top schools in khargone reviews', 'khargone school ratings', 'well known schools khargone', 'Smart Classrooms Khargone', 'Digital Learning School', 'AI Integrated Curriculum'],
     authors: [{ name: 'Sanskar International Academy' }],
     alternates: {
       canonical: 'https://siakhargone.in/',
@@ -63,15 +65,16 @@ export function generateMetadata(): Metadata {
       }],
       locale: 'en_IN',
     },
-    other: {
-      organization: 'Sanskar International Academy',
-    },
     twitter: {
       card: 'summary_large_image',
       title: 'Sanskar International Academy',
       description: 'Khargone\'s Premier CBSE School. Admissions Open.',
       images: [openGraphImage],
+      site: '@siakhargone', // Added generic handle
+      creator: '@siakhargone',
     },
+    category: 'education', // Added category
+    classification: 'School', // Added classification
     icons: {
       icon: [
         { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_16,h_16,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '16x16', type: 'image/png' },
@@ -115,6 +118,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground antialiased bg-grain">
         <Preloader />
+        <UrgencyBanner />
         {children}
         <BackToTop />
         <Toaster />
@@ -127,40 +131,40 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "EducationalOrganization",
-              "name": "Sanskar International Academy",
+              "name": schoolData.name,
               "alternateName": "SIA Khargone",
               "url": "https://siakhargone.in",
               "logo": "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
               "description": "One of the leading CBSE English-medium schools in Khargone, known for disciplined academics, modern infrastructure, and holistic student development.",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Gowadi Fata, Khargone - Khandwa Highway, Badgaon",
+                "streetAddress": schoolData.contact.address,
                 "addressLocality": "Khargone",
                 "addressRegion": "Madhya Pradesh",
                 "postalCode": "451001",
                 "addressCountry": "IN"
               },
-              "foundingDate": "2018",
+              "foundingDate": schoolData.stats.established,
               "knowsAbout": ["CBSE Curriculum", "Holistic Education", "Sports Academy", "Smart Classrooms"],
-              "telephone": "+91-70491-10104",
-              "email": "emitratechnologies@gmail.com",
+              "telephone": schoolData.contact.phone[0],
+              "email": schoolData.contact.email,
               "priceRange": "₹₹",
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+91-8602175892",
+                "telephone": schoolData.contact.phone[1] || schoolData.contact.phone[0],
                 "contactType": "admissions",
                 "areaServed": "IN",
                 "availableLanguage": ["en", "hi"]
               },
               "sameAs": [
-                "https://www.facebook.com/people/Sanskar-International-Academy/61556184519960/",
-                "https://www.instagram.com/sanskar_international_academy/",
-                "https://www.youtube.com/channel/UCZJ-rKvV_Ln5qWgJs0iBnEw"
+                schoolData.social.facebook,
+                schoolData.social.instagram,
+                schoolData.social.youtube
               ]
             })
           }}
         />
       </body>
-    </html>
+    </html >
   );
 }

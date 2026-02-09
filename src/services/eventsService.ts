@@ -1,4 +1,6 @@
-import { getGoogleSheetsInstance, SHEET_TAB_IDS, deleteRowById } from "@/lib/google-sheets";
+import { SheetService } from "@/lib/sheet-service";
+import { SHEET_TAB_IDS } from "@/lib/google-sheets";
+import { getCachedData } from "@/lib/cache-wrapper";
 
 export interface EventItem {
     id: string;
@@ -7,29 +9,13 @@ export interface EventItem {
     time: string;
     location: string;
     description: string;
-    imageUrl: string; // "image" in component, "imageUrl" here for consistency
+    imageUrl: string;
 }
-
-import { getCachedData } from "@/lib/cache-wrapper";
 
 async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
     try {
-        const sheets = await getGoogleSheetsInstance();
-        const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+        const rows = await SheetService.getRows(SHEET_TAB_IDS.EVENTS || 'Events', 'A:H');
 
-        if (!spreadsheetId) {
-            console.error("Configuration Error: Missing Sheet ID");
-            return [];
-        }
-
-        // Schema: Id, Title, Date, Time, Location, Description, ImageUrl, CreatedAt
-        const response = await sheets.spreadsheets.values.get({
-            spreadsheetId,
-            // Simplify range to 'A:H' to avoid "Unable to parse range" if strict A2 usage is problematic for the API in some contexts
-            range: `${SHEET_TAB_IDS.EVENTS || 'Events'}!A:H`,
-        });
-
-        const rows = response.data.values || [];
         const events = rows.map((row) => ({
             id: row[0],
             title: row[1],
@@ -40,39 +26,28 @@ async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
             imageUrl: row[6],
         }));
 
-        // Sort by date? or Reverse?
         return events.reverse();
     } catch (error: any) {
         console.error("Service Events Fetch Error:", error.message || error);
-        return []; // Return empty array to prevent app crash
+        return [];
     }
 }
 
 export async function getEventsService(): Promise<EventItem[]> {
-    return getCachedData("events_data", fetchEventsFromGoogleSheets, 10 * 1000); // 10 seconds
+    return getCachedData("events_data", fetchEventsFromGoogleSheets, 10 * 1000);
 }
 
 export async function addEventService(item: { title: string, date: string, time: string, location: string, description: string, imageUrl: string }) {
-    const sheets = await getGoogleSheetsInstance();
-    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-    if (!spreadsheetId) throw new Error("Missing ID");
-
     const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
+    // Col structure: Id, Title, Date, Time, Location, Description, ImageUrl, CreatedAt
+    const values = [id, item.title, item.date, item.time, item.location, item.description, item.imageUrl, createdAt];
 
-    await sheets.spreadsheets.values.append({
-        spreadsheetId,
-        range: `${SHEET_TAB_IDS.EVENTS || 'Events'}!A:H`,
-        valueInputOption: "USER_ENTERED",
-        requestBody: {
-            values: [[id, item.title, item.date, item.time, item.location, item.description, item.imageUrl, createdAt]],
-        },
-    });
+    await SheetService.appendRow(SHEET_TAB_IDS.EVENTS || 'Events', values);
     return true;
 }
 
 export async function deleteEventService(id: string) {
-    if (!id) throw new Error("Missing ID");
-    await deleteRowById(SHEET_TAB_IDS.EVENTS || 'Events', id);
+    await SheetService.deleteRowById(SHEET_TAB_IDS.EVENTS || 'Events', id);
     return true;
 }

@@ -6,8 +6,10 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { schoolData } from "@/data/schoolData";
 import PageBanner from "@/components/common/PageBanner";
 import { escapeJsonForScript } from "@/lib/security";
+
 
 export const metadata: Metadata = {
     title: "Frequently Asked Questions | Sanskar International Academy",
@@ -24,7 +26,7 @@ const faqs = [
     },
     {
         question: "Is Sanskar International Academy CBSE affiliated?",
-        answer: "Yes, Sanskar International Academy is a CBSE-affiliated school in Khargone (Affiliation No: 1031345) offering education from nursery to senior secondary level."
+        answer: `Yes, Sanskar International Academy is a CBSE-affiliated school in Khargone (Affiliation No: ${schoolData.affiliationNo}) offering education from nursery to senior secondary level.`
     },
     {
         question: "What makes SIA different from other schools in Khargone?",
@@ -32,7 +34,7 @@ const faqs = [
     },
     {
         question: "What is the fee structure at Sanskar International Academy?",
-        answer: "SIA offers competitive and transparent fee structure for quality CBSE education in Khargone. For detailed fee information and admission process, please contact +91 70491 10104 or visit our admission office at Gowadi Fata, Khandwa Highway."
+        answer: `SIA offers competitive and transparent fee structure for quality CBSE education in Khargone. For detailed fee information and admission process, please contact ${schoolData.contact.phone[0]} or visit our admission office at ${schoolData.contact.address}.`
     },
     {
         question: "Does SIA have transport facility in Khargone?",

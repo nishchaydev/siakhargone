@@ -39,7 +39,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
     return (
         <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-screen min-h-[400px] md:min-h-[550px] bg-navy overflow-hidden">
             {/* Background Video/Image Layer */}
-            <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 w-full h-full" suppressHydrationWarning>
                 {/* 1. Base Image Layer (LCP Priority) - Always render for immediate paint */}
                 <Image
                     src={data.grid?.[0] || cloudinary.infrastructure.building[1]}
@@ -120,16 +120,12 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     )}
 
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="mb-4 md:mb-8 text-center relative z-20"
-                    >
+                    {/* Optimized H1 - Removed motion.div for LCP improvement */}
+                    <div className="mb-4 md:mb-8 text-center relative z-20">
                         <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-2 md:mb-4 drop-shadow-2xl text-white block">
                             {(() => {
                                 const rawTitle = (data.title || '').trim();
-                                if (!rawTitle) return null; // Or return a default
+                                if (!rawTitle) return null;
 
                                 const titleParts = rawTitle.split(' ');
                                 const mainTitle = titleParts[0];
@@ -146,7 +142,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                                 )
                             })()}
                         </h1>
-                    </motion.div>
+                    </div>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

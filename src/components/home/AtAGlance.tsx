@@ -3,12 +3,13 @@
 import { Section } from "@/components/common/Section";
 import { Bus, Calendar, Award, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { schoolData } from "@/data/schoolData";
 
 const features = [
     {
         icon: Award,
         title: "CBSE Affiliation",
-        description: "Affiliated to CBSE, New Delhi. Affiliation No: 1031345",
+        description: `Affiliated to CBSE, New Delhi. Affiliation No: ${schoolData.affiliationNo}`,
         // Navy button style (Logo Color)
         className: "bg-navy text-white shadow-navy/40"
     },

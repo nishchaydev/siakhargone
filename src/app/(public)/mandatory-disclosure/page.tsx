@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, Eye, FileText } from 'lucide-react';
 import { mandatoryDisclosure, pdfLinks } from '@/lib/pdf-links';
 import Link from 'next/link';
+import { schoolData } from '@/data/schoolData';
 
 export const metadata = {
     title: 'Mandatory Disclosure | Sanskar International Academy',
@@ -90,11 +91,11 @@ export default function MandatoryDisclosurePage() {
                         </div>
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">Affiliation No.</span>
-                            <span className="font-bold text-navy">1031345</span>
+                            <span className="font-bold text-navy">{schoolData.affiliationNo}</span>
                         </div>
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">School Code</span>
-                            <span className="font-bold text-navy">50314</span>
+                            <span className="font-bold text-navy">{schoolData.schoolCode}</span>
                         </div>
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">Affiliation Status</span>
@@ -102,19 +103,19 @@ export default function MandatoryDisclosurePage() {
                         </div>
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">Address</span>
-                            <span className="font-bold text-navy text-right">Gowadi Fata, Khandwa Road, Khargone</span>
+                            <span className="font-bold text-navy text-right">{schoolData.contact.address}</span>
                         </div>
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">Principal</span>
-                            <span className="font-bold text-navy">Mr. Shivam Jaiswal</span>
+                            <span className="font-bold text-navy">{schoolData.principal.name}</span>
                         </div>
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">Email</span>
-                            <span className="font-bold text-navy">emitratechnologies@gmail.com</span>
+                            <span className="font-bold text-navy">{schoolData.contact.email}</span>
                         </div>
                         <div className="flex justify-between border-b border-dashed border-gray-200 py-2">
                             <span className="font-semibold text-gray-600">Phone</span>
-                            <span className="font-bold text-navy">+91 70491 10104</span>
+                            <span className="font-bold text-navy">{schoolData.contact.phone[0]}</span>
                         </div>
                     </div>
                 </div>

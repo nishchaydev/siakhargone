@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { schoolData } from "@/data/schoolData";
 
 interface ContactFormProps {
   onFormSuccess?: () => void;
@@ -82,7 +83,7 @@ export function ContactForm({ onFormSuccess }: ContactFormProps) {
           text += ` Query: ${submittedMessage}`;
         }
 
-        const whatsappUrl = `https://wa.me/917049110104?text=${encodeURIComponent(text)}`;
+        const whatsappUrl = `https://wa.me/${schoolData.contact.whatsapp}?text=${encodeURIComponent(text)}`;
 
         // 4. Redirect
         setTimeout(() => {
@@ -106,7 +107,7 @@ export function ContactForm({ onFormSuccess }: ContactFormProps) {
 
         {showManualButton && (
           <a
-            href="https://wa.me/917049110104?text=Hi, I want admission information."
+            href={`https://wa.me/${schoolData.contact.whatsapp}?text=Hi, I want admission information.`}
             onClick={() => trackEvent('whatsapp_click', { location: 'form_fallback' })}
             className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 px-4 rounded-lg text-center flex items-center justify-center gap-2 transition-transform hover:scale-105"
           >

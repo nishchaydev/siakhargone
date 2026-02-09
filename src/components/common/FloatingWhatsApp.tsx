@@ -5,11 +5,13 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
 
+import { schoolData } from "@/data/schoolData";
+
 // Official WhatsApp Brand Colors
 // Green: #25D366
 // White: #FFFFFF
 
-const whatsappNumber = "917049110104";
+const whatsappNumber = schoolData.contact.whatsapp;
 const textMessage = "Hi, I want admission information.";
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(textMessage)}`;
 

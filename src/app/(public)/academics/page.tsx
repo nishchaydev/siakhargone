@@ -6,6 +6,18 @@ import { cloudinary } from '@/lib/cloudinary-images';
 export const metadata: Metadata = {
   title: 'Academics - CBSE Curriculum & Methodology',
   description: 'Explore our comprehensive CBSE curriculum, advanced science labs, smart classrooms, and innovative teaching methodology designed for student success.',
+  openGraph: {
+    title: 'Academics | Learning at SIA',
+    description: 'CBSE Curriculum, Smart Classrooms, and Holistic Development at Sanskar International Academy.',
+    images: [
+      {
+        url: cloudinary.infrastructure.classrooms[0],
+        width: 1200,
+        height: 630,
+        alt: "Smart Classrooms at SIA",
+      }
+    ]
+  }
 };
 
 const methodologyImage = {

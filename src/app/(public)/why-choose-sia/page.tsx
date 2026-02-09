@@ -31,7 +31,7 @@ const features: Feature[] = [
     {
         title: "Modern Infrastructure",
         points: [
-            "4-acre campus on Khandwa Road",
+            "5-acre campus on Khandwa Road",
             "Computer labs with latest systems",
             "Well-equipped science laboratories",
             "5000+ books library",
@@ -67,7 +67,7 @@ interface ComparisonItem {
 const comparisonData: ComparisonItem[] = [
     { feature: "Teaching Staff", sia: "100% B.Ed/M.Ed Certified", other: "Mixed Qualifications" },
     { feature: "Class Size", sia: "30-35 Students (Personal Attention)", other: "40+ Students" },
-    { feature: "Campus Area", sia: "4 Acres with Sports Complex", other: "Limited Space" },
+    { feature: "Campus Area", sia: "5 Acres with Sports Complex", other: "Limited Space" },
     { feature: "Safety", sia: "CCTV & GPS Buses", other: "Basic Security" },
     { feature: "Digital Learning", sia: "Smart Classes & Labs", other: "Traditional Boards" }
 ];

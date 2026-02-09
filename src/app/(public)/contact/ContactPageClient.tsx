@@ -79,7 +79,7 @@ export default function ContactPageClient() {
 
       // WhatsApp Redirection Logic
       const whatsappText = `Hi, I am ${submissionData.name}. I want admission information for Class ${submissionData.class || "General"}. Query: ${submissionData.message}`;
-      const whatsappUrl = `https://wa.me/917049110104?text=${encodeURIComponent(whatsappText)}`;
+      const whatsappUrl = `https://wa.me/${schoolData.contact.whatsapp}?text=${encodeURIComponent(whatsappText)}`;
 
       setTimeout(() => {
         window.location.href = whatsappUrl;
@@ -212,7 +212,7 @@ export default function ContactPageClient() {
                         onClick={() => {
                           const data = lastSubmission || { name: "", class: "", message: "" };
                           const whatsappText = `Hi, I am ${data.name}. I want admission information for Class ${data.class || "General"}. Query: ${data.message}`;
-                          window.open(`https://wa.me/917049110104?text=${encodeURIComponent(whatsappText)}`, '_blank');
+                          window.open(`https://wa.me/${schoolData.contact.whatsapp}?text=${encodeURIComponent(whatsappText)}`, '_blank');
                         }}
                         className="mt-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold"
                       >

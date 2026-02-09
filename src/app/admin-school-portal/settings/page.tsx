@@ -13,7 +13,7 @@ export default function AdminSettings() {
         setLoading(true);
         setResult(null);
         try {
-            const res = await fetch("/api/admin/setup-sheets", { method: "POST" });
+            const res = await fetch("/api/admin/fix-sheets", { method: "POST" });
             const json = await res.json();
             setResult(json);
         } catch (error) {
@@ -54,25 +54,60 @@ export default function AdminSettings() {
                             disabled={loading}
                             className="w-full md:w-auto self-start bg-blue-600 hover:bg-blue-700"
                         >
-                            {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Run Auto-Setup"}
+                            {loading ? (
+                                <>
+                                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                                    Verifying...
+                                </>
+                            ) : (
+                                "Run Safe Verification"
+                            )}
                         </Button>
 
                         {result && (
                             <div className={`p-4 rounded-md border ${result.success ? "bg-green-50 border-green-200 text-green-800" : "bg-red-50 border-red-200 text-red-800"}`}>
                                 <div className="flex items-center gap-2 font-bold mb-2">
                                     {result.success ? <CheckCircle className="w-5 h-5" /> : <AlertTriangle className="w-5 h-5" />}
-                                    {result.success ? "Setup Complete" : "Setup Failed"}
+                                    {result.success ? "Verification Complete" : "Verification Failed"}
                                 </div>
                                 <p className="text-sm">{result.message || result.error}</p>
-                                {result.updates && result.updates.length > 0 && (
-                                    <ul className="list-disc list-inside mt-2 text-xs opacity-90">
-                                        {result.updates.map((update: string, i: number) => (
-                                            <li key={i}>{update}</li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {result.createdTabs > 0 && (
-                                    <p className="text-xs mt-1 font-medium">Created {result.createdTabs} new sheet tabs.</p>
+
+                                {result.report && (
+                                    <div className="mt-4 space-y-2 text-xs">
+                                        {result.report.fixed.length > 0 && (
+                                            <div>
+                                                <strong className="block text-green-700">Fixed/Created:</strong>
+                                                <ul className="list-disc list-inside opacity-90">
+                                                    {result.report.fixed.map((item: string, i: number) => (
+                                                        <li key={i}>{item}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                        {result.report.missing.length > 0 && (
+                                            <div>
+                                                <strong className="block text-orange-700">Missing (Not Fixed):</strong>
+                                                <ul className="list-disc list-inside opacity-90">
+                                                    {result.report.missing.map((item: string, i: number) => (
+                                                        <li key={i}>{item}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                        {result.report.errors.length > 0 && (
+                                            <div>
+                                                <strong className="block text-red-700">Errors:</strong>
+                                                <ul className="list-disc list-inside opacity-90">
+                                                    {result.report.errors.map((item: string, i: number) => (
+                                                        <li key={i}>{item}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                        {result.report.fixed.length === 0 && result.report.missing.length === 0 && result.report.errors.length === 0 && (
+                                            <p className="italic opacity-70">All systems operational. No issues found.</p>
+                                        )}
+                                    </div>
                                 )}
                             </div>
                         )}
