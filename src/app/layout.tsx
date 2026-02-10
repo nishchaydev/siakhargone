@@ -112,8 +112,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfairDisplay.variable} ${mukta.variable} !scroll-smooth`}>
       <head>
+        {/* Google Search Console Verification - Replace YOUR_CODE_HERE with actual code */}
+        <meta name="google-site-verification" content="YOUR_CODE_HERE" />
         <meta name="theme-color" content="#1E3A8A" />
+
+        {/* DNS Prefetch for Performance */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       </head>
       <body className="bg-background text-foreground antialiased bg-grain">

@@ -8,7 +8,7 @@ export const schoolData = {
     stats: {
         students: "1500+",
         teachers: "75+",
-        established: "2018", // Or appropriate year
+        established: "2016", // Verified by User
         campusSize: "5 Acres",
     },
     contact: {

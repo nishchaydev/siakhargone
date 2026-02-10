@@ -23,15 +23,22 @@ export function AboutSection() {
           whileInView="whileInView"
           variants={fadeInUp}
         >
-          <div className="rounded-xl shadow-lg overflow-hidden">
+          <div className="rounded-xl shadow-lg overflow-hidden relative group">
             <Image
               src="https://lh3.googleusercontent.com/p/AF1QipPL_YnIfsCr8SR3s-btHLm7dxt-cXXqRILbumEw=s1360-w1360-h1020-rw"
               alt="Sanskar International Academy Campus"
               width={800}
               height={600}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
               data-ai-hint="school campus"
             />
+            {/* 10 Years Celebration Badge */}
+            <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-4 py-3 rounded-xl shadow-xl border-l-4 border-gold animate-in fade-in zoom-in duration-1000 delay-300 z-10">
+              <div className="flex flex-col items-center text-center">
+                <span className="text-3xl font-bold text-navy leading-none font-display">10+</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-gold-dark mt-1 leading-tight">Years of<br />Excellence</span>
+              </div>
+            </div>
           </div>
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline text-primary">

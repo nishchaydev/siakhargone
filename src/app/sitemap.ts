@@ -33,7 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/blog',
         '/press',
         '/about/achievements',
-        '/best-school-in-khargone'
+        '/best-school-in-khargone',
+        '/compare',
+        '/transportation',
+        '/reviews',
+        '/admission-guide'
     ];
 
     const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics'];

@@ -27,6 +27,32 @@ const methodologyImage = {
   imageHint: "Classroom"
 };
 
+import Schema from '@/components/seo/Schema';
+
+const faqs = [
+  {
+    question: "What curriculum does SIA follow?",
+    answer: "We follow the CBSE (Central Board of Secondary Education) curriculum, which is recognized nationally and internationally. Our affiliation number is 1031345."
+  },
+  {
+    question: "What are the teaching methodologies used?",
+    answer: "We use a blend of traditional and modern teaching methods including experiential learning, project-based learning, smart classroom technology, and hands-on practical sessions in our well-equipped labs."
+  },
+  {
+    question: "Are there science and computer labs?",
+    answer: "Yes, we have fully equipped Physics, Chemistry, Biology, and Computer labs with modern equipment. Students get hands-on experience with 1:1 computer access and regular practical sessions."
+  },
+  {
+    question: "How do you prepare students for competitive exams?",
+    answer: "We offer specialized coaching for JEE, NEET, and other competitive exams alongside the regular CBSE curriculum. Our experienced faculty provides additional support and practice materials."
+  },
+  {
+    question: "What is the assessment pattern?",
+    answer: "We follow the CBSE assessment pattern with continuous and comprehensive evaluation (CCE). This includes periodic tests, term exams, project work, and practical assessments throughout the year."
+  }
+];
+
+
 const infrastructureItems = [
   { icon: "FlaskConical", title: "Science & Computer Labs", description: "Fully equipped labs for Physics, Chemistry, Biology, and Computing, encouraging exploration and practical understanding." },
   { icon: "Library", title: "Library", description: "A modern, multi-resource library offering physical and digital collections that cultivate reading habits and research skills." },
@@ -60,6 +86,7 @@ export default async function AcademicsPage() {
 
   return (
     <div>
+      <Schema type="FAQ" data={faqs} />
       <AcademicsPageClient
         infrastructureItems={infrastructureItems}
         methodologyImage={methodologyImage}

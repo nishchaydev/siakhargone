@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Check, ChevronRight, Loader2, Sparkles, User, Users, School, Bus } from "lucide-react";
 import confetti from "canvas-confetti";
 import PageBanner from "@/components/common/PageBanner";
+import { trackAdmissionFormView, trackAdmissionFormSubmit } from "@/lib/analytics";
 import {
     Accordion,
     AccordionContent,
@@ -64,6 +65,11 @@ export default function AdmissionsPageClient({
     const [step, setStep] = useState<FormStep>(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    // Track form view on mount
+    useState(() => {
+        trackAdmissionFormView('admissions_page');
+    });
+
     // Form state
     const { register, handleSubmit, control, formState: { errors }, trigger, watch, setValue } = useForm<AdmissionFormData>({
         defaultValues: {
@@ -110,6 +116,9 @@ export default function AdmissionsPageClient({
         setIsSubmitting(false);
         setStep(5);
         triggerConfetti();
+
+        // Track successful submission
+        trackAdmissionFormSubmit('online_enquiry');
     };
 
     const nextStep = async () => {

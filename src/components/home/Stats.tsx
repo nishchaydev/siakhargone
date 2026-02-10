@@ -9,7 +9,7 @@ import { Users, UserCheck, Award, Calendar } from "lucide-react";
 const stats = [
   { icon: Users, value: 1500, label: "Students Enrolled", suffix: "+" },
   { icon: UserCheck, value: 75, label: "Teachers", suffix: "+" },
-  { icon: Calendar, value: 15, label: "Years of Excellence", suffix: "+" },
+  { icon: Calendar, value: 10, label: "Years of Excellence", suffix: "+" },
   { icon: Award, value: 50, label: "Awards Won", suffix: "+" },
 ];
 
