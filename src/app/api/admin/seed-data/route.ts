@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { addAchievement } from '@/services/achievementsService';
 import { addResult } from '@/services/resultsService';
 import { addUpdate } from '@/services/updatesService';
+import { addNewsService } from '@/services/newsService';
+import { addEventService } from '@/services/eventsService';
+import { addNoticeService } from '@/services/noticesService';
 
 export async function GET() {
     try {
@@ -9,6 +12,9 @@ export async function GET() {
             achievements: 0,
             results: 0,
             updates: 0,
+            news: 0,
+            events: 0,
+            notices: 0,
             errors: [] as string[]
         };
 
@@ -217,6 +223,108 @@ export async function GET() {
             } catch (e) {
                 console.error("Failed to add update:", item.content, e);
                 results.errors.push(`Failed to add update: ${item.content.substring(0, 20)}...`);
+            }
+        }
+
+        // NEWS
+        const newsItems = [
+            {
+                title: "4 SIA Students Selected for National Level Athletics Championship",
+                description: "Ishika Kushwah, Krishna Yadav, Vanshika Chauhan, and Rajveer Chauhan have been selected to represent at the National Level Athletics Championship in Gujarat after winning Gold Medals at the District Level competition.",
+                date: "2024-01-15",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg"
+            },
+            {
+                title: "SIA Team Wins First Prize in Republic Day Cultural Program",
+                description: "Our students won 1st prize in the main Republic Day drill line program and cultural program organized on 26 January 2024, showcasing exceptional discipline and talent.",
+                date: "2024-01-27",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816165/26_january_2024.jpg_zmcf3i.jpg"
+            },
+            {
+                title: "SIA Achievements Featured in Leading Newspapers",
+                description: "Student achievements in Taekwondo and Athletics were prominently featured in local newspapers, bringing pride to the entire SIA family.",
+                date: "2024-01-20",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816285/1747807023219.jpg_qssnwf.jpg"
+            }
+        ];
+
+        for (const item of newsItems) {
+            try {
+                await addNewsService(item);
+                results.news++;
+            } catch (e) {
+                console.error("Failed to add news:", item.title, e);
+                results.errors.push(`Failed to add news: ${item.title}`);
+            }
+        }
+
+        // EVENTS
+        const eventsItems = [
+            {
+                title: "Annual Sports Day 2026",
+                date: "2026-03-15",
+                time: "08:00 AM",
+                location: "SIA Main Campus Ground",
+                description: "Join us for our grand Annual Sports Day featuring athletics, team sports, and special performances by students.",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg"
+            },
+            {
+                title: "Science Exhibition 2026",
+                date: "2026-02-20",
+                time: "10:00 AM",
+                location: "School Auditorium",
+                description: "Students will showcase innovative science projects and experiments. Parents and visitors are welcome.",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg"
+            },
+            {
+                title: "Parent-Teacher Meeting",
+                date: "2026-02-28",
+                time: "02:00 PM",
+                location: "Respective Classrooms",
+                description: "Scheduled meeting to discuss student progress and academic performance with parents.",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg"
+            }
+        ];
+
+        for (const item of eventsItems) {
+            try {
+                await addEventService(item);
+                results.events++;
+            } catch (e) {
+                console.error("Failed to add event:", item.title, e);
+                results.errors.push(`Failed to add event: ${item.title}`);
+            }
+        }
+
+        // NOTICES
+        const noticesItems = [
+            {
+                title: "Admissions Open for Academic Year 2026-27",
+                date: "2026-01-10",
+                pdfUrl: "#",
+                important: true
+            },
+            {
+                title: "School Timing Change Notice",
+                date: "2026-01-15",
+                pdfUrl: "#",
+                important: false
+            },
+            {
+                title: "Fee Payment Deadline Extension",
+                date: "2026-01-20",
+                pdfUrl: "#",
+                important: true
+            }
+        ];
+
+        for (const item of noticesItems) {
+            try {
+                await addNoticeService(item);
+                results.notices++;
+            } catch (e) {
+                console.error("Failed to add notice:", item.title, e);
+                results.errors.push(`Failed to add notice: ${item.title}`);
             }
         }
 
