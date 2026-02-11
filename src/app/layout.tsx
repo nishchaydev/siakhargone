@@ -31,7 +31,7 @@ const mukta = Mukta({
   variable: '--font-mukta',
 });
 
-const openGraphImage = 'https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png';
+const openGraphImage = 'https://res.cloudinary.com/dkits80xk/image/upload/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg';
 
 export function generateMetadata(): Metadata {
   const currentYear = new Date().getFullYear();
