@@ -106,7 +106,7 @@ export function DigitalCampus() {
                     className="mt-16 rounded-3xl overflow-hidden shadow-2xl border-4 border-white relative aspect-[21/9] md:aspect-[21/7]"
                 >
                     <Image
-                        src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349454/lab-computer-2_abk6no.webp"
+                        src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349465/lab-computer-1_sfxfjx.webp"
                         alt="Students using modern computers at SIA Khargone"
                         fill
                         className="object-cover"
