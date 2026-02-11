@@ -238,22 +238,22 @@ export async function GET(request: Request) {
         // NEWS
         const newsItems = [
             {
-                title: "4 SIA Students Selected for National Level Athletics Championship",
-                description: "Ishika Kushwah, Krishna Yadav, Vanshika Chauhan, and Rajveer Chauhan have been selected to represent at the National Level Athletics Championship in Gujarat after winning Gold Medals at the District Level competition.",
-                date: "2024-01-15",
+                title: "Gujarat Educational Tour 2026: A Grand Departure",
+                description: "Our senior secondary students embarked on an enriching 10-day tour to Gujarat, visiting the Statue of Unity, Sabarmati Ashram, and modern industrial hubs. An experience of a lifetime!",
+                date: "2026-02-15",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349468/mix-photos-1_jjhoek.webp"
+            },
+            {
+                title: "Admissions Open 2026-27: Join the SIA Legacy",
+                description: "Experience excellence in education with modern labs, smart classrooms, and a focus on sports and values. Admissions are now open for Pre-Nursery to Grade IX.",
+                date: "2026-02-10",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png"
+            },
+            {
+                title: "National Level Athletics: 4 SIA Students Representing MP",
+                description: "Proud moment for Khargone! Ishika Kushwah and her team represent Madhya Pradesh in the National Athletics Championship in Gujarat.",
+                date: "2026-01-20",
                 imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg"
-            },
-            {
-                title: "SIA Team Wins First Prize in Republic Day Cultural Program",
-                description: "Our students won 1st prize in the main Republic Day drill line program and cultural program organized on 26 January 2024, showcasing exceptional discipline and talent.",
-                date: "2024-01-27",
-                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816165/26_january_2024.jpg_zmcf3i.jpg"
-            },
-            {
-                title: "SIA Achievements Featured in Leading Newspapers",
-                description: "Student achievements in Taekwondo and Athletics were prominently featured in local newspapers, bringing pride to the entire SIA family.",
-                date: "2024-01-20",
-                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816285/1747807023219.jpg_qssnwf.jpg"
             }
         ];
 
@@ -270,28 +270,28 @@ export async function GET(request: Request) {
         // EVENTS
         const eventsItems = [
             {
-                title: "Annual Sports Day 2026",
-                date: "2026-03-15",
-                time: "08:00 AM",
-                location: "SIA Main Campus Ground",
-                description: "Join us for our grand Annual Sports Day featuring athletics, team sports, and special performances by students.",
-                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg"
+                title: "Gujarat Tour Flag-off Ceremony",
+                date: "2026-02-15",
+                time: "07:30 AM",
+                location: "SIA Main Campus",
+                description: "Wishing our students a safe and educational journey as they depart for the Gujarat Cultural Tour.",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349474/session-start-1_qshvtb.webp"
             },
             {
-                title: "Science Exhibition 2026",
-                date: "2026-02-20",
+                title: "Admission Counseling Day",
+                date: "2026-02-22",
                 time: "10:00 AM",
                 location: "School Auditorium",
-                description: "Students will showcase innovative science projects and experiments. Parents and visitors are welcome.",
-                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg"
+                description: "Join our expert counselors to understand the New Education Policy (NEP) and our 2026 curriculum.",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/classroom-1_k9z4s9.webp"
             },
             {
-                title: "Parent-Teacher Meeting",
-                date: "2026-02-28",
-                time: "02:00 PM",
-                location: "Respective Classrooms",
-                description: "Scheduled meeting to discuss student progress and academic performance with parents.",
-                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg"
+                title: "Annual Sports Day - Sutra 2026",
+                date: "2026-03-15",
+                time: "08:00 AM",
+                location: "SIA Sports Ground",
+                description: "A celebration of sportsmanship and spirit! Join us for our annual athletic meet.",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg"
             }
         ];
 
@@ -308,22 +308,22 @@ export async function GET(request: Request) {
         // NOTICES
         const noticesItems = [
             {
-                title: "Admissions Open for Academic Year 2026-27",
-                date: "2026-01-10",
+                title: "Admission Registration Open 2026-27",
+                date: "2026-02-01",
+                pdfUrl: "/admissions",
+                important: true
+            },
+            {
+                title: "Gujarat Tour 2026 - Last Minute Instructions",
+                date: "2026-02-12",
                 pdfUrl: "#",
                 important: true
             },
             {
-                title: "School Timing Change Notice",
-                date: "2026-01-15",
+                title: "Maha Shivratri Holiday Notice",
+                date: "2026-02-26",
                 pdfUrl: "#",
                 important: false
-            },
-            {
-                title: "Fee Payment Deadline Extension",
-                date: "2026-01-20",
-                pdfUrl: "#",
-                important: true
             }
         ];
 

@@ -37,19 +37,16 @@ export function AnnouncementMarquee({ announcements, isLoading }: AnnouncementMa
         variants={marqueeVariants}
         animate="animate"
       >
-        <a href="/admissions" className="inline-block px-4 hover:text-gold transition-colors">
-          Shaping Minds. Building Futures. | <span className="text-gold-accent font-bold">Admissions Open 2026–27</span>
-        </a>
-        {/* Duplicate for seamless loop if needed, though simple x translate works well for single lines. 
-             For a true continuous loop without gaps, we normally duplicate the content multiple times.
-             Let's duplicate it once to ensure it fills screen if wide.
-          */}
-        <a href="/admissions" className="inline-block px-4 hover:text-gold transition-colors">
-          Shaping Minds. Building Futures. | <span className="text-gold-accent font-bold">Admissions Open 2026–27</span>
-        </a>
-        <a href="/admissions" className="inline-block px-4 hover:text-gold transition-colors">
-          Shaping Minds. Building Futures. | <span className="text-gold-accent font-bold">Admissions Open 2026–27</span>
-        </a>
+        <div className="inline-block px-4">
+          <span className="text-gold-accent font-bold">✨ Admissions Open 2026–27:</span> Secure your child's future today! |
+          <span className="text-white font-bold ml-4">🚌 Gujarat Educational Tour 2026:</span> Preparing for an epic journey! |
+          <span className="text-gold-accent font-bold ml-4">🏆 Congratulations SIA Champions:</span> Victory at District Taekwondo!
+        </div>
+        <div className="inline-block px-4">
+          <span className="text-gold-accent font-bold">✨ Admissions Open 2026–27:</span> Secure your child's future today! |
+          <span className="text-white font-bold ml-4">🚌 Gujarat Educational Tour 2026:</span> Preparing for an epic journey! |
+          <span className="text-gold-accent font-bold ml-4">🏆 Congratulations SIA Champions:</span> Victory at District Taekwondo!
+        </div>
       </motion.div>
     </div>
   );
