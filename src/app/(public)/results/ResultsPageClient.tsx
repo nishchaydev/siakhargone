@@ -79,7 +79,7 @@ export default function ResultsPageClient({ initialResults }: ResultsPageClientP
                                                     <h3 className="text-xl font-bold text-navy">{result.title}</h3>
                                                 </div>
                                                 <div className="text-sm font-bold text-gray-400 bg-gray-50 px-3 py-1 rounded-md">
-                                                    {result.date.split("-")[0]}
+                                                    {result.date ? result.date.split("-")[0] : "—"}
                                                 </div>
                                             </div>
 
