@@ -113,6 +113,59 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
                     )}
                 </div>
             </Section>
-        </div>
+
+            {/* Related Links Section */}
+            <Section id="related" title="Explore More" subtitle="Discover Related Content" className="bg-white" >
+                <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <a href="/results" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Trophy className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Exam Results</h3>
+                                <p className="text-gray-600 text-sm">View our academic performance and board results</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                    <a href="/news-events" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Calendar className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Latest News</h3>
+                                <p className="text-gray-600 text-sm">Stay updated with school happenings</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                    <a href="/gallery" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Medal className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Photo Gallery</h3>
+                                <p className="text-gray-600 text-sm">Campus life in pictures</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                </div>
+
+                {/* CTA */}
+                <div className="text-center mt-12 p-8 bg-navy/5 rounded-2xl">
+                    <h3 className="text-2xl font-bold text-navy mb-4">Interested in joining SIA?</h3>
+                    <p className="text-gray-600 mb-6">Discover how our students excel in every field</p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/admissions" className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy/90 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl">
+                            Apply for Admissions 2026-27
+                        </a>
+                        <a href="/about" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-navy border-2 border-navy px-8 py-3 rounded-lg font-semibold transition-all duration-300">
+                            Learn More About SIA
+                        </a>
+                    </div>
+                </div>
+            </Section >
+        </div >
     );
 }

@@ -124,6 +124,54 @@ export default function ResultsPageClient({ initialResults }: ResultsPageClientP
                     )}
                 </div>
             </Section>
-        </div>
+
+            {/* Related Links Section */}
+            <Section id="related" title="Related Content" subtitle="Explore More" className="bg-white">
+                <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <a href="/achievements" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Trophy className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Student Achievements</h3>
+                                <p className="text-gray-600 text-sm">Celebrating our students' victories and milestones</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                    <a href="/academics" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <FileText className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Our Curriculum</h3>
+                                <p className="text-gray-600 text-sm">Explore our comprehensive academic programs</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                    <a href="/updates" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Star className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Latest Updates</h3>
+                                <p className="text-gray-600 text-sm">Stay informed with important announcements</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                </div>
+
+                {/* CTA */}
+                <div className="text-center mt-12 p-8 bg-navy/5 rounded-2xl">
+                    <h3 className="text-2xl font-bold text-navy mb-4">See how our students excel!</h3>
+                    <p className="text-gray-600 mb-6">Join SIA and be part of our success story</p>
+                    <a href="/admissions" className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy/90 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl">
+                        Enroll Your Child
+                    </a>
+                </div>
+            </Section >
+        </div >
     );
 }

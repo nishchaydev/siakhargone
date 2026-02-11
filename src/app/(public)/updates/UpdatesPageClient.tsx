@@ -128,6 +128,45 @@ export default function UpdatesPageClient({ initialUpdates }: UpdatesPageClientP
                 </div>
 
             </Section>
+
+            {/* Related Links Section */}
+            <Section id="related" title="Stay Connected" subtitle="More from SIA" className="bg-white">
+                <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <a href="/news-events" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Calendar className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">News & Events</h3>
+                                <p className="text-gray-600 text-sm">Detailed news and upcoming events</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                    <a href="/achievements" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Bell className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Achievements</h3>
+                                <p className="text-gray-600 text-sm">Celebrating our students' success</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                    <a href="/contact" className="group">
+                        <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
+                            <CardContent className="p-6 text-center">
+                                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
+                                    <Info className="w-8 h-8 text-gold group-hover:text-white" />
+                                </div>
+                                <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Contact Us</h3>
+                                <p className="text-gray-600 text-sm">Have questions? Get in touch with us</p>
+                            </CardContent>
+                        </Card>
+                    </a>
+                </div>
+            </Section>
         </div>
     );
 }
