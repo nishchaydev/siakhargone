@@ -168,7 +168,7 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
                         </Link>
                     </div>
                 </div>
-            </Section >
-        </div >
+            </Section>
+        </div>
     );
 }

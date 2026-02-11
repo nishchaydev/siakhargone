@@ -5,7 +5,7 @@ import { Section } from "@/components/common/Section";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bell, Calendar, AlertCircle, Info, Coffee } from "lucide-react";
+import { Bell, Calendar, AlertCircle, Info, Coffee, Trophy } from "lucide-react";
 import { useState } from "react";
 import { UpdateItem } from "@/services/updatesService";
 import { motion, AnimatePresence } from "framer-motion";
@@ -150,7 +150,7 @@ export default function UpdatesPageClient({ initialUpdates }: UpdatesPageClientP
                         <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                             <CardContent className="p-6 text-center">
                                 <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
-                                    <Bell className="w-8 h-8 text-gold group-hover:text-white" />
+                                    <Trophy className="w-8 h-8 text-gold group-hover:text-white" />
                                 </div>
                                 <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Achievements</h3>
                                 <p className="text-gray-600 text-sm">Celebrating our students' success</p>

@@ -173,7 +173,7 @@ export default function ResultsPageClient({ initialResults }: ResultsPageClientP
                         Enroll Your Child
                     </Link>
                 </div>
-            </Section >
-        </div >
+            </Section>
+        </div>
     );
 }

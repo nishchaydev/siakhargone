@@ -97,7 +97,7 @@ export default function Footer() {
             <div className="lg:col-span-3">
               <h3 className="font-display font-bold text-xl text-white mb-8 border-b-4 border-gold inline-block pb-2">Important Links</h3>
               <ul className="space-y-4 text-base font-medium text-white/70">
-                <li><Link href="/downloads" className="hover:text-gold transition-colors inline-block flex items-center gap-2 hover:translate-x-1 duration-300"><span className="w-2 h-2 rounded-full bg-gold"></span>Downloads Area</Link></li>
+                <li><Link href="/downloads" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300"><span className="inline-flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-gold"></span>Downloads Area</span></Link></li>
                 <li><Link href="/mandatory-disclosure" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Mandatory Disclosure</Link></li>
                 <li><Link href="/admissions" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Admissions Process</Link></li>
                 <li><Link href="/fees" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Pay Fees Online</Link></li>
