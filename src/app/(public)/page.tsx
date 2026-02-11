@@ -29,6 +29,8 @@ import { cloudinary } from "@/lib/cloudinary-images";
 import { getNewsService } from "@/services/newsService";
 import { getEventsService } from "@/services/eventsService";
 import { getNoticesService } from "@/services/noticesService";
+import { getAchievementsService } from "@/services/achievementsService";
+import { AnnouncementMarquee } from "@/components/layout/AnnouncementMarquee";
 
 // Force dynamic rendering since we are fetching news which updates frequently
 // CHANGED: Reduced revalidation time to 10 seconds for "ASAP" updates.
@@ -61,10 +63,11 @@ type UpdateItem = NewsItem | EventItem | NoticeItem;
 
 export default async function Home() {
   // Hybrid Fetching: News, Events & Notices
-  const [newsItems, eventsItems, noticesItems] = await Promise.all([
+  const [newsItems, eventsItems, noticesItems, achievementItems] = await Promise.all([
     getNewsService().catch((e: unknown) => { console.error("News Fetch Error:", e); return []; }),
     getEventsService().catch((e: unknown) => { console.error("Events Fetch Error:", e); return []; }),
-    getNoticesService().catch((e: unknown) => { console.error("Notices Fetch Error:", e); return []; })
+    getNoticesService().catch((e: unknown) => { console.error("Notices Fetch Error:", e); return []; }),
+    getAchievementsService().catch((e: unknown) => { console.error("Achievements Fetch Error:", e); return []; })
   ]);
 
 
@@ -162,15 +165,41 @@ export default async function Home() {
           embedUrl: cmsData.hero.video
         }}
       />
+      <AnnouncementMarquee announcements={latestUpdates.map(u => ({
+        id: u.id.toString(),
+        title: u.title,
+        content: u.description || u.title,
+        date: u.date,
+        isUrgent: u.type === 'Notice'
+      }))} isLoading={false} />
       <HeroSection data={cmsData.hero} stats={cmsData.stats} />
       <AtAGlance />
       <WhyChoose />
       <PrincipalMessage />
       <Academics />
-      <StudentAchievers />
+      <StudentAchievers achievers={achievementItems.slice(0, 3)} />
       <LatestNews initialNews={latestUpdates} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <DigitalCampus />
+
+      {/* Featured In Section */}
+      <div className="bg-white border-b border-gray-100 py-8">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+          <span className="text-gray-400 font-medium tracking-wide uppercase text-sm">As Featured In</span>
+          <a
+            href="/achievements"
+            className="flex items-center gap-8 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer group"
+            aria-label="View our achievements featured in Dainik Bhaskar"
+          >
+            <div className="flex items-center gap-3">
+              {/* Placeholder for Dainik Bhaskar Logo - Text fallback until image is added */}
+              <span className="text-2xl font-bold font-serif text-gray-800 group-hover:text-navy transition-colors">Dainik Bhaskar</span>
+              <span className="bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Leading News</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
       <Testimonials testimonials={testimonials} isLoading={false} />
       <HomeFAQ />
       <CTASection />

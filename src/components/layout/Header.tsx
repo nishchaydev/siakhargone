@@ -86,7 +86,7 @@ const navItems: NavItem[] = [
       { title: "Vision & Mission", href: "/about/vision", description: "Our guiding principles and aspirations.", iconName: "Eye" },
       { title: "Principal's Message", href: "/about/principal", description: "Guidance from our academic leader.", iconName: "User" },
       { title: "Management & Committee", href: "/about/management", description: "Meet our dedicated leadership team.", iconName: "Users" },
-      { title: "Student Achievements", href: "/about/achievements", description: "Celebrating the successes of our students.", iconName: "Trophy" },
+      { title: "Student Achievements", href: "/achievements", description: "Celebrating the successes of our students.", iconName: "Trophy" },
     ],
   },
   {
@@ -98,6 +98,7 @@ const navItems: NavItem[] = [
       { title: "Faculty", href: "/academics#faculty", description: "Meet our experienced and passionate educators.", iconName: "GraduationCap" },
       { title: "Learning Support", href: "/academics#support", description: "Dedicated resources for student success.", iconName: "HeartHandshake" },
       { title: "Career Guidance", href: "/academics#career", description: "Empowering students for future pathways.", iconName: "Compass" },
+      { title: "Exam Results", href: "/results", description: "Our students' academic performance and board results.", iconName: "Award" },
     ],
   },
   {
@@ -115,6 +116,7 @@ const navItems: NavItem[] = [
     href: "/news-events",
     children: [
       { title: "Notice Board", href: "/notices", description: "All official circulars and updates.", iconName: "ClipboardList" },
+      { title: "Daily Announcements", href: "/updates", description: "Real-time feed of school announcements.", iconName: "Bell" },
       { title: "Latest News", href: "/news-events#news", description: "Stay updated with the latest happenings.", iconName: "Newspaper" },
       { title: "Upcoming Events", href: "/news-events#events", description: "Calendar of school activities and programs.", iconName: "Calendar" },
       { title: "Gallery", href: "/news-events#gallery", description: "Visual memories of school life.", iconName: "Image" },

@@ -10,37 +10,39 @@ import { motion } from "framer-motion";
 
 import { cloudinary } from "@/lib/cloudinary-images";
 
-export const StudentAchievers = () => {
-    // Static Hall of Fame Data
-    const achievers = [
-        {
-            name: "Star Achiever",
-            class: "Class X",
-            achievement: "State Level Sci-Fair Winner",
-            category: "Academics",
-            image: cloudinary.lab.physics[0] || "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1974&auto=format&fit=crop",
-            icon: Star,
-            color: "bg-gold/10 text-gold-dark border-gold/20"
-        },
-        {
-            name: "Sports Captain",
-            class: "Class XII",
-            achievement: "National Sports Player",
-            category: "Sports",
-            image: cloudinary.sportsAchievements[6] || "https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1931&auto=format&fit=crop",
-            icon: Trophy,
-            color: "bg-green-100 text-green-700 border-green-200"
-        },
-        {
-            name: "Creative Lead",
-            class: "Class XI",
-            achievement: "National Art Competition",
-            category: "Arts",
-            image: cloudinary.annualFunction[0] || "https://images.unsplash.com/photo-1491013516836-7dbc6430dd7d?q=80&w=2070&auto=format&fit=crop",
-            icon: Medal,
-            color: "bg-purple-100 text-purple-700 border-purple-200"
-        }
-    ];
+import { AchievementItem } from "@/services/achievementsService";
+
+interface StudentAchieversProps {
+    achievers?: AchievementItem[];
+}
+
+export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
+    // If no dynamic data, fallback to empty or handle gracefully. 
+    // For now we assume data is passed or we show nothing?
+    // User wants "Show 3 most recent achievements".
+    // If props are empty, maybe show fallback or hide? 
+    // Let's use the props.
+
+    // Map AchievementItem to the component's expected format if needed, or just use it directly.
+    // The component uses: name, class, achievement, category, image, icon, color.
+    // Our service gives: title, studentName, class, date, description, imageUrl, priority, category.
+
+    const displayAchievers = achievers.length > 0 ? achievers.map(item => ({
+        name: item.studentName,
+        class: item.class,
+        achievement: item.title,
+        category: item.category || "General",
+        image: item.imageUrl,
+        icon: item.category === "Sports" ? Trophy : item.category === "Arts" ? Medal : Star,
+        color: item.category === "Sports" ? "bg-green-100 text-green-700 border-green-200" :
+            item.category === "Arts" ? "bg-purple-100 text-purple-700 border-purple-200" :
+                "bg-gold/10 text-gold-dark border-gold/20"
+    })) : [];
+
+    if (displayAchievers.length === 0) return null;
+
+    // Use displayAchievers instead of static 'achievers'
+
 
     return (
         <Section id="achievers" className="bg-white relative overflow-hidden" isFirstSection={false}>
@@ -59,7 +61,7 @@ export const StudentAchievers = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 relative z-10">
-                {achievers.map((student, index) => (
+                {displayAchievers.map((student, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 30 }}
@@ -68,18 +70,41 @@ export const StudentAchievers = () => {
                         viewport={{ once: true }}
                     >
                         <Card className="overflow-hidden border-gray-100 shadow-none hover:shadow-xl transition-all duration-300 group h-full bg-white">
-                            <div className="relative aspect-[4/5] overflow-hidden">
-                                <Image
-                                    src={student.image}
-                                    alt="Student Achiever"
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                            </div>
+                            <a href="/achievements" className="block">
+                                <div className="relative aspect-[4/5] overflow-hidden">
+                                    <Image
+                                        src={student.image}
+                                        alt={student.achievement}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                        <Badge className={`${student.color} mb-2 border`}>
+                                            {student.category}
+                                        </Badge>
+                                        <h3 className="font-bold text-lg line-clamp-2">{student.achievement}</h3>
+                                        <p className="text-sm text-gray-200 mt-1">{student.name} • {student.class}</p>
+                                    </div>
+                                </div>
+                            </a>
                         </Card>
                     </motion.div>
                 ))}
+            </div>
+
+            {/* View All Button */}
+            <div className="mt-12 text-center relative z-10">
+                <a
+                    href="/achievements"
+                    className="inline-flex items-center gap-2 bg-navy hover:bg-navy/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105"
+                >
+                    View All Achievements
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
             </div>
         </Section>
     );

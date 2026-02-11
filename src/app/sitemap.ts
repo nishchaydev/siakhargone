@@ -37,7 +37,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/compare',
         '/transportation',
         '/reviews',
-        '/admission-guide'
+        '/admission-guide',
+        '/achievements',
+        '/results',
+        '/updates'
     ];
 
     const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics'];

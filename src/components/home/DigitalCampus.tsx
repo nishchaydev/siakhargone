@@ -50,7 +50,7 @@ export function DigitalCampus() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4"
+                        className="inline-block px-4 py-1.5 rounded-full bg-gold/10 text-gold-dark text-sm font-bold mb-4 border border-gold/20"
                     >
                         Future Ready Education
                     </motion.div>
@@ -61,7 +61,7 @@ export function DigitalCampus() {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-5xl font-display font-bold text-navy mb-4"
                     >
-                        The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Digital Campus</span>
+                        The <span className="text-gold-accent">Digital Campus</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

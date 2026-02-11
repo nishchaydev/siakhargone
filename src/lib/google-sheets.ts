@@ -61,6 +61,9 @@ export const SHEET_TAB_IDS = {
     ENQUIRIES: 'Enquiries',
     ADMISSIONS: 'Admissions',
     EVENTS: 'Events',
+    ACHIEVEMENTS: 'Achievements',
+    RESULTS: 'Results',
+    UPDATES: 'Updates',
 };
 
 export async function deleteRowById(sheetName: string, id: string, columnIndex: number = 0) {

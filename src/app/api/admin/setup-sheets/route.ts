@@ -53,6 +53,18 @@ const REQUIRED_SHEETS = [
     {
         title: "StudentAchievers",
         header: ["Id", "Name", "Class", "Achievement", "Category", "ImageUrl", "Priority", "Status", "CreatedAt"]
+    },
+    {
+        title: "Achievements",
+        header: ["Id", "Title", "StudentName", "Class", "Date", "Description", "ImageUrl", "Priority", "Category", "Status", "CreatedAt", "MediaCoverage"]
+    },
+    {
+        title: "Results",
+        header: ["Id", "Title", "ExamName", "Date", "Description", "Link", "Type", "TopperName", "TopperMarks", "Status", "CreatedAt", "MediaCoverage"]
+    },
+    {
+        title: "Updates",
+        header: ["Id", "Content", "Date", "Type", "Link", "Status", "ShowOnHomepage", "CreatedAt"]
     }
 ];
 
