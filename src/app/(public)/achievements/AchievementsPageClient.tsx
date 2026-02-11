@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, Trophy, Medal } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { AchievementItem } from "@/services/achievementsService";
 import { motion } from "framer-motion";
@@ -119,7 +120,7 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
             {/* Related Links Section */}
             <Section id="related" title="Explore More" subtitle="Discover Related Content" className="bg-white" >
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <a href="/results" className="group">
+                    <Link href="/results" className="group">
                         <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                             <CardContent className="p-6 text-center">
                                 <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
@@ -129,8 +130,8 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
                                 <p className="text-gray-600 text-sm">View our academic performance and board results</p>
                             </CardContent>
                         </Card>
-                    </a>
-                    <a href="/news-events" className="group">
+                    </Link>
+                    <Link href="/news-events" className="group">
                         <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                             <CardContent className="p-6 text-center">
                                 <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
@@ -140,8 +141,8 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
                                 <p className="text-gray-600 text-sm">Stay updated with school happenings</p>
                             </CardContent>
                         </Card>
-                    </a>
-                    <a href="/gallery" className="group">
+                    </Link>
+                    <Link href="/gallery" className="group">
                         <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                             <CardContent className="p-6 text-center">
                                 <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
@@ -151,7 +152,7 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
                                 <p className="text-gray-600 text-sm">Campus life in pictures</p>
                             </CardContent>
                         </Card>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* CTA */}
@@ -159,12 +160,12 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
                     <h3 className="text-2xl font-bold text-navy mb-4">Interested in joining SIA?</h3>
                     <p className="text-gray-600 mb-6">Discover how our students excel in every field</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/admissions" className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy/90 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl">
+                        <Link href="/admissions" className="inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy/90 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl">
                             Apply for Admissions 2026-27
-                        </a>
-                        <a href="/about" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-navy border-2 border-navy px-8 py-3 rounded-lg font-semibold transition-all duration-300">
+                        </Link>
+                        <Link href="/about" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-navy border-2 border-navy px-8 py-3 rounded-lg font-semibold transition-all duration-300">
                             Learn More About SIA
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </Section >

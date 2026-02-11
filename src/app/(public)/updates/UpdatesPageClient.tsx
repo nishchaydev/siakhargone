@@ -9,6 +9,7 @@ import { Bell, Calendar, AlertCircle, Info, Coffee } from "lucide-react";
 import { useState } from "react";
 import { UpdateItem } from "@/services/updatesService";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface UpdatesPageClientProps {
@@ -134,7 +135,7 @@ export default function UpdatesPageClient({ initialUpdates }: UpdatesPageClientP
             {/* Related Links Section */}
             <Section id="related" title="Stay Connected" subtitle="More from SIA" className="bg-white">
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <a href="/news-events" className="group">
+                    <Link href="/news-events" className="group">
                         <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                             <CardContent className="p-6 text-center">
                                 <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
@@ -144,8 +145,8 @@ export default function UpdatesPageClient({ initialUpdates }: UpdatesPageClientP
                                 <p className="text-gray-600 text-sm">Detailed news and upcoming events</p>
                             </CardContent>
                         </Card>
-                    </a>
-                    <a href="/achievements" className="group">
+                    </Link>
+                    <Link href="/achievements" className="group">
                         <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                             <CardContent className="p-6 text-center">
                                 <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
@@ -155,8 +156,8 @@ export default function UpdatesPageClient({ initialUpdates }: UpdatesPageClientP
                                 <p className="text-gray-600 text-sm">Celebrating our students' success</p>
                             </CardContent>
                         </Card>
-                    </a>
-                    <a href="/contact" className="group">
+                    </Link>
+                    <Link href="/contact" className="group">
                         <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                             <CardContent className="p-6 text-center">
                                 <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
@@ -166,7 +167,7 @@ export default function UpdatesPageClient({ initialUpdates }: UpdatesPageClientP
                                 <p className="text-gray-600 text-sm">Have questions? Get in touch with us</p>
                             </CardContent>
                         </Card>
-                    </a>
+                    </Link>
                 </div>
             </Section>
         </div>
