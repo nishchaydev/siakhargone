@@ -310,22 +310,25 @@ export async function GET(request: Request) {
             {
                 title: "Admission Registration Open 2026-27",
                 date: "2026-02-01",
-                pdfUrl: "/admissions",
+                pdfUrl: "",
                 important: true
             },
             {
                 title: "Gujarat Tour 2026 - Last Minute Instructions",
                 date: "2026-02-12",
-                pdfUrl: "#",
+                pdfUrl: "",
                 important: true
             },
             {
                 title: "Maha Shivratri Holiday Notice",
                 date: "2026-02-26",
-                pdfUrl: "#",
+                pdfUrl: "",
                 important: false
             }
         ];
+
+        // Trigger Vercel Build: 2026-02-11 21:13
+
 
         for (const item of noticesItems) {
             try {
