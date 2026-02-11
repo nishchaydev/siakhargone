@@ -2,6 +2,7 @@
 
 import PageBanner from "@/components/common/PageBanner";
 import { Section } from "@/components/common/Section";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, FileText, Download, Trophy, Star } from "lucide-react";
@@ -28,6 +29,7 @@ export default function ResultsPageClient({ initialResults }: ResultsPageClientP
 
     return (
         <div className="bg-grain min-h-screen">
+            <Breadcrumbs items={[{ name: "Exam Results" }]} />
             <PageBanner
                 title="Academic Excellence"
                 subtitle="Showcasing the hard work and success of our scholars."

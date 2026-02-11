@@ -2,6 +2,7 @@
 
 import PageBanner from "@/components/common/PageBanner";
 import { Section } from "@/components/common/Section";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Bell, Calendar, AlertCircle, Info, Coffee } from "lucide-react";
@@ -43,6 +44,7 @@ export default function UpdatesPageClient({ initialUpdates }: UpdatesPageClientP
 
     return (
         <div className="bg-grain min-h-screen">
+            <Breadcrumbs items={[{ name: "Latest Updates" }]} />
             <PageBanner
                 title="Latest Updates"
                 subtitle="Stay informed with real-time announcements."

@@ -2,6 +2,7 @@
 
 import PageBanner from "@/components/common/PageBanner";
 import { Section } from "@/components/common/Section";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, Trophy, Medal } from "lucide-react";
@@ -27,6 +28,7 @@ export default function AchievementsPageClient({ initialAchievements }: Achievem
 
     return (
         <div className="bg-grain min-h-screen">
+            <Breadcrumbs items={[{ name: "Achievements" }]} />
             <PageBanner
                 title="Our Pride & Glory"
                 subtitle="Celebrating the milestones and victories of our students."
