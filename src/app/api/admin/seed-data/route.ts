@@ -170,16 +170,7 @@ export async function GET() {
                 type: "General",
                 topperName: "",
                 topperMarks: "",
-                // Using a placeholder or reusing an image if specific one not provided for this specific entry, 
-                // user prompt implied using the result image or general one. 
-                // Using the weightlifting image as per user JSON (RES002) in previous prompt, 
-                // though it seems odd for exam results, I will follow the user's mapping provided in the big JSON block.
-                // Wait, RES002 in user prompt has '1747806889599.jpg_lzcyj3.jpg' which is the weightlifting one.
-                // The user prompt said: 'Ye school result ka... with WhatsApp Image...'. 
-                // Let's use the WhatsApp one for both or similar if appropriate, but I will stick to the USER's JSON instructions for RES002.
-                // Actually, RES002 says "SIA Exam Results Featured in News" and uses image ending in _lzcyj3.jpg.
-                // I will follow the user's provided JSON strictly.
-                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816089/1747806889599.jpg_lzcyj3.jpg",
+                imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816680/WhatsApp_Image_2025-05-21_at_14.50.12_0d54471a.jpg_usptmg.jpg",
                 mediaCoverage: true
             }
         ];
