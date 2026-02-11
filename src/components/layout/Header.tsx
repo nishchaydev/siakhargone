@@ -67,7 +67,7 @@ const mockAnnouncements: Announcement[] = [
 
 
 const navItems: NavItem[] = [
-  { title: "Home", href: "/" },
+
   {
     title: "Admissions", href: "/admissions", children: [
       { title: "Admission Process", href: "/admissions#process", description: "Step-by-step guide to joining our school.", iconName: "FileText" },
