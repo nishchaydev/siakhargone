@@ -234,7 +234,7 @@ const Header = () => {
     >
       <TopBar isTransparent={false} />
       <div className="container mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6 py-2">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-2 md:gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
             <Image src={schoolLogo}
               alt="Sanskar International Academy Logo"
@@ -243,12 +243,9 @@ const Header = () => {
               priority />
           </div>
 
-          <div className="flex flex-col justify-center ml-1">
-            <span className="font-display font-bold text-2xl md:text-3xl leading-none tracking-tight text-white mb-[2px]">SANSKAR</span>
-            <div className="flex flex-col leading-none">
-              <span className="font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.25em] text-gold/90">INTERNATIONAL</span>
-              <span className="font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.25em] text-gold/90">ACADEMY</span>
-            </div>
+          <div className="flex flex-col justify-center">
+            <span className="font-display font-bold text-xl sm:text-2xl md:text-3xl leading-none tracking-tight text-white mb-[2px]">SANSKAR</span>
+            <span className="font-sans text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.15em] md:tracking-[0.25em] text-gold/90 whitespace-nowrap">INTERNATIONAL ACADEMY</span>
           </div>
         </Link>
 
