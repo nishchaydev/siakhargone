@@ -6,8 +6,17 @@ import { addNewsService } from '@/services/newsService';
 import { addEventService } from '@/services/eventsService';
 import { addNoticeService } from '@/services/noticesService';
 
-export async function GET() {
+export async function GET(request: Request) {
     try {
+        // Simple auth bypass using secret key from environment
+        const url = new URL(request.url);
+        const secretKey = url.searchParams.get('key');
+        const expectedKey = process.env.SEED_DATA_SECRET_KEY || 'sia_seed_2026';
+
+        if (secretKey !== expectedKey) {
+            return NextResponse.json({ success: false, error: 'Unauthorized - Invalid or missing key parameter' }, { status: 401 });
+        }
+
         const results = {
             achievements: 0,
             results: 0,
