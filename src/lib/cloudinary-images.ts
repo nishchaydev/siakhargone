@@ -135,17 +135,17 @@ export const cloudinary = {
     },
 
     academics: {
-        banner: "https://res.cloudinary.com/dkits80xk/image/upload/v1770912165/1501b896-101a-4702-8951-40be998f8042.png",
+        banner: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1770912165/1501b896-101a-4702-8951-40be998f8042.png",
         methodology: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349460/classroom-8_ui87lk.webp",
     },
 
     careers: {
         classroom: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1765349458/classroom-2_i2r5az.webp",
-        teacher: "https://res.cloudinary.com/dkits80xk/image/upload/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png",
+        teacher: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png",
     },
 
     beyondAcademics: {
-        leadership: "https://res.cloudinary.com/dkits80xk/image/upload/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png",
-        sports: "https://res.cloudinary.com/dkits80xk/image/upload/v1770911762/323c2138-0775-4927-9957-c464c24594c1.png",
+        leadership: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png",
+        sports: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1770911762/323c2138-0775-4927-9957-c464c24594c1.png",
     }
 };

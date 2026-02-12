@@ -27,26 +27,28 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
     // The component uses: name, class, achievement, category, image, icon, color.
     // Our service gives: title, studentName, class, date, description, imageUrl, priority, category.
 
+    const isValidField = (value: any) => {
+        // Guard against non-strings, trim empty values, reject 'multiple' (case-insensitive)
+        if (typeof value !== 'string') return false;
+        const trimmed = value.trim();
+        if (!trimmed) return false;
+        // Fix data source so "undefined" strings are not serialized!
+        if (trimmed.toLowerCase() === "undefined") return false;
+        if (trimmed.toLowerCase().includes("multiple")) return false;
+        return true;
+    };
+
     const displayAchievers = achievers.length > 0 ? achievers.map(item => {
-        // Manual patch for data mismatch reported by user
-        let category = item.category || "General";
-        let title = item.title;
-        let customStudentName: string | undefined;
-
-        if (item.imageUrl?.includes('1747806889599')) {
-            category = "Academic";
-            if (title.toLowerCase().includes('weightlifting')) {
-                title = "Excellent Academic Performance - CBSE Result Declared";
-                customStudentName = "Multiple Students";
-            }
-        }
-
-        const finalStudentName = customStudentName || item.studentName || "SIA Student";
-        const studentClass = item.class || "Academic";
+        // Mapping logic - manual patch moved to service
+        const category = item.category || "General";
+        const title = item.title;
+        // Fallback to empty string if missing, to be filtered by isValidField logic in render
+        const studentClass = item.class || "";
+        const studentName = item.studentName || "";
 
         return {
             id: item.id,
-            name: finalStudentName,
+            name: studentName,
             class: studentClass,
             achievement: title,
             category: category,
@@ -102,10 +104,9 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
                                             {student.category}
                                         </Badge>
                                         <h3 className="font-bold text-lg line-clamp-2 text-gold-accent group-hover:text-white transition-colors">{student.achievement}</h3>
-                                        {(student.name && !student.name.toLowerCase().includes('multiple') && student.name.toLowerCase() !== 'undefined' &&
-                                            student.class && !student.class.toLowerCase().includes('multiple') && student.class.toLowerCase() !== 'undefined') && (
-                                                <p className="text-sm text-gold mt-1 group-hover:text-gray-200 transition-colors">{student.name} • {student.class}</p>
-                                            )}
+                                        {(isValidField(student.name) && isValidField(student.class)) && (
+                                            <p className="text-sm text-gold mt-1 group-hover:text-gray-200 transition-colors">{student.name} • {student.class}</p>
+                                        )}
                                     </div>
                                 </div>
                             </a>

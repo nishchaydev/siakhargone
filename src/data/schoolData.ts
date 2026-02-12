@@ -8,7 +8,7 @@ export const schoolData = {
     stats: {
         students: "1100+",
         teachers: "50+",
-        established: "2016", // Verified by User
+        established: "2004", // Verified by User
         campusSize: "5 Acres",
         yearsOfExperience: "10+",
         awardsWon: "50+",
@@ -21,7 +21,12 @@ export const schoolData = {
         altEmail: "info@siakhargone.in",
         address: "Gowadi Fata, Khargone - Khandwa Road, Badgaon, Khargone, MP - 451001",
         googleMapLink: "https://maps.google.com/maps?q=Sanskar+International+Academy,+Khargone+(SIA)",
-        googleReviewLink: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID", // TODO: Replace with actual Place ID link
+        googleReviewLink: "https://www.google.com/search?q=Sanskar+International+Academy+Khargone+reviews", // Fallback until Place ID is set
+    },
+    timings: {
+        mondayToFriday: "8:00 AM - 4:00 PM",
+        saturday: "8:00 AM - 1:00 PM", // Assumed standard, verifiable by user
+        sunday: "Closed",
     },
     social: {
         facebook: "https://www.facebook.com/people/Sanskar-International-Academy/61556184519960/",

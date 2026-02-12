@@ -4,32 +4,42 @@
 import React, { useState } from "react";
 import { Loader2, RefreshCw, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { seedDataAction } from "@/app/actions/admin";
 
 export default function AdminDashboardClient() {
   // Mock user for admin dashboard view
   const user = { displayName: 'Administrator' };
   const [seeding, setSeeding] = useState(false);
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "info" | "">("");
 
   const handleSeed = async () => {
     if (!confirm("Are you sure you want to re-seed/update the site data? This ensures all Google Sheet data is synced.")) return;
 
     setSeeding(true);
     setMessage("Updating site data...");
+    setMessageType("info");
+
     try {
-      const res = await fetch('/api/admin/seed-data?key=sia_seed_2026');
-      const data = await res.json();
-      if (data.success) {
-        const stats = `Synced: ${data.results.achievements} Achievements, ${data.results.news} News, ${data.results.events} Events`;
+      const data = await seedDataAction();
+
+      if (data.success && data.results) {
+        // Defensively read stats
+        const achievementsCount = data.results.achievements ?? 0;
+        const newsCount = data.results.news ?? 0;
+        const eventsCount = data.results.events ?? 0;
+
+        const stats = `Synced: ${achievementsCount} Achievements, ${newsCount} News, ${eventsCount} Events`;
         setMessage(`✅ Success! ${stats}`);
-        // alert(`Success! ${stats}`);
+        setMessageType("success");
       } else {
         setMessage("❌ Update failed: " + (data.error || "Unknown error"));
+        setMessageType("error");
       }
     } catch (e) {
       console.error(e);
       setMessage("❌ Error connecting to server.");
+      setMessageType("error");
     } finally {
       setSeeding(false);
     }
@@ -92,7 +102,10 @@ export default function AdminDashboardClient() {
         </div>
 
         {message && (
-          <div className={`p-4 rounded-lg text-sm font-medium ${message.includes('Success') ? 'bg-green-50 text-green-700' : message.includes('Updating') ? 'bg-blue-50 text-blue-700' : 'bg-red-50 text-red-700'}`}>
+          <div className={`p-4 rounded-lg text-sm font-medium ${messageType === 'success' ? 'bg-green-50 text-green-700' :
+              messageType === 'info' ? 'bg-blue-50 text-blue-700' :
+                'bg-red-50 text-red-700'
+            }`}>
             {message}
           </div>
         )}

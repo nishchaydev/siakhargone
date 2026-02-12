@@ -17,7 +17,7 @@ export interface AchievementItem {
 }
 
 export function normalizeAchievement(raw: any): AchievementItem {
-    return {
+    const achievement: AchievementItem = {
         id: String(raw.id || raw[0] || ""),
         title: String(raw.title || raw[1] || ""),
         studentName: String(raw.studentName || raw[2] || ""),
@@ -28,8 +28,19 @@ export function normalizeAchievement(raw: any): AchievementItem {
         priority: String(raw.priority || raw[7] || "3"),
         category: String(raw.category || raw[8] || "General"),
         status: String(raw.status || raw[9] || "Active"),
-        mediaCoverage: raw.mediaCoverage === true || raw[11] === 'Yes'
+        mediaCoverage: raw.mediaCoverage === true || String(raw.mediaCoverage).toLowerCase() === 'yes' || raw[11] === 'Yes'
     };
+
+    // Patch for specific item with ID 1747806889599 or partial image match
+    if (achievement.imageUrl?.includes('1747806889599')) {
+        achievement.category = "Academic";
+        if (achievement.title.toLowerCase().includes('weightlifting')) {
+            achievement.title = "Excellent Academic Performance - CBSE Result Declared";
+            achievement.studentName = "Multiple Students";
+        }
+    }
+
+    return achievement;
 }
 
 async function fetchAchievementsFromGoogleSheets(): Promise<AchievementItem[]> {
@@ -41,7 +52,7 @@ async function fetchAchievementsFromGoogleSheets(): Promise<AchievementItem[]> {
         const items = rows.map(normalizeAchievement);
 
         return items
-            .filter(item => item.id && item.id !== 'Id' && (item.status === 'Active' || !item.status)) // Allow items if status is 'Active' or missing
+            .filter(item => item.id && item.id !== 'Id' && (item.status === 'Active')) // Allow items only if status is 'Active'
             .reverse(); // Newest first
     } catch (error) {
         console.error("Service Achievements Fetch Error:", error);

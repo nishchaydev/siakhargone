@@ -211,6 +211,55 @@ const Header = () => {
       : []
   );
 
+  const allItems = React.useMemo(() => {
+    const staticItems = [
+      { title: "Home", href: "/", category: "Page" },
+      { title: "Gallery", href: "/gallery", category: "Media" },
+      { title: "Careers", href: "/careers", category: "More" },
+    ];
+
+    const derivedItems = navItems.flatMap(item => {
+      if (item.children) {
+        return item.children.map(child => ({
+          title: child.title,
+          href: child.href,
+          category: item.title === "About Us" ? "About" :
+            item.title === "Admissions" ? "Admissions" :
+              item.title === "Academics" ? "Academics" :
+                item.title === "Sports & Activities" ? "Sports" :
+                  item.title === "Updates" ? "Updates" :
+                    item.title === "Forms & Documents" ? "Legal" : item.title
+        }));
+      }
+      return [{
+        title: item.title,
+        href: item.href,
+        category: item.title === "Contact Us" ? "Support" : "Page"
+      }];
+    });
+
+    // Add specific overrides to match requirements
+    const overrides = [
+      { title: "Apply Online", href: "/admissions", category: "Admissions" },
+      { title: "Academic Calendar", href: "/", category: "Academics" },
+    ];
+
+    const combined = [...staticItems, ...derivedItems, ...overrides];
+
+    // Filter to unique items and match original list intent
+    return combined.filter((item, index, self) =>
+      index === self.findIndex((t) => t.href === item.href && t.title === item.title)
+    ).sort((a, b) => {
+      const order = ["Home", "About Us", "Principal's Message", "Admission Process", "Apply Online", "Fee Structure", "Academic Calendar", "Gallery", "Student Leadership", "Contact Us", "Careers", "Mandatory Disclosure"];
+      const aIdx = order.indexOf(a.title);
+      const bIdx = order.indexOf(b.title);
+      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+      if (aIdx !== -1) return -1;
+      if (bIdx !== -1) return 1;
+      return 0;
+    });
+  }, []);
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     const url = new URL(href, window.location.origin);
     if (url.pathname === pathname && url.hash) {
@@ -268,7 +317,7 @@ const Header = () => {
                     >
                       {item.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className={item.alignRight ? "right-0 left-auto" : ""}>
+                    <NavigationMenuContent className={cn(item.alignRight && "right-0 left-auto")}>
                       <ul className="grid w-[calc(100vw-2rem)] max-w-[400px] gap-3 p-4 md:max-w-[500px] md:grid-cols-2 lg:max-w-[600px] bg-white text-foreground rounded-xl shadow-xl border border-gold/10">
                         {item.children.map((child) => (
                           <ListItem
@@ -341,102 +390,54 @@ const Header = () => {
               </div>
 
               <div className="max-h-[300px] overflow-y-auto p-2">
-                {(() => {
-                  const allItems = React.useMemo(() => {
-                    const staticItems = [
-                      { title: "Home", href: "/", category: "Page" },
-                      { title: "Gallery", href: "/gallery", category: "Media" },
-                      { title: "Careers", href: "/careers", category: "More" },
-                    ];
-
-                    const derivedItems = navItems.flatMap(item => {
-                      if (item.children) {
-                        return item.children.map(child => ({
-                          title: child.title,
-                          href: child.href,
-                          category: item.title === "About Us" ? "About" :
-                            item.title === "Admissions" ? "Admissions" :
-                              item.title === "Academics" ? "Academics" :
-                                item.title === "Sports & Activities" ? "Sports" :
-                                  item.title === "Updates" ? "Updates" :
-                                    item.title === "Forms & Documents" ? "Legal" : item.title
-                        }));
-                      }
-                      return [{
-                        title: item.title,
-                        href: item.href,
-                        category: item.title === "Contact Us" ? "Support" : "Page"
-                      }];
-                    });
-
-                    // Add specific overrides to match requirements
-                    const overrides = [
-                      { title: "Apply Online", href: "/admissions", category: "Admissions" },
-                      { title: "Academic Calendar", href: "/", category: "Academics" },
-                    ];
-
-                    const combined = [...staticItems, ...derivedItems, ...overrides];
-
-                    // Filter to unique items and match original list intent
-                    return combined.filter((item, index, self) =>
-                      index === self.findIndex((t) => t.href === item.href && t.title === item.title)
-                    ).sort((a, b) => {
-                      const order = ["Home", "About Us", "Principal's Message", "Admission Process", "Apply Online", "Fee Structure", "Academic Calendar", "Gallery", "Student Leadership", "Contact Us", "Careers", "Mandatory Disclosure"];
-                      const aIdx = order.indexOf(a.title);
-                      const bIdx = order.indexOf(b.title);
-                      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
-                      if (aIdx !== -1) return -1;
-                      if (bIdx !== -1) return 1;
-                      return 0;
-                    });
-                  }, []);
-
-                  // If query is empty, show Quick Links
-                  if (!searchQuery.trim()) {
-                    return (
-                      <div className="px-2 py-2">
-                        <p className="text-xs font-semibold text-gray-400 uppercase mb-2">Quick Links</p>
-                        <div className="grid gap-1">
-                          {allItems.slice(3, 7).map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={() => setIsSearchOpen(false)}
-                              className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors"
-                            >
-                              <span className="text-sm font-medium text-navy">{item.title}</span>
-                            </Link>
-                          ))}
+                {/* Search Results Logic moved to top lovel */
+                  (() => {
+                    // If query is empty, show Quick Links
+                    if (!searchQuery.trim()) {
+                      return (
+                        <div className="px-2 py-2">
+                          <p className="text-xs font-semibold text-gray-400 uppercase mb-2">Quick Links</p>
+                          <div className="grid gap-1">
+                            {allItems.slice(3, 7).map((item, idx) => (
+                              <Link
+                                key={idx}
+                                href={item.href}
+                                onClick={() => setIsSearchOpen(false)}
+                                className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors"
+                              >
+                                <span className="text-sm font-medium text-navy">{item.title}</span>
+                              </Link>
+                            ))}
+                          </div>
                         </div>
+                      );
+                    }
+
+                    const filtered = allItems.filter(item =>
+                      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                      item.category.toLowerCase().includes(searchQuery.toLowerCase())
+                    );
+
+                    if (filtered.length === 0) {
+                      return <p className="p-4 text-center text-sm text-muted-foreground">No results found for "{searchQuery}".</p>;
+                    }
+
+                    return (
+                      <div className="space-y-1">
+                        {filtered.map((item, idx) => (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={() => setIsSearchOpen(false)}
+                            className="flex items-center justify-between rounded-md px-4 py-3 hover:bg-gray-100 transition-colors group"
+                          >
+                            <span className="font-medium text-navy group-hover:text-gold-dark transition-colors">{item.title}</span>
+                            <Badge variant="secondary" className="text-[10px] bg-gray-100 text-gray-500 group-hover:bg-white">{item.category}</Badge>
+                          </Link>
+                        ))}
                       </div>
                     );
-                  }
-
-                  const filtered = allItems.filter(item =>
-                    item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    item.category.toLowerCase().includes(searchQuery.toLowerCase())
-                  );
-
-                  if (filtered.length === 0) {
-                    return <p className="p-4 text-center text-sm text-muted-foreground">No results found for "{searchQuery}".</p>;
-                  }
-
-                  return (
-                    <div className="space-y-1">
-                      {filtered.map((item, idx) => (
-                        <Link
-                          key={idx}
-                          href={item.href}
-                          onClick={() => setIsSearchOpen(false)}
-                          className="flex items-center justify-between rounded-md px-4 py-3 hover:bg-gray-100 transition-colors group"
-                        >
-                          <span className="font-medium text-navy group-hover:text-gold-dark transition-colors">{item.title}</span>
-                          <Badge variant="secondary" className="text-[10px] bg-gray-100 text-gray-500 group-hover:bg-white">{item.category}</Badge>
-                        </Link>
-                      ))}
-                    </div>
-                  );
-                })()}
+                  })()}
               </div>
             </DialogContent>
           </Dialog>

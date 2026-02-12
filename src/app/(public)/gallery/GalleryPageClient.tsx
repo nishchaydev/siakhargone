@@ -22,6 +22,8 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const [isHidden, setIsHidden] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -54,6 +56,19 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
       img.imageHint?.toLowerCase().includes(activeCategory.toLowerCase())
     );
   }, [activeCategory, initialImages]);
+
+  const visibleImages = useMemo(() => {
+    return filteredImages.slice(0, visibleCount);
+  }, [filteredImages, visibleCount]);
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    // Simulate network delay
+    setTimeout(() => {
+      setVisibleCount(prev => prev + 12);
+      setIsLoadingMore(false);
+    }, 800);
+  };
 
   return (
     <div className="bg-background min-h-screen font-sans selection:bg-gold selection:text-white">
@@ -125,7 +140,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
         ) : (
           <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
             <AnimatePresence mode="popLayout">
-              {filteredImages.map((image, idx) => (
+              {visibleImages.map((image, idx) => (
                 <motion.div
                   key={image.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -159,20 +174,21 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
         )}
 
         {/* Dynamic Pagination or CTA */}
-        <div className="text-center mt-24">
-          <button
-            onClick={() => {
-              // Placeholder for loading more images
-              console.log("Loading more images...");
-            }}
-            className="group px-12 py-5 bg-navy text-white rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-navy/30 transition-all duration-500 border border-white/10 flex items-center gap-3 mx-auto"
-          >
-            <span>Load More Memories</span>
-            <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center group-hover:bg-gold/40 transition-colors">
-              <ChevronDown className="w-5 h-5 text-gold" />
-            </div>
-          </button>
-        </div>
+        {visibleCount < filteredImages.length && (
+          <div className="text-center mt-24">
+            <button
+              onClick={handleLoadMore}
+              disabled={isLoadingMore}
+              className="group px-12 py-5 bg-navy text-white rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-navy/30 transition-all duration-500 border border-white/10 flex items-center gap-3 mx-auto disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              <span>{isLoadingMore ? "Loading..." : "Load More Memories"}</span>
+              <div className={`w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center group-hover:bg-gold/40 transition-colors ${isLoadingMore ? 'animate-spin' : ''}`}>
+                {!isLoadingMore && <ChevronDown className="w-5 h-5 text-gold" />}
+                {isLoadingMore && <div className="w-4 h-4 border-2 border-gold border-t-transparent rounded-full" />}
+              </div>
+            </button>
+          </div>
+        )}
       </section>
 
       {/* Lightbox - High End */}

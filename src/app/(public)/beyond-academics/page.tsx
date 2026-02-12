@@ -171,6 +171,7 @@ export default function BeyondSchoolPage() {
                     alt="Team Pride"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-125"
+                    sizes="(max-width: 768px) 50vw, 20vw"
                   />
                 </div>
               </div>

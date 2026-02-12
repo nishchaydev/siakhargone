@@ -40,7 +40,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/admission-guide',
         '/achievements',
         '/results',
-        '/updates'
+        '/updates',
+        '/best-cbse-school-in-khargone',
+        '/schools-in-khargone-guide',
+        '/cbse-admission-in-khargone',
+        '/how-to-choose-school-in-khargone'
     ];
 
     const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics'];

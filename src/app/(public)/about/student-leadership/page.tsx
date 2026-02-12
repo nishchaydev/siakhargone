@@ -39,6 +39,10 @@ export default function StudentLeadershipPage() {
             <nav aria-label="Breadcrumb" className="container mx-auto px-4 -mt-8 relative z-20">
                 <ol className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-cardBorder text-sm font-medium text-navy/60">
                     <li>
+                        <Link href="/" className="hover:text-navy transition-colors">Home</Link>
+                    </li>
+                    <li className="text-gold" aria-hidden="true">/</li>
+                    <li>
                         <Link href="/about/overview" className="hover:text-navy transition-colors">About Us</Link>
                     </li>
                     <li className="text-gold" aria-hidden="true">/</li>

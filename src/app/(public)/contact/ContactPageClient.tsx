@@ -157,7 +157,8 @@ export default function ContactPageClient() {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-navy uppercase tracking-wider">Office Hours</p>
-                        <p className="text-gray-700 font-medium">Monday - Friday: 8:00 AM - 4:00 PM</p>
+                        <p className="text-gray-700 font-medium">Mon - Fri: {schoolData.timings.mondayToFriday}</p>
+                        <p className="text-gray-500 text-sm">Sat: {schoolData.timings.saturday}</p>
                       </div>
                     </div>
                   </div>

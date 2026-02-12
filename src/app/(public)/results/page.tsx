@@ -1,4 +1,5 @@
 import { getResultsService } from "@/services/resultsService";
+import Link from "next/link";
 import ResultsPageClient from "./ResultsPageClient";
 import { Metadata } from "next";
 
@@ -39,6 +40,18 @@ export default async function ResultsPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             <ResultsPageClient initialResults={results} />
+
+            <section className="py-12 bg-gray-50 mt-12 text-center">
+                <div className="container px-4">
+                    <h3 className="text-2xl font-bold text-navy mb-4">Consistent Excellence</h3>
+                    <p className="text-gray-600 max-w-2xl mx-auto mb-6">
+                        Our academic track record is just one reason why Sanskar International Academy is considered a
+                        <Link href="/best-cbse-school-in-khargone" className="text-gold font-bold hover:underline mx-1">
+                            leading CBSE school in Khargone
+                        </Link>.
+                    </p>
+                </div>
+            </section>
         </>
     );
 }

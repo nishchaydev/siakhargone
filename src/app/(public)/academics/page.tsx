@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { loadAlbums } from '@/lib/content';
 import AcademicsPageClient from './AcademicsPageClient';
 import { cloudinary } from '@/lib/cloudinary-images';
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     description: 'CBSE Curriculum, Smart Classrooms, and Holistic Development at Sanskar International Academy.',
     images: [
       {
-        url: cloudinary.infrastructure.classrooms[0],
+        url: cloudinary.infrastructure.classrooms?.[0] || "/images/placeholder.jpg",
         width: 1200,
         height: 630,
         alt: "Smart Classrooms at SIA",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 
 const methodologyImage = {
   id: 'experiential-learning',
-  imageUrl: cloudinary.academics?.methodology || cloudinary.infrastructure.classrooms[0],
+  imageUrl: cloudinary.academics?.methodology || cloudinary.infrastructure?.classrooms?.[0] || "/images/placeholder.jpg",
   description: "Interactive Learning Environment",
   imageHint: "Classroom"
 };
@@ -93,6 +94,18 @@ export default async function AcademicsPage() {
         infrastructurePhotos={infrastructurePhotos}
         bannerImage={bannerImage}
       />
+
+      <section className="py-12 bg-navy text-white text-center">
+        <div className="container px-4">
+          <h3 className="text-2xl font-bold mb-4">World-Class Education in Khargone</h3>
+          <p className="text-white/80 max-w-2xl mx-auto">
+            Our innovative curriculum and expert faculty are pillars of our status as a
+            <Link href="/best-cbse-school-in-khargone" className="text-gold font-bold hover:underline mx-1">
+              top-ranked CBSE school in Khargone
+            </Link>.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
