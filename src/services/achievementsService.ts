@@ -13,6 +13,23 @@ export interface AchievementItem {
     priority: string; // "1", "2", "3"
     category: string;
     mediaCoverage?: boolean;
+    status?: string;
+}
+
+export function normalizeAchievement(raw: any): AchievementItem {
+    return {
+        id: String(raw.id || raw[0] || ""),
+        title: String(raw.title || raw[1] || ""),
+        studentName: String(raw.studentName || raw[2] || ""),
+        class: String(raw.class || raw[3] || ""),
+        date: String(raw.date || raw[4] || ""),
+        description: String(raw.description || raw[5] || ""),
+        imageUrl: String(raw.imageUrl || raw[6] || ""),
+        priority: String(raw.priority || raw[7] || "3"),
+        category: String(raw.category || raw[8] || "General"),
+        status: String(raw.status || raw[9] || "Active"),
+        mediaCoverage: raw.mediaCoverage === true || raw[11] === 'Yes'
+    };
 }
 
 async function fetchAchievementsFromGoogleSheets(): Promise<AchievementItem[]> {
@@ -21,19 +38,7 @@ async function fetchAchievementsFromGoogleSheets(): Promise<AchievementItem[]> {
         // Header: ["Id", "Title", "StudentName", "Class", "Date", "Description", "ImageUrl", "Priority", "Category", "Status", "CreatedAt", "MediaCoverage"]
         const rows = await SheetService.getRows(SHEET_TAB_IDS.ACHIEVEMENTS, 'A:L');
 
-        const items = rows.map((row) => ({
-            id: row[0],
-            title: row[1],
-            studentName: row[2],
-            class: row[3],
-            date: row[4],
-            description: row[5],
-            imageUrl: row[6],
-            priority: row[7],
-            category: row[8],
-            status: row[9],
-            mediaCoverage: row[11] === 'Yes'
-        }));
+        const items = rows.map(normalizeAchievement);
 
         return items
             .filter(item => item.id && item.id !== 'Id' && (item.status === 'Active' || !item.status)) // Allow items if status is 'Active' or missing

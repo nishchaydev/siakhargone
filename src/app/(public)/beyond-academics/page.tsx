@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import Image from "next/image";
 import { Section } from "@/components/common/Section";
@@ -7,6 +6,7 @@ import BeyondAcademicsPageClient from './BeyondAcademicsPageClient';
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import PageBanner from "@/components/common/PageBanner";
 
 const sportsImage = {
   id: 'sports-infrastructure',
@@ -16,7 +16,7 @@ const sportsImage = {
 };
 const leadershipImage = {
   id: 'student-leadership',
-  imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349476/sports-achievements-4_hygkkb.webp",
+  imageUrl: cloudinary.beyondAcademics?.leadership || "https://res.cloudinary.com/dkits80xk/image/upload/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png",
   description: "Personality Development & Leadership",
   imageHint: "leadership"
 };
@@ -38,7 +38,6 @@ const scholarshipItems = [
 ];
 
 
-import PageBanner from "@/components/common/PageBanner";
 
 export const metadata: Metadata = {
   title: 'Beyond School - Sports, Arts & Co-Curricular Activities',
@@ -80,6 +79,7 @@ export default function BeyondSchoolPage() {
                 width={600}
                 height={400}
                 className="rounded-lg shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 priority />
             )}
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gold/10 rounded-full -z-10" />
@@ -113,6 +113,7 @@ export default function BeyondSchoolPage() {
                 alt="Action & Fun"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
@@ -129,9 +130,10 @@ export default function BeyondSchoolPage() {
                 alt="Martial Arts"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 1024px) 100vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-left">
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 text-left">
                 <h4 className="text-white font-bold text-xl tracking-wide uppercase">MARTIAL ARTS</h4>
                 <p className="text-white/80 text-sm">Discipline & Strength</p>
               </div>
@@ -144,9 +146,10 @@ export default function BeyondSchoolPage() {
                 alt="Strategy Games"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 1024px) 50vw, 25vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-left">
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 text-left">
                 <span className="text-white font-bold text-sm tracking-widest uppercase">STRATEGY</span>
               </div>
             </div>

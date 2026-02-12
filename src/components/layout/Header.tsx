@@ -93,6 +93,7 @@ const navItems: NavItem[] = [
   {
     title: "Academics",
     href: "/academics",
+    alignRight: true,
     children: [
       { title: "Curriculum", href: "/academics#curriculum", description: "Our comprehensive and engaging learning framework.", iconName: "BookOpen" },
       { title: "Teaching Methodology", href: "/academics#methodology", description: "Innovative approaches to foster effective learning.", iconName: "Lightbulb" },
@@ -105,6 +106,7 @@ const navItems: NavItem[] = [
   {
     title: "Sports & Activities",
     href: "/beyond-academics",
+    alignRight: true,
     children: [
       { title: "Sports", href: "/beyond-academics#sports", description: "Excellence in physical development and teamwork.", iconName: "Trophy" },
       { title: "Co-Curricular", href: "/beyond-academics#co-curricular", description: "Creative, innovative and self-expression activities.", iconName: "Palette" },
@@ -115,6 +117,7 @@ const navItems: NavItem[] = [
   {
     title: "Updates",
     href: "/news-events",
+    alignRight: true,
     children: [
       { title: "Notice Board", href: "/notices", description: "All official circulars and updates.", iconName: "ClipboardList" },
       { title: "Daily Announcements", href: "/updates", description: "Real-time feed of school announcements.", iconName: "Bell" },
@@ -126,6 +129,7 @@ const navItems: NavItem[] = [
   {
     title: "Forms & Documents",
     href: "/downloads",
+    alignRight: true,
     children: [
       { title: "Student Resources", href: "/downloads", description: "Forms, production calendars and study materials.", iconName: "Download" },
       { title: "Mandatory Disclosures", href: "/mandatory-disclosure", description: "Public disclosures and legal documents.", iconName: "ShieldCheck" },
@@ -246,7 +250,7 @@ const Header = () => {
 
           <div className="flex flex-col justify-center">
             <span className="font-display font-bold text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-none tracking-tight text-white mb-[2px]">SANSKAR</span>
-            <span className="font-sans text-[8px] sm:text-[10px] lg:text-[11px] xl:text-sm font-bold uppercase tracking-[0.1em] lg:tracking-[0.15em] xl:tracking-[0.25em] text-gold/90 whitespace-nowrap">INTERNATIONAL ACADEMY</span>
+            <span className="font-sans text-[10px] lg:text-[11px] xl:text-sm font-bold uppercase tracking-[0.1em] lg:tracking-[0.15em] xl:tracking-[0.25em] text-gold/90 whitespace-nowrap">INTERNATIONAL ACADEMY</span>
           </div>
         </Link>
 
@@ -264,7 +268,7 @@ const Header = () => {
                     >
                       {item.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className={["Academics", "Sports & Activities", "Forms & Documents", "Updates"].includes(item.title) ? "right-0 left-auto" : ""}>
+                    <NavigationMenuContent className={item.alignRight ? "right-0 left-auto" : ""}>
                       <ul className="grid w-[calc(100vw-2rem)] max-w-[400px] gap-3 p-4 md:max-w-[500px] md:grid-cols-2 lg:max-w-[600px] bg-white text-foreground rounded-xl shadow-xl border border-gold/10">
                         {item.children.map((child) => (
                           <ListItem
@@ -338,20 +342,54 @@ const Header = () => {
 
               <div className="max-h-[300px] overflow-y-auto p-2">
                 {(() => {
-                  const allItems = [
-                    { title: "Home", href: "/", category: "Page" },
-                    { title: "About Us", href: "/about/overview", category: "Page" },
-                    { title: "Principal's Message", href: "/about/principal", category: "About" },
-                    { title: "Admission Process", href: "/admissions", category: "Admissions" },
-                    { title: "Apply Online", href: "/admissions", category: "Admissions" },
-                    { title: "Fee Structure", href: "/fees", category: "Admissions" },
-                    { title: "Academic Calendar", href: "/", category: "Academics" },
-                    { title: "Gallery", href: "/gallery", category: "Media" },
-                    { title: "Student Leadership", href: "/about/student-leadership", category: "About" },
-                    { title: "Contact Us", href: "/contact", category: "Support" },
-                    { title: "Careers", href: "/careers", category: "More" },
-                    { title: "Mandatory Disclosure", href: "/mandatory-disclosure", category: "Legal" },
-                  ];
+                  const allItems = React.useMemo(() => {
+                    const staticItems = [
+                      { title: "Home", href: "/", category: "Page" },
+                      { title: "Gallery", href: "/gallery", category: "Media" },
+                      { title: "Careers", href: "/careers", category: "More" },
+                    ];
+
+                    const derivedItems = navItems.flatMap(item => {
+                      if (item.children) {
+                        return item.children.map(child => ({
+                          title: child.title,
+                          href: child.href,
+                          category: item.title === "About Us" ? "About" :
+                            item.title === "Admissions" ? "Admissions" :
+                              item.title === "Academics" ? "Academics" :
+                                item.title === "Sports & Activities" ? "Sports" :
+                                  item.title === "Updates" ? "Updates" :
+                                    item.title === "Forms & Documents" ? "Legal" : item.title
+                        }));
+                      }
+                      return [{
+                        title: item.title,
+                        href: item.href,
+                        category: item.title === "Contact Us" ? "Support" : "Page"
+                      }];
+                    });
+
+                    // Add specific overrides to match requirements
+                    const overrides = [
+                      { title: "Apply Online", href: "/admissions", category: "Admissions" },
+                      { title: "Academic Calendar", href: "/", category: "Academics" },
+                    ];
+
+                    const combined = [...staticItems, ...derivedItems, ...overrides];
+
+                    // Filter to unique items and match original list intent
+                    return combined.filter((item, index, self) =>
+                      index === self.findIndex((t) => t.href === item.href && t.title === item.title)
+                    ).sort((a, b) => {
+                      const order = ["Home", "About Us", "Principal's Message", "Admission Process", "Apply Online", "Fee Structure", "Academic Calendar", "Gallery", "Student Leadership", "Contact Us", "Careers", "Mandatory Disclosure"];
+                      const aIdx = order.indexOf(a.title);
+                      const bIdx = order.indexOf(b.title);
+                      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+                      if (aIdx !== -1) return -1;
+                      if (bIdx !== -1) return 1;
+                      return 0;
+                    });
+                  }, []);
 
                   // If query is empty, show Quick Links
                   if (!searchQuery.trim()) {

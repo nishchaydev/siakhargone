@@ -26,40 +26,39 @@ const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod =
 
 import { albums, testimonials, faqs } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
-import { getNewsService } from "@/services/newsService";
-import { getEventsService } from "@/services/eventsService";
-import { getNoticesService } from "@/services/noticesService";
+import { getNewsService, type NewsItem as ServiceNewsItem } from "@/services/newsService";
+import { getEventsService, type EventItem as ServiceEventItem } from "@/services/eventsService";
+import { getNoticesService, type NoticeItem as ServiceNoticeItem } from "@/services/noticesService";
 import { getAchievementsService } from "@/services/achievementsService";
 import { AnnouncementMarquee } from "@/components/layout/AnnouncementMarquee";
 import { schoolData } from "@/data/schoolData";
 
 // Force dynamic rendering since we are fetching news which updates frequently
-// CHANGED: Reduced revalidation time to 10 seconds for "ASAP" updates.
-export const revalidate = 10;
+// CHANGED: Increased revalidation time to 300 seconds (5 minutes) to reduce server load.
+export const revalidate = 300;
 
 // Basic shapes for the incoming data
-interface BaseItem {
+interface BaseUpdateItem {
   id: string | number;
   date: string;
-  title: string; // mapped from text or title
+  title: string;
   description?: string;
-  [key: string]: unknown; // Allow extra props from services if needed, but typed safely in union
 }
 
-interface NewsItem extends BaseItem {
+interface NewsUpdateItem extends BaseUpdateItem {
   type: 'News';
 }
 
-interface EventItem extends BaseItem {
+interface EventUpdateItem extends BaseUpdateItem {
   type: 'Event';
 }
 
-interface NoticeItem extends BaseItem {
+interface NoticeUpdateItem extends BaseUpdateItem {
   type: 'Notice';
   text?: string;
 }
 
-type UpdateItem = NewsItem | EventItem | NoticeItem;
+type UpdateItem = NewsUpdateItem | EventUpdateItem | NoticeUpdateItem;
 
 
 export default async function Home() {
@@ -73,9 +72,9 @@ export default async function Home() {
 
 
   const allUpdates: (UpdateItem & { timestamp: number; priority: number })[] = [
-    ...newsItems.map((item: any) => ({ ...item, type: 'News' } as UpdateItem)),
-    ...eventsItems.map((item: any) => ({ ...item, type: 'Event' } as UpdateItem)),
-    ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: item.text || 'Important Notice' } as UpdateItem))
+    ...newsItems.map((item: ServiceNewsItem) => ({ ...item, type: 'News' } as UpdateItem)),
+    ...eventsItems.map((item: ServiceEventItem) => ({ ...item, type: 'Event' } as UpdateItem)),
+    ...noticesItems.map((item: ServiceNoticeItem) => ({ ...item, type: 'Notice', description: item.title || 'Important Notice' } as UpdateItem))
   ].map(item => {
     const timestamp = item.date ? new Date(item.date).getTime() : 0;
     const title = (item.title || "").toLowerCase();
@@ -83,7 +82,13 @@ export default async function Home() {
 
     // Priority calculation: 2 for extremely relevant keywords, 1 for urgent notices, 0 for others
     let priority = 0;
-    if (title.includes('gujarat') || title.includes('admission') || description.includes('gujarat') || description.includes('admission')) {
+    const priorityKeywords = schoolData.priorityKeywords || ['gujarat', 'admission'];
+    const hasKeyword = priorityKeywords.some(keyword =>
+      title.includes(keyword.toLowerCase()) ||
+      description.includes(keyword.toLowerCase())
+    );
+
+    if (hasKeyword) {
       priority = 2;
     } else if (item.type === 'Notice') {
       priority = 1;
@@ -135,10 +140,10 @@ export default async function Home() {
       cta2Href: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6"
     },
     stats: [
-      { label: "Students", value: schoolData.stats.students },
-      { label: "Teachers", value: schoolData.stats.teachers },
-      { label: "Years of Experience", value: "10+" },
-      { label: "Awards Won", value: "50+" }
+      { label: "Students", value: schoolData.stats.students || "1000+" },
+      { label: "Teachers", value: schoolData.stats.teachers || "50+" },
+      { label: "Years of Experience", value: schoolData.stats.yearsOfExperience || "10+" },
+      { label: "Awards Won", value: schoolData.stats.awardsWon || "25+" }
     ],
     gallery: galleryImages
   };

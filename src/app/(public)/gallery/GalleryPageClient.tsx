@@ -35,6 +35,8 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
 
   // Handle ESC key to close lightbox
   useEffect(() => {
+    if (!selectedImage) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setSelectedImage(null);
@@ -42,7 +44,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [selectedImage]);
 
   // Filter logic
   const filteredImages = useMemo(() => {
@@ -81,7 +83,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
           </p>
         </motion.div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-          <ChevronDown className="text-white/50 w-8 h-8" />
+          <ChevronDown className="text-white/50 w-8 h-8" aria-hidden="true" />
         </div>
       </section>
 
@@ -143,16 +145,12 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
                   />
                   {/* Pinterest-style Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      className="text-left"
-                    >
+                    <div className="text-left transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                       <span className="text-gold font-bold tracking-widest text-xs uppercase mb-2 block">{activeCategory}</span>
                       <h4 className="text-white font-display font-bold text-xl leading-tight">
                         {image.description || "Campus Moment"}
                       </h4>
-                    </motion.div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -162,7 +160,13 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
 
         {/* Dynamic Pagination or CTA */}
         <div className="text-center mt-24">
-          <button className="group px-12 py-5 bg-navy text-white rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-navy/30 transition-all duration-500 border border-white/10 flex items-center gap-3 mx-auto">
+          <button
+            onClick={() => {
+              // Placeholder for loading more images
+              console.log("Loading more images...");
+            }}
+            className="group px-12 py-5 bg-navy text-white rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-navy/30 transition-all duration-500 border border-white/10 flex items-center gap-3 mx-auto"
+          >
             <span>Load More Memories</span>
             <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center group-hover:bg-gold/40 transition-colors">
               <ChevronDown className="w-5 h-5 text-gold" />
@@ -183,7 +187,9 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
           >
             <motion.button
               whileHover={{ rotate: 90 }}
-              className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors"
+              onClick={() => setSelectedImage(null)}
+              aria-label="Close lightbox"
+              className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[110]"
             >
               <X size={48} strokeWidth={1} />
             </motion.button>
@@ -196,7 +202,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
             >
               <Image
                 src={selectedImage.imageUrl}
-                alt=""
+                alt={selectedImage.description || "Campus moment"}
                 fill
                 className="object-contain"
               />

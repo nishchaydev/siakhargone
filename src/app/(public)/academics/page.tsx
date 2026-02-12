@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { loadAlbums } from '@/lib/content';
 import AcademicsPageClient from './AcademicsPageClient';
 import { cloudinary } from '@/lib/cloudinary-images';
+import Schema from '@/components/seo/Schema';
 
 export const metadata: Metadata = {
   title: 'Academics - CBSE Curriculum & Methodology',
@@ -22,12 +23,11 @@ export const metadata: Metadata = {
 
 const methodologyImage = {
   id: 'experiential-learning',
-  imageUrl: cloudinary.infrastructure.classrooms[0],
+  imageUrl: cloudinary.academics?.methodology || cloudinary.infrastructure.classrooms[0],
   description: "Interactive Learning Environment",
   imageHint: "Classroom"
 };
 
-import Schema from '@/components/seo/Schema';
 
 const faqs = [
   {
@@ -71,8 +71,8 @@ export const dynamic = 'force-dynamic';
 
 export default async function AcademicsPage() {
   const albums = await loadAlbums();
-  // Static banner fallback
-  const bannerImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1770866540/ba5fa378-c98b-4e8f-a4ec-bd5db243929f.png";
+  // Static banner fallback 
+  const bannerImage = cloudinary.academics?.banner || "https://res.cloudinary.com/dkits80xk/image/upload/v1770866540/ba5fa378-c98b-4e8f-a4ec-bd5db243929f.png";
 
   // Extract photos for auto-scroll
   const labAlbum = albums.find(a => a.albumName === "Labs & Facilities");

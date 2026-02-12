@@ -9,7 +9,6 @@ import {
     Crown,
     Palette,
     HeartHandshake,
-    BookOpen,
     Anchor,
     Sparkles
 } from 'lucide-react';
@@ -22,9 +21,13 @@ const fadeInUp = {
 
 interface LeadershipContentProps {
     bannerImage: string;
+    studentCouncilImage?: string;
 }
 
-export default function LeadershipContent({ bannerImage }: LeadershipContentProps) {
+export default function LeadershipContent({
+    bannerImage,
+    studentCouncilImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1770863349/9690af22-e610-4828-a6f6-14eaf7e5c4dd.png"
+}: LeadershipContentProps) {
     return (
         <div className="container mx-auto px-4 py-16 space-y-32 max-w-7xl">
             {/* Introduction Section - Premium Glass Card */}
@@ -86,7 +89,7 @@ export default function LeadershipContent({ bannerImage }: LeadershipContentProp
                                     fill
                                     className="object-cover transform group-hover:scale-110 transition-transform duration-[2s] ease-out"
                                     priority
-                                    quality={100}
+                                    quality={85}
                                 />
                                 <div className="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors duration-700" />
 
@@ -110,11 +113,11 @@ export default function LeadershipContent({ bannerImage }: LeadershipContentProp
                         <div className="relative rounded-[2.5rem] p-4 bg-white shadow-2xl border border-cardBorder">
                             <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden group">
                                 <Image
-                                    src="https://res.cloudinary.com/dkits80xk/image/upload/v1770863349/9690af22-e610-4828-a6f6-14eaf7e5c4dd.png"
+                                    src={studentCouncilImage}
                                     alt="Student Council 2025-26 - Sanskar International Academy"
                                     fill
                                     className="object-cover transform group-hover:scale-110 transition-transform duration-[2s] ease-out"
-                                    quality={100}
+                                    quality={85}
                                 />
                                 <div className="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors duration-700" />
 
@@ -192,7 +195,7 @@ export default function LeadershipContent({ bannerImage }: LeadershipContentProp
                         }
                     ].map((role, index) => (
                         <motion.div
-                            key={index}
+                            key={role.title}
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
@@ -209,10 +212,6 @@ export default function LeadershipContent({ bannerImage }: LeadershipContentProp
                             <p className="text-gray-600 leading-relaxed group-hover:text-gray-900">
                                 {role.desc}
                             </p>
-
-                            <div className={`mt-8 flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-all duration-500 ${role.accent === 'gold' ? 'text-gold opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0' : 'text-navy opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0'}`}>
-                                Learn More <span className="text-lg">→</span>
-                            </div>
                         </motion.div>
                     ))}
                 </div>

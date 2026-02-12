@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: 'About Us | Sanskar International Academy',
-        description: 'Discover the legacy and vision of SIA Khargone. Providing holistic excellence since 2004.',
+        description: 'Discover the legacy and vision of SIA Khargone. Providing holistic excellence since 2016.',
         url: 'https://siakhargone.in/about/overview',
     }
 };
@@ -32,7 +32,7 @@ export default async function AboutOverviewPage() {
         <div className="bg-grain min-h-screen">
             <PageBanner
                 title="About Sanskar International Academy"
-                subtitle="Nurturing Excellence, Character, and Innovation since 2004."
+                subtitle="Nurturing Excellence, Character, and Innovation since 2016."
                 image={bannerImage}
             />
             <AboutOverview

@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { addAchievement } from '@/services/achievementsService';
-import { addResult } from '@/services/resultsService';
-import { addUpdate } from '@/services/updatesService';
-import { addNewsService } from '@/services/newsService';
-import { addEventService } from '@/services/eventsService';
-import { addNoticeService } from '@/services/noticesService';
+import { addAchievement, getAchievementsService } from '@/services/achievementsService';
+import { addResult, getResultsService } from '@/services/resultsService';
+import { addUpdate, getUpdatesService } from '@/services/updatesService';
+import { addNewsService, getNewsService } from '@/services/newsService';
+import { addEventService, getEventsService } from '@/services/eventsService';
+import { addNoticeService, getNoticesService } from '@/services/noticesService';
 
 export async function GET(request: Request) {
     try {
@@ -26,6 +26,23 @@ export async function GET(request: Request) {
             notices: 0,
             errors: [] as string[]
         };
+
+        // Fetch existing data to ensure idempotency
+        const [
+            existingAchievements,
+            existingResults,
+            existingUpdates,
+            existingNews,
+            existingEvents,
+            existingNotices
+        ] = await Promise.all([
+            getAchievementsService(),
+            getResultsService(),
+            getUpdatesService(),
+            getNewsService(),
+            getEventsService(),
+            getNoticesService()
+        ]);
 
         // ACHIEVEMENTS
         const achievements = [
@@ -154,6 +171,10 @@ export async function GET(request: Request) {
 
         for (const item of achievements) {
             try {
+                // Check if already exists by title
+                if (existingAchievements.some(a => a.title === item.title)) {
+                    continue;
+                }
                 await addAchievement(item);
                 results.achievements++;
             } catch (e) {
@@ -192,6 +213,9 @@ export async function GET(request: Request) {
 
         for (const item of resultItems) {
             try {
+                if (existingResults.some(r => r.title === item.title)) {
+                    continue;
+                }
                 await addResult(item);
                 results.results++;
             } catch (e) {
@@ -227,6 +251,9 @@ export async function GET(request: Request) {
 
         for (const item of updates) {
             try {
+                if (existingUpdates.some(u => u.content === item.content)) {
+                    continue;
+                }
                 await addUpdate(item);
                 results.updates++;
             } catch (e) {
@@ -259,6 +286,9 @@ export async function GET(request: Request) {
 
         for (const item of newsItems) {
             try {
+                if (existingNews.some(n => n.title === item.title)) {
+                    continue;
+                }
                 await addNewsService(item);
                 results.news++;
             } catch (e) {
@@ -297,6 +327,9 @@ export async function GET(request: Request) {
 
         for (const item of eventsItems) {
             try {
+                if (existingEvents.some(e => e.title === item.title && e.date === item.date)) {
+                    continue;
+                }
                 await addEventService(item);
                 results.events++;
             } catch (e) {
@@ -332,6 +365,9 @@ export async function GET(request: Request) {
 
         for (const item of noticesItems) {
             try {
+                if (existingNotices.some(n => n.title === item.title && n.date === item.date)) {
+                    continue;
+                }
                 await addNoticeService(item);
                 results.notices++;
             } catch (e) {

@@ -7,6 +7,7 @@ export interface NavItem {
   description?: string;
   children?: NavItem[];
   iconName?: string;
+  alignRight?: boolean;
 }
 
 export interface Feature {

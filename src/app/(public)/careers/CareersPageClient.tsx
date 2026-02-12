@@ -123,6 +123,7 @@ export default function CareersPageClient({ initialCareers = [] }: CareersPageCl
             alt="SIA Campus"
             fill
             className="object-cover brightness-[0.4]"
+            sizes="100vw"
             priority
           />
         </div>
@@ -190,16 +191,17 @@ export default function CareersPageClient({ initialCareers = [] }: CareersPageCl
                 "At SIA, I found more than just a job. I found a family that supports my professional growth and a classroom where I can truly innovate."
               </blockquote>
               <div>
-                <cite className="not-italic font-bold text-lg text-gold block">MR KISHORE GUPTA</cite>
-                <span className="text-white/60 text-sm">MATH</span>
+                <cite className="not-italic font-bold text-lg text-gold block">Mr. Kishore Gupta</cite>
+                <span className="text-white/60 text-sm">Mathematics Teacher</span>
               </div>
             </div>
             <div className="relative h-[400px] md:h-auto bg-gray-200">
               <Image
-                src="https://res.cloudinary.com/dkits80xk/image/upload/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png"
-                alt="Teacher at SIA"
+                src={cloudinary.careers.teacher}
+                alt="Mr. Kishore Gupta - Mathematics Teacher at SIA"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-navy/50 to-transparent md:bg-gradient-to-r md:from-navy md:to-transparent" />
             </div>

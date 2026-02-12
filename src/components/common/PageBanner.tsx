@@ -21,7 +21,7 @@ export default function PageBanner({
     return (
         <div className="relative h-[40vh] min-h-[300px] w-full overflow-hidden flex items-center justify-center bg-navy">
             {/* Background Image */}
-            <div className="absolute inset-0 z-0 text-center">
+            <div className="absolute inset-0 z-0">
                 <Image
                     src={image}
                     alt={title}

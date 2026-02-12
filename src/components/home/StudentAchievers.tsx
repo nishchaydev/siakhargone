@@ -31,19 +31,23 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
         // Manual patch for data mismatch reported by user
         let category = item.category || "General";
         let title = item.title;
-        let studentName = item.studentName;
+        let customStudentName: string | undefined;
 
         if (item.imageUrl?.includes('1747806889599')) {
             category = "Academic";
             if (title.toLowerCase().includes('weightlifting')) {
                 title = "Excellent Academic Performance - CBSE Result Declared";
-                studentName = "Multiple Students";
+                customStudentName = "Multiple Students";
             }
         }
 
+        const finalStudentName = customStudentName || item.studentName || "SIA Student";
+        const studentClass = item.class || "Academic";
+
         return {
-            name: studentName,
-            class: item.class,
+            id: item.id,
+            name: finalStudentName,
+            class: studentClass,
             achievement: title,
             category: category,
             image: item.imageUrl,
@@ -76,7 +80,7 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
             <div className="grid md:grid-cols-3 gap-8 relative z-10">
                 {displayAchievers.map((student, index) => (
                     <motion.div
-                        key={index}
+                        key={student.id || index}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.2, duration: 0.6 }}
@@ -98,9 +102,10 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
                                             {student.category}
                                         </Badge>
                                         <h3 className="font-bold text-lg line-clamp-2 text-gold-accent group-hover:text-white transition-colors">{student.achievement}</h3>
-                                        {(!student.name?.toLowerCase().includes('multiple') && !student.class?.toLowerCase().includes('multiple')) && (
-                                            <p className="text-sm text-gold mt-1 group-hover:text-gray-200 transition-colors">{student.name} • {student.class}</p>
-                                        )}
+                                        {(student.name && !student.name.toLowerCase().includes('multiple') && student.name.toLowerCase() !== 'undefined' &&
+                                            student.class && !student.class.toLowerCase().includes('multiple') && student.class.toLowerCase() !== 'undefined') && (
+                                                <p className="text-sm text-gold mt-1 group-hover:text-gray-200 transition-colors">{student.name} • {student.class}</p>
+                                            )}
                                     </div>
                                 </div>
                             </a>
