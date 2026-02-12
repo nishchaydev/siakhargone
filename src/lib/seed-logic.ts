@@ -7,7 +7,7 @@ import { addEventService, getEventsService } from '@/services/eventsService';
 import { addNoticeService, getNoticesService } from '@/services/noticesService';
 
 export async function seedDataLogic() {
-    const results = {
+    const seedResults = {
         achievements: 0,
         results: 0,
         updates: 0,
@@ -20,7 +20,7 @@ export async function seedDataLogic() {
     // Fetch existing data to ensure idempotency
     // Note: In a distributed system, this "check-then-act" has a race condition.
     // However, for this simplified Google Sheets implementation, we assume single-admin usage.
-    const results = await Promise.allSettled([
+    const fetchResults = await Promise.allSettled([
         getAchievementsService(),
         getResultsService(),
         getUpdatesService(),
@@ -29,15 +29,15 @@ export async function seedDataLogic() {
         getNoticesService()
     ]);
 
-    const existingAchievements = results[0].status === 'fulfilled' ? results[0].value : [];
-    const existingResults = results[1].status === 'fulfilled' ? results[1].value : [];
-    const existingUpdates = results[2].status === 'fulfilled' ? results[2].value : [];
-    const existingNews = results[3].status === 'fulfilled' ? results[3].value : [];
-    const existingEvents = results[4].status === 'fulfilled' ? results[4].value : [];
-    const existingNotices = results[5].status === 'fulfilled' ? results[5].value : [];
+    const existingAchievements = fetchResults[0].status === 'fulfilled' ? fetchResults[0].value : [];
+    const existingResults = fetchResults[1].status === 'fulfilled' ? fetchResults[1].value : [];
+    const existingUpdates = fetchResults[2].status === 'fulfilled' ? fetchResults[2].value : [];
+    const existingNews = fetchResults[3].status === 'fulfilled' ? fetchResults[3].value : [];
+    const existingEvents = fetchResults[4].status === 'fulfilled' ? fetchResults[4].value : [];
+    const existingNotices = fetchResults[5].status === 'fulfilled' ? fetchResults[5].value : [];
 
-    if (results.some(r => r.status === 'rejected')) {
-        console.warn("Some services failed to load existing data:", results.filter(r => r.status === 'rejected'));
+    if (fetchResults.some(r => r.status === 'rejected')) {
+        console.warn("Some services failed to load existing data:", fetchResults.filter(r => r.status === 'rejected'));
     }
 
     // ACHIEVEMENTS
@@ -172,10 +172,10 @@ export async function seedDataLogic() {
                 continue;
             }
             await addAchievement(item);
-            results.achievements++;
+            seedResults.achievements++;
         } catch (e) {
             console.error("Failed to add achievement:", item.title, e);
-            results.errors.push(`Failed to add achievement: ${item.title}`);
+            seedResults.errors.push(`Failed to add achievement: ${item.title}`);
         }
     }
 
@@ -213,10 +213,10 @@ export async function seedDataLogic() {
                 continue;
             }
             await addResult(item);
-            results.results++;
+            seedResults.results++;
         } catch (e) {
             console.error("Failed to add result:", item.title, e);
-            results.errors.push(`Failed to add result: ${item.title}`);
+            seedResults.errors.push(`Failed to add result: ${item.title}`);
         }
     }
 
@@ -251,10 +251,10 @@ export async function seedDataLogic() {
                 continue;
             }
             await addUpdate(item);
-            results.updates++;
+            seedResults.updates++;
         } catch (e) {
             console.error("Failed to add update:", item.content, e);
-            results.errors.push(`Failed to add update: ${item.content.substring(0, 20)}...`);
+            seedResults.errors.push(`Failed to add update: ${item.content.substring(0, 20)}...`);
         }
     }
 
@@ -286,10 +286,10 @@ export async function seedDataLogic() {
                 continue;
             }
             await addNewsService(item);
-            results.news++;
+            seedResults.news++;
         } catch (e) {
             console.error("Failed to add news:", item.title, e);
-            results.errors.push(`Failed to add news: ${item.title}`);
+            seedResults.errors.push(`Failed to add news: ${item.title}`);
         }
     }
 
@@ -327,10 +327,10 @@ export async function seedDataLogic() {
                 continue;
             }
             await addEventService(item);
-            results.events++;
+            seedResults.events++;
         } catch (e) {
             console.error("Failed to add event:", item.title, e);
-            results.errors.push(`Failed to add event: ${item.title}`);
+            seedResults.errors.push(`Failed to add event: ${item.title}`);
         }
     }
 
@@ -362,12 +362,12 @@ export async function seedDataLogic() {
                 continue;
             }
             await addNoticeService(item);
-            results.notices++;
+            seedResults.notices++;
         } catch (e) {
             console.error("Failed to add notice:", item.title, e);
-            results.errors.push(`Failed to add notice: ${item.title}`);
+            seedResults.errors.push(`Failed to add notice: ${item.title}`);
         }
     }
 
-    return results;
+    return seedResults;
 }
