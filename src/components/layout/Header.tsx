@@ -87,6 +87,7 @@ const navItems: NavItem[] = [
       { title: "Principal's Message", href: "/about/principal", description: "Guidance from our academic leader.", iconName: "User" },
       { title: "Management & Committee", href: "/about/management", description: "Meet our dedicated leadership team.", iconName: "Users" },
       { title: "Student Achievements", href: "/achievements", description: "Celebrating the successes of our students.", iconName: "Trophy" },
+      { title: "Student Leadership", href: "/about/student-leadership", description: "House Captains and Student Council 2025-26.", iconName: "GraduationCap" },
     ],
   },
   {
@@ -233,7 +234,7 @@ const Header = () => {
       )}
     >
       <TopBar isTransparent={false} />
-      <div className="container mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6 py-2">
+      <div className="container mx-auto flex h-[65px] max-w-7xl items-center justify-between px-4 py-1">
         <Link href="/" className="flex items-center gap-2 md:gap-3">
           <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0 overflow-hidden">
             <Image src={schoolLogo}
@@ -244,27 +245,27 @@ const Header = () => {
           </div>
 
           <div className="flex flex-col justify-center">
-            <span className="font-display font-bold text-xl sm:text-2xl md:text-3xl leading-none tracking-tight text-white mb-[2px]">SANSKAR</span>
-            <span className="font-sans text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.15em] md:tracking-[0.25em] text-gold/90 whitespace-nowrap">INTERNATIONAL ACADEMY</span>
+            <span className="font-display font-bold text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-none tracking-tight text-white mb-[2px]">SANSKAR</span>
+            <span className="font-sans text-[8px] sm:text-[10px] lg:text-[11px] xl:text-sm font-bold uppercase tracking-[0.1em] lg:tracking-[0.15em] xl:tracking-[0.25em] text-gold/90 whitespace-nowrap">INTERNATIONAL ACADEMY</span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList>
+          <NavigationMenuList className="gap-1 xl:gap-2">
             {navItems.map((item) => (
               <NavigationMenuItem key={item.title}>
                 {item.children ? (
                   <>
                     <NavigationMenuTrigger
-                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-sans font-semibold text-white", `hover:text-accent focus:bg-accent/10`,
+                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-sans font-semibold text-white px-2 xl:px-4 text-[13px] xl:text-sm", `hover:text-accent focus:bg-accent/10`,
                         (pathname.startsWith(item.href)) ? `font-bold text-accent` : ""
                       )}
                     >
                       {item.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className={["Forms & Documents", "Updates"].includes(item.title) ? "right-0 left-auto" : ""}>
-                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-foreground rounded-xl shadow-xl border border-gold/10">
+                    <NavigationMenuContent className={["Academics", "Sports & Activities", "Forms & Documents", "Updates"].includes(item.title) ? "right-0 left-auto" : ""}>
+                      <ul className="grid w-[calc(100vw-2rem)] max-w-[400px] gap-3 p-4 md:max-w-[500px] md:grid-cols-2 lg:max-w-[600px] bg-white text-foreground rounded-xl shadow-xl border border-gold/10">
                         {item.children.map((child) => (
                           <ListItem
                             key={child.title}
@@ -284,7 +285,7 @@ const Header = () => {
                     <Link
                       href={item.href}
                       onClick={(e) => handleLinkClick(e, item.href)}
-                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-sans font-semibold text-white", `hover:text-accent`,
+                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-sans font-semibold text-white px-2 xl:px-4 text-[13px] xl:text-sm", `hover:text-accent`,
                         ((isHomePage && activeSection && item.href.includes(activeSection)) || pathname === item.href) ? `font-bold text-accent` : ""
                       )}
                     >
@@ -346,6 +347,7 @@ const Header = () => {
                     { title: "Fee Structure", href: "/fees", category: "Admissions" },
                     { title: "Academic Calendar", href: "/", category: "Academics" },
                     { title: "Gallery", href: "/gallery", category: "Media" },
+                    { title: "Student Leadership", href: "/about/student-leadership", category: "About" },
                     { title: "Contact Us", href: "/contact", category: "Support" },
                     { title: "Careers", href: "/careers", category: "More" },
                     { title: "Mandatory Disclosure", href: "/mandatory-disclosure", category: "Legal" },

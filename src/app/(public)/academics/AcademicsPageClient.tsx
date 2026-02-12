@@ -78,6 +78,8 @@ export default function AcademicsPageClient({
                 title="Academics"
                 subtitle="Excellence in Education. Rooted in Values."
                 image={bannerImage}
+                objectPosition="12%"
+                objectFit="cover"
             />
             <Section
                 id="curriculum"

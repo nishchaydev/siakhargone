@@ -118,15 +118,15 @@ export async function GET(request: Request) {
                 mediaCoverage: true
             },
             {
-                title: "Bronze Medal at State Level Weightlifting Championship",
-                studentName: "Naksh Shailendra Choudhary",
-                class: "10th",
-                date: "2023-09-23",
-                description: "Naksh Shailendra Choudhary won Bronze Medal in Under-17 weightlifting category at State Level Championship. First selected at district level, then competed at state level.",
+                title: "Outstanding Academic Performance - CBSE Result Declared",
+                studentName: "Multiple Students",
+                class: "Multiple",
+                date: "2024-05-21",
+                description: "Sanskar International Academy celebrates the outstanding performance of our students in the CBSE examinations with 32 out of 44 students passing in first division.",
                 imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816089/1747806889599.jpg_lzcyj3.jpg",
                 priority: "1",
-                category: "Sports",
-                mediaCoverage: false
+                category: "Academic",
+                mediaCoverage: true
             },
             {
                 title: "Students Honored at Pratibha Samman Ceremony",

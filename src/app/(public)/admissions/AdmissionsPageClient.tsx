@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check, ChevronRight, Loader2, Sparkles, User, Users, School, Bus } from "lucide-react";
+import { Check, ChevronRight, Loader2, Sparkles, User, Users, School, Bus, FileText } from "lucide-react";
 import confetti from "canvas-confetti";
 import PageBanner from "@/components/common/PageBanner";
 import { trackAdmissionFormView, trackAdmissionFormSubmit } from "@/lib/analytics";
@@ -193,7 +193,7 @@ export default function AdmissionsPageClient({
                             </div>
                             <div className="text-center md:text-right hidden md:block">
                                 <div className="inline-block p-4 rounded-full bg-white/5 border border-white/10">
-                                    <span className="text-4xl">📄</span>
+                                    <FileText className="h-10 w-10 text-gold opacity-50" />
                                 </div>
                                 <p className="mt-2 text-sm text-white/60">Please bring these documents<br />during your school visit.</p>
                             </div>

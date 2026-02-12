@@ -6,8 +6,8 @@ export const schoolData = {
     affiliationNo: "1031345", // Verified from Footer
     schoolCode: "51362", // Verified by User
     stats: {
-        students: "1500+",
-        teachers: "75+",
+        students: "1100+",
+        teachers: "50+",
         established: "2016", // Verified by User
         campusSize: "5 Acres",
     },

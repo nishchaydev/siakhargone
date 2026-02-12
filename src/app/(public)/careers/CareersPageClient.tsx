@@ -190,13 +190,13 @@ export default function CareersPageClient({ initialCareers = [] }: CareersPageCl
                 "At SIA, I found more than just a job. I found a family that supports my professional growth and a classroom where I can truly innovate."
               </blockquote>
               <div>
-                <cite className="not-italic font-bold text-lg text-gold block">Mrs. Aishwarya Singh</cite>
-                <span className="text-white/60 text-sm">Senior Coordinator (Science)</span>
+                <cite className="not-italic font-bold text-lg text-gold block">MR KISHORE GUPTA</cite>
+                <span className="text-white/60 text-sm">MATH</span>
               </div>
             </div>
             <div className="relative h-[400px] md:h-auto bg-gray-200">
               <Image
-                src={cloudinary.infrastructure.classrooms[2]} // Using a classroom shot as fallback context
+                src="https://res.cloudinary.com/dkits80xk/image/upload/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png"
                 alt="Teacher at SIA"
                 fill
                 className="object-cover"
@@ -272,7 +272,7 @@ export default function CareersPageClient({ initialCareers = [] }: CareersPageCl
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -mr-12 -mt-12" />
 
-            <h3 className="text-2xl font-bold mb-4 relative z-10">Don't see a fitting role?</h3>
+            <h3 className="text-2xl font-bold mb-4 relative z-10 text-white">Don't see a <span className="text-gold">fitting role?</span></h3>
             <p className="text-white/70 mb-8 max-w-xl mx-auto relative z-10">
               We are always looking for exceptional talent to join our family. Send your resume to us, and we will contact you when a position opens.
             </p>

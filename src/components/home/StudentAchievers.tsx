@@ -27,17 +27,30 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
     // The component uses: name, class, achievement, category, image, icon, color.
     // Our service gives: title, studentName, class, date, description, imageUrl, priority, category.
 
-    const displayAchievers = achievers.length > 0 ? achievers.map(item => ({
-        name: item.studentName,
-        class: item.class,
-        achievement: item.title,
-        category: item.category || "General",
-        image: item.imageUrl,
-        icon: item.category === "Sports" ? Trophy : item.category === "Arts" ? Medal : Star,
-        color: item.category === "Sports" ? "bg-green-100 text-green-700 border-green-200" :
-            item.category === "Arts" ? "bg-purple-100 text-purple-700 border-purple-200" :
-                "bg-gold/10 text-gold-dark border-gold/20"
-    })) : [];
+    const displayAchievers = achievers.length > 0 ? achievers.map(item => {
+        // Manual patch for data mismatch reported by user
+        let category = item.category || "General";
+        let title = item.title;
+        let studentName = item.studentName;
+
+        if (item.imageUrl?.includes('1747806889599')) {
+            category = "Academic";
+            if (title.toLowerCase().includes('weightlifting')) {
+                title = "Excellent Academic Performance - CBSE Result Declared";
+                studentName = "Multiple Students";
+            }
+        }
+
+        return {
+            name: studentName,
+            class: item.class,
+            achievement: title,
+            category: category,
+            image: item.imageUrl,
+            icon: category === "Sports" ? Trophy : category === "Arts" ? Medal : Star,
+            color: "bg-gold text-navy border-gold font-bold"
+        };
+    }) : [];
 
     if (displayAchievers.length === 0) return null;
 
@@ -84,8 +97,10 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
                                         <Badge className={`${student.color} mb-2 border`}>
                                             {student.category}
                                         </Badge>
-                                        <h3 className="font-bold text-lg line-clamp-2">{student.achievement}</h3>
-                                        <p className="text-sm text-gray-200 mt-1">{student.name} • {student.class}</p>
+                                        <h3 className="font-bold text-lg line-clamp-2 text-gold-accent group-hover:text-white transition-colors">{student.achievement}</h3>
+                                        {(!student.name?.toLowerCase().includes('multiple') && !student.class?.toLowerCase().includes('multiple')) && (
+                                            <p className="text-sm text-gold mt-1 group-hover:text-gray-200 transition-colors">{student.name} • {student.class}</p>
+                                        )}
                                     </div>
                                 </div>
                             </a>

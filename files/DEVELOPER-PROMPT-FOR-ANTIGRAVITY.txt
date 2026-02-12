@@ -1,0 +1,324 @@
+═══════════════════════════════════════════════════════════════════════════════
+DEVELOPER TASK FOR ANTIGRAVITY
+Website: siakhargone.in (Next.js + React + Tailwind CSS)
+Date: February 12, 2026
+═══════════════════════════════════════════════════════════════════════════════
+
+📋 TASK OVERVIEW:
+─────────────────
+Add 3 new sections to the website with proper navigation integration:
+1. Student Leadership (2 images: House Captains + Student Council)
+2. Meet Our Team / Faculty Showcase (1 teacher group photo)
+3. Update existing Management & Committee page with all 3 images
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔗 CLOUDINARY IMAGE LINKS (Production Ready):
+──────────────────────────────────────────────
+
+Image 1 - House Captains & Vice Captains 2025-26:
+https://res.cloudinary.com/dkits80xk/image/upload/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png
+
+Image 2 - Student Council 2025-26:
+https://res.cloudinary.com/dkits80xk/image/upload/v1770863349/9690af22-e610-4828-a6f6-14eaf7e5c4dd.png
+
+Image 3 - Faculty/Teachers Group Photo:
+https://res.cloudinary.com/dkits80xk/image/upload/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 TASK #1: ADD "STUDENT LEADERSHIP" PAGE
+──────────────────────────────────────────
+
+NAVIGATION PATH:
+About Us → Student Leadership (NEW)
+
+LOCATION IN DROPDOWN:
+Add to the "About Us" dropdown menu, after "Student Achievements"
+
+Current About Us Menu:
+✓ Overview
+✓ Vision & Mission
+✓ Principal's Message
+✓ Management & Committee
+✓ Student Achievements
+➕ Student Leadership ← ADD THIS NEW ITEM
+
+PAGE URL:
+/about/student-leadership OR /student-leadership
+
+PAGE STRUCTURE:
+───────────────
+1. Hero Section:
+   - Title: "Student Leadership 2025-26"
+   - Subtitle: "Empowering Tomorrow's Leaders Today"
+   - Background: Blue gradient (matching site theme)
+
+2. Introduction Section:
+   - Heading: "Building Leaders of Character"
+   - Text: "At Sanskar International Academy, student leadership is not just a 
+     title—it's a responsibility. Our student leaders represent the voice of their 
+     peers, uphold school values, and contribute to creating a positive learning 
+     environment. The House System and Student Council provide opportunities for 
+     students to develop leadership skills, teamwork, and community service."
+
+3. House Captains Section:
+   - Heading: "🏠 House Captains & Vice Captains"
+   - Description: "Our four houses—Aravalli, Himalaya, Satpura, and Vindyachal—
+     compete throughout the year in academics, sports, and cultural activities. 
+     Each house is led by dedicated Captains and Vice Captains."
+   - Image: https://res.cloudinary.com/dkits80xk/image/upload/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png
+   - Alt Text: "House Captains and Vice Captains 2025-26 at Sanskar International Academy"
+
+4. Student Council Section:
+   - Heading: "🎓 Student Council"
+   - Description: "The Student Council serves as the bridge between students and 
+     school administration. Council members take on responsibilities including 
+     discipline, sports coordination, cultural activities, and student welfare."
+   - Image: https://res.cloudinary.com/dkits80xk/image/upload/v1770863349/9690af22-e610-4828-a6f6-14eaf7e5c4dd.png
+   - Alt Text: "Student Council 2025-26 at Sanskar International Academy"
+
+5. Optional Info Section:
+   - Heading: "Leadership Opportunities at SIA"
+   - List format with these points:
+     • House Captains & Vice Captains
+     • Head Boy & Head Girl
+     • Discipline Secretaries
+     • Sports Secretaries
+     • Cultural Secretaries
+     • Student Welfare Representatives
+
+DESIGN REQUIREMENTS:
+─────────────────────
+- Use existing site's design system (same spacing, colors, typography)
+- Images should be responsive (100% width on mobile, max 1200px on desktop)
+- Add subtle hover effects on images (slight scale/shadow)
+- Section background: White cards with subtle shadow
+- Maintain consistent padding/margins with other About Us pages
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 TASK #2: ADD "MEET OUR TEAM" / FACULTY PAGE
+───────────────────────────────────────────────
+
+OPTION A (Recommended): New standalone page
+─────────────────────────────────────────────
+NAVIGATION PATH:
+About Us → Meet Our Team (NEW)
+
+Add after "Management & Committee" in dropdown
+
+PAGE URL:
+/about/faculty OR /about/meet-our-team
+
+PAGE STRUCTURE:
+- Hero Section with teacher group photo as banner
+- Image: https://res.cloudinary.com/dkits80xk/image/upload/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png
+- Heading overlay: "Meet Our Dedicated Team"
+- Subtitle: "Passionate educators committed to excellence"
+- Additional content sections:
+  * Brief about faculty qualifications
+  * Teaching methodology
+  * Professional development
+  * Link to individual faculty profiles (if exists)
+
+
+OPTION B: Add to existing Management & Committee page
+───────────────────────────────────────────────────────
+Update: /about/management
+
+ADD NEW SECTION at the end:
+- Heading: "Our Teaching Team"
+- Teacher group photo
+- Brief description: "Our 50+ qualified and experienced teachers are the 
+  backbone of SIA. Each brings unique expertise and passion to create an 
+  engaging learning environment."
+
+
+OPTION C: Use in Careers page as banner
+────────────────────────────────────────
+Update: /careers page
+
+- Add teacher photo as hero banner image
+- Overlay text: "Join Our Team of Educators"
+- Use as visual representation of team culture
+- Helps recruitment appeal
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 TASK #3: UPDATE MANAGEMENT & COMMITTEE PAGE
+───────────────────────────────────────────────
+
+PAGE URL:
+/about/management (existing page - needs update)
+
+CURRENT STATE:
+According to screenshot, there's already a "Management & Committee" option in 
+About Us dropdown.
+
+PROPOSED UPDATE:
+Add all 3 images to create a comprehensive leadership showcase:
+
+SECTION 1: School Management
+- Keep existing management/committee content
+- Add teacher group photo
+- Caption: "Our Leadership & Teaching Excellence"
+
+SECTION 2: Student Leadership
+- Add House Captains image
+- Add Student Council image
+- Heading: "Student Representation"
+- Brief intro about student leadership structure
+
+This approach consolidates all leadership (admin + faculty + student) in one place.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📱 TECHNICAL SPECIFICATIONS:
+────────────────────────────
+
+IMAGE OPTIMIZATION:
+- All Cloudinary URLs are already optimized
+- Use Next.js Image component for automatic optimization:
+  
+  import Image from 'next/image'
+  
+  <Image 
+    src="https://res.cloudinary.com/dkits80xk/image/upload/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png"
+    alt="House Captains 2025-26"
+    width={1200}
+    height={800}
+    className="rounded-lg shadow-lg w-full h-auto"
+    priority={false}
+    quality={85}
+  />
+
+RESPONSIVE DESIGN:
+- Mobile (< 768px): Full width images, stack vertically
+- Tablet (768px - 1024px): Max 90% width, centered
+- Desktop (> 1024px): Max 1200px width, centered
+
+NAVIGATION UPDATE:
+In your navigation component (likely in components/Header.tsx or similar):
+
+const aboutUsItems = [
+  { label: 'Overview', href: '/about' },
+  { label: 'Vision & Mission', href: '/about/vision' },
+  { label: 'Principal\'s Message', href: '/about/principal' },
+  { label: 'Management & Committee', href: '/about/management' },
+  { label: 'Student Achievements', href: '/achievements' },
+  { label: 'Student Leadership', href: '/about/student-leadership' }, // NEW
+  { label: 'Meet Our Team', href: '/about/faculty' }, // NEW (Optional)
+]
+
+SEO METADATA:
+Add appropriate meta tags to new pages:
+
+export const metadata = {
+  title: 'Student Leadership 2025-26 | Sanskar International Academy',
+  description: 'Meet the House Captains and Student Council of SIA Khargone for academic year 2025-26. Student leadership development and representation.',
+  keywords: 'student council, house captains, student leadership, SIA Khargone',
+}
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💡 RECOMMENDATIONS:
+───────────────────
+
+BEST APPROACH:
+1. Create new "Student Leadership" page (Task #1) ✅ PRIORITY
+2. Add teacher photo to Management & Committee page (Task #3) ✅ PRIORITY
+3. Consider "Meet Our Team" page for future enhancement
+
+ALTERNATE APPROACH:
+If you want to minimize new pages:
+- Add all 3 images to the existing Management & Committee page
+- Rename it to "Leadership & Team" 
+- Organize in sections: Management → Faculty → Student Leadership
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎨 DESIGN MOCKUP STRUCTURE (TEXT FORMAT):
+──────────────────────────────────────────
+
+Page: /about/student-leadership
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│  [HERO SECTION - Blue Gradient Background]            │
+│     Student Leadership 2025-26                        │
+│     Empowering Tomorrow's Leaders Today               │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  [INFO BOX - Light Blue Background]                    │
+│  Building Leaders of Character                         │
+│  [Introduction paragraph text]                         │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  [WHITE CARD WITH SHADOW]                              │
+│  🏠 House Captains & Vice Captains                    │
+│  [Description text]                                    │
+│                                                         │
+│  [FULL WIDTH IMAGE - House Captains]                  │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  [WHITE CARD WITH SHADOW]                              │
+│  🎓 Student Council                                    │
+│  [Description text]                                    │
+│                                                         │
+│  [FULL WIDTH IMAGE - Student Council]                 │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ ACCEPTANCE CRITERIA:
+───────────────────────
+□ New "Student Leadership" menu item visible in About Us dropdown
+□ Page loads correctly on all devices (mobile, tablet, desktop)
+□ Images load from Cloudinary without errors
+□ Images are responsive and maintain aspect ratio
+□ Navigation is properly updated
+□ SEO metadata is added
+□ Page matches existing site design system
+□ All links work correctly
+□ Images have appropriate alt text for accessibility
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📅 ESTIMATED TIME:
+──────────────────
+- Navigation update: 15 minutes
+- Student Leadership page creation: 1-2 hours
+- Image integration & responsive testing: 30 minutes
+- Total: ~2-3 hours
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🆘 QUESTIONS? CONTACT:
+──────────────────────
+If you need any clarifications on:
+- Design specifications
+- Content wording
+- Navigation structure
+- Image placement
+
+Just ping back!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📌 PRIORITY ORDER:
+──────────────────
+1. HIGH: Add "Student Leadership" page (Task #1)
+2. MEDIUM: Add teacher photo to Management page (Task #3)
+3. LOW: Consider separate "Meet Our Team" page (Task #2)
+
+Start with Task #1 - this is most important for showcasing student culture!
+
+═══════════════════════════════════════════════════════════════════════════════
+END OF DEVELOPER BRIEF
+═══════════════════════════════════════════════════════════════════════════════

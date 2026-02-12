@@ -31,6 +31,7 @@ import { getEventsService } from "@/services/eventsService";
 import { getNoticesService } from "@/services/noticesService";
 import { getAchievementsService } from "@/services/achievementsService";
 import { AnnouncementMarquee } from "@/components/layout/AnnouncementMarquee";
+import { schoolData } from "@/data/schoolData";
 
 // Force dynamic rendering since we are fetching news which updates frequently
 // CHANGED: Reduced revalidation time to 10 seconds for "ASAP" updates.
@@ -71,17 +72,33 @@ export default async function Home() {
   ]);
 
 
-  const allUpdates: (UpdateItem & { timestamp: number })[] = [
+  const allUpdates: (UpdateItem & { timestamp: number; priority: number })[] = [
     ...newsItems.map((item: any) => ({ ...item, type: 'News' } as UpdateItem)),
     ...eventsItems.map((item: any) => ({ ...item, type: 'Event' } as UpdateItem)),
     ...noticesItems.map((item: any) => ({ ...item, type: 'Notice', description: item.text || 'Important Notice' } as UpdateItem))
   ].map(item => {
     const timestamp = item.date ? new Date(item.date).getTime() : 0;
+    const title = (item.title || "").toLowerCase();
+    const description = (item.description || "").toLowerCase();
+
+    // Priority calculation: 2 for extremely relevant keywords, 1 for urgent notices, 0 for others
+    let priority = 0;
+    if (title.includes('gujarat') || title.includes('admission') || description.includes('gujarat') || description.includes('admission')) {
+      priority = 2;
+    } else if (item.type === 'Notice') {
+      priority = 1;
+    }
+
     return {
       ...item,
-      timestamp: Number.isNaN(timestamp) ? 0 : timestamp
+      timestamp: Number.isNaN(timestamp) ? 0 : timestamp,
+      priority
     };
-  }).sort((a, b) => b.timestamp - a.timestamp);
+  }).sort((a, b) => {
+    // Sort by priority first, then by timestamp
+    if (b.priority !== a.priority) return b.priority - a.priority;
+    return b.timestamp - a.timestamp;
+  });
 
   const latestUpdates = allUpdates.slice(0, 3);
 
@@ -118,8 +135,8 @@ export default async function Home() {
       cta2Href: "https://www.youtube.com/watch?v=6-i18-xt8sI&list=PLISDuk-0k1nqv1ujqS45lfSRRQBwugKQW&index=6"
     },
     stats: [
-      { label: "Students", value: "1100+" },
-      { label: "Teachers", value: "50+" },
+      { label: "Students", value: schoolData.stats.students },
+      { label: "Teachers", value: schoolData.stats.teachers },
       { label: "Years of Experience", value: "10+" },
       { label: "Awards Won", value: "50+" }
     ],

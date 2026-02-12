@@ -72,7 +72,7 @@ export const dynamic = 'force-dynamic';
 export default async function AcademicsPage() {
   const albums = await loadAlbums();
   // Static banner fallback
-  const bannerImage = undefined;
+  const bannerImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1770866540/ba5fa378-c98b-4e8f-a4ec-bd5db243929f.png";
 
   // Extract photos for auto-scroll
   const labAlbum = albums.find(a => a.albumName === "Labs & Facilities");

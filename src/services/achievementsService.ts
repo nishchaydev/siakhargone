@@ -36,7 +36,7 @@ async function fetchAchievementsFromGoogleSheets(): Promise<AchievementItem[]> {
         }));
 
         return items
-            .filter(item => item.id && item.id !== 'Id' && item.status === 'Active')
+            .filter(item => item.id && item.id !== 'Id' && (item.status === 'Active' || !item.status)) // Allow items if status is 'Active' or missing
             .reverse(); // Newest first
     } catch (error) {
         console.error("Service Achievements Fetch Error:", error);

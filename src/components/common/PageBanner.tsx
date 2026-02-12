@@ -7,22 +7,27 @@ interface PageBannerProps {
     title: string;
     subtitle?: string;
     image?: string;
+    objectPosition?: string;
+    objectFit?: "cover" | "contain";
 }
 
 export default function PageBanner({
     title,
     subtitle,
-    image = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
+    image = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop",
+    objectPosition = "center",
+    objectFit = "cover"
 }: PageBannerProps) {
     return (
-        <div className="relative h-[40vh] min-h-[300px] w-full overflow-hidden flex items-center justify-center">
+        <div className="relative h-[40vh] min-h-[300px] w-full overflow-hidden flex items-center justify-center bg-navy">
             {/* Background Image */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 text-center">
                 <Image
                     src={image}
                     alt={title}
                     fill
-                    className="object-cover"
+                    className={objectFit === "cover" ? "object-cover" : "object-contain"}
+                    style={{ objectPosition }}
                     priority
                 />
                 <div className="absolute inset-0 bg-navy/60 mix-blend-multiply" />
