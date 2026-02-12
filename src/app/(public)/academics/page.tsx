@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: 'CBSE Curriculum, Smart Classrooms, and Holistic Development at Sanskar International Academy.',
     images: [
       {
-        url: cloudinary.infrastructure.classrooms?.[0] || "/images/placeholder.jpg",
+        url: cloudinary.infrastructure?.classrooms?.[0] || "/images/placeholder.jpg",
         width: 1200,
         height: 630,
         alt: "Smart Classrooms at SIA",

@@ -20,14 +20,7 @@ export async function seedDataLogic() {
     // Fetch existing data to ensure idempotency
     // Note: In a distributed system, this "check-then-act" has a race condition.
     // However, for this simplified Google Sheets implementation, we assume single-admin usage.
-    const [
-        existingAchievements,
-        existingResults,
-        existingUpdates,
-        existingNews,
-        existingEvents,
-        existingNotices
-    ] = await Promise.all([
+    const results = await Promise.allSettled([
         getAchievementsService(),
         getResultsService(),
         getUpdatesService(),
@@ -35,6 +28,17 @@ export async function seedDataLogic() {
         getEventsService(),
         getNoticesService()
     ]);
+
+    const existingAchievements = results[0].status === 'fulfilled' ? results[0].value : [];
+    const existingResults = results[1].status === 'fulfilled' ? results[1].value : [];
+    const existingUpdates = results[2].status === 'fulfilled' ? results[2].value : [];
+    const existingNews = results[3].status === 'fulfilled' ? results[3].value : [];
+    const existingEvents = results[4].status === 'fulfilled' ? results[4].value : [];
+    const existingNotices = results[5].status === 'fulfilled' ? results[5].value : [];
+
+    if (results.some(r => r.status === 'rejected')) {
+        console.warn("Some services failed to load existing data:", results.filter(r => r.status === 'rejected'));
+    }
 
     // ACHIEVEMENTS
     const achievements = [

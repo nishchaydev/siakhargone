@@ -241,7 +241,7 @@ const Header = () => {
     // Add specific overrides to match requirements
     const overrides = [
       { title: "Apply Online", href: "/admissions", category: "Admissions" },
-      { title: "Academic Calendar", href: "/", category: "Academics" },
+      { title: "Academic Calendar", href: "/news-events#calendar", category: "Academics" },
     ];
 
     const combined = [...staticItems, ...derivedItems, ...overrides];
@@ -390,7 +390,7 @@ const Header = () => {
               </div>
 
               <div className="max-h-[300px] overflow-y-auto p-2">
-                {/* Search Results Logic moved to top lovel */
+                {/* Search Results Logic moved to top level */
                   (() => {
                     // If query is empty, show Quick Links
                     if (!searchQuery.trim()) {

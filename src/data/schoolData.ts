@@ -8,14 +8,14 @@ export const schoolData = {
     stats: {
         students: "1100+",
         teachers: "50+",
-        established: "2004", // Verified by User
+        established: "2016", // Verified by User
         campusSize: "5 Acres",
         yearsOfExperience: "10+",
         awardsWon: "50+",
     },
     priorityKeywords: ['gujarat', 'admission'],
     contact: {
-        phone: ["+91 70491 10104", "+91 86021 75892"],
+        phone: ["+91 70491 10104"],
         whatsapp: "917049110104", // Normalized for API links
         email: "siakhargone@gmail.com", // Verified Primary
         altEmail: "info@siakhargone.in",

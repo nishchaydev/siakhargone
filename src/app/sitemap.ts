@@ -39,7 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/reviews',
         '/admission-guide',
         '/achievements',
-        '/results',
         '/updates',
         '/best-cbse-school-in-khargone',
         '/schools-in-khargone-guide',

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { X, Search, ChevronDown } from "lucide-react";
 import { cloudinary } from "@/lib/cloudinary-images";
 import { useScroll, useMotionValueEvent, motion, AnimatePresence } from "framer-motion";
@@ -61,10 +61,26 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
     return filteredImages.slice(0, visibleCount);
   }, [filteredImages, visibleCount]);
 
+  // Reset visible count when category changes
+  useEffect(() => {
+    setVisibleCount(12);
+    setIsLoadingMore(false);
+  }, [activeCategory]);
+
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleLoadMore = () => {
     setIsLoadingMore(true);
     // Simulate network delay
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setVisibleCount(prev => prev + 12);
       setIsLoadingMore(false);
     }, 800);

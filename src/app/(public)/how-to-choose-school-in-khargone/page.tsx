@@ -38,7 +38,7 @@ export default function HowToChooseSchoolGuide() {
                             { title: "Teacher Quality", desc: "Are the teachers experienced? Do they undergo regular training? A school is only as good as its faculty.", link: "/academics#faculty" },
                             { title: "Holistic Development", desc: "Does the school offer sports, arts, and music? Education is incomplete without co-curricular activities.", link: "/beyond-academics" },
                             { title: "Safety Infrastructure", desc: "Look for CCTV cameras, gated security, and GPS-enabled buses. Safety is non-negotiable.", link: "/best-cbse-school-in-khargone" },
-                            { title: "Digital Readiness", desc: "In 2026, smart boards and computer labs are basics, not luxuries. Ensure the school is tech-forward.", link: "/best-cbse-school-in-khargone" },
+                            { title: "Digital Readiness", desc: `In ${new Date().getFullYear()}, smart boards and computer labs are basics, not luxuries. Ensure the school is tech-forward.`, link: "/best-cbse-school-in-khargone" },
                             { title: "Parent Community", desc: "Talk to existing parents. Their feedback is the most authentic source of truth." },
                             { title: "Distance & Transport", desc: "Long commutes can tire a child. Check if the school offers safe transport from your locality." }
                         ].map((item, idx) => (

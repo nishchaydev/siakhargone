@@ -28,7 +28,8 @@ export function normalizeAchievement(raw: any): AchievementItem {
         priority: String(raw.priority || raw[7] || "3"),
         category: String(raw.category || raw[8] || "General"),
         status: String(raw.status || raw[9] || "Active"),
-        mediaCoverage: raw.mediaCoverage === true || String(raw.mediaCoverage).toLowerCase() === 'yes' || raw[11] === 'Yes'
+        // mediaCoverage: raw.mediaCoverage?.toLowerCase() === 'yes',
+        mediaCoverage: raw.mediaCoverage === true || (typeof raw.mediaCoverage === 'string' && raw.mediaCoverage.toLowerCase() === 'yes') || (typeof raw[11] === 'string' && raw[11].toLowerCase() === 'yes')
     };
 
     // Patch for specific item with ID 1747806889599 or partial image match

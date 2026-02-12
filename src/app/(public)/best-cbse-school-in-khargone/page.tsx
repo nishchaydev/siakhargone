@@ -14,7 +14,7 @@ import { schoolData } from '@/data/schoolData';
 
 export const metadata: Metadata = {
     title: 'Best CBSE School in Khargone | Sanskar International Academy',
-    description: 'Looking for the best CBSE school in Khargone? Sanskar International Academy (SIA) offers excellence in education, world-class infrastructure, and holistic development. Established 2004.',
+    description: 'Looking for the best CBSE school in Khargone? Sanskar International Academy (SIA) offers excellence in education, world-class infrastructure, and holistic development. Established 2016.',
     keywords: ['Best school in Khargone', 'Best CBSE school in Khargone', 'School in Khargone', 'SIA Khargone', 'Top CBSE Schools MP'],
     alternates: {
         canonical: 'https://siakhargone.in/best-cbse-school-in-khargone',

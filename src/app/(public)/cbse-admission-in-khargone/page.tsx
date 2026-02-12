@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { cloudinary } from '@/lib/cloudinary-images';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
     title: 'CBSE Admission in Khargone | Process & Requirements',
