@@ -61,13 +61,27 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
     return filteredImages.slice(0, visibleCount);
   }, [filteredImages, visibleCount]);
 
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   // Reset visible count when category changes
   useEffect(() => {
+    // Clear any pending timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
     setVisibleCount(12);
     setIsLoadingMore(false);
-  }, [activeCategory]);
 
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    // Cleanup function
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, [activeCategory]);
 
   useEffect(() => {
     return () => {
