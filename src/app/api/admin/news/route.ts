@@ -20,12 +20,17 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const { title, description, date, imageUrl, isFeatured } = await req.json();
+
+        if (!title || !description || !date || !imageUrl) {
+            return NextResponse.json({ error: "Title, Description, Date, and Image URL are required." }, { status: 400 });
+        }
+
         await addNewsService({
             title,
             description,
             date,
             imageUrl,
-            isFeatured: isFeatured !== undefined ? isFeatured : true // Default to true if missing
+            isFeatured: isFeatured ?? true // Default to true if missing
         });
         revalidatePath('/', 'layout'); // Revalidate everything
         return NextResponse.json({ success: true });
@@ -39,13 +44,18 @@ export async function POST(req: Request) {
 export async function PUT(req: Request) {
     try {
         const { id, title, description, date, imageUrl, isFeatured } = await req.json();
+
+        if (!id || typeof id !== 'string') {
+            return NextResponse.json({ error: "Invalid or missing News ID" }, { status: 400 });
+        }
+
         await updateNewsService({
             id,
             title,
             description,
             date,
             imageUrl,
-            isFeatured: isFeatured !== undefined ? isFeatured : true
+            isFeatured: isFeatured ?? true
         });
         revalidatePath('/', 'layout');
         return NextResponse.json({ success: true });

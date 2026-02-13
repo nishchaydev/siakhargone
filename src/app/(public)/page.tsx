@@ -77,7 +77,8 @@ export default async function Home() {
     ...eventsItems.map((item: ServiceEventItem) => ({ ...item, type: 'Event' } as UpdateItem)),
     ...noticesItems.map((item: ServiceNoticeItem) => ({ ...item, type: 'Notice', description: item.title || 'Important Notice', isFeatured: true } as UpdateItem)) // Notices always shown
   ]
-    .filter(item => item.isFeatured !== false) // Filter out items specifically hidden from home
+    // Allow items that are explicitly featured OR undefined (legacy/default), only filter out explicit false
+    .filter(item => item.isFeatured !== false)
     .map(item => {
       const timestamp = item.date ? new Date(item.date).getTime() : 0;
       const title = (item.title || "").toLowerCase();

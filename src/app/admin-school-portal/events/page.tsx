@@ -147,10 +147,11 @@ export default function EventsManager() {
 
                                     <div className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
                                         <div className="space-y-0.5">
-                                            <Label className="text-base">Show on Home</Label>
-                                            <p className="text-xs text-muted-foreground">Display in "Upcoming Events"</p>
+                                            <Label htmlFor="events-is-featured" className="text-base cursor-pointer">Show on Home</Label>
+                                            <p className="text-xs text-muted-foreground">Display in "Latest News"</p>
                                         </div>
                                         <Switch
+                                            id="events-is-featured"
                                             checked={form.isFeatured}
                                             onCheckedChange={checked => setForm({ ...form, isFeatured: checked })}
                                         />
@@ -261,8 +262,9 @@ export default function EventsManager() {
                                                         <h4 className="font-bold text-lg text-gray-900 line-clamp-1">{item.title}</h4>
                                                         <div className="flex flex-col items-end">
                                                             <span className="text-xs text-gray-500 whitespace-nowrap ml-2 bg-gray-100 px-2 py-1 rounded">{item.date}</span>
-                                                            {!item.isFeatured && <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded mt-1">Hidden on Home</span>}
-                                                            {item.isFeatured && <span className="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded mt-1">On Home</span>}
+                                                            <span className={`text-[10px] px-1.5 py-0.5 rounded mt-1 ${(item.isFeatured ?? false) ? "bg-green-100 text-green-700" : "bg-gray-200 text-gray-600"}`}>
+                                                                {(item.isFeatured ?? false) ? "On Home" : "Hidden on Home"}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="text-xs text-indigo-600 font-medium mt-1 mb-2 flex gap-3">

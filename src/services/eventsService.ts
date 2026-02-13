@@ -27,7 +27,8 @@ async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
             description: row[5],
             imageUrl: row[6],
             // row[7] is CreatedAt
-            isFeatured: row[8] === 'TRUE' || row[8] === undefined || row[8] === ''
+            // Strict check for "TRUE" (case-insensitive trim)
+            isFeatured: (row[8] || '').toString().trim().toUpperCase() === 'TRUE'
         }));
 
         return events.reverse();

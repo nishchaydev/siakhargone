@@ -16,11 +16,21 @@ export async function GET() {
 
 export async function POST(req: Request) {
     try {
-        const body = await req.json();
-        // Validation could go here
+        const { title, date, time, location, description, imageUrl, isFeatured } = await req.json();
+
+        // Basic validation
+        if (!title || !date) {
+            return NextResponse.json({ error: "Title and Date are required" }, { status: 400 });
+        }
+
         await addEventService({
-            ...body,
-            isFeatured: body.isFeatured !== undefined ? body.isFeatured : true
+            title,
+            date,
+            time: time || '',
+            location: location || '',
+            description: description || '',
+            imageUrl: imageUrl || '',
+            isFeatured: isFeatured ?? true
         });
         revalidatePath('/', 'layout');
         return NextResponse.json({ success: true, message: 'Event added successfully' });

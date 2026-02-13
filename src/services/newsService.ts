@@ -1,3 +1,7 @@
+import { SheetService } from "@/lib/sheet-service";
+import { SHEET_TAB_IDS } from "@/lib/google-sheets";
+import { getCachedData } from "@/lib/cache-wrapper";
+
 export interface NewsItem {
     id: string;
     title: string;
@@ -35,13 +39,18 @@ export async function getNewsService(): Promise<NewsItem[]> {
 }
 
 export async function addNewsService(item: { title: string, description: string, date: string, imageUrl: string, isFeatured: boolean }) {
-    const id = crypto.randomUUID();
-    const createdAt = new Date().toISOString();
-    // Col structure: Id, Title, Date, Description, ImageUrl, Status, CreatedAt, IsFeatured
-    const values = [id, item.title, item.date, item.description, item.imageUrl, "Active", createdAt, item.isFeatured ? 'TRUE' : 'FALSE'];
+    try {
+        const id = crypto.randomUUID();
+        const createdAt = new Date().toISOString();
+        // Col structure: Id, Title, Date, Description, ImageUrl, Status, CreatedAt, IsFeatured
+        const values = [id, item.title, item.date, item.description, item.imageUrl, "Active", createdAt, item.isFeatured ? 'TRUE' : 'FALSE'];
 
-    await SheetService.appendRow(SHEET_TAB_IDS.NEWS, values);
-    return true;
+        await SheetService.appendRow(SHEET_TAB_IDS.NEWS, values);
+        return true;
+    } catch (error) {
+        console.error("addNewsService failed:", error);
+        throw error;
+    }
 }
 
 export async function updateNewsService(item: { id: string, title: string, description: string, date: string, imageUrl: string, isFeatured: boolean }) {
@@ -55,6 +64,7 @@ export async function updateNewsService(item: { id: string, title: string, descr
         }
 
         const createdAt = existingRow[6] || new Date().toISOString(); // Preserve CreatedAt or default
+        const currentStatus = existingRow[5] || "Active"; // Preserve Status or default to Active
 
         // 2. Prepare values for Cols B -> H (Index 1 -> 7)
         // Structure: [Title, Date, Description, ImageUrl, Status, CreatedAt, IsFeatured]
@@ -63,7 +73,7 @@ export async function updateNewsService(item: { id: string, title: string, descr
             item.date,
             item.description,
             item.imageUrl,
-            "Active",
+            currentStatus,
             createdAt,
             item.isFeatured ? 'TRUE' : 'FALSE'
         ];
