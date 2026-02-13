@@ -34,8 +34,8 @@ import { AnnouncementMarquee } from "@/components/layout/AnnouncementMarquee";
 import { schoolData } from "@/data/schoolData";
 
 // Force dynamic rendering since we are fetching news which updates frequently
-// CHANGED: Increased revalidation time to 300 seconds (5 minutes) to reduce server load.
-export const revalidate = 300;
+// CHANGED: Reduced revalidation time to 60 seconds (1 minute) for faster updates.
+export const revalidate = 60;
 
 // Basic shapes for the incoming data
 interface BaseUpdateItem {
@@ -43,6 +43,7 @@ interface BaseUpdateItem {
   date: string;
   title: string;
   description?: string;
+  isFeatured?: boolean;
 }
 
 interface NewsUpdateItem extends BaseUpdateItem {
@@ -74,36 +75,38 @@ export default async function Home() {
   const allUpdates: (UpdateItem & { timestamp: number; priority: number })[] = [
     ...newsItems.map((item: ServiceNewsItem) => ({ ...item, type: 'News' } as UpdateItem)),
     ...eventsItems.map((item: ServiceEventItem) => ({ ...item, type: 'Event' } as UpdateItem)),
-    ...noticesItems.map((item: ServiceNoticeItem) => ({ ...item, type: 'Notice', description: item.title || 'Important Notice' } as UpdateItem))
-  ].map(item => {
-    const timestamp = item.date ? new Date(item.date).getTime() : 0;
-    const title = (item.title || "").toLowerCase();
-    const description = (item.description || "").toLowerCase();
+    ...noticesItems.map((item: ServiceNoticeItem) => ({ ...item, type: 'Notice', description: item.title || 'Important Notice', isFeatured: true } as UpdateItem)) // Notices always shown
+  ]
+    .filter(item => item.isFeatured !== false) // Filter out items specifically hidden from home
+    .map(item => {
+      const timestamp = item.date ? new Date(item.date).getTime() : 0;
+      const title = (item.title || "").toLowerCase();
+      const description = (item.description || "").toLowerCase();
 
-    // Priority calculation: 2 for extremely relevant keywords, 1 for urgent notices, 0 for others
-    let priority = 0;
-    const priorityKeywords = schoolData.priorityKeywords || ['gujarat', 'admission'];
-    const hasKeyword = priorityKeywords.some(keyword =>
-      title.includes(keyword.toLowerCase()) ||
-      description.includes(keyword.toLowerCase())
-    );
+      // Priority calculation: 2 for extremely relevant keywords, 1 for urgent notices, 0 for others
+      let priority = 0;
+      const priorityKeywords = schoolData.priorityKeywords || ['gujarat', 'admission'];
+      const hasKeyword = priorityKeywords.some(keyword =>
+        title.includes(keyword.toLowerCase()) ||
+        description.includes(keyword.toLowerCase())
+      );
 
-    if (hasKeyword) {
-      priority = 2;
-    } else if (item.type === 'Notice') {
-      priority = 1;
-    }
+      if (hasKeyword) {
+        priority = 2;
+      } else if (item.type === 'Notice') {
+        priority = 1;
+      }
 
-    return {
-      ...item,
-      timestamp: Number.isNaN(timestamp) ? 0 : timestamp,
-      priority
-    };
-  }).sort((a, b) => {
-    // Sort by priority first, then by timestamp
-    if (b.priority !== a.priority) return b.priority - a.priority;
-    return b.timestamp - a.timestamp;
-  });
+      return {
+        ...item,
+        timestamp: Number.isNaN(timestamp) ? 0 : timestamp,
+        priority
+      };
+    }).sort((a, b) => {
+      // Sort by priority first, then by timestamp
+      if (b.priority !== a.priority) return b.priority - a.priority;
+      return b.timestamp - a.timestamp;
+    });
 
   const latestUpdates = allUpdates.slice(0, 3);
 

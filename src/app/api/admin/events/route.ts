@@ -18,7 +18,10 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
         // Validation could go here
-        await addEventService(body);
+        await addEventService({
+            ...body,
+            isFeatured: body.isFeatured !== undefined ? body.isFeatured : true
+        });
         revalidatePath('/', 'layout');
         return NextResponse.json({ success: true, message: 'Event added successfully' });
     } catch (error) {

@@ -11,6 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { CldUploadWidget } from 'next-cloudinary';
 import { Label } from "@/components/ui/label";
 
+import { Switch } from "@/components/ui/switch";
+
 interface EventItem {
     id: string;
     title: string;
@@ -19,12 +21,13 @@ interface EventItem {
     time: string;
     location: string;
     imageUrl: string;
+    isFeatured: boolean;
 }
 
 export default function EventsManager() {
     const [events, setEvents] = useState<EventItem[]>([]);
     const [loading, setLoading] = useState(true);
-    const [form, setForm] = useState({ title: "", description: "", date: "", time: "", location: "", imageUrl: "" });
+    const [form, setForm] = useState({ title: "", description: "", date: "", time: "", location: "", imageUrl: "", isFeatured: true });
     const [submitting, setSubmitting] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
 
@@ -77,7 +80,7 @@ export default function EventsManager() {
             });
 
             if (res.ok) {
-                setForm({ title: "", description: "", date: "", time: "", location: "", imageUrl: "" });
+                setForm({ title: "", description: "", date: "", time: "", location: "", imageUrl: "", isFeatured: true });
                 fetchEvents();
             } else {
                 alert("Failed to save");
@@ -141,6 +144,18 @@ export default function EventsManager() {
                                         <Label>Location</Label>
                                         <Input value={form.location} onChange={e => setForm({ ...form, location: e.target.value })} placeholder="e.g. School Auditorium" />
                                     </div>
+
+                                    <div className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
+                                        <div className="space-y-0.5">
+                                            <Label className="text-base">Show on Home</Label>
+                                            <p className="text-xs text-muted-foreground">Display in "Upcoming Events"</p>
+                                        </div>
+                                        <Switch
+                                            checked={form.isFeatured}
+                                            onCheckedChange={checked => setForm({ ...form, isFeatured: checked })}
+                                        />
+                                    </div>
+
                                     <div className="space-y-1.5">
                                         <Label>Image (Optional)</Label>
 
@@ -244,7 +259,11 @@ export default function EventsManager() {
                                                 <div>
                                                     <div className="flex justify-between items-start">
                                                         <h4 className="font-bold text-lg text-gray-900 line-clamp-1">{item.title}</h4>
-                                                        <span className="text-xs text-gray-500 whitespace-nowrap ml-2 bg-gray-100 px-2 py-1 rounded">{item.date}</span>
+                                                        <div className="flex flex-col items-end">
+                                                            <span className="text-xs text-gray-500 whitespace-nowrap ml-2 bg-gray-100 px-2 py-1 rounded">{item.date}</span>
+                                                            {!item.isFeatured && <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded mt-1">Hidden on Home</span>}
+                                                            {item.isFeatured && <span className="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded mt-1">On Home</span>}
+                                                        </div>
                                                     </div>
                                                     <div className="text-xs text-indigo-600 font-medium mt-1 mb-2 flex gap-3">
                                                         <span>{item.time}</span>

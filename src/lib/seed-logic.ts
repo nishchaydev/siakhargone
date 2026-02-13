@@ -264,19 +264,22 @@ export async function seedDataLogic() {
             title: "Gujarat Educational Tour 2026: A Grand Departure",
             description: "Our senior secondary students embarked on an enriching 10-day tour to Gujarat, visiting the Statue of Unity, Sabarmati Ashram, and modern industrial hubs. An experience of a lifetime!",
             date: "2026-02-15",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349468/mix-photos-1_jjhoek.webp"
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349468/mix-photos-1_jjhoek.webp",
+            isFeatured: true
         },
         {
             title: "Admissions Open 2026-27: Join the SIA Legacy",
             description: "Experience excellence in education with modern labs, smart classrooms, and a focus on sports and values. Admissions are now open for Pre-Nursery to Grade IX.",
             date: "2026-02-10",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png"
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
+            isFeatured: true
         },
         {
             title: "National Level Athletics: 4 SIA Students Representing MP",
             description: "Proud moment for Khargone! Ishika Kushwah and her team represent Madhya Pradesh in the National Athletics Championship in Gujarat.",
             date: "2026-01-20",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg"
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            isFeatured: true
         }
     ];
 
@@ -301,7 +304,8 @@ export async function seedDataLogic() {
             time: "07:30 AM",
             location: "SIA Main Campus",
             description: "Wishing our students a safe and educational journey as they depart for the Gujarat Cultural Tour.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349474/session-start-1_qshvtb.webp"
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349474/session-start-1_qshvtb.webp",
+            isFeatured: true
         },
         {
             title: "Admission Counseling Day",
@@ -309,7 +313,8 @@ export async function seedDataLogic() {
             time: "10:00 AM",
             location: "School Auditorium",
             description: "Join our expert counselors to understand the New Education Policy (NEP) and our 2026 curriculum.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/classroom-1_k9z4s9.webp"
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/classroom-1_k9z4s9.webp",
+            isFeatured: true
         },
         {
             title: "Annual Sports Day - Sutra 2026",
@@ -317,7 +322,8 @@ export async function seedDataLogic() {
             time: "08:00 AM",
             location: "SIA Sports Ground",
             description: "A celebration of sportsmanship and spirit! Join us for our annual athletic meet.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg"
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            isFeatured: true
         }
     ];
 

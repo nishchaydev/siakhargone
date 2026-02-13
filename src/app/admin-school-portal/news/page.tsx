@@ -12,18 +12,21 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 
+import { Switch } from "@/components/ui/switch";
+
 interface NewsItem {
-    id: string; // Changed to string as UUIDs are strings
+    id: string;
     title: string;
     description: string;
     date: string;
     imageUrl: string;
+    isFeatured: boolean;
 }
 
 export default function NewsManager() {
     const [news, setNews] = useState<NewsItem[]>([]);
     const [loading, setLoading] = useState(true);
-    const [form, setForm] = useState({ title: "", description: "", date: "", imageUrl: "" });
+    const [form, setForm] = useState({ title: "", description: "", date: "", imageUrl: "", isFeatured: true });
     const [editingId, setEditingId] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -50,14 +53,15 @@ export default function NewsManager() {
             title: item.title,
             description: item.description,
             date: item.date,
-            imageUrl: item.imageUrl
+            imageUrl: item.imageUrl,
+            isFeatured: item.isFeatured
         });
         setEditingId(item.id);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     const handleCancelEdit = () => {
-        setForm({ title: "", description: "", date: "", imageUrl: "" });
+        setForm({ title: "", description: "", date: "", imageUrl: "", isFeatured: true });
         setEditingId(null);
     };
 
@@ -153,6 +157,18 @@ export default function NewsManager() {
                                         <Label>Date</Label>
                                         <Input required type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} />
                                     </div>
+
+                                    <div className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
+                                        <div className="space-y-0.5">
+                                            <Label className="text-base">Show on Home</Label>
+                                            <p className="text-xs text-muted-foreground">Display in "Latest News"</p>
+                                        </div>
+                                        <Switch
+                                            checked={form.isFeatured}
+                                            onCheckedChange={checked => setForm({ ...form, isFeatured: checked })}
+                                        />
+                                    </div>
+
                                     <div className="space-y-1.5">
                                         <Label>Image (Optional)</Label>
 
@@ -259,7 +275,11 @@ export default function NewsManager() {
                                                 <div>
                                                     <div className="flex justify-between items-start">
                                                         <h4 className="font-bold text-lg text-gray-900 line-clamp-1">{item.title}</h4>
-                                                        <span className="text-xs text-gray-500 whitespace-nowrap ml-2">{item.date}</span>
+                                                        <div className="flex flex-col items-end">
+                                                            <span className="text-xs text-gray-500 whitespace-nowrap ml-2">{item.date}</span>
+                                                            {!item.isFeatured && <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded mt-1">Hidden on Home</span>}
+                                                            {item.isFeatured && <span className="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded mt-1">On Home</span>}
+                                                        </div>
                                                     </div>
                                                     <p className="text-sm text-gray-600 mt-1 line-clamp-2">{item.description}</p>
                                                 </div>

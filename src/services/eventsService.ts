@@ -10,11 +10,13 @@ export interface EventItem {
     location: string;
     description: string;
     imageUrl: string;
+    isFeatured: boolean;
 }
 
 async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
     try {
-        const rows = await SheetService.getRows(SHEET_TAB_IDS.EVENTS || 'Events', 'A:H');
+        // Fetch up to Column I (Index 8)
+        const rows = await SheetService.getRows(SHEET_TAB_IDS.EVENTS || 'Events', 'A:I');
 
         const events = rows.map((row) => ({
             id: row[0],
@@ -24,6 +26,8 @@ async function fetchEventsFromGoogleSheets(): Promise<EventItem[]> {
             location: row[4],
             description: row[5],
             imageUrl: row[6],
+            // row[7] is CreatedAt
+            isFeatured: row[8] === 'TRUE' || row[8] === undefined || row[8] === ''
         }));
 
         return events.reverse();
@@ -37,11 +41,21 @@ export async function getEventsService(): Promise<EventItem[]> {
     return getCachedData("events_data", fetchEventsFromGoogleSheets, 10 * 1000);
 }
 
-export async function addEventService(item: { title: string, date: string, time: string, location: string, description: string, imageUrl: string }) {
+export async function addEventService(item: { title: string, date: string, time: string, location: string, description: string, imageUrl: string, isFeatured: boolean }) {
     const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
-    // Col structure: Id, Title, Date, Time, Location, Description, ImageUrl, CreatedAt
-    const values = [id, item.title, item.date, item.time, item.location, item.description, item.imageUrl, createdAt];
+    // Col structure: Id, Title, Date, Time, Location, Description, ImageUrl, CreatedAt, IsFeatured
+    const values = [
+        id,
+        item.title,
+        item.date,
+        item.time,
+        item.location,
+        item.description,
+        item.imageUrl,
+        createdAt,
+        item.isFeatured ? 'TRUE' : 'FALSE'
+    ];
 
     await SheetService.appendRow(SHEET_TAB_IDS.EVENTS || 'Events', values);
     return true;

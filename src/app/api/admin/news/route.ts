@@ -19,8 +19,14 @@ export async function GET() {
 // POST: Add new news item
 export async function POST(req: Request) {
     try {
-        const { title, description, date, imageUrl } = await req.json();
-        await addNewsService({ title, description, date, imageUrl });
+        const { title, description, date, imageUrl, isFeatured } = await req.json();
+        await addNewsService({
+            title,
+            description,
+            date,
+            imageUrl,
+            isFeatured: isFeatured !== undefined ? isFeatured : true // Default to true if missing
+        });
         revalidatePath('/', 'layout'); // Revalidate everything
         return NextResponse.json({ success: true });
     } catch (error) {
@@ -32,8 +38,15 @@ export async function POST(req: Request) {
 // PUT: Update news item
 export async function PUT(req: Request) {
     try {
-        const { id, title, description, date, imageUrl } = await req.json();
-        await updateNewsService({ id, title, description, date, imageUrl });
+        const { id, title, description, date, imageUrl, isFeatured } = await req.json();
+        await updateNewsService({
+            id,
+            title,
+            description,
+            date,
+            imageUrl,
+            isFeatured: isFeatured !== undefined ? isFeatured : true
+        });
         revalidatePath('/', 'layout');
         return NextResponse.json({ success: true });
     } catch (error) {
