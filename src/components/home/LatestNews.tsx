@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Section } from "@/components/common/Section";
@@ -8,6 +7,7 @@ import { Calendar, ChevronRight, Trophy, Bell, Star, MapPin, AlertCircle } from 
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { formatDate } from "@/lib/utils";
 
 import { useEffect, useState } from "react";
 import { getCMSNews, CMSNewsItem } from "@/lib/cms-fetch";
