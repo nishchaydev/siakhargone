@@ -20,8 +20,15 @@ export function parseDateString(dateStr: string): Date | null {
     const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed
     const year = parseInt(parts[2], 10);
 
-    date = new Date(year, month, day);
-    if (!isNaN(date.getTime())) return date;
+    const date = new Date(year, month, day);
+    // Strict check to prevent auto-correction (e.g. 30-02 -> 01-03)
+    if (
+      date.getFullYear() === year &&
+      date.getMonth() === month &&
+      date.getDate() === day
+    ) {
+      return date;
+    }
   }
 
   return null;

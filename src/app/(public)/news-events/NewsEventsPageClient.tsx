@@ -3,6 +3,7 @@
 import PageBanner from "@/components/common/PageBanner";
 import { Section } from "@/components/common/Section";
 import { Card, CardContent } from "@/components/ui/card";
+import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, ArrowRight, Image as ImageIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -126,26 +127,7 @@ export default function NewsEventsPageClient({ initialNews, initialEvents }: New
                                     <div className="bg-navy text-white p-6 flex flex-col items-center justify-center min-w-[120px] shrink-0 text-center">
                                         <span className="text-3xl font-bold font-display">{event.date.split('-')[2] || event.date.split('-')[0]}</span>
                                         <span className="text-sm uppercase tracking-wider opacity-80">
-                                            {(() => {
-                                                // Safe date parsing logic inline or robust handling
-                                                // We assume DD-MM-YYYY usually, but fallback to safe splitting
-                                                const parts = event.date.split('-');
-                                                if (parts.length === 3) {
-                                                    // If DD-MM-YYYY: [12, 02, 2024] -> Month is parts[1]
-                                                    // We need month name.
-                                                    const monthIndex = parseInt(parts[1], 10) - 1;
-                                                    const dateObj = new Date(parseInt(parts[2]), monthIndex, parseInt(parts[0]));
-                                                    if (!isNaN(dateObj.getTime())) {
-                                                        return dateObj.toLocaleString('default', { month: 'short' }) + ' ' + parts[2];
-                                                    }
-                                                }
-                                                // Fallback for YYYY-MM-DD or other
-                                                const d = new Date(event.date);
-                                                if (!isNaN(d.getTime())) {
-                                                    return d.toLocaleString('default', { month: 'short' }) + ' ' + d.getFullYear();
-                                                }
-                                                return event.date; // Use raw string if all else fails
-                                            })()}
+                                            {formatDate(event.date).split(' ').slice(0, 2).join(' ')}
                                         </span>
                                     </div>
 

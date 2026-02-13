@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { format, isAfter, subDays, parseISO } from "date-fns";
+import { isAfter, subDays } from "date-fns";
+import { parseDateString, formatDate } from "@/lib/utils";
 import { FileText, Calendar, Filter, Download, Bell, X, Share2, Printer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -115,8 +116,9 @@ export function NoticeBoard() {
 
     const isNew = (dateStr: string) => {
         try {
-            const date = parseISO(dateStr);
-            const sevenDaysAgo = subDays(new Date(), 30); // Keeping 30 days logic as per original
+            const date = parseDateString(dateStr);
+            if (!date) return false;
+            const sevenDaysAgo = subDays(new Date(), 30); // Keeping 30 days logic
             return isAfter(date, sevenDaysAgo);
         } catch (e) { return false; }
     };
@@ -130,7 +132,11 @@ export function NoticeBoard() {
         }
         if (filterCategory !== "all" && notice.category !== filterCategory) return false;
         return true;
-    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }).sort((a, b) => {
+        const da = parseDateString(a.date);
+        const db = parseDateString(b.date);
+        return (db?.getTime() || 0) - (da?.getTime() || 0);
+    });
 
     return (
         <div className="space-y-6">
@@ -146,7 +152,7 @@ export function NoticeBoard() {
                                         {selectedNotice.title}
                                     </h2>
                                     <p className="text-sm text-muted-foreground flex items-center gap-2">
-                                        <span>{format(parseISO(selectedNotice.date), "dd MMMM yyyy")}</span>
+                                        <span>{formatDate(selectedNotice.date)}</span>
                                         <span>•</span>
                                         <Badge variant="outline" className="text-xs">{selectedNotice.category}</Badge>
                                     </p>
@@ -294,7 +300,7 @@ export function NoticeBoard() {
                                         <div className="flex items-center gap-2 flex-wrap">
                                             <span className="flex items-center text-xs text-muted-foreground bg-gray-100 px-2 py-1 rounded">
                                                 <Calendar size={12} className="mr-1" />
-                                                {format(parseISO(notice.date), "dd MMM yyyy")}
+                                                {formatDate(notice.date)}
                                             </span>
                                             <Badge variant="outline" className="text-[10px] border-navy/30 text-navy">
                                                 {notice.category}

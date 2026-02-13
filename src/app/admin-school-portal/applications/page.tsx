@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, ExternalLink, Calendar, Mail, Phone, RefreshCw, Trash2 } from "lucide-react";
-import { format } from "date-fns";
+import { formatDate } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -134,7 +134,7 @@ export default function ApplicationsPage() {
                                         </TableCell>
                                         <TableCell className="font-medium">{item.role}</TableCell>
                                         <TableCell className="text-muted-foreground text-sm">
-                                            {item.date ? format(new Date(item.date), "dd MMM yyyy") : "-"}
+                                            {item.date ? formatDate(item.date) : "-"}
                                         </TableCell>
                                         <TableCell>
                                             {item.resumeLink && (

@@ -26,6 +26,7 @@ const HomeFAQ = nextDynamic(() => import("@/components/home/HomeFAQ").then(mod =
 
 import { albums, testimonials, faqs } from "@/lib/static-data";
 import { cloudinary } from "@/lib/cloudinary-images";
+import { parseDateString } from "@/lib/utils";
 import { getNewsService, type NewsItem as ServiceNewsItem } from "@/services/newsService";
 import { getEventsService, type EventItem as ServiceEventItem } from "@/services/eventsService";
 import { getNoticesService, type NoticeItem as ServiceNoticeItem } from "@/services/noticesService";
@@ -86,7 +87,8 @@ export default async function Home() {
     // Allow items that are explicitly featured OR undefined (legacy/default), only filter out explicit false
     .filter(item => item.isFeatured !== false)
     .map(item => {
-      const timestamp = item.date ? new Date(item.date).getTime() : 0;
+      const parsedDate = parseDateString(item.date);
+      const timestamp = parsedDate ? parsedDate.getTime() : 0;
       const title = (item.title || "").toLowerCase();
       const description = (item.description || "").toLowerCase();
 
