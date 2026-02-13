@@ -278,7 +278,7 @@ export default function NewsManager() {
                                                         <h4 className="font-bold text-lg text-gray-900 line-clamp-1">{item.title}</h4>
                                                         <div className="flex flex-col items-end">
                                                             <span className="text-xs text-gray-500 whitespace-nowrap ml-2 bg-gray-100 px-2 py-1 rounded">{item.date}</span>
-                                                            <span className={`text-[10px] px-1.5 py-0.5 rounded mt-1 ${item.isFeatured ? "bg-green-100 text-green-700" : "bg-gray-200 text-gray-600"}`}>
+                                                            <span className={`text-xs px-1.5 py-0.5 rounded mt-1 ${item.isFeatured ? "bg-green-100 text-green-700" : "bg-gray-200 text-gray-600"}`}>
                                                                 {item.isFeatured ? "On Home" : "Hidden on Home"}
                                                             </span>
                                                         </div>

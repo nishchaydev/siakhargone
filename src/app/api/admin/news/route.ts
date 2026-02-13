@@ -46,7 +46,11 @@ export async function PUT(req: Request) {
         const { id, title, description, date, imageUrl, isFeatured } = await req.json();
 
         if (!id || typeof id !== 'string') {
-            return NextResponse.json({ error: "Invalid or missing News ID" }, { status: 400 });
+            return NextResponse.json({ success: false, error: "Invalid or missing News ID" }, { status: 400 });
+        }
+
+        if (!title || !description || !date || !imageUrl) {
+            return NextResponse.json({ success: false, error: "Title, Description, Date, and Image URL are required." }, { status: 400 });
         }
 
         await updateNewsService({
