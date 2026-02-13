@@ -90,12 +90,22 @@ export default function Schema({ type, data }: SchemaProps) {
             }))
         };
     } else if (type === 'NewsArticle') {
+        // Robust date parsing for Schema
+        let isoDate = data?.date;
+        if (data?.date) {
+            const parts = data.date.split('-');
+            if (parts.length === 3 && parts[0].length === 2) {
+                // DD-MM-YYYY -> YYYY-MM-DD
+                isoDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+        }
+
         schemaData = {
             "@context": "https://schema.org",
             "@type": "NewsArticle",
             "headline": data?.title ?? '',
             "image": data?.imageUrl ? [data.imageUrl] : [],
-            ...(data?.date ? { "datePublished": data.date, "dateModified": data.date } : {}),
+            ...(isoDate ? { "datePublished": isoDate, "dateModified": isoDate } : {}),
             "author": [{
                 "@type": "Organization",
                 "name": "Sanskar International Academy",
