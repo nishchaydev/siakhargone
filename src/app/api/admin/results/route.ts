@@ -33,7 +33,7 @@ export async function GET() {
         return NextResponse.json({ data: results });
     } catch (error) {
         console.error("Results GET Error:", error);
-        return NextResponse.json({ error: "Failed to fetch Results" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to fetch Results" }, { status: 500 });
     }
 }
 
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Result POST Error:", error);
-        return NextResponse.json({ error: "Failed to add Result" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to add Result" }, { status: 500 });
     }
 }
 
@@ -95,7 +95,7 @@ export async function PUT(req: Request) {
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Result PUT Error:", error);
-        return NextResponse.json({ error: "Failed to update Result" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to update Result" }, { status: 500 });
     }
 }
 
@@ -138,6 +138,6 @@ export async function DELETE(req: Request) {
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Result Delete Error:", error);
-        return NextResponse.json({ error: "Failed to delete result" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to delete result" }, { status: 500 });
     }
 }

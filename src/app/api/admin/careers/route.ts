@@ -10,7 +10,7 @@ export async function GET() {
         // Let's return all. The consumer can filter.
         return NextResponse.json({ data: careers });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch careers" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to fetch careers" }, { status: 500 });
     }
 }
 
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
         await addCareerService({ role, department, type, experience, description });
         return NextResponse.json({ success: true });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to add career" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to add career" }, { status: 500 });
     }
 }
 
@@ -30,7 +30,7 @@ export async function PUT(req: Request) {
         await updateCareerService({ id, role, department, type, experience, description, isActive });
         return NextResponse.json({ success: true });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to update career" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to update career" }, { status: 500 });
     }
 }
 
@@ -40,6 +40,6 @@ export async function DELETE(req: Request) {
         await deleteCareerService(id);
         return NextResponse.json({ success: true });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to delete career" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to delete career" }, { status: 500 });
     }
 }

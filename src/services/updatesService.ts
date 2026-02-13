@@ -40,17 +40,22 @@ export async function getUpdatesService(): Promise<UpdateItem[]> {
 }
 
 export async function addUpdate(data: Omit<UpdateItem, 'id'>): Promise<string> {
-    const id = Date.now().toString();
-    const row = [
-        id,
-        data.content,
-        data.date,
-        data.type,
-        data.link,
-        'Active',
-        data.showOnHomepage ? 'Yes' : 'No',
-        new Date().toISOString()
-    ];
-    await SheetService.appendRow(SHEET_TAB_IDS.UPDATES, row);
-    return id;
+    try {
+        const id = Date.now().toString();
+        const row = [
+            id,
+            data.content,
+            data.date,
+            data.type,
+            data.link,
+            'Active',
+            data.showOnHomepage ? 'Yes' : 'No',
+            new Date().toISOString()
+        ];
+        await SheetService.appendRow(SHEET_TAB_IDS.UPDATES, row);
+        return id;
+    } catch (error) {
+        console.error("addUpdate failed:", error);
+        throw error;
+    }
 }

@@ -48,21 +48,26 @@ export async function getResultsService(): Promise<ResultItem[]> {
 }
 
 export async function addResult(data: Omit<ResultItem, 'id'>): Promise<string> {
-    const id = Date.now().toString();
-    const row = [
-        id,
-        data.title,
-        data.examName,
-        data.date,
-        data.description,
-        data.link,
-        data.type,
-        data.topperName || '',
-        data.topperMarks || '',
-        'Active',
-        new Date().toISOString(),
-        data.mediaCoverage ? 'Yes' : 'No'
-    ];
-    await SheetService.appendRow(SHEET_TAB_IDS.RESULTS, row);
-    return id;
+    try {
+        const id = Date.now().toString();
+        const row = [
+            id,
+            data.title,
+            data.examName,
+            data.date,
+            data.description,
+            data.link,
+            data.type,
+            data.topperName || '',
+            data.topperMarks || '',
+            'Active',
+            new Date().toISOString(),
+            data.mediaCoverage ? 'Yes' : 'No'
+        ];
+        await SheetService.appendRow(SHEET_TAB_IDS.RESULTS, row);
+        return id;
+    } catch (error) {
+        console.error("addResult failed:", error);
+        throw error;
+    }
 }

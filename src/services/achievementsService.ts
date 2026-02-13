@@ -66,21 +66,26 @@ export async function getAchievementsService(): Promise<AchievementItem[]> {
 }
 
 export async function addAchievement(data: Omit<AchievementItem, 'id'>): Promise<string> {
-    const id = Date.now().toString();
-    const row = [
-        id,
-        data.title,
-        data.studentName,
-        data.class,
-        data.date,
-        data.description,
-        data.imageUrl,
-        data.priority,
-        data.category,
-        'Active',
-        new Date().toISOString(),
-        data.mediaCoverage ? 'Yes' : 'No'
-    ];
-    await SheetService.appendRow(SHEET_TAB_IDS.ACHIEVEMENTS, row);
-    return id;
+    try {
+        const id = Date.now().toString();
+        const row = [
+            id,
+            data.title,
+            data.studentName,
+            data.class,
+            data.date,
+            data.description,
+            data.imageUrl,
+            data.priority,
+            data.category,
+            'Active',
+            new Date().toISOString(),
+            data.mediaCoverage ? 'Yes' : 'No'
+        ];
+        await SheetService.appendRow(SHEET_TAB_IDS.ACHIEVEMENTS, row);
+        return id;
+    } catch (error) {
+        console.error("addAchievement failed:", error);
+        throw error;
+    }
 }
