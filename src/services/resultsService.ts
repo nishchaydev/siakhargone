@@ -49,7 +49,7 @@ export async function getResultsService(): Promise<ResultItem[]> {
 
 export async function addResult(data: Omit<ResultItem, 'id'>): Promise<string> {
     try {
-        const id = Date.now().toString();
+        const id = crypto.randomUUID();
         const row = [
             id,
             data.title,

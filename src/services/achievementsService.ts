@@ -67,7 +67,8 @@ export async function getAchievementsService(): Promise<AchievementItem[]> {
 
 export async function addAchievement(data: Omit<AchievementItem, 'id'>): Promise<string> {
     try {
-        const id = Date.now().toString();
+        const id = crypto.randomUUID(); // Use standard Web Crypto API available in Node and Edge
+
         const row = [
             id,
             data.title,
