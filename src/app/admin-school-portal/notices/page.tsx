@@ -222,7 +222,7 @@ export default function NoticesManager() {
                                         <div key={n.id} className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between group hover:shadow-md transition-all">
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-2 mb-1">
-                                                    {n.isPriority && <span className="bg-red-100 text-red-600 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Priority</span>}
+                                                    {n.isPriority && <span className="bg-red-100 text-red-600 text-xs uppercase font-bold px-2 py-0.5 rounded">Priority</span>}
                                                     <span className="text-xs text-gray-400">{n.date}</span>
                                                 </div>
                                                 <p className="font-medium text-gray-800">{n.text}</p>
