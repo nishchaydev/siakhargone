@@ -75,7 +75,13 @@ export default async function Home() {
   const allUpdates: (UpdateItem & { timestamp: number; priority: number })[] = [
     ...newsItems.map((item: ServiceNewsItem) => ({ ...item, type: 'News' } as UpdateItem)),
     ...eventsItems.map((item: ServiceEventItem) => ({ ...item, type: 'Event' } as UpdateItem)),
-    ...noticesItems.map((item: ServiceNoticeItem) => ({ ...item, type: 'Notice', description: item.title || 'Important Notice', isFeatured: true } as UpdateItem)) // Notices always shown
+    ...noticesItems.map((item: ServiceNoticeItem) => ({
+      ...item,
+      type: 'Notice',
+      description: item.title || 'Important Notice',
+      isFeatured: true,
+      imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png" // Default image for notices
+    } as UpdateItem)) // Notices always shown
   ]
     // Allow items that are explicitly featured OR undefined (legacy/default), only filter out explicit false
     .filter(item => item.isFeatured !== false)
