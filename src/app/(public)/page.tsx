@@ -33,6 +33,7 @@ import { getNoticesService, type NoticeItem as ServiceNoticeItem } from "@/servi
 import { getAchievementsService } from "@/services/achievementsService";
 import { AnnouncementMarquee } from "@/components/layout/AnnouncementMarquee";
 import { schoolData } from "@/data/schoolData";
+import AdministrationNotice from "@/components/layout/AdministrationNotice";
 
 // Force dynamic rendering since we are fetching news which updates frequently
 // CHANGED: Reduced revalidation time to 60 seconds (1 minute) for faster updates.
@@ -171,6 +172,7 @@ export default async function Home() {
 
   return (
     <>
+      <AdministrationNotice />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -136,7 +136,7 @@ export default function Footer() {
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-white/40">
             <div className="flex flex-col md:flex-row gap-4 items-center">
-              <p>© {new Date().getFullYear()} Sanskar International Academy. All Rights Reserved.</p>
+              <p>© {new Date().getFullYear()} Sanskar International Academy. All rights reserved.</p>
               <p className="hidden md:block">|</p>
               <p>Last Updated: {new Date().toLocaleString('default', { month: 'short', year: 'numeric' })}</p>
             </div>

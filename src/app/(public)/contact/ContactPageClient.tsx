@@ -130,9 +130,19 @@ export default function ContactPageClient() {
                     <p className="text-gray-600 leading-relaxed">{schoolData.contact.address}</p>
                   </div>
 
-                  <div className="space-y-4 pt-4 border-t border-gray-100">
+                  <div className="space-y-6 pt-4 border-t border-gray-100">
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 rounded-full bg-navy/5 flex items-center justify-center text-navy group-hover:bg-navy group-hover:text-white transition-colors shrink-0">
+                        <MapPin size={20} />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-navy uppercase tracking-wider">Head / Society Office</p>
+                        <p className="text-gray-700 font-medium leading-relaxed">{schoolData.contact.societyOffice}</p>
+                      </div>
+                    </div>
+
                     <div className="flex items-center gap-4 group">
-                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold-accent group-hover:bg-gold-accent group-hover:text-white transition-colors">
+                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold-accent group-hover:bg-gold-accent group-hover:text-white transition-colors shrink-0">
                         <Phone size={20} />
                       </div>
                       <div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { loadAboutData } from '@/lib/content';
 import { AboutOverview } from '@/components/about/AboutOverview';
 import PageBanner from '@/components/common/PageBanner';
+import AdministrationNotice from '@/components/layout/AdministrationNotice';
 
 export const metadata: Metadata = {
     title: 'About Us - Overview | SIA Khargone',
@@ -30,6 +31,7 @@ export default async function AboutOverviewPage() {
 
     return (
         <div className="bg-grain min-h-screen">
+            <AdministrationNotice />
             <PageBanner
                 title="About Sanskar International Academy"
                 subtitle="Nurturing Excellence, Character, and Innovation since 2016."
