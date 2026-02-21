@@ -19,7 +19,7 @@ export default async function ResultsPage() {
         results = await getResultsService();
     } catch (error) {
         hasError = true;
-        sendErrorToMonitoring(error, { page: 'ResultsPage' });
+        await sendErrorToMonitoring(error, { page: 'ResultsPage' });
     }
 
     // Helper to escape script tags in JSON-LD
@@ -43,10 +43,12 @@ export default async function ResultsPage() {
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
-            />
+            {!hasError && results.length > 0 && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
+                />
+            )}
             <ResultsPageClient initialResults={results} hasError={hasError} />
 
             <section className="py-12 bg-gray-50 mt-12 text-center">

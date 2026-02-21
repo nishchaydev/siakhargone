@@ -83,7 +83,7 @@ export async function addAchievement(data: Omit<AchievementItem, 'id'>): Promise
             data.mediaCoverage ? 'Yes' : 'No'
         ];
         await SheetService.appendRow(SHEET_TAB_IDS.ACHIEVEMENTS, row);
-        invalidateCache("achievements_data");
+        await invalidateCache("achievements_data");
         return id;
     } catch (error) {
         console.error("addAchievement failed:", error);

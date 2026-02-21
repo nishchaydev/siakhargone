@@ -67,7 +67,7 @@ export async function addResult(data: Omit<ResultItem, 'id'>): Promise<string> {
         ];
         await SheetService.appendRow(SHEET_TAB_IDS.RESULTS, row);
         try {
-            invalidateCache("results_data");
+            await invalidateCache("results_data");
         } catch (e) {
             console.warn("invalidateCache failed", e);
         }

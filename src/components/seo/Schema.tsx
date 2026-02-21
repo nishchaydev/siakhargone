@@ -91,12 +91,31 @@ export default function Schema({ type, data }: SchemaProps) {
         };
     } else if (type === 'NewsArticle') {
         // Robust date parsing for Schema
-        let isoDate = data?.date;
+        let isoDate = undefined;
         if (data?.date) {
-            const parts = data.date.split('-');
-            if (parts.length === 3 && parts[0].length === 2) {
-                // DD-MM-YYYY -> YYYY-MM-DD
-                isoDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+            const ddMmYyyyRegex = /^(\d{1,2})-(\d{1,2})-(\d{4})$/;
+            const match = data.date.match(ddMmYyyyRegex);
+
+            if (match) {
+                const day = parseInt(match[1], 10);
+                const month = parseInt(match[2], 10);
+                const year = parseInt(match[3], 10);
+
+                const dateObj = new Date(year, month - 1, day);
+                // Validate that the date is actually valid (e.g. not 31-02-2024)
+                if (dateObj.getFullYear() === year && dateObj.getMonth() === month - 1 && dateObj.getDate() === day) {
+                    isoDate = dateObj.toISOString().split('T')[0];
+                }
+            } else {
+                // Try parsing as generic date (ISO or other)
+                try {
+                    const parsedDate = new Date(data.date);
+                    if (!isNaN(parsedDate.getTime())) {
+                        isoDate = parsedDate.toISOString().split('T')[0];
+                    }
+                } catch (e) {
+                    console.warn("[Schema] Invalid date format:", data.date);
+                }
             }
         }
 

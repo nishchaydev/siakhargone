@@ -53,7 +53,7 @@ export async function addUpdate(data: Omit<UpdateItem, 'id'>): Promise<string> {
             new Date().toISOString()
         ];
         await SheetService.appendRow(SHEET_TAB_IDS.UPDATES, row);
-        invalidateCache("updates_data");
+        await invalidateCache("updates_data");
         return id;
     } catch (error) {
         console.error("addUpdate failed:", error);

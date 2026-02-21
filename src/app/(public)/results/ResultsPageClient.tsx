@@ -42,7 +42,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                 <Section id="results" title="Exam Results" subtitle="Detailed Performance Reports">
 
                     {hasError && (
-                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-8 rounded-xl text-center mb-8 max-w-2xl mx-auto">
+                        <div role="alert" className="bg-red-50 border border-red-200 text-red-700 px-4 py-8 rounded-xl text-center mb-8 max-w-2xl mx-auto">
                             <p className="font-bold text-lg mb-2">Results temporarily unavailable</p>
                             <p className="text-sm opacity-80">We're having trouble fetching the latest results. Please check back in a few minutes.</p>
                         </div>

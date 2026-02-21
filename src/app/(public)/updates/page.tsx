@@ -28,8 +28,8 @@ export default async function UpdatesPage() {
                 const jsonLd = {
                     "@context": "https://schema.org",
                     "@type": "NewsArticle",
-                    "headline": update.content,
-                    "datePublished": update.date,
+                    "headline": update.content.length > 110 ? update.content.substring(0, 107) + "..." : update.content,
+                    "datePublished": new Date(update.date).toISOString().split('T')[0],
                     "publisher": {
                         "@type": "Organization",
                         "name": "Sanskar International Academy"

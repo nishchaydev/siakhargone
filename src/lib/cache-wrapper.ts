@@ -31,7 +31,7 @@ export async function getCachedData<T>(key: string, fetchFn: () => Promise<T>, t
     }
 }
 
-export function invalidateCache(key: string): boolean {
+export async function invalidateCache(key: string): Promise<boolean> {
     if (cache[key]) {
         delete cache[key];
         console.log(`[Cache] Invalidated ${key}`);
