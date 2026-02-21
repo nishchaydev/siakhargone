@@ -1,10 +1,9 @@
-import { getResultsService } from "@/services/resultsService";
+import { getResultsService, ResultItem } from "@/services/resultsService";
 import Link from "next/link";
 import ResultsPageClient from "./ResultsPageClient";
 import { Metadata } from "next";
 
 export const revalidate = 60;
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
     title: "Exam Results & Board Performance | SIA Khargone 2026",
@@ -13,7 +12,15 @@ export const metadata: Metadata = {
 };
 
 export default async function ResultsPage() {
-    const results = await getResultsService();
+    let results: any[] = [];
+    try {
+        results = await getResultsService();
+    } catch (error) {
+        console.error("ResultsPage Error:", error);
+    }
+
+    // Helper to escape script tags in JSON-LD
+    const escapeJsonLd = (text: string) => text.replace(/<\/script>/g, '<\\/script>').replace(/<\/style>/g, '<\\/style>');
 
     // ItemList Schema for Results/Toppers
     const jsonLd = {
@@ -23,9 +30,7 @@ export default async function ResultsPage() {
             "@type": "ListItem",
             "position": index + 1,
             "item": {
-                "@type": "EducationalOccupationalCredential", // Specific for exam results/credentials? Or just a generic Thing. 
-                // Let's use Thing or similar. Or "Article" if it's a news item about results. 
-                // User asked for ItemList.
+                "@type": "EducationalOccupationalCredential",
                 "name": item.title,
                 "description": item.description,
                 "url": item.link
@@ -37,7 +42,7 @@ export default async function ResultsPage() {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
             />
             <ResultsPageClient initialResults={results} />
 

@@ -41,11 +41,13 @@ export default function ResultsPageClient({ initialResults }: ResultsPageClientP
                 <Section id="results" title="Exam Results" subtitle="Detailed Performance Reports">
 
                     {/* Tabs/Filters */}
-                    <div className="flex justify-center mb-10 overflow-x-auto pb-4">
+                    <div role="tablist" className="flex justify-center mb-10 overflow-x-auto pb-4">
                         <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground bg-white border shadow-sm">
                             {types.map(type => (
                                 <button
                                     key={type}
+                                    role="tab"
+                                    aria-selected={filter === type}
                                     onClick={() => setFilter(type)}
                                     className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${filter === type ? 'bg-navy text-white shadow-sm' : 'hover:bg-gray-100'}`}
                                 >
@@ -54,7 +56,6 @@ export default function ResultsPageClient({ initialResults }: ResultsPageClientP
                             ))}
                         </div>
                     </div>
-
                     <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                         {filteredItems.length === 0 ? (
                             <div className="col-span-2 text-center py-10 text-gray-500">No results found for this category.</div>

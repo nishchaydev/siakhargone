@@ -1,6 +1,6 @@
 import { SheetService } from "@/lib/sheet-service";
 import { SHEET_TAB_IDS } from "@/lib/google-sheets";
-import { getCachedData } from "@/lib/cache-wrapper";
+import { getCachedData, invalidateCache } from "@/lib/cache-wrapper";
 
 export interface UpdateItem {
     id: string;
@@ -53,6 +53,7 @@ export async function addUpdate(data: Omit<UpdateItem, 'id'>): Promise<string> {
             new Date().toISOString()
         ];
         await SheetService.appendRow(SHEET_TAB_IDS.UPDATES, row);
+        invalidateCache("updates_data");
         return id;
     } catch (error) {
         console.error("addUpdate failed:", error);

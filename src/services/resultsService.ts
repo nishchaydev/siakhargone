@@ -1,6 +1,6 @@
 import { SheetService } from "@/lib/sheet-service";
 import { SHEET_TAB_IDS } from "@/lib/google-sheets";
-import { getCachedData } from "@/lib/cache-wrapper";
+import { getCachedData, invalidateCache } from "@/lib/cache-wrapper";
 
 export interface ResultItem {
     id: string;
@@ -13,6 +13,7 @@ export interface ResultItem {
     topperName?: string;
     topperMarks?: string;
     mediaCoverage?: boolean;
+    status?: string;
 }
 
 async function fetchResultsFromGoogleSheets(): Promise<ResultItem[]> {
@@ -65,6 +66,7 @@ export async function addResult(data: Omit<ResultItem, 'id'>): Promise<string> {
             data.mediaCoverage ? 'Yes' : 'No'
         ];
         await SheetService.appendRow(SHEET_TAB_IDS.RESULTS, row);
+        invalidateCache("results_data");
         return id;
     } catch (error) {
         console.error("addResult failed:", error);

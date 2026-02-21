@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         return ['/sitemap.xml', '/robots.txt', '/manifest.webmanifest', '/site.webmanifest'].some(p => route.endsWith(p));
     };
 
-    return routes
+    return Array.from(new Set(routes))
         .filter(route => !isTechnicalRoute(route))
         .map((route) => {
             const isHighPriority = HIGH_PRIORITY_ROUTES.includes(route);

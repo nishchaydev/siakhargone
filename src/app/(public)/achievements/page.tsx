@@ -1,4 +1,4 @@
-import { getAchievementsService } from "@/services/achievementsService";
+import { getAchievementsService, AchievementItem } from "@/services/achievementsService";
 import AchievementsPageClient from "./AchievementsPageClient";
 import { Metadata } from "next";
 
@@ -11,13 +11,21 @@ export const metadata: Metadata = {
     keywords: "sia student achievements, school toppers khargone, sia awards, student success stories",
     openGraph: {
         title: "Student Achievements | Sanskar International Academy",
-        description: "Our students shine in academics, sports, and competitions",
+        description: "Our students shine in academics, sports and competitions",
         images: ["/og-achievements.jpg"],
     }
 };
 
 export default async function AchievementsPage() {
-    const achievements = await getAchievementsService();
+    let achievements: any[] = [];
+    try {
+        achievements = await getAchievementsService();
+    } catch (error) {
+        console.error("AchievementsPage Error:", error);
+    }
+
+    // Helper to escape script tags in JSON-LD
+    const escapeJsonLd = (text: string) => text.replace(/<\/script>/g, '<\\/script>').replace(/<\/style>/g, '<\\/style>');
 
     // ItemList Schema
     const jsonLd = {
@@ -42,7 +50,7 @@ export default async function AchievementsPage() {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
             />
             <AchievementsPageClient initialAchievements={achievements} />
         </>

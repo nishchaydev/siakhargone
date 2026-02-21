@@ -125,7 +125,11 @@ export default function NewsEventsPageClient({ initialNews, initialEvents }: New
                                 <div className="flex flex-col md:flex-row">
                                     {/* Date Box */}
                                     <div className="bg-navy text-white p-6 flex flex-col items-center justify-center min-w-[120px] shrink-0 text-center">
-                                        <span className="text-3xl font-bold font-display">{event.date.split('-')[2] || event.date.split('-')[0]}</span>
+                                        {(() => {
+                                            const parts = event.date.split('-');
+                                            const day = parts[0].length === 4 ? parts[2] : parts[0];
+                                            return <span className="text-3xl font-bold font-display">{day}</span>;
+                                        })()}
                                         <span className="text-sm uppercase tracking-wider opacity-80">
                                             {formatDate(event.date).split(' ').slice(0, 2).join(' ')}
                                         </span>

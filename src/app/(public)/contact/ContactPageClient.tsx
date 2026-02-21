@@ -137,7 +137,7 @@ export default function ContactPageClient() {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-navy uppercase tracking-wider">Head / Society Office</p>
-                        <p className="text-gray-700 font-medium leading-relaxed">{schoolData.contact.societyOffice}</p>
+                        <p className="text-gray-700 font-medium leading-relaxed">{schoolData.society.office}</p>
                       </div>
                     </div>
 
@@ -152,7 +152,7 @@ export default function ContactPageClient() {
                     </div>
 
                     <div className="flex items-center gap-4 group">
-                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold-accent group-hover:bg-gold-accent group-hover:text-white transition-colors">
+                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold-accent group-hover:bg-gold-accent group-hover:text-white transition-colors shrink-0">
                         <Mail size={20} />
                       </div>
                       <div>
@@ -162,7 +162,7 @@ export default function ContactPageClient() {
                     </div>
 
                     <div className="flex items-center gap-4 group">
-                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold-accent group-hover:bg-gold-accent group-hover:text-white transition-colors">
+                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold-accent group-hover:bg-gold-accent group-hover:text-white transition-colors shrink-0">
                         <Clock size={20} />
                       </div>
                       <div>

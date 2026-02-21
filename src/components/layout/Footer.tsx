@@ -74,11 +74,11 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h3 className="font-display font-bold text-xl text-white mb-8 border-b-4 border-gold inline-block pb-2">Explore</h3>
               <ul className="space-y-4 text-base font-medium text-white/70">
-                <li><Link href="/about" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Our Story</Link></li>
-                <li><Link href="/academics" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Academics</Link></li>
-                <li><Link href="/gallery" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Campus Life</Link></li>
-                <li><Link href="/faculty" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Faculty</Link></li>
-                <li><Link href="/contact" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Contact Us</Link></li>
+                <li><Link href="/about" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Our Story</Link></li>
+                <li><Link href="/academics" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Academics</Link></li>
+                <li><Link href="/gallery" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Campus Life</Link></li>
+                <li><Link href="/faculty" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Faculty</Link></li>
+                <li><Link href="/contact" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Contact Us</Link></li>
               </ul>
             </div>
 
@@ -86,10 +86,10 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h3 className="font-display font-bold text-xl text-white mb-8 border-b-4 border-gold inline-block pb-2">Student Life</h3>
               <ul className="space-y-4 text-base font-medium text-white/70">
-                <li><Link href="/achievements" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Achievements</Link></li>
-                <li><Link href="/results" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Exam Results</Link></li>
-                <li><Link href="/news-events" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">News & Events</Link></li>
-                <li><Link href="/updates" className="hover:text-gold hover:pl-2 transition-all duration-300 inline-block">Updates</Link></li>
+                <li><Link href="/achievements" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Achievements</Link></li>
+                <li><Link href="/results" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Exam Results</Link></li>
+                <li><Link href="/news-events" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">News & Events</Link></li>
+                <li><Link href="/updates" className="hover:text-gold hover:translate-x-1 transition-all duration-300 inline-block">Updates</Link></li>
               </ul>
             </div>
 

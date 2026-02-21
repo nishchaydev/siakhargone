@@ -1,6 +1,6 @@
 import { SheetService } from "@/lib/sheet-service";
 import { SHEET_TAB_IDS } from "@/lib/google-sheets";
-import { getCachedData } from "@/lib/cache-wrapper";
+import { getCachedData, invalidateCache } from "@/lib/cache-wrapper";
 
 export interface AchievementItem {
     id: string;
@@ -50,9 +50,8 @@ async function fetchAchievementsFromGoogleSheets(): Promise<AchievementItem[]> {
         // Header: ["Id", "Title", "StudentName", "Class", "Date", "Description", "ImageUrl", "Priority", "Category", "Status", "CreatedAt", "MediaCoverage"]
         const rows = await SheetService.getRows(SHEET_TAB_IDS.ACHIEVEMENTS, 'A:L');
 
-        const items = rows.map(normalizeAchievement);
-
-        return items
+        return rows
+            .map(normalizeAchievement) // The 'any' type is handled within normalizeAchievement's signature
             .filter(item => item.id && item.id !== 'Id' && (item.status === 'Active')) // Allow items only if status is 'Active'
             .reverse(); // Newest first
     } catch (error) {
@@ -84,6 +83,7 @@ export async function addAchievement(data: Omit<AchievementItem, 'id'>): Promise
             data.mediaCoverage ? 'Yes' : 'No'
         ];
         await SheetService.appendRow(SHEET_TAB_IDS.ACHIEVEMENTS, row);
+        invalidateCache("achievements_data");
         return id;
     } catch (error) {
         console.error("addAchievement failed:", error);
