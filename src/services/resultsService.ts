@@ -66,7 +66,11 @@ export async function addResult(data: Omit<ResultItem, 'id'>): Promise<string> {
             data.mediaCoverage ? 'Yes' : 'No'
         ];
         await SheetService.appendRow(SHEET_TAB_IDS.RESULTS, row);
-        invalidateCache("results_data");
+        try {
+            invalidateCache("results_data");
+        } catch (e) {
+            console.warn("invalidateCache failed", e);
+        }
         return id;
     } catch (error) {
         console.error("addResult failed:", error);

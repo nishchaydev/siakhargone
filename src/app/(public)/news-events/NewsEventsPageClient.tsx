@@ -127,7 +127,9 @@ export default function NewsEventsPageClient({ initialNews, initialEvents }: New
                                     <div className="bg-navy text-white p-6 flex flex-col items-center justify-center min-w-[120px] shrink-0 text-center">
                                         {(() => {
                                             const parts = event.date.split('-');
-                                            const day = parts[0].length === 4 ? parts[2] : parts[0];
+                                            const day = parts[0].length === 4
+                                                ? (parts[2] ?? parts[0] ?? '')
+                                                : (parts[0] ?? '');
                                             return <span className="text-3xl font-bold font-display">{day}</span>;
                                         })()}
                                         <span className="text-sm uppercase tracking-wider opacity-80">

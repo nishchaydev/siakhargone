@@ -12,13 +12,14 @@ import { ResultItem } from "@/services/resultsService";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import PageTransition from "@/components/common/PageTransition";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// Removed unused Tabs imports
 
 interface ResultsPageClientProps {
     initialResults: ResultItem[];
+    hasError?: boolean;
 }
 
-export default function ResultsPageClient({ initialResults }: ResultsPageClientProps) {
+export default function ResultsPageClient({ initialResults, hasError }: ResultsPageClientProps) {
     const [filter, setFilter] = useState("All");
 
     // Extract unique types for filters/tabs
@@ -39,6 +40,13 @@ export default function ResultsPageClient({ initialResults }: ResultsPageClientP
                 />
 
                 <Section id="results" title="Exam Results" subtitle="Detailed Performance Reports">
+
+                    {hasError && (
+                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-8 rounded-xl text-center mb-8 max-w-2xl mx-auto">
+                            <p className="font-bold text-lg mb-2">Results temporarily unavailable</p>
+                            <p className="text-sm opacity-80">We're having trouble fetching the latest results. Please check back in a few minutes.</p>
+                        </div>
+                    )}
 
                     {/* Tabs/Filters */}
                     <div role="tablist" className="flex justify-center mb-10 overflow-x-auto pb-4">

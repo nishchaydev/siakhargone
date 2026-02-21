@@ -20,7 +20,7 @@ export default async function UpdatesPage() {
     // User asked for NewsArticle schema for EACH update.
 
     // Helper to escape script tags in JSON-LD
-    const escapeJsonLd = (text: string) => text.replace(/<\/script>/g, '<\\/script>').replace(/<\/style>/g, '<\\/style>');
+    const escapeJsonLd = (text: string) => text.replace(/<\/script>/gi, '<\\/script>').replace(/<\/style>/gi, '<\\/style>');
 
     return (
         <>

@@ -1,4 +1,5 @@
 import { getResultsService, ResultItem } from "@/services/resultsService";
+import { sendErrorToMonitoring } from "@/lib/monitoring";
 import Link from "next/link";
 import ResultsPageClient from "./ResultsPageClient";
 import { Metadata } from "next";
@@ -12,15 +13,17 @@ export const metadata: Metadata = {
 };
 
 export default async function ResultsPage() {
-    let results: any[] = [];
+    let results: ResultItem[] = [];
+    let hasError = false;
     try {
         results = await getResultsService();
     } catch (error) {
-        console.error("ResultsPage Error:", error);
+        hasError = true;
+        sendErrorToMonitoring(error, { page: 'ResultsPage' });
     }
 
     // Helper to escape script tags in JSON-LD
-    const escapeJsonLd = (text: string) => text.replace(/<\/script>/g, '<\\/script>').replace(/<\/style>/g, '<\\/style>');
+    const escapeJsonLd = (text: string) => text.replace(/<\/script>/gi, '<\\/script>').replace(/<\/style>/gi, '<\\/style>');
 
     // ItemList Schema for Results/Toppers
     const jsonLd = {
@@ -44,7 +47,7 @@ export default async function ResultsPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
             />
-            <ResultsPageClient initialResults={results} />
+            <ResultsPageClient initialResults={results} hasError={hasError} />
 
             <section className="py-12 bg-gray-50 mt-12 text-center">
                 <div className="container px-4">

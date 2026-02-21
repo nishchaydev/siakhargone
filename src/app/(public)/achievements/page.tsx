@@ -1,4 +1,5 @@
 import { getAchievementsService, AchievementItem } from "@/services/achievementsService";
+import { sendErrorToMonitoring } from "@/lib/monitoring";
 import AchievementsPageClient from "./AchievementsPageClient";
 import { Metadata } from "next";
 
@@ -17,15 +18,15 @@ export const metadata: Metadata = {
 };
 
 export default async function AchievementsPage() {
-    let achievements: any[] = [];
+    let achievements: AchievementItem[] = [];
     try {
         achievements = await getAchievementsService();
     } catch (error) {
-        console.error("AchievementsPage Error:", error);
+        sendErrorToMonitoring(error, { page: 'AchievementsPage' });
     }
 
     // Helper to escape script tags in JSON-LD
-    const escapeJsonLd = (text: string) => text.replace(/<\/script>/g, '<\\/script>').replace(/<\/style>/g, '<\\/style>');
+    const escapeJsonLd = (text: string) => text.replace(/<\/script>/gi, '<\\/script>').replace(/<\/style>/gi, '<\\/style>');
 
     // ItemList Schema
     const jsonLd = {
