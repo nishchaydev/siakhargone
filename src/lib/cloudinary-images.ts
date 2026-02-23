@@ -135,7 +135,7 @@ export const cloudinary = {
     },
 
     academics: {
-        banner: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1770912165/1501b896-101a-4702-8951-40be998f8042.png",
+        banner: "https://res.cloudinary.com/dkits80xk/image/upload/v1770866540/ba5fa378-c98b-4e8f-a4ec-bd5db243929f.png",
         methodology: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349460/classroom-8_ui87lk.webp",
     },
 
