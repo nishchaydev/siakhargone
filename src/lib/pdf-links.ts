@@ -12,7 +12,7 @@ export const mandatoryDisclosure = {
         recognitionCertificate: "coming-soon",
         sanitationCertificate: "coming-soon",
         staffList: "coming-soon",
-        studentStrength: "coming-soon",
+        studentStrength: "/student-strength",
     }
 };
 

@@ -93,10 +93,7 @@ export default function LeadershipContent({
                                 />
                                 <div className="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors duration-700" />
 
-                                <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md px-6 py-4 rounded-2xl shadow-xl border-l-4 border-gold group-hover:-translate-y-2 transition-transform duration-500">
-                                    <span className="block text-2xl font-bold text-navy font-display leading-none">2025-26</span>
-                                    <span className="block text-[10px] font-bold uppercase tracking-widest text-gold-dark mt-1">Academic Cohort</span>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -121,10 +118,7 @@ export default function LeadershipContent({
                                 />
                                 <div className="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors duration-700" />
 
-                                <div className="absolute top-6 right-6 bg-navy/90 backdrop-blur-md px-6 py-4 rounded-2xl shadow-xl border-r-4 border-gold group-hover:-translate-y-2 transition-transform duration-500">
-                                    <span className="block text-xl font-bold text-white font-display leading-none text-right">Apex Body</span>
-                                    <span className="block text-[10px] font-bold uppercase tracking-widest text-gold mt-1 text-right">Student Governance</span>
-                                </div>
+
                             </div>
                         </div>
                     </div>

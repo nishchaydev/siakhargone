@@ -4,7 +4,7 @@ import PageBanner from '@/components/common/PageBanner';
 import LeadershipContent from '@/components/about/LeadershipContent';
 
 const ACADEMIC_YEAR = '2025-26';
-const STUDENT_LEADERSHIP_IMAGE_URL = 'https://res.cloudinary.com/dkits80xk/image/upload/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png';
+const STUDENT_LEADERSHIP_IMAGE_URL = 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1770863349/9690af22-e610-4828-a6f6-14eaf7e5c4dd.png';
 
 // SEO Metadata
 export const metadata: Metadata = {

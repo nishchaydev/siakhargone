@@ -67,7 +67,7 @@ export default function MandatoryDisclosurePage() {
             title: "General Information",
             items: [
                 { name: "Staff List", status: mandatoryDisclosure.placeholders.staffList },
-                { name: "Student Strength", status: mandatoryDisclosure.placeholders.studentStrength },
+                { name: "Student Strength", links: { preview: "/student-strength", download: "/student-strength" } },
             ]
         }
     ];

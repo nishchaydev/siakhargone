@@ -283,7 +283,7 @@ const Header = () => {
         isVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
           ? "bg-navy/95 border-b border-gold/20 shadow-sm"
-          : "bg-navy text-white border-b border-transparent"
+          : "bg-navy text-white"
       )}
     >
       <TopBar isTransparent={false} />

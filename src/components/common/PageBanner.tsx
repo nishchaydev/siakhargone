@@ -30,8 +30,7 @@ export default function PageBanner({
                     style={{ objectPosition }}
                     priority
                 />
-                <div className="absolute inset-0 bg-navy/60 mix-blend-multiply" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy to-transparent" />
+                <div className="absolute inset-0 bg-black/30" />
             </div>
 
             {/* Content */}
