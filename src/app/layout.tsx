@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display, Mukta } from 'next/font/google';
 import './globals.css';
-import BackToTop from "@/components/common/BackToTop";
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
@@ -150,7 +149,6 @@ export default function RootLayout({
         <Preloader />
         <UrgencyBanner />
         {children}
-        <BackToTop />
         <Toaster />
         <SpeedInsights />
         <Analytics />
