@@ -22,7 +22,7 @@ export default function FloatingWhatsApp() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent('whatsapp_click', { location: 'floating_button' })}
-            className="fixed bottom-28 right-6 z-50 flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 group"
+            className="fixed bottom-4 right-4 z-50 flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 group"
             aria-label="Chat with us on WhatsApp"
         >
             {/* Desktop Label - Hidden on Mobile */}
