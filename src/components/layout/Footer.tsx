@@ -102,7 +102,6 @@ export default function Footer() {
                 <li><Link href="/admissions" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Admissions Process</Link></li>
                 <li><Link href="/fees" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Pay Fees Online</Link></li>
                 <li><Link href="/tc" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Transfer Certificate (TC)</Link></li>
-                <li><Link href="/results" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Student Results</Link></li>
                 <li><Link href="/careers" className="hover:text-gold transition-colors inline-block hover:translate-x-1 duration-300">Careers</Link></li>
               </ul>
             </div>

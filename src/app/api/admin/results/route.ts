@@ -40,21 +40,21 @@ export async function GET() {
 // POST: Upload New Result
 export async function POST(req: Request) {
     try {
-        const { admissionNo, dob, studentName, className, examName, resultLink } = await req.json();
+        const { admissionNo, dob, studentName, className, examName, resultLink, status } = await req.json();
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
         if (!spreadsheetId) return NextResponse.json({ error: "Missing ID" }, { status: 500 });
 
         const createdAt = new Date().toISOString();
-        const status = "Published";
+        const finalStatus = status || "Published";
 
         await sheets.spreadsheets.values.append({
             spreadsheetId,
             range: `${RESULTS_TAB_NAME}!A:H`,
             valueInputOption: "USER_ENTERED",
             requestBody: {
-                values: [[admissionNo, dob, studentName, className, examName, resultLink, status, createdAt]],
+                values: [[admissionNo, dob, studentName, className, examName, resultLink, finalStatus, createdAt]],
             },
         });
 

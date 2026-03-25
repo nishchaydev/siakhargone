@@ -14,6 +14,12 @@ import Link from "next/link";
 import PageTransition from "@/components/common/PageTransition";
 // Removed unused Tabs imports
 
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Search, AlertCircle, CheckCircle2, User, UserCheck, GraduationCap, Award, X } from "lucide-react";
+import { StudentResult } from "@/types/results";
+import { useToast } from "@/hooks/use-toast";
+
 interface ResultsPageClientProps {
     initialResults: ResultItem[];
     hasError?: boolean;
@@ -21,6 +27,74 @@ interface ResultsPageClientProps {
 
 export default function ResultsPageClient({ initialResults, hasError }: ResultsPageClientProps) {
     const [filter, setFilter] = useState("All");
+    const { toast } = useToast();
+    
+    // Search states
+    const [admissionNo, setAdmissionNo] = useState("");
+    const [dob, setDob] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
+    const [searchResult, setSearchResult] = useState<StudentResult | null>(null);
+    const [searchError, setSearchError] = useState<string | null>(null);
+
+    const clearSearch = () => {
+        setSearchResult(null);
+        setSearchError(null);
+        setAdmissionNo("");
+        setDob("");
+    };
+
+    const handleSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!admissionNo || !dob) {
+            toast({
+                title: "Incomplete Details",
+                description: "Please enter both Admission Number and Date of Birth.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        setIsSearching(true);
+        setSearchError(null);
+        setSearchResult(null);
+
+        try {
+            const response = await fetch("/api/results/search", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ admissionNo, dob }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setSearchError(data.error || "Result not found.");
+                toast({
+                    title: "No Result Found",
+                    description: data.error || "Please check your details and try again.",
+                    variant: "destructive",
+                });
+            } else {
+                setSearchResult(data);
+                toast({
+                    title: "Result Found",
+                    description: `Successfully retrieved result for ${data.StudentName}.`,
+                });
+            }
+        } catch (err) {
+            console.error("Search error:", err);
+            setSearchError("An unexpected error occurred. Please try again.");
+            toast({
+                title: "Connection Error",
+                description: "Failed to connect to the results server.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSearching(false);
+        }
+    };
+
+
 
     // Extract unique types for filters/tabs
     const types = ["All", ...Array.from(new Set(initialResults.map(item => item.type || "General")))];
@@ -35,11 +109,144 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                 <Breadcrumbs items={[{ name: "Exam Results" }]} />
                 <PageBanner
                     title="Academic Excellence"
-                    subtitle="Showcasing the hard work and success of our scholars."
+                    subtitle="Access your examination results and celebrate your progress."
                     image="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop"
                 />
 
-                <Section id="results" title="Exam Results" subtitle="Detailed Performance Reports">
+                <Section id="search" title="अपना Result देखें" subtitle="Admission Number और Date of Birth डालें" className="bg-white/50 backdrop-blur-sm">
+                    <div className="max-w-lg mx-auto px-4">
+
+                        {/* Simple Form Card */}
+                        <Card className="border-2 border-navy/10 shadow-xl rounded-2xl overflow-hidden">
+                            <CardContent className="p-8 space-y-6">
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="admissionNo" className="text-navy font-bold text-base">
+                                        📋 Admission Number
+                                    </Label>
+                                    <p className="text-sm text-gray-500">School diary ya TC se copy karein</p>
+                                    <Input
+                                        id="admissionNo"
+                                        placeholder="e.g. 202601"
+                                        value={admissionNo}
+                                        onChange={(e) => setAdmissionNo(e.target.value)}
+                                        className="h-14 text-lg border-2 border-gray-200 focus:border-navy focus:ring-navy rounded-xl"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="dob" className="text-navy font-bold text-base">
+                                        🎂 Date of Birth
+                                    </Label>
+                                    <p className="text-sm text-gray-500">Bacche ki janam tarikh daalein</p>
+                                    <Input
+                                        id="dob"
+                                        type="date"
+                                        value={dob}
+                                        onChange={(e) => setDob(e.target.value)}
+                                        className="h-14 text-lg border-2 border-gray-200 focus:border-navy focus:ring-navy rounded-xl"
+                                        required
+                                    />
+                                </div>
+
+                                <Button
+                                    type="button"
+                                    disabled={isSearching}
+                                    onClick={handleSearch as unknown as React.MouseEventHandler<HTMLButtonElement>}
+                                    className="w-full h-14 bg-navy hover:bg-navy-light text-white font-bold text-xl rounded-xl shadow-lg transition-all"
+                                >
+                                    {isSearching ? (
+                                        <span className="flex items-center gap-2">
+                                            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
+                                                <Search size={24} />
+                                            </motion.div>
+                                            Dhundh raha hai...
+                                        </span>
+                                    ) : (
+                                        <span className="flex items-center gap-2">
+                                            <Search size={24} />
+                                            Result Dekho 🔍
+                                        </span>
+                                    )}
+                                </Button>
+
+                                {/* Error State */}
+                                {searchError && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="p-4 bg-red-50 border-2 border-red-200 rounded-xl flex items-start gap-3"
+                                    >
+                                        <AlertCircle className="text-red-500 w-6 h-6 mt-0.5 shrink-0" />
+                                        <div>
+                                            <p className="text-red-800 font-bold">Result nahi mila ❌</p>
+                                            <p className="text-red-600 text-sm mt-1">Admission Number aur Date of Birth dobara check karein.</p>
+                                            <button onClick={clearSearch} className="mt-2 text-sm text-red-500 underline">Dobara try karein</button>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </CardContent>
+                        </Card>
+
+                        {/* Result Card */}
+                        {searchResult && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="mt-8"
+                            >
+                                <Card className="border-2 border-green-300 shadow-2xl rounded-2xl overflow-hidden">
+                                    <div className="bg-green-600 p-4 text-white flex justify-between items-center">
+                                        <div className="flex items-center gap-2">
+                                            <CheckCircle2 size={22} />
+                                            <span className="font-bold text-lg">Result Mil Gaya! ✅</span>
+                                        </div>
+                                        <button onClick={clearSearch} className="text-white/80 hover:text-white">
+                                            <X size={20} />
+                                        </button>
+                                    </div>
+                                    <CardContent className="p-6 space-y-4">
+                                        <div className="bg-gray-50 rounded-xl p-4 space-y-3">
+                                            <div className="flex justify-between items-center border-b pb-2">
+                                                <span className="text-sm text-gray-500 font-medium">Student ka Naam</span>
+                                                <span className="font-bold text-navy text-lg">{searchResult.StudentName}</span>
+                                            </div>
+                                            <div className="flex justify-between items-center border-b pb-2">
+                                                <span className="text-sm text-gray-500 font-medium">Admission No.</span>
+                                                <span className="font-bold text-navy">{searchResult.AdmissionNo}</span>
+                                            </div>
+                                            <div className="flex justify-between items-center border-b pb-2">
+                                                <span className="text-sm text-gray-500 font-medium">Class</span>
+                                                <span className="font-bold text-navy">{searchResult.Class}</span>
+                                            </div>
+                                            <div className="flex justify-between items-center border-b pb-2">
+                                                <span className="text-sm text-gray-500 font-medium">Exam</span>
+                                                <span className="font-bold text-navy">{searchResult.ExamName}</span>
+                                            </div>
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-sm text-gray-500 font-medium">Status</span>
+                                                <Badge className={searchResult.Status?.toLowerCase() === 'published' || searchResult.Status?.toLowerCase() === 'pass' ? 'bg-green-100 text-green-700 border-green-300 text-sm px-3' : 'bg-yellow-100 text-yellow-700 border-yellow-300 text-sm px-3'}>
+                                                    {searchResult.Status}
+                                                </Badge>
+                                            </div>
+                                        </div>
+
+                                        <Button asChild className="w-full h-14 bg-gold hover:bg-yellow-500 text-navy font-bold text-xl rounded-xl shadow-lg transition-all">
+                                            <Link href={searchResult.ResultLink || "#"} target="_blank" rel="noopener noreferrer">
+                                                <Download className="mr-2 w-6 h-6" />
+                                                Result Card Download Karein 📄
+                                            </Link>
+                                        </Button>
+                                        <p className="text-center text-xs text-gray-400">Ye PDF download hogi, school mein dikhayein</p>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        )}
+                    </div>
+                </Section>
+
+                <Section id="results" title="School Summaries" subtitle="General Performance Overview">
 
                     {hasError && (
                         <div role="alert" className="bg-red-50 border border-red-200 text-red-700 px-4 py-8 rounded-xl text-center mb-8 max-w-2xl mx-auto">
