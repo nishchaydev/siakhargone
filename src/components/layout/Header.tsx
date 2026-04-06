@@ -311,8 +311,11 @@ const Header = () => {
                 {item.children ? (
                   <>
                     <NavigationMenuTrigger
-                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-sans font-semibold text-white px-2 xl:px-4 text-[13px] xl:text-sm", `hover:text-accent focus:bg-accent/10`,
-                        (pathname.startsWith(item.href)) ? `font-bold text-accent` : ""
+                      className={cn(
+                        navigationMenuTriggerStyle(), 
+                        "bg-transparent font-sans font-semibold text-white px-2 xl:px-4 text-[13px] xl:text-sm",
+                        "hover:bg-transparent hover:text-gold data-[state=open]:bg-transparent data-[state=open]:text-gold focus:bg-transparent focus:text-gold",
+                        (pathname.startsWith(item.href)) ? "font-bold text-gold" : ""
                       )}
                     >
                       {item.title}
@@ -338,8 +341,11 @@ const Header = () => {
                     <Link
                       href={item.href}
                       onClick={(e) => handleLinkClick(e, item.href)}
-                      className={cn(navigationMenuTriggerStyle(), "bg-transparent font-sans font-semibold text-white px-2 xl:px-4 text-[13px] xl:text-sm", `hover:text-accent`,
-                        ((isHomePage && activeSection && item.href.includes(activeSection)) || pathname === item.href) ? `font-bold text-accent` : ""
+                      className={cn(
+                        navigationMenuTriggerStyle(), 
+                        "bg-transparent font-sans font-semibold text-white px-2 xl:px-4 text-[13px] xl:text-sm",
+                        "hover:bg-transparent hover:text-gold focus:bg-transparent focus:text-gold",
+                        ((isHomePage && activeSection && item.href.includes(activeSection)) || pathname === item.href) ? "font-bold text-gold" : ""
                       )}
                     >
                       {item.title}

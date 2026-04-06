@@ -18,15 +18,18 @@ interface AchievementsPageClientProps {
     initialAchievements: AchievementItem[];
 }
 
-export default function AchievementsPageClient({ initialAchievements }: AchievementsPageClientProps) {
+export default function AchievementsPageClient({ initialAchievements = [] }: AchievementsPageClientProps) {
     const [filter, setFilter] = useState("All");
 
+    // Safety log
+    console.log(`AchievementsPageClient: Rendering with ${initialAchievements?.length || 0} items.`);
+
     // Extract unique categories, ensuring 'All' is first
-    const categories = ["All", ...Array.from(new Set(initialAchievements.map(item => item.category || "Uncategorized")))];
+    const categories = ["All", ...Array.from(new Set((initialAchievements || []).map(item => item.category || "Uncategorized")))];
 
     const filteredItems = filter === "All"
-        ? initialAchievements
-        : initialAchievements.filter(item => (item.category || "Uncategorized") === filter);
+        ? (initialAchievements || [])
+        : (initialAchievements || []).filter(item => (item.category || "Uncategorized") === filter);
 
     return (
         <PageTransition>

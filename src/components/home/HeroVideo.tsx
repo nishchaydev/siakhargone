@@ -25,7 +25,7 @@ export default function HeroVideo({
   variant = 'modern',
   backgroundImage = heroBg,
   videoId = '5ObfN8wX0Jg',
-  fallbackVideoUrl = "https://res.cloudinary.com/dkits80xk/video/upload/v1770285411/Republic_Day_2026_Sanskar_International_Academy_-_Sanskar_International_Academy_Khargone_Official_720p_h264_cnliwr.mp4"
+  fallbackVideoUrl = "https://res.cloudinary.com/dkits80xk/video/upload/q_auto,vc_auto,so_4/v1775455678/YTDown.com_YouTube_Sanskar-International-Academy-Khargone-s_Media_uSbl_fXzLnI_002_720p_eupz2f.mp4"
 }: Props) {
 
   const { name, cta } = schoolData

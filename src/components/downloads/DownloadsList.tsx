@@ -28,7 +28,6 @@ const categories: Category[] = [
         icon: Book,
         items: [
             { title: "Academic Calendar 2026-27", size: "1.2 MB", url: "#", date: "Coming Soon" },
-            { title: "Prescribed Book List", size: "850 KB", url: "#", date: "Coming Soon" },
             { title: "Syllabus Split-up (Term 1)", size: "2.4 MB", url: "#", date: "Coming Soon" },
         ]
     },

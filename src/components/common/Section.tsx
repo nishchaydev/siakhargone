@@ -34,7 +34,7 @@ export function Section({ id, title, subtitle, children, bgColor = 'bg-backgroun
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.05, // Trigger slightly earlier
   });
 
   useEffect(() => {

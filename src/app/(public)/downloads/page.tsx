@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { DownloadsList } from '@/components/downloads/DownloadsList';
+import { BookSelection } from '@/components/downloads/BookSelection';
 import PageBanner from '@/components/common/PageBanner';
 import { Section } from '@/components/common/Section';
 
@@ -16,7 +17,8 @@ export default function DownloadsPage() {
                 subtitle="Quick access to academic documents, administrative forms, and latest circulars."
                 image="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop"
             />
-            <div className="container mx-auto px-4 py-12">
+            <div className="container mx-auto px-4 py-12 max-w-5xl">
+                <BookSelection />
                 <DownloadsList />
             </div>
         </div>

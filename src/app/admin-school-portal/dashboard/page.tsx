@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogOut, LayoutDashboard, FileText, Image as ImageIcon, Briefcase, Megaphone, FileCheck, GraduationCap, Settings } from "lucide-react";
+import { LogOut, LayoutDashboard, FileText, Image as ImageIcon, Briefcase, Megaphone, FileCheck, GraduationCap, Settings, Trophy } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -58,6 +58,13 @@ export default function AdminDashboard() {
             desc: "Upload and manage exam results.",
             href: "/admin-school-portal/results",
             color: "text-indigo-600 bg-indigo-100"
+        },
+        {
+            title: "Achievements",
+            icon: Trophy,
+            desc: "Celebrate student successes and awards.",
+            href: "/admin-school-portal/achievements",
+            color: "text-amber-600 bg-amber-100"
         },
         {
             title: "Settings",
