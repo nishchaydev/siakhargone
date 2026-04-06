@@ -24,12 +24,21 @@ export default function AchievementsPageClient({ initialAchievements = [] }: Ach
     // Safety log
     console.log(`AchievementsPageClient: Rendering with ${initialAchievements?.length || 0} items.`);
 
+    // Final safety filter to remove any items with missing titles or system strings
+    const cleanAchievements = (initialAchievements || []).filter(item => 
+        item.title && 
+        !item.title.toLowerCase().includes('z1') &&
+        !item.id.toLowerCase().includes('z1')
+    );
+
     // Extract unique categories, ensuring 'All' is first
-    const categories = ["All", ...Array.from(new Set((initialAchievements || []).map(item => item.category || "Uncategorized")))];
+    const categories = ["All", ...Array.from(new Set(cleanAchievements.map(item => item.category || "Uncategorized")))];
 
     const filteredItems = filter === "All"
-        ? (initialAchievements || [])
-        : (initialAchievements || []).filter(item => (item.category || "Uncategorized") === filter);
+        ? cleanAchievements
+        : cleanAchievements.filter(item => (item.category || "Uncategorized") === filter);
+
+    console.log(`AchievementsPageClient: Filtered list has ${filteredItems.length} items for category "${filter}".`);
 
     return (
         <PageTransition>
@@ -41,7 +50,12 @@ export default function AchievementsPageClient({ initialAchievements = [] }: Ach
                     image="https://images.unsplash.com/photo-1546519638-68e109498ee2?q=80&w=2070&auto=format&fit=crop"
                 />
 
-                <Section id="achievements" title="Hall of Fame" subtitle="Recognizing Excellence">
+                {/* Adding manual visible state to Section if needed or just ensuring it renders */}
+                <Section 
+                    id="achievements" 
+                    title="Hall of Fame" 
+                    subtitle="Recognizing Excellence"
+                >
 
                     {/* Filters */}
                     <div className="flex flex-wrap justify-center gap-2 mb-10">

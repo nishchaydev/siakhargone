@@ -39,8 +39,8 @@ export const bookListsData: Record<string, ClassBookList> = {
             { sn: 11, subject: "Physical Education & Well Being", publisher: "NCERT", bookTitle: "Khel Yatra" },
         ],
         notebooks: [
-            { sn: 1, type: "Single Line", details: "A4 Size (254) Pag", qty: 2 },
-            { sn: 2, type: "Single Line", details: "A4 Size (168) Pag", qty: 5 },
+            { sn: 1, type: "Single Line", details: "A4 Size (254) Pages", qty: 2 },
+            { sn: 2, type: "Single Line", details: "A4 Size (168) Pages", qty: 5 },
             { sn: 3, type: "Single Line", details: "A4 (120 pages)", qty: 1 },
             { sn: 4, type: "Rough Note Book", details: "Yellow Pages", qty: 2 },
         ]
@@ -63,8 +63,8 @@ export const bookListsData: Record<string, ClassBookList> = {
             { sn: 11, subject: "Physical Education & Well Being", publisher: "NCERT", bookTitle: "Khel Yatra" },
         ],
         notebooks: [
-            { sn: 1, type: "Single Line", details: "A4 Size (254) Pag", qty: 2 },
-            { sn: 2, type: "Single Line", details: "A4 Size (168) Pag", qty: 5 },
+            { sn: 1, type: "Single Line", details: "A4 Size (254) Pages", qty: 2 },
+            { sn: 2, type: "Single Line", details: "A4 Size (168) Pages", qty: 5 },
             { sn: 3, type: "Single Line", details: "A4 (120 pages)", qty: 1 },
             { sn: 4, type: "Rough Note Book", details: "Yellow Pages", qty: 2 },
         ]
@@ -87,8 +87,8 @@ export const bookListsData: Record<string, ClassBookList> = {
             { sn: 11, subject: "Physical Education & Well Being", publisher: "NCERT", bookTitle: "Khel Yatra" },
         ],
         notebooks: [
-            { sn: 1, type: "Single Line", details: "A4 Size (254) Pag", qty: 2 },
-            { sn: 2, type: "Single Line", details: "A4 Size (168) Pag", qty: 5 },
+            { sn: 1, type: "Single Line", details: "A4 Size (254) Pages", qty: 2 },
+            { sn: 2, type: "Single Line", details: "A4 Size (168) Pages", qty: 5 },
             { sn: 3, type: "Single Line", details: "A4 (120 pages)", qty: 1 },
             { sn: 4, type: "Rough Note Book", details: "Yellow Pages", qty: 2 },
         ]
@@ -108,9 +108,9 @@ export const bookListsData: Record<string, ClassBookList> = {
             { sn: 8, subject: "Information Technology", publisher: "Kips Publication", bookTitle: "IT 402" },
         ],
         notebooks: [
-            { sn: 1, type: "Single Line", details: "A4 Size (168) Page", qty: 4 },
-            { sn: 2, type: "One Line", details: "A4 Size (300) Page", qty: 2 },
-            { sn: 3, type: "Single Line", details: "A4 Size (120) Page", qty: 1 },
+            { sn: 1, type: "Single Line", details: "A4 Size (168) Pages", qty: 4 },
+            { sn: 2, type: "One Line", details: "A4 Size (300) Pages", qty: 2 },
+            { sn: 3, type: "Single Line", details: "A4 Size (120) Pages", qty: 1 },
             { sn: 4, type: "Rough Note Book", details: "Yellow Pages", qty: 1 },
             { sn: 5, type: "Science Practical Notebook", details: "-", qty: 1 },
         ]

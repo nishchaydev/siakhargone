@@ -52,7 +52,14 @@ async function fetchAchievementsFromGoogleSheets(): Promise<AchievementItem[]> {
 
         return rows
             .map(normalizeAchievement) // The 'any' type is handled within normalizeAchievement's signature
-            .filter(item => item.id && item.id !== 'Id' && (item.status === 'Active')) // Allow items only if status is 'Active'
+            .filter(item =>
+                item.id &&
+                item.id !== 'Id' &&
+                item.title &&
+                !item.title.toLowerCase().includes('z1') && // Filter out any potential system strings like z1!
+                !item.id.toLowerCase().includes('z1') &&
+                (item.status === 'Active')
+            ) // Allow items only if status is 'Active'
             .reverse(); // Newest first
     } catch (error) {
         console.error("Service Achievements Fetch Error:", error);
