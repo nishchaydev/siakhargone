@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   images: {
+    unoptimized: true, // Temporary fix for deployment issues
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'firebasestorage.googleapis.com' },
