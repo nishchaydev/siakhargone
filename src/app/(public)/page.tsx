@@ -66,7 +66,7 @@ type UpdateItem = NewsUpdateItem | EventUpdateItem | NoticeUpdateItem;
 
 export default async function Home() {
   // Hybrid Fetching: News, Events & Notices
-  const [newsItems, eventsItems, noticesItems, achievementItems] = await Promise.all([
+  const [newsItems = [], eventsItems = [], noticesItems = [], achievementItems = []] = await Promise.all([
     getNewsService().catch((e: unknown) => { console.error("News Fetch Error:", e); return []; }),
     getEventsService().catch((e: unknown) => { console.error("Events Fetch Error:", e); return []; }),
     getNoticesService().catch((e: unknown) => { console.error("Notices Fetch Error:", e); return []; }),
@@ -75,9 +75,9 @@ export default async function Home() {
 
 
   const allUpdates: (UpdateItem & { timestamp: number; priority: number })[] = [
-    ...newsItems.map((item: ServiceNewsItem) => ({ ...item, type: 'News' } as UpdateItem)),
-    ...eventsItems.map((item: ServiceEventItem) => ({ ...item, type: 'Event' } as UpdateItem)),
-    ...noticesItems.map((item: ServiceNoticeItem) => ({
+    ...(newsItems || []).map((item: ServiceNewsItem) => ({ ...item, type: 'News' } as UpdateItem)),
+    ...(eventsItems || []).map((item: ServiceEventItem) => ({ ...item, type: 'Event' } as UpdateItem)),
+    ...(noticesItems || []).map((item: ServiceNoticeItem) => ({
       ...item,
       type: 'Notice',
       description: item.title || 'Important Notice',
@@ -213,8 +213,8 @@ export default async function Home() {
       <WhyChoose />
       <PrincipalMessage />
       <Academics />
-      <StudentAchievers achievers={achievementItems.slice(0, 3)} />
-      <LatestNews initialNews={latestUpdates} />
+      <StudentAchievers achievers={(achievementItems || []).slice(0, 3)} />
+      <LatestNews initialNews={latestUpdates || []} />
       <LifeAtSIA images={lifeAtSIAImages} />
       <DigitalCampus />
 

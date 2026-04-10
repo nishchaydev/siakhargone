@@ -5,10 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import Preloader from "@/components/ui/Preloader";
-import { GoogleAnalytics } from '@next/third-parties/google'
-import UrgencyBanner from "@/components/common/UrgencyBanner";
 import { schoolData } from "@/data/schoolData";
 import Script from 'next/script';
+import UrgencyBanner from "@/components/common/UrgencyBanner";
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 
 const inter = Inter({
@@ -123,17 +123,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-NMCF4P4');`,
-          }}
-        />
+        <GoogleTagManager gtmId="GTM-NMCF4P4" />
       </head>
 
       <body className="bg-background text-foreground antialiased bg-grain">

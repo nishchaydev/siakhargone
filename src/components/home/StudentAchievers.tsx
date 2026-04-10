@@ -38,7 +38,7 @@ export const StudentAchievers = ({ achievers = [] }: StudentAchieversProps) => {
         return true;
     };
 
-    const displayAchievers = achievers.length > 0 ? achievers.map(item => {
+    const displayAchievers = (achievers && achievers.length > 0) ? achievers.map(item => {
         // Mapping logic - manual patch moved to service
         const category = item.category || "General";
         const title = item.title;

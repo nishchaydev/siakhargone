@@ -4,42 +4,17 @@ import PageBanner from "@/components/common/PageBanner";
 import { Section } from "@/components/common/Section";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Calendar, User, Trophy, Medal } from "lucide-react";
-import Image from "next/image";
+import { Trophy, Medal, Award, Star, Sparkles, Construction } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import { AchievementItem } from "@/services/achievementsService";
 import { motion } from "framer-motion";
 import PageTransition from "@/components/common/PageTransition";
-import { Button } from "@/components/ui/button";
 
 interface AchievementsPageClientProps {
     initialAchievements: AchievementItem[];
 }
 
 export default function AchievementsPageClient({ initialAchievements = [] }: AchievementsPageClientProps) {
-    const [filter, setFilter] = useState("All");
-
-    // Safety log
-    console.log(`AchievementsPageClient: Rendering with ${initialAchievements?.length || 0} items.`);
-
-    // Final safety filter to remove any items with missing titles or system strings
-    const cleanAchievements = (initialAchievements || []).filter(item => 
-        item.title && 
-        !item.title.toLowerCase().includes('z1') &&
-        !item.id.toLowerCase().includes('z1')
-    );
-
-    // Extract unique categories, ensuring 'All' is first
-    const categories = ["All", ...Array.from(new Set(cleanAchievements.map(item => item.category || "Uncategorized")))];
-
-    const filteredItems = filter === "All"
-        ? cleanAchievements
-        : cleanAchievements.filter(item => (item.category || "Uncategorized") === filter);
-
-    console.log(`AchievementsPageClient: Filtered list has ${filteredItems.length} items for category "${filter}".`);
-
     return (
         <PageTransition>
             <div className="bg-grain min-h-screen">
@@ -50,89 +25,114 @@ export default function AchievementsPageClient({ initialAchievements = [] }: Ach
                     image="https://images.unsplash.com/photo-1546519638-68e109498ee2?q=80&w=2070&auto=format&fit=crop"
                 />
 
-                {/* Adding manual visible state to Section if needed or just ensuring it renders */}
+                {/* Coming Soon Section */}
                 <Section 
                     id="achievements" 
-                    title="Hall of Fame" 
-                    subtitle="Recognizing Excellence"
+                    title="Student Achievements" 
+                    subtitle="Something Exciting is Coming"
+                    className="py-20"
                 >
-
-                    {/* Filters */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-10">
-                        {categories.map(cat => (
-                            <Button
-                                key={cat}
-                                variant={filter === cat ? "default" : "outline"}
-                                onClick={() => setFilter(cat)}
-                                className={filter === cat ? "bg-navy text-white" : "border-navy text-navy hover:bg-navy/10"}
+                    <div className="max-w-4xl mx-auto">
+                        {/* Animated Icon Grid */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="flex justify-center gap-8 mb-12"
+                        >
+                            <motion.div
+                                animate={{ 
+                                    y: [0, -10, 0],
+                                    rotate: [0, 5, 0, -5, 0]
+                                }}
+                                transition={{ 
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
                             >
-                                {cat}
-                            </Button>
-                        ))}
-                    </div>
+                                <Trophy className="w-16 h-16 text-gold drop-shadow-lg" />
+                            </motion.div>
+                            <motion.div
+                                animate={{ 
+                                    y: [0, -15, 0],
+                                    scale: [1, 1.1, 1]
+                                }}
+                                transition={{ 
+                                    duration: 2.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 0.2
+                                }}
+                            >
+                                <Medal className="w-16 h-16 text-navy drop-shadow-lg" />
+                            </motion.div>
+                            <motion.div
+                                animate={{ 
+                                    y: [0, -10, 0],
+                                    rotate: [0, -5, 0, 5, 0]
+                                }}
+                                transition={{ 
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 0.4
+                                }}
+                            >
+                                <Award className="w-16 h-16 text-gold drop-shadow-lg" />
+                            </motion.div>
+                        </motion.div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {filteredItems.length === 0 ? (
-                            <div className="col-span-3 text-center py-10 text-gray-500">No achievements found in this category.</div>
-                        ) : (
-                            filteredItems.map((item, index) => (
-                                <motion.div
-                                    key={item.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                >
-                                    <Card className="overflow-hidden hover:shadow-2xl transition-all border-none shadow-lg h-full flex flex-col group">
-                                        <div className="relative h-64 w-full overflow-hidden">
-                                            {item.imageUrl ? (
-                                                <Image
-                                                    src={item.imageUrl}
-                                                    alt={item.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                                />
-                                            ) : (
-                                                <div className="w-full h-full bg-navy/5 flex items-center justify-center">
-                                                    <Trophy className="text-navy/20 w-16 h-16" />
-                                                </div>
-                                            )}
-                                            <div className="absolute top-4 right-4 flex flex-col gap-2 items-end">
-                                                {item.mediaCoverage && (
-                                                    <Badge className="bg-red-500 text-white font-bold shadow-md animate-pulse">
-                                                        AS SEEN IN MEDIA
-                                                    </Badge>
-                                                )}
-                                                <Badge className="bg-gold text-navy font-bold shadow-md">
-                                                    {item.category || "Achievement"}
-                                                </Badge>
-                                            </div>
-                                        </div>
-                                        <CardContent className="p-6 flex-1 flex flex-col relative">
-                                            {/* Floating Date Badge */}
-                                            <div className="absolute -top-5 left-6 bg-navy text-white text-xs px-3 py-1 rounded-full shadow-md flex items-center gap-1">
-                                                <Calendar size={12} /> {item.date}
-                                            </div>
+                        {/* Main Message */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="text-center mb-10"
+                        >
+                            <div className="inline-flex items-center gap-2 bg-gold/10 text-gold px-6 py-3 rounded-full mb-6 font-semibold">
+                                <Construction className="w-5 h-5" />
+                                Under Construction
+                            </div>
+                            
+                            <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 flex items-center justify-center gap-3">
+                                We're Working on Your Achievements
+                                <Sparkles className="w-8 h-8 text-gold" />
+                            </h2>
+                            
+                            <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                                Our team is currently curating an inspiring collection of student achievements, awards, and success stories. 
+                                This page will showcase the remarkable accomplishments of our talented students across academics, sports, arts, and more!
+                            </p>
 
-                                            <div className="mt-4 mb-2">
-                                                <h3 className="text-xl font-bold text-navy group-hover:text-gold transition-colors line-clamp-2">
-                                                    {item.title}
-                                                </h3>
-                                            </div>
+                            <div className="bg-gradient-to-r from-navy/5 via-gold/5 to-navy/5 rounded-2xl p-8 mb-8">
+                                <p className="text-lg text-navy font-medium mb-4">
+                                    🏆 What to expect:
+                                </p>
+                                <ul className="text-left text-gray-700 space-y-3 max-w-xl mx-auto">
+                                    <li className="flex items-start gap-3">
+                                        <Star className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
+                                        <span>Academic excellence and board exam toppers</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Star className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
+                                        <span>Sports championships and athletic achievements</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Star className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
+                                        <span>Cultural competitions and artistic accomplishments</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Star className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
+                                        <span>National and international recognitions</span>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                            <div className="flex items-center gap-2 text-sm text-gray-600 mb-4 font-medium">
-                                                <User size={14} className="text-gold" />
-                                                <span>{item.studentName}</span>
-                                                {item.class && <span className="text-gray-400">• {item.class}</span>}
-                                            </div>
-
-                                            <p className="text-gray-600 text-sm line-clamp-3 mb-4 flex-grow">
-                                                {item.description}
-                                            </p>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
-                            ))
-                        )}
+                            <p className="text-gray-500 italic">
+                                Check back soon to see our Hall of Fame!
+                            </p>
+                        </motion.div>
                     </div>
                 </Section>
 
@@ -154,7 +154,7 @@ export default function AchievementsPageClient({ initialAchievements = [] }: Ach
                             <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-gold">
                                 <CardContent className="p-6 text-center">
                                     <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold group-hover:scale-110 transition-all">
-                                        <Calendar className="w-8 h-8 text-gold group-hover:text-white" />
+                                        <Star className="w-8 h-8 text-gold group-hover:text-white" />
                                     </div>
                                     <h3 className="font-bold text-lg text-navy mb-2 group-hover:text-gold transition-colors">Latest News</h3>
                                     <p className="text-gray-600 text-sm">Stay updated with school happenings</p>

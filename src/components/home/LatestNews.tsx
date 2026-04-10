@@ -19,29 +19,24 @@ interface LatestNewsProps {
 }
 
 export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
-    const [newsItems, setNewsItems] = useState<any[]>(initialNews.length > 0 ? initialNews.map(item => ({
-        id: item.id,
-        category: item.type || "Update",
-        date: item.date,
-        title: item.title,
-        description: item.description,
-        imageUrl: item.imageUrl, // Notices might not have images, handle gracefully below
-        icon: item.type === 'Event' ? Calendar : (item.type === 'Notice' ? AlertCircle : Bell),
-        color: item.type === 'Event' ? "bg-orange-100 text-orange-700 border-orange-200" :
-            (item.type === 'Notice' ? "bg-red-100 text-red-700 border-red-200" : "bg-blue-50 text-blue-600 border-blue-100")
-    })) : []);
+    // Robust mapping with defaults for missing fields
+    const [newsItems] = useState<any[]>(() => {
+        if (!initialNews || !Array.isArray(initialNews)) return [];
+        
+        return initialNews.map(item => ({
+            id: item.id || Math.random().toString(),
+            category: item.type || "Update",
+            date: item.date || "Today",
+            title: item.title || "Latest Update",
+            description: item.description || "",
+            imageUrl: item.imageUrl || null,
+            icon: item.type === 'Event' ? Calendar : (item.type === 'Notice' ? AlertCircle : Bell),
+            color: item.type === 'Event' ? "bg-orange-100 text-orange-700 border-orange-200" :
+                (item.type === 'Notice' ? "bg-red-100 text-red-700 border-red-200" : "bg-blue-50 text-blue-600 border-blue-100")
+        }));
+    });
 
-    const [isLoading, setIsLoading] = useState(false); // No client fetch needed if SSR data provided
-
-    // Fallback client fetch if no initial data and we want to try?
-    // For now, assume SSR is primary source of truth for "instant" load.
-
-    // If we want subsequent updates or real-time? Usually not needed for news.
-    // Keeping it simple: Use props if available, else defaults.
-
-    // if (!isLoading && newsItems.length === 0) {
-    //     return null;
-    // }
+    const [isLoading] = useState(false); // No client fetch needed if SSR data provided
 
     return (
         <Section className="bg-white" id="latest-news">

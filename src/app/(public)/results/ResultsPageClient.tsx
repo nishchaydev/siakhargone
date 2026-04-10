@@ -113,7 +113,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                     image="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop"
                 />
 
-                <Section id="search" title="अपना Result देखें" subtitle="Admission Number और Date of Birth डालें" className="bg-white/50 backdrop-blur-sm">
+                <Section id="search" title="Check Your Result" subtitle="Enter your Admission Number and Date of Birth" className="bg-white/50 backdrop-blur-sm">
                     <div className="max-w-lg mx-auto px-4">
 
                         {/* Simple Form Card */}
@@ -124,7 +124,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                     <Label htmlFor="admissionNo" className="text-navy font-bold text-base">
                                         📋 Admission Number
                                     </Label>
-                                    <p className="text-sm text-gray-500">School diary ya TC se copy karein</p>
+                                    <p className="text-sm text-gray-500">Find this on your school diary or TC</p>
                                     <Input
                                         id="admissionNo"
                                         placeholder="e.g. 202601"
@@ -139,7 +139,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                     <Label htmlFor="dob" className="text-navy font-bold text-base">
                                         🎂 Date of Birth
                                     </Label>
-                                    <p className="text-sm text-gray-500">Bacche ki janam tarikh daalein</p>
+                                    <p className="text-sm text-gray-500">Enter the student's date of birth</p>
                                     <Input
                                         id="dob"
                                         type="date"
@@ -161,12 +161,12 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                             <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
                                                 <Search size={24} />
                                             </motion.div>
-                                            Dhundh raha hai...
+                                            Searching...
                                         </span>
                                     ) : (
                                         <span className="flex items-center gap-2">
                                             <Search size={24} />
-                                            Result Dekho 🔍
+                                            View Result 🔍
                                         </span>
                                     )}
                                 </Button>
@@ -180,9 +180,9 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                     >
                                         <AlertCircle className="text-red-500 w-6 h-6 mt-0.5 shrink-0" />
                                         <div>
-                                            <p className="text-red-800 font-bold">Result nahi mila ❌</p>
-                                            <p className="text-red-600 text-sm mt-1">Admission Number aur Date of Birth dobara check karein.</p>
-                                            <button onClick={clearSearch} className="mt-2 text-sm text-red-500 underline">Dobara try karein</button>
+                                            <p className="text-red-800 font-bold">Result not found ❌</p>
+                                            <p className="text-red-600 text-sm mt-1">Please double-check your Admission Number and Date of Birth.</p>
+                                            <button onClick={clearSearch} className="mt-2 text-sm text-red-500 underline">Try Again</button>
                                         </div>
                                     </motion.div>
                                 )}
@@ -200,7 +200,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                     <div className="bg-green-600 p-4 text-white flex justify-between items-center">
                                         <div className="flex items-center gap-2">
                                             <CheckCircle2 size={22} />
-                                            <span className="font-bold text-lg">Result Mil Gaya! ✅</span>
+                                            <span className="font-bold text-lg">Result Found! ✅</span>
                                         </div>
                                         <button onClick={clearSearch} className="text-white/80 hover:text-white">
                                             <X size={20} />
@@ -209,7 +209,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                     <CardContent className="p-6 space-y-4">
                                         <div className="bg-gray-50 rounded-xl p-4 space-y-3">
                                             <div className="flex justify-between items-center border-b pb-2">
-                                                <span className="text-sm text-gray-500 font-medium">Student ka Naam</span>
+                                                <span className="text-sm text-gray-500 font-medium">Student Name</span>
                                                 <span className="font-bold text-navy text-lg">{searchResult.StudentName}</span>
                                             </div>
                                             <div className="flex justify-between items-center border-b pb-2">
@@ -235,10 +235,10 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                         <Button asChild className="w-full h-14 bg-gold hover:bg-yellow-500 text-navy font-bold text-xl rounded-xl shadow-lg transition-all">
                                             <Link href={searchResult.ResultLink || "#"} target="_blank" rel="noopener noreferrer">
                                                 <Download className="mr-2 w-6 h-6" />
-                                                Result Card Download Karein 📄
+                                                Download Result Card 📄
                                             </Link>
                                         </Button>
-                                        <p className="text-center text-xs text-gray-400">Ye PDF download hogi, school mein dikhayein</p>
+                                        <p className="text-center text-xs text-gray-400">The result card will download as a PDF.</p>
                                     </CardContent>
                                 </Card>
                             </motion.div>
