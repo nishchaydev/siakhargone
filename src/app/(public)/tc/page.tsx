@@ -51,7 +51,7 @@ export default function TCVerificationPage() {
                     <div className="text-center space-y-4">
                         <h2 className="text-3xl font-extrabold text-gray-900">TC Verification Portal</h2>
                         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Enter the Student Roll Number below.
+                            Enter the Student Admission Number below.
                         </p>
                     </div>
 
@@ -63,7 +63,7 @@ export default function TCVerificationPage() {
                                     <Search className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                                     <Input
                                         className="pl-10 h-12 text-lg"
-                                        placeholder="Enter Roll Number..."
+                                        placeholder="Enter Admission Number..."
                                         value={query}
                                         onChange={(e) => setQuery(e.target.value)}
                                         required
@@ -89,7 +89,7 @@ export default function TCVerificationPage() {
 
                     {hasSearched && !loading && !result && (
                         <div className="text-center py-10">
-                            <p className="text-gray-500 text-lg">No Transfer Certificate found for specific Roll Number.</p>
+                            <p className="text-gray-500 text-lg">No Transfer Certificate found for specific Admission Number.</p>
                             <p className="text-sm text-gray-400 mt-2">Please check the number and try again.</p>
                         </div>
                     )}
@@ -104,7 +104,7 @@ export default function TCVerificationPage() {
                                             <span className="text-sm text-gray-400">Issued On: {result.issueDate}</span>
                                         </div>
                                         <CardTitle className="text-2xl text-gray-800">{result.studentName}</CardTitle>
-                                        <CardDescription className="text-base">Roll No: <span className="font-mono font-medium text-gray-700">{result.admissionNo}</span></CardDescription>
+                                        <CardDescription className="text-base">Admission No: <span className="font-mono font-medium text-gray-700">{result.admissionNo}</span></CardDescription>
                                     </div>
                                     <div className="text-right">
                                         <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">TC Number</p>

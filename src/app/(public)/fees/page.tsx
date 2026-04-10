@@ -54,7 +54,7 @@ export default function FeesPage() {
                             <CardContent className="space-y-4">
                                 <div className="bg-blue-50 p-4 rounded-md text-sm text-blue-800">
                                     <strong>Note:</strong> You will be redirected to the secure bank/ERP login page.
-                                    Please keep your Roll Number handy.
+                                    Please keep your Admission Number handy.
                                 </div>
                                 <Button asChild size="lg" className="w-full bg-navy hover:bg-gold hover:text-navy font-bold text-lg h-14 shadow-md transition-all">
                                     {/* PLACEHOLDER LINK - USER WILL UPDATE */}

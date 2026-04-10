@@ -3,20 +3,20 @@ import { searchStudentResult } from '@/lib/student-results-service';
 
 export async function POST(request: NextRequest) {
   try {
-    const { rollNo, dob } = await request.json();
+    const { admissionNo, dob } = await request.json();
 
-    if (!rollNo) {
+    if (!admissionNo) {
       return NextResponse.json(
-        { error: 'Roll Number is required' },
+        { error: 'Admission number is required' },
         { status: 400 }
       );
     }
 
-    const result = await searchStudentResult(rollNo, dob || undefined);
+    const result = await searchStudentResult(admissionNo, dob || undefined);
     
     if (!result) {
       return NextResponse.json(
-        { error: 'Result not found (Roll No: ' + rollNo + '). Please check your details.' },
+        { error: 'Result not found (Admission No: ' + admissionNo + '). Please check your details.' },
         { status: 404 }
       );
     }

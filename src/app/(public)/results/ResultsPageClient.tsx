@@ -30,7 +30,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
     const { toast } = useToast();
     
     // Search states
-    const [rollNo, setRollNo] = useState("");
+    const [admissionNo, setAdmissionNo] = useState("");
     const [dob, setDob] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [searchResult, setSearchResult] = useState<StudentResult | null>(null);
@@ -39,13 +39,13 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
     const clearSearch = () => {
         setSearchResult(null);
         setSearchError(null);
-        setRollNo("");
+        setAdmissionNo("");
         setDob("");
     };
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!rollNo || !dob) {
+        if (!admissionNo || !dob) {
             toast({
                 title: "Incomplete Details",
                 description: "Please enter both Roll Number and Date of Birth.",
@@ -62,7 +62,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
             const response = await fetch("/api/results/search", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ rollNo, dob }),
+                body: JSON.stringify({ admissionNo, dob }),
             });
 
             const data = await response.json();
@@ -121,15 +121,14 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                             <CardContent className="p-8 space-y-6">
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="rollNo" className="text-navy font-bold text-base">
+                                    <Label htmlFor="admissionNo" className="text-navy font-bold text-base">
                                         📋 Roll Number
                                     </Label>
-                                    <p className="text-sm text-gray-500">Find this on your school diary or TC</p>
                                     <Input
-                                        id="rollNo"
+                                        id="admissionNo"
                                         placeholder="Enter Roll Number"
-                                        value={rollNo}
-                                        onChange={(e) => setRollNo(e.target.value)}
+                                        value={admissionNo}
+                                        onChange={(e) => setAdmissionNo(e.target.value)}
                                         className="h-14 text-lg border-2 border-gray-200 focus:border-navy focus:ring-navy rounded-xl"
                                         required
                                     />
