@@ -1,17 +1,17 @@
 import { getSheetDataAsObjects, SHEET_TAB_IDS } from './google-sheets';
 import { StudentResult } from '@/types/results';
 
-export async function searchStudentResult(admissionNo: string, dob?: string): Promise<StudentResult | null> {
+export async function searchStudentResult(rollNo: string, dob?: string): Promise<StudentResult | null> {
   try {
     const data = await getSheetDataAsObjects(SHEET_TAB_IDS.RESULTS);
     if (!data || data.length === 0) return null;
 
-    // Search by AdmissionNo and verify DOB if provided
+    // Search by Roll Number (AdmissionNo in sheet) and verify DOB if provided
     const result = data.find((row) => {
-      const matchAdmission = row['AdmissionNo']?.toString().trim().toLowerCase() === admissionNo.trim().toLowerCase();
+      const matchAdmission = row['AdmissionNo']?.toString().trim().toLowerCase() === rollNo.trim().toLowerCase();
       
       if (!matchAdmission) return false;
-      if (!dob) return true; // Only admission number check if DOB not provided
+      if (!dob) return true; // Only roll number check if DOB not provided
 
       // Sheet stores DOB as DD-MM-YYYY (e.g. "01-01-2026")
       // HTML date input sends YYYY-MM-DD (e.g. "2026-01-01")

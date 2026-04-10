@@ -30,7 +30,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
     const { toast } = useToast();
     
     // Search states
-    const [admissionNo, setAdmissionNo] = useState("");
+    const [rollNo, setRollNo] = useState("");
     const [dob, setDob] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [searchResult, setSearchResult] = useState<StudentResult | null>(null);
@@ -39,16 +39,16 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
     const clearSearch = () => {
         setSearchResult(null);
         setSearchError(null);
-        setAdmissionNo("");
+        setRollNo("");
         setDob("");
     };
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!admissionNo || !dob) {
+        if (!rollNo || !dob) {
             toast({
                 title: "Incomplete Details",
-                description: "Please enter both Admission Number and Date of Birth.",
+                description: "Please enter both Roll Number and Date of Birth.",
                 variant: "destructive",
             });
             return;
@@ -62,7 +62,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
             const response = await fetch("/api/results/search", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ admissionNo, dob }),
+                body: JSON.stringify({ rollNo, dob }),
             });
 
             const data = await response.json();
@@ -113,7 +113,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                     image="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop"
                 />
 
-                <Section id="search" title="Check Your Result" subtitle="Enter your Admission Number and Date of Birth" className="bg-white/50 backdrop-blur-sm">
+                <Section id="search" title="Check Your Result" subtitle="Enter your Roll Number and Date of Birth" className="bg-white/50 backdrop-blur-sm">
                     <div className="max-w-lg mx-auto px-4">
 
                         {/* Simple Form Card */}
@@ -121,15 +121,15 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                             <CardContent className="p-8 space-y-6">
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="admissionNo" className="text-navy font-bold text-base">
-                                        📋 Admission Number
+                                    <Label htmlFor="rollNo" className="text-navy font-bold text-base">
+                                        📋 Roll Number
                                     </Label>
                                     <p className="text-sm text-gray-500">Find this on your school diary or TC</p>
                                     <Input
-                                        id="admissionNo"
-                                        placeholder="e.g. 202601"
-                                        value={admissionNo}
-                                        onChange={(e) => setAdmissionNo(e.target.value)}
+                                        id="rollNo"
+                                        placeholder="Enter Roll Number"
+                                        value={rollNo}
+                                        onChange={(e) => setRollNo(e.target.value)}
                                         className="h-14 text-lg border-2 border-gray-200 focus:border-navy focus:ring-navy rounded-xl"
                                         required
                                     />
@@ -181,7 +181,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                         <AlertCircle className="text-red-500 w-6 h-6 mt-0.5 shrink-0" />
                                         <div>
                                             <p className="text-red-800 font-bold">Result not found ❌</p>
-                                            <p className="text-red-600 text-sm mt-1">Please double-check your Admission Number and Date of Birth.</p>
+                                            <p className="text-red-600 text-sm mt-1">Please double-check your Roll Number and Date of Birth.</p>
                                             <button onClick={clearSearch} className="mt-2 text-sm text-red-500 underline">Try Again</button>
                                         </div>
                                     </motion.div>
@@ -213,7 +213,7 @@ export default function ResultsPageClient({ initialResults, hasError }: ResultsP
                                                 <span className="font-bold text-navy text-lg">{searchResult.StudentName}</span>
                                             </div>
                                             <div className="flex justify-between items-center border-b pb-2">
-                                                <span className="text-sm text-gray-500 font-medium">Admission No.</span>
+                                                <span className="text-sm text-gray-500 font-medium">Roll No.</span>
                                                 <span className="font-bold text-navy">{searchResult.AdmissionNo}</span>
                                             </div>
                                             <div className="flex justify-between items-center border-b pb-2">

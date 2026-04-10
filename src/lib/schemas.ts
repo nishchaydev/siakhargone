@@ -19,6 +19,6 @@ export const ApplyFormSchema = z.object({
 }).strict();
 
 export const ResultSearchSchema = z.object({
-    admissionNo: z.string().min(1, "Admission Number is required").max(50).regex(/^[A-Za-z0-9\-]+$/, "Invalid format"),
+    rollNo: z.string().min(1, "Roll Number is required").max(50).regex(/^[A-Za-z0-9\-]+$/, "Invalid format"),
     dob: z.string().regex(/^\d{2}-\d{2}-\d{4}$/, "DOB must be DD-MM-YYYY").max(10),
 }).strict();
