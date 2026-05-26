@@ -32,6 +32,9 @@ interface TCRecord {
     dob: string;
 }
 
+const MAX_TC_UPLOAD_SIZE = 2 * 1024 * 1024; // 2MB
+const MAX_TC_UPLOAD_SIZE_LABEL = "2MB";
+
 export default function TCManager() {
     const [records, setRecords] = useState<TCRecord[]>([]);
     const [loading, setLoading] = useState(true);
@@ -360,10 +363,10 @@ export default function TCManager() {
                                                         };
                                                     });
 
-                                                    if (file.size > 2 * 1024 * 1024) {
+                                                    if (file.size > MAX_TC_UPLOAD_SIZE) {
                                                         failuresList.push({
                                                             name: file.name,
-                                                            error: "File too large (Maximum 2MB)"
+                                                            error: `File too large (Maximum ${MAX_TC_UPLOAD_SIZE_LABEL})`
                                                         });
                                                         setBulkUploadStatus(prev => {
                                                             if (!prev) return prev;
@@ -383,9 +386,15 @@ export default function TCManager() {
                                                             method: "POST",
                                                             body: formData
                                                         });
-                                                        const json = res.ok ? await res.json() : null;
+                                                        
+                                                        let json: any = null;
+                                                        try {
+                                                            json = await res.json();
+                                                        } catch (jsonErr) {
+                                                            // Handle or ignore JSON parsing error (e.g. non-JSON error response)
+                                                        }
 
-                                                        if (json && json.success) {
+                                                        if (res.ok && json && json.success) {
                                                             successesList.push({ name: file.name, url: json.link });
                                                         } else {
                                                             const errMsg = json?.error || json?.details || `Status ${res.status}`;
