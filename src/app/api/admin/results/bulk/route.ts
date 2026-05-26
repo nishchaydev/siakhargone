@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getGoogleSheetsInstance } from "@/lib/google-sheets";
 import { normalizeClassName } from "@/lib/class-options";
-import { uploadBufferToCloudinary } from "@/lib/cloudinary-upload";
+import { uploadBufferToCloudinaryTC } from "@/lib/cloudinary-tc";
 
 const RESULTS_TAB_NAME = "Results";
 const DOB_PATTERN = /^\d{2}-\d{2}-\d{4}$/;
@@ -210,8 +210,8 @@ export async function POST(req: Request) {
                         if (matchedFile) {
                             try {
                                 const buffer = Buffer.from(await matchedFile.arrayBuffer());
-                                const uploadRes = await uploadBufferToCloudinary(buffer, {
-                                    folder: "school_documents/results-bulk",
+                                const uploadRes = await uploadBufferToCloudinaryTC(buffer, {
+                                    folder: "results",
                                 });
                                 resultLink = uploadRes.secure_url;
                                 uploadedResultLinks.set(matchedKey, resultLink);

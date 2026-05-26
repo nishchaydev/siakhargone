@@ -197,13 +197,15 @@ export default function NewsManager() {
                                         ) : (
                                             <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:bg-gray-50 transition-colors">
                                                 <CldUploadWidget
-                                                    uploadPreset="siakhargone_uploads"
+                                                    uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_TC_UPLOAD_PRESET || "siakhargone_tc"}
                                                     onSuccess={(result) => {
                                                         if (result.info && typeof result.info !== 'string' && result.info.secure_url) {
                                                             setForm({ ...form, imageUrl: result.info.secure_url });
                                                         }
                                                     }}
                                                     options={{
+                                                        cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_TC_CLOUD_NAME,
+                                                        folder: "news",
                                                         sources: ['local', 'url'],
                                                         maxFiles: 1,
                                                         clientAllowedFormats: ["image"],

@@ -402,7 +402,7 @@ export default function AchievementsManager() {
                                             const formData = new FormData();
                                             formData.append("file", file);
                                             try {
-                                                const res = await fetch("/api/admin/upload-cloudinary", {
+                                                const res = await fetch("/api/admin/upload-cloudinary?folder=news", {
                                                     method: "POST",
                                                     body: formData
                                                 });

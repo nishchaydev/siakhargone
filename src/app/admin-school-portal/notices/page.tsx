@@ -41,40 +41,6 @@ export default function NoticesManager() {
             setLoading(false);
         }
     };
-    // ... (skip unchanged lines)
-    <div className="space-y-1.5">
-        <Label>Notice Image (Optional)</Label>
-        <div className="flex gap-2">
-            <Input value={form.link} onChange={e => setForm({ ...form, link: e.target.value })} placeholder="Paste Image URL" className="flex-1" />
-            <CldUploadWidget
-                uploadPreset="siakhargone_uploads"
-                onSuccess={(result: any) => {
-                    const url = result?.info?.secure_url;
-                    if (url) setForm(prev => ({ ...prev, link: url }));
-                }}
-                options={{
-                    sources: ['local', 'url'],
-                    maxFiles: 1,
-                    clientAllowedFormats: ["image"],
-                    resourceType: "image"
-                }}
-            >
-                {({ open }) => (
-                    <Button
-                        type="button"
-                        variant="secondary"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            open();
-                        }}
-                        title="Upload Image (JPG/PNG)"
-                    >
-                        <UploadCloud className="w-4 h-4" />
-                    </Button>
-                )}
-            </CldUploadWidget>
-        </div>
-    </div>
 
     const handleEdit = (item: NoticeItem) => {
         setForm({
@@ -164,12 +130,14 @@ export default function NoticesManager() {
                                         <div className="flex gap-2">
                                             <Input value={form.link} onChange={e => setForm({ ...form, link: e.target.value })} placeholder="Paste Image URL or Upload" className="flex-1" />
                                             <CldUploadWidget
-                                                uploadPreset="siakhargone_uploads"
+                                                uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_TC_UPLOAD_PRESET || "siakhargone_tc"}
                                                 onSuccess={(result: any) => {
                                                     const url = result?.info?.secure_url;
                                                     if (url) setForm(prev => ({ ...prev, link: url }));
                                                 }}
                                                 options={{
+                                                    cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_TC_CLOUD_NAME,
+                                                    folder: "news",
                                                     sources: ['local', 'url'],
                                                     maxFiles: 1,
                                                     clientAllowedFormats: ["image"],

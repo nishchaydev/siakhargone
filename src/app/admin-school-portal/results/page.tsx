@@ -584,7 +584,7 @@ export default function ResultsManager() {
                                                 e.target.disabled = true;
 
                                                 try {
-                                                    const res = await fetch("/api/admin/upload-cloudinary", {
+                                                    const res = await fetch("/api/admin/upload-cloudinary?folder=results", {
                                                         method: "POST",
                                                         body: formData
                                                     });

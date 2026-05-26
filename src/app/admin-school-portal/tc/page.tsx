@@ -52,6 +52,14 @@ export default function TCManager() {
         dob: "" // Added DOB
     });
     const [submitting, setSubmitting] = useState(false);
+    const [bulkUploadStatus, setBulkUploadStatus] = useState<{
+        uploading: boolean;
+        current: number;
+        total: number;
+        successes: { name: string; url: string }[];
+        failures: { name: string; error: string }[];
+    } | null>(null);
+
 
     useEffect(() => {
         fetchRecords();
@@ -80,6 +88,7 @@ export default function TCManager() {
     );
 
     const openIssueModal = () => {
+        setBulkUploadStatus(null);
         setCurrentRecord(null);
         setForm({
             admissionNo: "",
@@ -96,6 +105,7 @@ export default function TCManager() {
     };
 
     const openEditModal = (record: TCRecord) => {
+        setBulkUploadStatus(null);
         setCurrentRecord(record);
         setForm({
             admissionNo: record.admissionNo,
@@ -319,37 +329,176 @@ export default function TCManager() {
                                             key="pdf-upload-input"
                                             type="file"
                                             accept="application/pdf, image/*"
+                                            multiple
                                             onChange={async (e) => {
-                                                const file = e.target.files?.[0];
-                                                if (!file) return;
+                                                const files = e.target.files;
+                                                if (!files || files.length === 0) return;
 
-                                                const formData = new FormData();
-                                                formData.append("file", file);
+                                                const totalFiles = files.length;
+                                                const initialStatus = {
+                                                    uploading: true,
+                                                    current: 0,
+                                                    total: totalFiles,
+                                                    successes: [],
+                                                    failures: []
+                                                };
+                                                setBulkUploadStatus(initialStatus);
 
-                                                // Show uploading state (simple UI feedback)
+                                                const successesList: { name: string; url: string }[] = [];
+                                                const failuresList: { name: string; error: string }[] = [];
+
                                                 e.target.disabled = true;
 
-                                                try {
-                                                    const res = await fetch("/api/admin/upload-cloudinary-tc", {
-                                                        method: "POST",
-                                                        body: formData
-                                                    });
-                                                    const json = await res.json();
+                                                for (let i = 0; i < totalFiles; i++) {
+                                                    const file = files[i];
 
-                                                    if (json.success) {
-                                                        setForm(prev => ({ ...prev, pdfLink: json.link }));
-                                                    } else {
-                                                        console.error("Upload failed detail:", json);
-                                                        alert("Upload Failed: " + (json.details || json.error));
+                                                    setBulkUploadStatus(prev => {
+                                                        if (!prev) return prev;
+                                                        return {
+                                                            ...prev,
+                                                            current: i + 1
+                                                        };
+                                                    });
+
+                                                    if (file.size > 2 * 1024 * 1024) {
+                                                        failuresList.push({
+                                                            name: file.name,
+                                                            error: "File too large (Maximum 2MB)"
+                                                        });
+                                                        setBulkUploadStatus(prev => {
+                                                            if (!prev) return prev;
+                                                            return {
+                                                                ...prev,
+                                                                failures: [...failuresList]
+                                                            };
+                                                        });
+                                                        continue;
                                                     }
-                                                } catch (err) {
-                                                    console.error(err);
-                                                    alert("Upload Error");
-                                                } finally {
-                                                    e.target.disabled = false;
+
+                                                    const formData = new FormData();
+                                                    formData.append("file", file);
+
+                                                    try {
+                                                        const res = await fetch("/api/admin/upload-cloudinary?folder=tc", {
+                                                            method: "POST",
+                                                            body: formData
+                                                        });
+                                                        const json = res.ok ? await res.json() : null;
+
+                                                        if (json && json.success) {
+                                                            successesList.push({ name: file.name, url: json.link });
+                                                        } else {
+                                                            const errMsg = json?.error || json?.details || `Status ${res.status}`;
+                                                            failuresList.push({ name: file.name, error: errMsg });
+                                                        }
+                                                    } catch (err) {
+                                                        failuresList.push({
+                                                            name: file.name,
+                                                            error: err instanceof Error ? err.message : "Network error"
+                                                        });
+                                                    }
+
+                                                    setBulkUploadStatus(prev => {
+                                                        if (!prev) return prev;
+                                                        return {
+                                                            ...prev,
+                                                            successes: [...successesList],
+                                                            failures: [...failuresList]
+                                                        };
+                                                    });
+                                                }
+
+                                                setBulkUploadStatus(prev => {
+                                                    if (!prev) return prev;
+                                                    return {
+                                                        ...prev,
+                                                        uploading: false
+                                                    };
+                                                });
+
+                                                e.target.disabled = false;
+                                                e.target.value = ""; // Reset input so same file can be selected again
+
+                                                if (totalFiles === 1 && successesList.length === 1) {
+                                                    setForm(prev => ({ ...prev, pdfLink: successesList[0].url }));
                                                 }
                                             }}
                                         />
+                                    </div>
+                                )}
+
+                                {bulkUploadStatus && (
+                                    <div className="mt-3 p-4 bg-slate-50 border rounded-lg space-y-3 text-sm">
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-semibold text-slate-700">
+                                                {bulkUploadStatus.uploading 
+                                                    ? `Uploading: ${bulkUploadStatus.current} of ${bulkUploadStatus.total} files...` 
+                                                    : `Upload Completed (${bulkUploadStatus.successes.length} of ${bulkUploadStatus.total} succeeded)`
+                                                }
+                                            </span>
+                                            {bulkUploadStatus.uploading && (
+                                                <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+                                            )}
+                                        </div>
+
+                                        {bulkUploadStatus.successes.length > 0 && (
+                                            <div className="space-y-1.5">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-xs font-bold text-green-700 uppercase tracking-wider">Successful Uploads</span>
+                                                    {!bulkUploadStatus.uploading && (
+                                                        <Button 
+                                                            type="button" 
+                                                            variant="link" 
+                                                            className="h-auto p-0 text-xs text-blue-600 font-bold"
+                                                            onClick={() => {
+                                                                const urls = bulkUploadStatus.successes.map(s => s.url).join("\n");
+                                                                navigator.clipboard.writeText(urls);
+                                                                alert("All links copied to clipboard!");
+                                                            }}
+                                                        >
+                                                            Copy All Links
+                                                        </Button>
+                                                    )}
+                                                </div>
+                                                <div className="max-h-36 overflow-y-auto space-y-1 bg-white border rounded p-2">
+                                                    {bulkUploadStatus.successes.map((s, idx) => (
+                                                        <div key={idx} className="flex items-center justify-between gap-4 text-xs">
+                                                            <span className="truncate max-w-[250px] font-medium text-slate-600">{s.name}</span>
+                                                            <div className="flex items-center gap-2">
+                                                                <a href={s.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline truncate max-w-[150px]">
+                                                                    View
+                                                                </a>
+                                                                <Button
+                                                                    type="button"
+                                                                    variant="ghost"
+                                                                    className="h-6 px-1.5 text-[10px] text-slate-500 hover:text-slate-900"
+                                                                    onClick={() => {
+                                                                        navigator.clipboard.writeText(s.url);
+                                                                        alert(`Copied link for ${s.name}`);
+                                                                    }}
+                                                                >
+                                                                    Copy
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {bulkUploadStatus.failures.length > 0 && (
+                                            <div className="space-y-1.5">
+                                                <span className="text-xs font-bold text-red-600 uppercase tracking-wider">Failed Uploads</span>
+                                                <div className="max-h-24 overflow-y-auto space-y-1 bg-red-50/50 border border-red-100 rounded p-2">
+                                                    {bulkUploadStatus.failures.map((f, idx) => (
+                                                        <div key={idx} className="flex items-center justify-between text-xs text-red-600">
+                                                            <span className="truncate max-w-[200px] font-medium">{f.name}</span>
+                                                            <span className="text-[10px] italic max-w-[200px] truncate">{f.error}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                             </div>

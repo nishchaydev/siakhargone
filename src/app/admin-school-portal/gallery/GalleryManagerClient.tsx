@@ -202,11 +202,11 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                         {mounted && (
                                             <CldUploadWidget
                                                 onSuccess={handleUploadSuccess}
-                                                uploadPreset={uploadPreset || "siakhargone_uploads"}
+                                                uploadPreset={uploadPreset || "siakhargone_tc"}
                                                 options={{
                                                     cloudName: cloudName,
                                                     autoMinimize: true,
-                                                    folder: "gallery_uploads",
+                                                    folder: "gallery",
                                                     sources: ['local', 'url', 'camera']
                                                 }}
                                             >
