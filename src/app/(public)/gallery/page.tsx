@@ -56,7 +56,7 @@ export default async function GalleryPage() {
     id: `cms-${item.id}`,
     imageUrl: item.imageId.startsWith("http")
       ? item.imageId
-      : `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dkits80xk"}/image/upload/c_scale,w_1200/${item.imageId}`,
+      : `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dkits80xk"}/image/upload/f_auto,q_auto,c_scale,w_1200/${item.imageId}`,
     description: item.alt === "Uploaded from Admin" ? "" : item.alt,
     imageHint: item.category
   }));

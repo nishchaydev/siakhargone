@@ -7,6 +7,16 @@ import Image from "next/image";
 import React from "react";
 import confetti from "canvas-confetti";
 import { schoolData } from "@/data/schoolData";
+import { ContactFormSchema } from "@/lib/schemas";
+
+type ContactSubmission = {
+  type: "enquiry";
+  name: string;
+  phone: string;
+  email: string;
+  class: string;
+  message: string;
+};
 
 export default function ContactPageClient() {
   // -------------------------------------------------------------------------
@@ -16,7 +26,7 @@ export default function ContactPageClient() {
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
-  const [lastSubmission, setLastSubmission] = React.useState<any>(null);
+  const [lastSubmission, setLastSubmission] = React.useState<ContactSubmission | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,8 +36,7 @@ export default function ContactPageClient() {
     const formData = new FormData(form);
 
     // Submission Data matching the Google Apps Script structure
-    // Submission Data matching the Google Apps Script structure
-    const submissionData = {
+    const submissionData: ContactSubmission = {
       type: "enquiry",
       name: formData.get('name') as string,
       phone: formData.get('phone') as string,
@@ -35,11 +44,6 @@ export default function ContactPageClient() {
       class: formData.get('class') as string, // Extracted for validation
       message: formData.get('message') as string
     };
-
-    // 🔒 Security: Validate input using Zod
-    // Import dynamically or ensure schema is client-compatible
-    // For simplicity, we import from lib/schemas since it's just pure JS/validation logic
-    const { ContactFormSchema } = require("@/lib/schemas");
 
     const validation = ContactFormSchema.safeParse(submissionData);
 
@@ -64,7 +68,7 @@ export default function ContactPageClient() {
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
       const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
-      const interval: any = setInterval(function () {
+      const interval: ReturnType<typeof setInterval> = setInterval(function () {
         const timeLeft = animationEnd - Date.now();
         if (timeLeft <= 0) return clearInterval(interval);
         const particleCount = 50 * (timeLeft / duration);
@@ -252,7 +256,7 @@ export default function ContactPageClient() {
 
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-navy">Email Address</label>
-                      <input type="email" placeholder="you@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" />
+                      <input name="email" type="email" placeholder="you@example.com" className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-all" />
                     </div>
 
                     <div className="space-y-2">
@@ -295,7 +299,7 @@ export default function ContactPageClient() {
         {/* Visit Our Campus Section */}
         <section className="relative py-24 overflow-hidden mt-12">
           <div className="absolute inset-0 bg-navy-dark z-0">
-            <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"
+            <Image src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349456/infrastructure-building-2_zx4im1.webp"
               alt="Campus Background"
               fill
               className="object-cover opacity-20 mix-blend-overlay" />

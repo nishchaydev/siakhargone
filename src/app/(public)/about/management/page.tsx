@@ -62,7 +62,7 @@ export default async function ManagementPage() {
 
                             <div className="relative w-full rounded-xl overflow-hidden shadow-lg group">
                                 <Image
-                                    src="https://res.cloudinary.com/dkits80xk/image/upload/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png"
+                                    src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770862707/7230c484-46a1-4f9b-afb6-a9f0a9dd6f18.png"
                                     alt="Teaching faculty and staff members of Sanskar International Academy Khargone"
                                     width={1200}
                                     height={600}

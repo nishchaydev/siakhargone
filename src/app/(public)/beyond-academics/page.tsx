@@ -16,7 +16,7 @@ const sportsImage = {
 };
 const leadershipImage = {
   id: 'student-leadership',
-  imageUrl: cloudinary.beyondAcademics?.leadership || "https://res.cloudinary.com/dkits80xk/image/upload/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png",
+  imageUrl: cloudinary.beyondAcademics?.leadership || "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770863355/ea18b716-7de8-4f91-95d7-84dd7e4da118.png",
   description: "Personality Development & Leadership",
   imageHint: "leadership"
 };
@@ -50,7 +50,7 @@ export default function BeyondSchoolPage() {
       <PageBanner
         title="Sports & Activities"
         subtitle="Cultivating excellence through physical education, creative expression, and holistic development."
-        image="https://res.cloudinary.com/dkits80xk/image/upload/v1765349452/taekwando-2_snjgok.webp"
+        image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349452/taekwando-2_snjgok.webp"
         objectPosition="70%"
       />
 
@@ -109,7 +109,7 @@ export default function BeyondSchoolPage() {
             {/* Featured Hero: Action & Fun */}
             <div className="md:col-span-2 lg:col-span-2 lg:row-span-2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
               <Image
-                src="https://res.cloudinary.com/dkits80xk/image/upload/v1770866553/241a7e4b-805d-4998-830a-43e016acf6a8.png"
+                src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770866553/241a7e4b-805d-4998-830a-43e016acf6a8.png"
                 alt="Action & Fun"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -126,7 +126,7 @@ export default function BeyondSchoolPage() {
             {/* Top Right: Taekwando */}
             <div className="lg:col-span-2 relative group overflow-hidden rounded-[2rem] shadow-xl h-[320px]">
               <Image
-                src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349453/taekwando-6_wn0vro.webp"
+                src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349453/taekwando-6_wn0vro.webp"
                 alt="Martial Arts"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -142,7 +142,7 @@ export default function BeyondSchoolPage() {
             {/* Bottom Right 1: Chess */}
             <div className="relative group overflow-hidden rounded-[1.5rem] shadow-lg h-[260px]">
               <Image
-                src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349462/infrastructure-indoregames-2_ef5nyi.webp"
+                src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349462/infrastructure-indoregames-2_ef5nyi.webp"
                 alt="Strategy Games"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -159,7 +159,7 @@ export default function BeyondSchoolPage() {
               <div className="grid grid-cols-2 h-full gap-1">
                 <div className="relative h-full overflow-hidden">
                   <Image
-                    src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-2_nqqixj.webp"
+                    src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349475/sports-achievements-2_nqqixj.webp"
                     alt="Sports Excellence"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-125"
@@ -167,7 +167,7 @@ export default function BeyondSchoolPage() {
                 </div>
                 <div className="relative h-full overflow-hidden">
                   <Image
-                    src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-1_xmyfg2.webp"
+                    src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349475/sports-achievements-1_xmyfg2.webp"
                     alt="Team Pride"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-125"

@@ -81,7 +81,7 @@ export default function ReviewsPage() {
             <PageBanner
                 title="What Parents Say About Us"
                 subtitle="Real reviews from families who chose SIA"
-                image="https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
+                image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
             />
 
             <Section id="rating-summary" bgColor="bg-white">

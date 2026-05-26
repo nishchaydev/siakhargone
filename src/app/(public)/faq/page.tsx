@@ -92,7 +92,7 @@ export default function FAQPage() {
             <PageBanner
                 title="Frequently Asked Questions"
                 subtitle="Why Sanskar International Academy is Among the Best Schools in Khargone"
-                image="https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
+                image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
             />
 
             <Section id="faq-list" bgColor="bg-white">

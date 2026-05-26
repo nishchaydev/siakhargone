@@ -16,7 +16,7 @@ const fadeInUp = {
 };
 
 const virtualTourImage = {
-  imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp",
+  imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349456/infrastructure-building-2_zx4im1.webp",
   description: "Virtual Tour Thumbnail",
   imageHint: "Virtual Tour"
 };

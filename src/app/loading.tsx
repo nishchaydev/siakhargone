@@ -7,7 +7,7 @@ export default function Loading() {
                 <div className="absolute inset-0 border-4 border-gold/30 rounded-full animate-ping"></div>
                 <div className="relative z-10 bg-white rounded-full p-2 shadow-xl border border-gold/20">
                     <Image
-                        src="https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png"
+                        src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png"
                         alt="SIA Loading"
                         width={80}
                         height={80}

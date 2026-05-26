@@ -125,7 +125,12 @@ export const certificates = [
     { title: "Trust / Society Registration", fileUrl: "/siakhargone-content/certificates/Affiliation%20Documents/High%20School/high%20school%20affiliation.pdf" },
 ];
 
-export const downloads: any[] = [
+export type DownloadResource = {
+    title: string;
+    fileUrl: string;
+};
+
+export const downloads: DownloadResource[] = [
     // Empty as no files were clearly identified in downloads/itemX folders
 ];
 
@@ -150,7 +155,12 @@ export const committeeMembers = [
 
 export const committeeContent = ""; // Deprecated, kept for temporary type compatibility if needed
 
-export const committeeDocuments: any[] = [];
+export type CommitteeDocument = {
+    title: string;
+    fileUrl: string;
+};
+
+export const committeeDocuments: CommitteeDocument[] = [];
 
 export const messages = {
     'principal-message': {

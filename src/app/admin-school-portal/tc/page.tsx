@@ -330,7 +330,7 @@ export default function TCManager() {
                                                 e.target.disabled = true;
 
                                                 try {
-                                                    const res = await fetch("/api/admin/upload-cloudinary", {
+                                                    const res = await fetch("/api/admin/upload-cloudinary-tc", {
                                                         method: "POST",
                                                         body: formData
                                                     });

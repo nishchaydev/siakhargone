@@ -78,7 +78,7 @@ export const events = [
         title: "Annual Sports Meet",
         date: `${currentYear}-12-20`,
         description: "Showcasing athletic talent and team spirit.",
-        image: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-1_xmyfg2.webp"
+        image: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349475/sports-achievements-1_xmyfg2.webp"
     },
     {
         id: 9,
@@ -99,7 +99,7 @@ export const events = [
         title: "Annual Function",
         date: `${nextYear}-02-15`,
         description: "The biggest cultural event of the year.",
-        image: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349451/annual-function-3_b9mu3t.webp"
+        image: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349451/annual-function-3_b9mu3t.webp"
     },
     {
         id: 12,

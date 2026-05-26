@@ -65,7 +65,7 @@ export default function PressPage() {
             <PageBanner
                 title="Press & Media"
                 subtitle="Celebrating our achievements and recognition in the community."
-                image="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"
+                image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349456/infrastructure-building-2_zx4im1.webp"
             />
 
             <Section className="py-16 md:py-24">

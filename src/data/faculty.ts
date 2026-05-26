@@ -17,7 +17,7 @@ export const facultyMembers: FacultyMember[] = [
         name: "Mr. Pushpendra Patel",
         role: "Chairperson",
         qualification: "Educationist",
-        image: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/director_image_k8s33e.jpg", // Placeholder - Need real image
+        image: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349457/director_image_k8s33e.jpg", // Placeholder - Need real image
         department: "Leadership",
         message: "Building a foundation of excellence for generations to come.",
         experience: "30+ Years"
@@ -27,7 +27,7 @@ export const facultyMembers: FacultyMember[] = [
         name: "Mr. Praveen Asnade",
         role: "Managing Director",
         qualification: "M.Sc, B.Ed",
-        image: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/director_image_k8s33e.jpg", // Placeholder
+        image: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349457/director_image_k8s33e.jpg", // Placeholder
         department: "Leadership",
         message: "Empowering students to become global citizens through holistic education.",
         experience: "25+ Years"
@@ -37,7 +37,7 @@ export const facultyMembers: FacultyMember[] = [
         name: "Mr. Shivam Jaiswal",
         role: "Principal",
         qualification: "M.A, B.Ed",
-        image: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349458/principal_image_w3qg1a.jpg", // Placeholder matching principal-message
+        image: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349458/principal_image_w3qg1a.jpg", // Placeholder matching principal-message
         department: "Leadership",
         message: "Education is not just about syllabi and exams. It's about kindling the fire of curiosity.",
         experience: "15+ Years"

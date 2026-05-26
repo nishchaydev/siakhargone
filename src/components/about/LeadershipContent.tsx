@@ -26,7 +26,7 @@ interface LeadershipContentProps {
 
 export default function LeadershipContent({
     bannerImage,
-    studentCouncilImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1770863349/9690af22-e610-4828-a6f6-14eaf7e5c4dd.png"
+    studentCouncilImage = "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770863349/9690af22-e610-4828-a6f6-14eaf7e5c4dd.png"
 }: LeadershipContentProps) {
     return (
         <div className="container mx-auto px-4 py-16 space-y-32 max-w-7xl">

@@ -1,10 +1,23 @@
 
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { canAccessDebugApi, hasAdminSession, forbiddenJson, unauthorizedJson } from "@/lib/api-auth";
 
 export function middleware(request: NextRequest) {
     const hostname = request.headers.get("host") || "";
     const pathname = request.nextUrl.pathname;
+
+    if (pathname.startsWith("/api/admin")) {
+        const isPublicAdminApi = pathname === "/api/admin/login" || pathname === "/api/admin/logout" || pathname === "/api/admin/seed-data";
+
+        if (!isPublicAdminApi && !hasAdminSession(request)) {
+            return unauthorizedJson("Admin authentication required");
+        }
+    }
+
+    if (pathname === "/api/debug-headers" && !canAccessDebugApi(request)) {
+        return forbiddenJson();
+    }
 
     // Check if we are on the 'cms' subdomain (e.g. cms.siakhargone.in)
     const isCmsSubdomain = hostname.startsWith("cms.");
@@ -41,7 +54,7 @@ export function middleware(request: NextRequest) {
 
         // C. Rewrite URL (Map root to admin folder)
         // e.g. cms.site.com/dashboard -> /admin-school-portal/dashboard
-        let targetPath = pathname === "/" ? "/dashboard" : pathname;
+        const targetPath = pathname === "/" ? "/dashboard" : pathname;
 
         // Construct the rewrite URL pointing to the actual folder structure
         return NextResponse.rewrite(new URL(`/admin-school-portal${targetPath}`, request.url));

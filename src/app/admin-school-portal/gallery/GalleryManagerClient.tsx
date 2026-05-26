@@ -205,8 +205,6 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                                 uploadPreset={uploadPreset || "siakhargone_uploads"}
                                                 options={{
                                                     cloudName: cloudName,
-                                                    // @ts-ignore
-                                                    cloud_name: cloudName,
                                                     autoMinimize: true,
                                                     folder: "gallery_uploads",
                                                     sources: ['local', 'url', 'camera']
@@ -261,7 +259,7 @@ export default function GalleryManagerClient({ cloudName, uploadPreset }: Galler
                                         <Image
                                             src={(typeof img.imageId === 'string' && img.imageId.startsWith('http'))
                                                 ? img.imageId
-                                                : `https://res.cloudinary.com/${cloudName}/image/upload/c_scale,w_400/${img.imageId}`}
+                                                : `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto,c_scale,w_400/${img.imageId}`}
                                             alt={img.alt || "Gallery Image"}
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-110"

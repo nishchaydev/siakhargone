@@ -41,7 +41,7 @@ export function PromotionalModal() {
                     <div className="w-full relative bg-transparent flex items-center justify-center overflow-hidden">
                         <Link href="/admissions" onClick={() => setIsOpen(false)} className="block w-full h-full relative">
                             <Image
-                                src="https://res.cloudinary.com/dkits80xk/image/upload/v1770624171/2799608355_1_q0ysdq.png"
+                                src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770624171/2799608355_1_q0ysdq.png"
                                 alt="Admissions Open 2026-27 Poster"
                                 width={400}
                                 height={400}

@@ -78,7 +78,7 @@ export default function WhyChooseSIAPage() {
             <PageBanner
                 title="Why Choose Sanskar International Academy?"
                 subtitle="See why 1100+ parents trust us for their child's future."
-                image="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp"
+                image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349456/infrastructure-building-2_zx4im1.webp"
             />
 
             <Section id="features" className="bg-white">

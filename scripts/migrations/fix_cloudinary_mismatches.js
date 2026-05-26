@@ -42,7 +42,7 @@ function fixCloudinaryPaths() {
         let originalContent = content;
 
         // Find all Cloudinary URLs
-        // Regex: https://res.cloudinary.com/dkits80xk/image/upload/([^"'\s)]+)
+        // Regex: https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/([^"'\s)]+)
         const CLOUDINARY_REGEX = /https:\/\/res\.cloudinary\.com\/dkits80xk\/image\/upload\/([^"'\s)]+)/g;
 
         content = content.replace(CLOUDINARY_REGEX, (match, currentFilename) => {

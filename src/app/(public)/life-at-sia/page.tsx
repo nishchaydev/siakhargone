@@ -16,7 +16,7 @@ export default function LifeAtSiaPage() {
 
             {/* Hero Section */}
             <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center overflow-hidden">
-                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp" // Campus image
+                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349456/infrastructure-building-2_zx4im1.webp" // Campus image
                     alt="SIA Campus Aerial View"
                     fill
                     className="absolute inset-0 w-full h-full object-cover"
@@ -44,22 +44,22 @@ export default function LifeAtSiaPage() {
                         {
                             title: "Science & Tech Labs",
                             desc: "State-of-the-art labs for hands-on exploration in physics, chemistry, biology, and computer science.",
-                            img: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349465/lab-chemistry-1_scbzyg.webp",
+                            img: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349465/lab-chemistry-1_scbzyg.webp",
                         },
                         {
                             title: "Sports Complex",
                             desc: "International standard facilities for a wide range of sports, fostering teamwork and physical well-being.",
-                            img: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-1_xmyfg2.webp",
+                            img: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349475/sports-achievements-1_xmyfg2.webp",
                         },
                         {
                             title: "Smart Classrooms",
                             desc: "Technology-enabled classrooms that make learning interactive, engaging, and highly effective.",
-                            img: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/classroom-1_k9z4s9.webp",
+                            img: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349457/classroom-1_k9z4s9.webp",
                         },
                         {
                             title: "Performing Arts Center",
                             desc: "Dedicated spaces for music, dance, and drama, allowing students to explore their creative talents.",
-                            img: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349451/annual-function-3_b9mu3t.webp",
+                            img: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349451/annual-function-3_b9mu3t.webp",
                         },
                     ].map((feature, idx) => (
                         <div key={idx} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group">
@@ -89,13 +89,13 @@ export default function LifeAtSiaPage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349462/infrastructure-library-1_cgdkdd.webp" alt="Library" fill className="object-cover" />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349462/infrastructure-library-1_cgdkdd.webp" alt="Library" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349465/lab-biology-1_hz0ivq.webp" alt="Lab microscope" fill className="object-cover" />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349465/lab-biology-1_hz0ivq.webp" alt="Lab microscope" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349458/classroom-2_i2r5az.webp" alt="Student writing" fill className="object-cover" />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349458/classroom-2_i2r5az.webp" alt="Student writing" fill className="object-cover" />
                             </div>
                         </div>
                         <div>
@@ -122,10 +122,10 @@ export default function LifeAtSiaPage() {
                         </div>
                         <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
                             <div className="h-64 relative rounded-2xl overflow-hidden col-span-2">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-2_nqqixj.webp" alt="Sports Area" fill className="object-cover" />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349475/sports-achievements-2_nqqixj.webp" alt="Sports Area" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
-                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/v1765349475/sports-achievements-3_gmu7hb.webp" alt="Sports Activity" fill className="object-cover" />
+                                <Image src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349475/sports-achievements-3_gmu7hb.webp" alt="Sports Activity" fill className="object-cover" />
                             </div>
                             <div className="h-48 relative rounded-2xl overflow-hidden">
                                 <Image src={cloudinary.annualFunction[2]} alt="Cultural Activity" fill className="object-cover" />

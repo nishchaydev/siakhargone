@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Get in touch with Sanskar International Academy. Visit our campus in Khargone, call us for admissions, or drop an email query.',
 };
 
-// const heroImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1765349456/infrastructure-building-2_zx4im1.webp";
+// const heroImage = "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349456/infrastructure-building-2_zx4im1.webp";
 const heroImage = { imageUrl: cloudinary.infrastructure.building[1], description: "School Building", imageHint: "school building" };
 
 // getSiteAssets removed

@@ -1,6 +1,6 @@
 
 import { NextResponse } from "next/server";
-import { getGoogleSheetsInstance, getGoogleDriveInstance, SHEET_TAB_IDS } from "@/lib/google-sheets";
+import { getGoogleSheetsInstance, getGoogleDriveInstance } from "@/lib/google-sheets";
 import { Readable } from "stream";
 import { limiter } from "@/lib/rate-limit";
 import { ApplyFormSchema } from "@/lib/schemas";
@@ -62,19 +62,26 @@ export async function POST(req: Request) {
             fields: 'id, webViewLink',
         });
 
+        const fileId = driveRes.data.id;
+        const resumeLink = driveRes.data.webViewLink;
+        if (!fileId || !resumeLink) {
+            return NextResponse.json({ error: "Resume upload did not return file details" }, { status: 500 });
+        }
+
         await drive.permissions.create({
-            fileId: driveRes.data.id!,
+            fileId,
             requestBody: {
                 role: 'reader',
                 type: 'anyone',
             },
         });
 
-        const resumeLink = driveRes.data.webViewLink;
-
         // 2. Save Application to Sheets
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+        if (!spreadsheetId) {
+            return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+        }
 
         // Get Cover Letter from original formData to save it
         const coverLetter = formData.get("coverLetter") as string || "";
@@ -100,8 +107,9 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ success: true, link: resumeLink });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Apply Error:", error);
-        return NextResponse.json({ error: "Application failed" }, { status: 500 });
+        return NextResponse.json({ error: "Application failed", details: errorMessage }, { status: 500 });
     }
 }

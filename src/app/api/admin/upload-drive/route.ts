@@ -54,8 +54,9 @@ export async function POST(req: Request) {
             id: response.data.id
         });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Drive Upload Error:", error);
-        return NextResponse.json({ error: "Upload failed", details: error.message }, { status: 500 });
+        return NextResponse.json({ error: "Upload failed", details: errorMessage }, { status: 500 });
     }
 }

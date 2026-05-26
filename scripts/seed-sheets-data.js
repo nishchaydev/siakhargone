@@ -39,7 +39,7 @@ async function seed() {
             date: "2025-12-11",
             content: "School Educational Tour to Gujarat visiting Statue of Unity, Science City, Dwarka, Somnath, and Nageshwar Jyotirlinga.",
             link: "",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1737358763/gujarat_tour_poster.png", // Placeholder or from user upload if they had one, reusing description. 
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1737358763/gujarat_tour_poster.png", // Placeholder or from user upload if they had one, reusing description. 
             // The user uploaded an image. I should ideally use a real URL if I could invalid uploading, but for now I will leave it blank or use a placeholder string to indicate an image is needed.
             // Actually, I can't upload the file from here easily without cloudinary setup in this script.
             // I'll leave imageUrl empty or keep existing logic.

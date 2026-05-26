@@ -20,7 +20,7 @@ if (
 export function generateSignature(publicId?: string, folder: string = "cms_uploads") {
     const timestamp = Math.round(new Date().getTime() / 1000);
 
-    const params: any = {
+    const params: Record<string, string | number> = {
         timestamp: timestamp,
         folder: folder,
     };

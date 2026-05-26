@@ -65,6 +65,7 @@ export const SHEET_TAB_IDS = {
     RESULTS: 'Results',
     UPDATES: 'Updates',
     STUDENT_RESULTS: 'StudentResults',
+    FEEDBACK: 'Feedback',
 };
 
 export async function deleteRowById(sheetName: string, id: string, columnIndex: number = 0) {
@@ -145,18 +146,18 @@ export async function getSheetData(sheetName: string, range: string = 'A:Z') {
 export async function getSheetDataAsObjects(sheetName: string, range: string = 'A:Z') {
     const rows = await getSheetData(sheetName, range);
     if (rows.length === 0) {
-        console.log(`No data found in sheet: ${sheetName}`);
+        console.warn(`No data found in sheet: ${sheetName}`);
         return [];
     }
 
     const headers = rows[0];
-    console.log(`Headers for ${sheetName}:`, headers);
+    console.warn(`Headers for ${sheetName}:`, headers);
     if (rows.length > 1) {
-        console.log(`First data row for ${sheetName}:`, rows[1]);
+        console.warn(`First data row for ${sheetName}:`, rows[1]);
     }
 
     return rows.slice(1).map((row) => {
-        const obj: any = {};
+        const obj: Record<string, string | undefined> = {};
         headers.forEach((header: string, index: number) => {
             obj[header] = row[index];
         });

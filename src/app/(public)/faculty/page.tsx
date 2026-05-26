@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { facultyMembers } from '@/data/faculty';
+import { facultyMembers, type FacultyMember } from '@/data/faculty';
 import { Section } from '@/components/common/Section';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -43,8 +43,9 @@ export default function FacultyPage() {
                 subtitle="The guiding lights behind every student's success"
                 isFirstSection={true}
                 className="pb-8"
-                children={null}
-            />
+            >
+                {null}
+            </Section>
 
             <div className="container mx-auto px-4 pb-20 space-y-20">
 
@@ -123,7 +124,7 @@ export default function FacultyPage() {
 }
 
 // Reusable Card Component for Staff
-function FacultyCard({ member }: { member: any }) {
+function FacultyCard({ member }: { member: FacultyMember }) {
     return (
         <Card className="overflow-hidden border border-gray-100 shadow-md hover:shadow-lg transition-all group bg-white">
             <div className="relative h-64 w-full bg-gray-100 overflow-hidden">

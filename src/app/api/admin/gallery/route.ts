@@ -3,13 +3,18 @@ import { NextResponse } from "next/server";
 import { getGoogleSheetsInstance, SHEET_TAB_IDS } from "@/lib/google-sheets";
 import { generateSignature } from "@/lib/cloudinary-server";
 
+type GalleryPostBody = {
+    spreadsheetSave?: boolean;
+    imageId?: string;
+    category?: string;
+    alt?: string;
+};
+
 // GET: Fetch Gallery Images
 export async function GET() {
     try {
-        console.log("API: Fetching Gallery...");
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
-        console.log("API: Sheet ID:", spreadsheetId);
 
         if (!spreadsheetId) {
             console.error("API Error: Missing GOOGLE_SHEETS_ID");
@@ -22,12 +27,8 @@ export async function GET() {
             range: `${SHEET_TAB_IDS.GALLERY}!A2:H`,
         });
 
-        console.log("API: Sheets Response Status:", response.status);
-
         const rows = response.data.values || [];
-        console.log("API: Rows Found:", rows.length);
-
-        const images = rows.map((row) => ({
+        const images = rows.map((row: string[]) => ({
             id: row[0],
             imageId: row[3], // ImageUrl column stores the ID/URL
             category: row[2],
@@ -37,16 +38,17 @@ export async function GET() {
         const validImages = images.filter(img => img.id && img.id !== 'Id' && img.id !== 'id');
 
         return NextResponse.json({ data: validImages.reverse() });
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("API Gallery Fetch Error FULL:", error);
-        return NextResponse.json({ error: "Failed to fetch gallery", details: error.message }, { status: 500 });
+        return NextResponse.json({ error: "Failed to fetch gallery", details: errorMessage }, { status: 500 });
     }
 }
 
 // POST: 1. Generate Signature OR 2. Save to Sheet
 export async function POST(req: Request) {
     try {
-        const body = await req.json().catch(() => null);
+        const body = await req.json().catch(() => null) as GalleryPostBody | null;
 
         // Case 1: Requesting Signature for Client Upload
         if (!body || !body.spreadsheetSave) {
@@ -60,8 +62,15 @@ export async function POST(req: Request) {
         // Case 2: Saving Uploaded Image Metadata to Sheets
         const { imageId, category, alt, spreadsheetSave } = body;
         if (spreadsheetSave) {
+            if (!imageId) {
+                return NextResponse.json({ error: "Image ID is required" }, { status: 400 });
+            }
+
             const sheets = await getGoogleSheetsInstance();
             const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+            if (!spreadsheetId) {
+                return NextResponse.json({ error: "Missing ID" }, { status: 500 });
+            }
 
             const id = crypto.randomUUID();
             const createdAt = new Date().toISOString();
@@ -79,9 +88,11 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: true });
         }
 
-    } catch (error) {
+        return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error(error);
-        return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+        return NextResponse.json({ error: "Upload failed", details: errorMessage }, { status: 500 });
     }
 }
 
@@ -103,8 +114,9 @@ export async function PUT(req: Request) {
         });
 
         return NextResponse.json({ success: true });
-    } catch (error) {
-        return NextResponse.json({ error: "Failed to update gallery" }, { status: 500 });
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
+        return NextResponse.json({ error: "Failed to update gallery", details: errorMessage }, { status: 500 });
     }
 }
 
@@ -121,8 +133,9 @@ export async function DELETE(req: Request) {
 
         return NextResponse.json({ success: true });
 
-    } catch (error) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Gallery DELETE Error:", error);
-        return NextResponse.json({ error: "Failed to delete image" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to delete image", details: errorMessage }, { status: 500 });
     }
 }

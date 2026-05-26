@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingRoot: __dirname,
   reactStrictMode: true,
   compress: true,
   images: {
@@ -22,16 +23,12 @@ const nextConfig = {
   experimental: {
     // optimizeCss: true, // Temporarily disabled to debug build error
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
     NEXT_PUBLIC_CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
+    NEXT_PUBLIC_CLOUDINARY_TC_CLOUD_NAME: process.env.CLOUDINARY_TC_CLOUD_NAME,
+    NEXT_PUBLIC_CLOUDINARY_TC_UPLOAD_PRESET: process.env.CLOUDINARY_TC_UPLOAD_PRESET,
   },
   headers: async () => {
     return [

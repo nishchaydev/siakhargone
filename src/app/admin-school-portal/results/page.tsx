@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Plus, Loader2, Search, ExternalLink, GraduationCap, FileCheck, Trash2 } from "lucide-react";
+import { ArrowLeft, Plus, Loader2, Search, ExternalLink, GraduationCap, Trash2, Upload, Download } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { SCHOOL_CLASS_OPTIONS, normalizeClassName } from "@/lib/class-options";
 
 interface ResultRecord {
     id: number;
@@ -33,9 +34,11 @@ export default function ResultsManager() {
     const [records, setRecords] = useState<ResultRecord[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [selectedClass, setSelectedClass] = useState("All Classes");
 
     // Modal State
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isBulkDialogOpen, setIsBulkDialogOpen] = useState(false);
     const [currentRecord, setCurrentRecord] = useState<ResultRecord | null>(null);
     const [form, setForm] = useState({
         admissionNo: "",
@@ -47,6 +50,12 @@ export default function ResultsManager() {
         status: "Published"
     });
     const [submitting, setSubmitting] = useState(false);
+    const [bulkUploading, setBulkUploading] = useState(false);
+    const [bulkMessage, setBulkMessage] = useState("");
+    const [bulkError, setBulkError] = useState("");
+    const [bulkCsvFile, setBulkCsvFile] = useState<File | null>(null);
+    const [bulkResultFiles, setBulkResultFiles] = useState<File[]>([]);
+    const [bulkInputResetKey, setBulkInputResetKey] = useState(0);
 
     useEffect(() => {
         fetchRecords();
@@ -56,7 +65,13 @@ export default function ResultsManager() {
         try {
             const res = await fetch("/api/admin/results");
             const json = await res.json();
-            if (json.data) setRecords(json.data);
+            if (json.data) {
+                const normalizedRecords = json.data.map((record: ResultRecord) => ({
+                    ...record,
+                    class: normalizeClassName(record.class || ""),
+                }));
+                setRecords(normalizedRecords);
+            }
         } catch (err) {
             console.error(err);
         } finally {
@@ -68,11 +83,46 @@ export default function ResultsManager() {
         setSearchTerm(e.target.value.toLowerCase());
     };
 
-    const filteredRecords = records.filter(r =>
-        r.studentName.toLowerCase().includes(searchTerm) ||
-        r.admissionNo.toLowerCase().includes(searchTerm) ||
-        r.examName.toLowerCase().includes(searchTerm)
+    const classFilterOptions = Array.from(
+        new Set(
+            [...SCHOOL_CLASS_OPTIONS, ...records.map((record) => normalizeClassName(record.class || ""))]
+                .filter((className) => className.trim().length > 0)
+        )
     );
+
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+    const filteredRecords = records.filter((record) => {
+        const recordClass = normalizeClassName(record.class || "");
+        const matchesClass = selectedClass === "All Classes" || recordClass === selectedClass;
+        const matchesSearch =
+            normalizedSearch.length === 0 ||
+            record.studentName.toLowerCase().includes(normalizedSearch) ||
+            record.admissionNo.toLowerCase().includes(normalizedSearch) ||
+            record.examName.toLowerCase().includes(normalizedSearch) ||
+            recordClass.toLowerCase().includes(normalizedSearch);
+
+        return matchesClass && matchesSearch;
+    });
+
+    const toDateInputValue = (value: string): string => {
+        const trimmed = value.trim();
+        if (!trimmed) return "";
+        if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return trimmed;
+        if (/^\d{2}-\d{2}-\d{4}$/.test(trimmed)) {
+            const [day, month, year] = trimmed.split("-");
+            return `${year}-${month}-${day}`;
+        }
+        return "";
+    };
+
+    const toDobForApi = (value: string): string => {
+        const trimmed = value.trim();
+        if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+            const [year, month, day] = trimmed.split("-");
+            return `${day}-${month}-${year}`;
+        }
+        return trimmed;
+    };
 
     const openCreateModal = () => {
         setCurrentRecord(null);
@@ -92,9 +142,9 @@ export default function ResultsManager() {
         setCurrentRecord(record);
         setForm({
             admissionNo: record.admissionNo,
-            dob: record.dob,
+            dob: toDateInputValue(record.dob),
             studentName: record.studentName,
-            className: record.class,
+            className: normalizeClassName(record.class || ""),
             examName: record.examName,
             resultLink: record.resultLink,
             status: record.status
@@ -105,9 +155,21 @@ export default function ResultsManager() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitting(true);
+
+        if (!form.className) {
+            alert("Please select a class.");
+            setSubmitting(false);
+            return;
+        }
+
         try {
             const method = currentRecord ? "PUT" : "POST";
-            const body = currentRecord ? { ...form, id: currentRecord.id } : form;
+            const normalizedForm = {
+                ...form,
+                dob: toDobForApi(form.dob),
+                className: normalizeClassName(form.className),
+            };
+            const body = currentRecord ? { ...normalizedForm, id: currentRecord.id } : normalizedForm;
 
             const res = await fetch("/api/admin/results", {
                 method,
@@ -152,6 +214,64 @@ export default function ResultsManager() {
         }
     };
 
+    const downloadTemplateCsv = () => {
+        const csv = [
+            "admissionNo,dob,studentName,className,examName,resultLink,status",
+            "2024001,15-08-2010,Aarav Sharma,Class 10,Final Term 2025,https://example.com/result-2024001.pdf,Published",
+            "2024002,19-09-2010,Diya Patel,Class 10,Final Term 2025,https://example.com/result-2024002.pdf,Published",
+        ].join("\n");
+
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "results-bulk-template.csv";
+        link.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const handleBulkUpload = async () => {
+        if (!bulkCsvFile) {
+            setBulkError("Please select a CSV file first.");
+            return;
+        }
+
+        setBulkUploading(true);
+        setBulkError("");
+        setBulkMessage("");
+
+        try {
+            const formData = new FormData();
+            formData.append("file", bulkCsvFile);
+            bulkResultFiles.forEach((resultFile) => {
+                formData.append("resultFiles", resultFile);
+            });
+
+            const res = await fetch("/api/admin/results/bulk", {
+                method: "POST",
+                body: formData,
+            });
+            const json = await res.json();
+
+            if (!res.ok) {
+                const details = Array.isArray(json.errors) ? ` ${json.errors.slice(0, 3).join(" | ")}` : "";
+                setBulkError((json.error || "Bulk upload failed.") + details);
+                return;
+            }
+
+            const uploadedInfo = json.uploadedFiles ? ` (${json.uploadedFiles} files auto-uploaded to Cloudinary)` : "";
+            setBulkMessage(`Successfully uploaded ${json.inserted || 0} result records.${uploadedInfo}`);
+            setBulkCsvFile(null);
+            setBulkResultFiles([]);
+            setBulkInputResetKey((prev) => prev + 1);
+            fetchRecords();
+        } catch {
+            setBulkError("Unable to upload CSV right now. Please try again.");
+        } finally {
+            setBulkUploading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50/50 p-6 md:p-10 font-sans">
             <div className="max-w-6xl mx-auto space-y-8">
@@ -171,9 +291,19 @@ export default function ResultsManager() {
                             <p className="text-gray-500 mt-1 font-medium">Upload and manage academic report cards.</p>
                         </div>
                     </div>
-                    <Button onClick={openCreateModal} className="bg-blue-600 hover:bg-blue-700 font-bold shadow-lg shadow-blue-200">
-                        <Plus className="w-4 h-4 mr-2" /> Upload Result
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            className="bg-white text-gray-800 border-gray-300 hover:bg-gray-100 hover:text-gray-900"
+                            onClick={() => setIsBulkDialogOpen(true)}
+                        >
+                            <Upload className="w-4 h-4 mr-2" /> Bulk Import
+                        </Button>
+                        <Button onClick={openCreateModal} className="bg-blue-600 hover:bg-blue-700 font-bold shadow-lg shadow-blue-200">
+                            <Plus className="w-4 h-4 mr-2" /> Upload Result
+                        </Button>
+                    </div>
                 </div>
 
                 {/* Main Content */}
@@ -184,14 +314,31 @@ export default function ResultsManager() {
                                 <CardTitle>Result Records</CardTitle>
                                 <CardDescription>Manage published results.</CardDescription>
                             </div>
-                            <div className="relative w-full md:w-80">
-                                <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
-                                <Input
-                                    placeholder="Search by Name, Exam, or Admission No..."
-                                    className="pl-9 bg-white"
-                                    value={searchTerm}
-                                    onChange={handleSearch}
-                                />
+                            <div className="flex w-full md:w-auto flex-col md:flex-row gap-3">
+                                <div className="relative w-full md:w-80">
+                                    <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
+                                    <Input
+                                        placeholder="Search by Name, Class, Exam, or Admission No..."
+                                        className="pl-9 bg-white"
+                                        value={searchTerm}
+                                        onChange={handleSearch}
+                                    />
+                                </div>
+                                <div className="w-full md:w-48">
+                                    <Select value={selectedClass} onValueChange={setSelectedClass}>
+                                        <SelectTrigger className="bg-white">
+                                            <SelectValue placeholder="Filter Class" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="All Classes">All Classes</SelectItem>
+                                            {classFilterOptions.map((className) => (
+                                                <SelectItem key={className} value={className}>
+                                                    {className}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             </div>
                         </div>
                     </CardHeader>
@@ -272,6 +419,82 @@ export default function ResultsManager() {
                     </CardContent>
                 </Card>
 
+                {/* Bulk Upload Dialog */}
+                <Dialog open={isBulkDialogOpen} onOpenChange={setIsBulkDialogOpen}>
+                    <DialogContent className="sm:max-w-2xl">
+                        <DialogHeader>
+                            <DialogTitle>Smart Bulk Import</DialogTitle>
+                        </DialogHeader>
+
+                        <div className="space-y-4 py-2">
+                            <div className="space-y-2">
+                                <Label>CSV File</Label>
+                                <Input
+                                    key={`bulk-csv-${bulkInputResetKey}`}
+                                    type="file"
+                                    accept=".csv,text/csv"
+                                    disabled={bulkUploading}
+                                    onChange={(e) => {
+                                        setBulkCsvFile(e.target.files?.[0] || null);
+                                        setBulkError("");
+                                        setBulkMessage("");
+                                    }}
+                                />
+                                {bulkCsvFile && <p className="text-xs text-gray-500">Selected: {bulkCsvFile.name}</p>}
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label>Result Files (Optional)</Label>
+                                <Input
+                                    key={`bulk-files-${bulkInputResetKey}`}
+                                    type="file"
+                                    accept="application/pdf,image/*"
+                                    multiple
+                                    disabled={bulkUploading}
+                                    onChange={(e) => {
+                                        setBulkResultFiles(Array.from(e.target.files || []));
+                                        setBulkError("");
+                                        setBulkMessage("");
+                                    }}
+                                />
+                                <p className="text-xs text-gray-500">
+                                    If CSV has no resultLink, file names should match admission number (e.g. <span className="font-mono">2024001.pdf</span>)
+                                    or admission+exam (e.g. <span className="font-mono">2024001finalterm2025.pdf</span>).
+                                </p>
+                                <p className="text-xs text-red-600">DOB column is mandatory. Rows without valid DOB are rejected.</p>
+                                {bulkResultFiles.length > 0 && (
+                                    <p className="text-xs text-gray-500">{bulkResultFiles.length} file(s) selected for automatic Cloudinary upload.</p>
+                                )}
+                            </div>
+
+                            {bulkUploading && <p className="text-sm text-blue-600 font-medium">Uploading and validating CSV...</p>}
+                            {bulkMessage && <p className="text-sm text-green-700 font-medium">{bulkMessage}</p>}
+                            {bulkError && <p className="text-sm text-red-600 font-medium">{bulkError}</p>}
+                        </div>
+
+                        <DialogFooter>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                className="bg-white text-gray-800 border-gray-300 hover:bg-gray-100 hover:text-gray-900"
+                                onClick={downloadTemplateCsv}
+                            >
+                                <Download className="w-4 h-4 mr-2" />
+                                Download Template
+                            </Button>
+                            <Button
+                                type="button"
+                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                                onClick={handleBulkUpload}
+                                disabled={bulkUploading || !bulkCsvFile}
+                            >
+                                {bulkUploading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Upload className="w-4 h-4 mr-2" />}
+                                Start Bulk Import
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+
                 {/* Dialog */}
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogContent className="sm:max-w-2xl">
@@ -286,8 +509,13 @@ export default function ResultsManager() {
                             </div>
                             <div className="col-span-1 space-y-2">
                                 <Label>Student DOB (Password)</Label>
-                                <Input required value={form.dob} onChange={e => setForm({ ...form, dob: e.target.value })} placeholder="DD-MM-YYYY" />
-                                <span className="text-[10px] text-gray-400">Must match exactly for validation</span>
+                                <Input
+                                    required
+                                    type="date"
+                                    value={form.dob}
+                                    onChange={e => setForm({ ...form, dob: e.target.value })}
+                                />
+                                <span className="text-[10px] text-gray-400">Select DOB from calendar. It will be saved in DD-MM-YYYY.</span>
                             </div>
 
                             <div className="col-span-2 space-y-2">
@@ -297,7 +525,18 @@ export default function ResultsManager() {
 
                             <div className="col-span-1 space-y-2">
                                 <Label>Class</Label>
-                                <Input required value={form.className} onChange={e => setForm({ ...form, className: e.target.value })} placeholder="e.g. X" />
+                                <Select value={form.className} onValueChange={(val) => setForm({ ...form, className: val })}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select class" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {SCHOOL_CLASS_OPTIONS.map((className) => (
+                                            <SelectItem key={className} value={className}>
+                                                {className}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                             <div className="col-span-1 space-y-2">
                                 <Label>Exam Name</Label>
@@ -368,7 +607,7 @@ export default function ResultsManager() {
                             </div>
 
                             <DialogFooter className="col-span-2 pt-4">
-                                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+                                <Button type="button" variant="outline" className="bg-white text-gray-800 border-gray-300 hover:bg-gray-100 hover:text-gray-900" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
                                 <Button type="submit" className="bg-blue-600 hover:bg-blue-700 font-bold" disabled={submitting}>
                                     {submitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Save Result"}
                                 </Button>

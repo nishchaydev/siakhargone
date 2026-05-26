@@ -72,6 +72,20 @@ export default function AdminDashboard() {
             desc: "Database setup and system config.",
             href: "/admin-school-portal/settings",
             color: "text-gray-600 bg-gray-100"
+        },
+        {
+            title: "Enquiries",
+            icon: Megaphone, // Just reusing an icon since Mail/MessageSquare aren't imported here
+            desc: "View admission and contact enquiries.",
+            href: "/admin-school-portal/enquiries",
+            color: "text-orange-600 bg-orange-100"
+        },
+        {
+            title: "Parent Feedback",
+            icon: FileText, // Reusing an icon
+            desc: "View feedback submitted by parents.",
+            href: "/admin-school-portal/feedback",
+            color: "text-teal-600 bg-teal-100"
         }
     ];
 

@@ -48,7 +48,7 @@ export async function seedDataLogic() {
             class: "Multiple Classes",
             date: "2024-01-26",
             description: "SIA students won 1st prize in main Republic Day drill line program - sanskritik program organized on 26 January 2024.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816165/26_january_2024.jpg_zmcf3i.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816165/26_january_2024.jpg_zmcf3i.jpg",
             priority: "2",
             category: "Cultural",
             mediaCoverage: false
@@ -59,7 +59,7 @@ export async function seedDataLogic() {
             class: "8th",
             date: "2024-01-14",
             description: "Won Gold Medal in 60m race, High Jump and Long Jump (Age group 14) at District Level Athletics Championship 2024. Selected for National Level competition in Gujarat.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816298/1747807056752.jpg_bjruq7.jpg",
             priority: "1",
             category: "Sports",
             mediaCoverage: true
@@ -70,7 +70,7 @@ export async function seedDataLogic() {
             class: "9th",
             date: "2024-01-14",
             description: "Won Gold Medal in 600m race and Long Jump (Age group 14) at District Level Athletics Championship 2024. Selected for National Level competition in Gujarat.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816298/1747807056752.jpg_bjruq7.jpg",
             priority: "1",
             category: "Sports",
             mediaCoverage: true
@@ -81,7 +81,7 @@ export async function seedDataLogic() {
             class: "Multiple",
             date: "2024-01-14",
             description: "Won 1st place (Gold Medal) in 60m race (Age group 17) at District Level Athletics Championship 2024. Selected for National Level competition.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816298/1747807056752.jpg_bjruq7.jpg",
             priority: "1",
             category: "Sports",
             mediaCoverage: true
@@ -92,7 +92,7 @@ export async function seedDataLogic() {
             class: "8th",
             date: "2024-01-14",
             description: "Won 1st place (Gold Medal) in Long Jump (Age group 16) at District Level Athletics Championship 2024. Selected for National Level competition.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816298/1747807056752.jpg_bjruq7.jpg",
             priority: "1",
             category: "Sports",
             mediaCoverage: true
@@ -103,7 +103,7 @@ export async function seedDataLogic() {
             class: "10th",
             date: "2024-05-15",
             description: "Prince Kushwah recognized as City Topper by District Education Officer in special felicitation ceremony at DEO office, Khargone.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816559/DEO_CITY_TOPPER.jpg_n0hkhn.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816559/DEO_CITY_TOPPER.jpg_n0hkhn.jpg",
             priority: "1",
             category: "Academic",
             mediaCoverage: false
@@ -114,7 +114,7 @@ export async function seedDataLogic() {
             class: "Multiple",
             date: "2022-09-20",
             description: "SIA student selected for state level Taekwondo championship. Achievement covered in leading newspapers.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816590/IMG-20220920-WA0004.jpg_zhhfto.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816590/IMG-20220920-WA0004.jpg_zhhfto.jpg",
             priority: "2",
             category: "Sports",
             mediaCoverage: true
@@ -125,7 +125,7 @@ export async function seedDataLogic() {
             class: "Multiple",
             date: "2024-01-15",
             description: "SIA students' achievements in Taekwondo featured in leading local newspaper, highlighting the school's excellence in sports.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816285/1747807023219.jpg_qssnwf.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816285/1747807023219.jpg_qssnwf.jpg",
             priority: "2",
             category: "Sports",
             mediaCoverage: true
@@ -136,7 +136,7 @@ export async function seedDataLogic() {
             class: "Multiple",
             date: "2024-05-21",
             description: "Sanskar International Academy celebrates the outstanding performance of our students in the CBSE examinations with 32 out of 44 students passing in first division.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816089/1747806889599.jpg_lzcyj3.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816089/1747806889599.jpg_lzcyj3.jpg",
             priority: "1",
             category: "Academic",
             mediaCoverage: true
@@ -147,7 +147,7 @@ export async function seedDataLogic() {
             class: "Multiple",
             date: "2024-01-15",
             description: "SIA students honored at Pratibha Samman ceremony for their outstanding achievements in academics and sports.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816530/1747810401916.jpg_vnyccx.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816530/1747810401916.jpg_vnyccx.jpg",
             priority: "2",
             category: "Academic",
             mediaCoverage: false
@@ -158,7 +158,7 @@ export async function seedDataLogic() {
             class: "Multiple",
             date: "2025-11-22",
             description: "General student achievement recognition ceremony.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816644/IMG20251122122140_-_Copy.jpg_rst3dc.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816644/IMG20251122122140_-_Copy.jpg_rst3dc.jpg",
             priority: "3",
             category: "General",
             mediaCoverage: false
@@ -190,7 +190,7 @@ export async function seedDataLogic() {
             type: "General",
             topperName: "",
             topperMarks: "",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816680/WhatsApp_Image_2025-05-21_at_14.50.12_0d54471a.jpg_usptmg.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816680/WhatsApp_Image_2025-05-21_at_14.50.12_0d54471a.jpg_usptmg.jpg",
             mediaCoverage: true
         },
         {
@@ -202,7 +202,7 @@ export async function seedDataLogic() {
             type: "General",
             topperName: "",
             topperMarks: "",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816680/WhatsApp_Image_2025-05-21_at_14.50.12_0d54471a.jpg_usptmg.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816680/WhatsApp_Image_2025-05-21_at_14.50.12_0d54471a.jpg_usptmg.jpg",
             mediaCoverage: true
         }
     ];
@@ -264,21 +264,21 @@ export async function seedDataLogic() {
             title: "Gujarat Educational Tour 2026: A Grand Departure",
             description: "Our senior secondary students embarked on an enriching 10-day tour to Gujarat, visiting the Statue of Unity, Sabarmati Ashram, and modern industrial hubs. An experience of a lifetime!",
             date: "2026-02-15",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349468/mix-photos-1_jjhoek.webp",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349468/mix-photos-1_jjhoek.webp",
             isFeatured: true
         },
         {
             title: "Admissions Open 2026-27: Join the SIA Legacy",
             description: "Experience excellence in education with modern labs, smart classrooms, and a focus on sports and values. Admissions are now open for Pre-Nursery to Grade IX.",
             date: "2026-02-10",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png",
             isFeatured: true
         },
         {
             title: "National Level Athletics: 4 SIA Students Representing MP",
             description: "Proud moment for Khargone! Ishika Kushwah and her team represent Madhya Pradesh in the National Athletics Championship in Gujarat.",
             date: "2026-01-20",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816298/1747807056752.jpg_bjruq7.jpg",
             isFeatured: true
         }
     ];
@@ -304,7 +304,7 @@ export async function seedDataLogic() {
             time: "07:30 AM",
             location: "SIA Main Campus",
             description: "Wishing our students a safe and educational journey as they depart for the Gujarat Cultural Tour.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349474/session-start-1_qshvtb.webp",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349474/session-start-1_qshvtb.webp",
             isFeatured: true
         },
         {
@@ -313,7 +313,7 @@ export async function seedDataLogic() {
             time: "10:00 AM",
             location: "School Auditorium",
             description: "Join our expert counselors to understand the New Education Policy (NEP) and our 2026 curriculum.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349457/classroom-1_k9z4s9.webp",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349457/classroom-1_k9z4s9.webp",
             isFeatured: true
         },
         {
@@ -322,7 +322,7 @@ export async function seedDataLogic() {
             time: "08:00 AM",
             location: "SIA Sports Ground",
             description: "A celebration of sportsmanship and spirit! Join us for our annual athletic meet.",
-            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1770816298/1747807056752.jpg_bjruq7.jpg",
+            imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770816298/1747807056752.jpg_bjruq7.jpg",
             isFeatured: true
         }
     ];

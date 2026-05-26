@@ -13,8 +13,12 @@ out
 /build
 
 # Environment files
-.env*.local
+.env
+.env.local
 .env.production
+.env.development
+.env.test
+.env*.local
 
 # Static content folder (too large for git)
 public/siakhargone-content/

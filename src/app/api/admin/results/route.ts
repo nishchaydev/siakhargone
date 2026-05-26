@@ -1,8 +1,38 @@
 
 import { NextResponse } from "next/server";
 import { getGoogleSheetsInstance } from "@/lib/google-sheets";
+import { normalizeClassName } from "@/lib/class-options";
 
 const RESULTS_TAB_NAME = "Results"; // Must match sheet tab name
+const DOB_PATTERN = /^\d{2}-\d{2}-\d{4}$/;
+
+function normalizeDob(value: string): string {
+    const trimmed = value.trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+        return trimmed.split("-").reverse().join("-");
+    }
+    return trimmed;
+}
+
+function isValidDob(value: string): boolean {
+    if (!DOB_PATTERN.test(value)) return false;
+
+    const [dayRaw, monthRaw, yearRaw] = value.split("-");
+    const day = Number(dayRaw);
+    const month = Number(monthRaw);
+    const year = Number(yearRaw);
+    const date = new Date(year, month - 1, day);
+
+    return (
+        date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day
+    );
+}
+
+function toErrorMessage(error: unknown): string {
+    return error instanceof Error ? error.message : "Unknown error";
+}
 
 // GET: List all Results
 export async function GET() {
@@ -23,7 +53,7 @@ export async function GET() {
             admissionNo: row[0],
             dob: row[1],
             studentName: row[2],
-            class: row[3],
+            class: normalizeClassName(row[3] || ""),
             examName: row[4],
             resultLink: row[5],
             status: row[6],
@@ -31,9 +61,9 @@ export async function GET() {
         }));
 
         return NextResponse.json({ data: results });
-    } catch (error) {
+    } catch (error: unknown) {
         console.error("Results GET Error:", error);
-        return NextResponse.json({ success: false, error: "Failed to fetch Results" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to fetch Results", details: toErrorMessage(error) }, { status: 500 });
     }
 }
 
@@ -41,6 +71,16 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const { admissionNo, dob, studentName, className, examName, resultLink, status } = await req.json();
+        const normalizedClassName = normalizeClassName(className || "");
+        const normalizedDob = normalizeDob(dob || "");
+
+        if (!admissionNo || !normalizedDob || !studentName || !normalizedClassName || !examName || !resultLink) {
+            return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 });
+        }
+        if (!isValidDob(normalizedDob)) {
+            return NextResponse.json({ success: false, error: "Invalid DOB format. Use DD-MM-YYYY." }, { status: 400 });
+        }
+
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
@@ -54,14 +94,14 @@ export async function POST(req: Request) {
             range: `${RESULTS_TAB_NAME}!A:H`,
             valueInputOption: "USER_ENTERED",
             requestBody: {
-                values: [[admissionNo, dob, studentName, className, examName, resultLink, finalStatus, createdAt]],
+                values: [[admissionNo, normalizedDob, studentName, normalizedClassName, examName, resultLink, finalStatus, createdAt]],
             },
         });
 
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch (error: unknown) {
         console.error("Result POST Error:", error);
-        return NextResponse.json({ success: false, error: "Failed to add Result" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to add Result", details: toErrorMessage(error) }, { status: 500 });
     }
 }
 
@@ -69,6 +109,15 @@ export async function POST(req: Request) {
 export async function PUT(req: Request) {
     try {
         const { id, admissionNo, dob, studentName, className, examName, resultLink, status } = await req.json();
+        const normalizedClassName = normalizeClassName(className || "");
+        const normalizedDob = normalizeDob(dob || "");
+        if (!id || !admissionNo || !normalizedDob || !studentName || !normalizedClassName || !examName || !resultLink) {
+            return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 });
+        }
+        if (!isValidDob(normalizedDob)) {
+            return NextResponse.json({ success: false, error: "Invalid DOB format. Use DD-MM-YYYY." }, { status: 400 });
+        }
+
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
@@ -88,14 +137,14 @@ export async function PUT(req: Request) {
             range,
             valueInputOption: "USER_ENTERED",
             requestBody: {
-                values: [[admissionNo, dob, studentName, className, examName, resultLink, status, currentCreatedAt]],
+                values: [[admissionNo, normalizedDob, studentName, normalizedClassName, examName, resultLink, status || "Published", currentCreatedAt]],
             },
         });
 
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch (error: unknown) {
         console.error("Result PUT Error:", error);
-        return NextResponse.json({ success: false, error: "Failed to update Result" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to update Result", details: toErrorMessage(error) }, { status: 500 });
     }
 }
 
@@ -106,6 +155,7 @@ export async function DELETE(req: Request) {
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
         if (!id) return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+        if (!spreadsheetId) return NextResponse.json({ error: "Missing ID" }, { status: 500 });
 
         const rowIndex = parseInt(id) - 1;
 
@@ -136,8 +186,8 @@ export async function DELETE(req: Request) {
         });
 
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch (error: unknown) {
         console.error("Result Delete Error:", error);
-        return NextResponse.json({ success: false, error: "Failed to delete result" }, { status: 500 });
+        return NextResponse.json({ success: false, error: "Failed to delete result", details: toErrorMessage(error) }, { status: 500 });
     }
 }

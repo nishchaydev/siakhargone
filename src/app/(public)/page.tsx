@@ -82,7 +82,7 @@ export default async function Home() {
       type: 'Notice',
       description: item.title || 'Important Notice',
       isFeatured: true,
-      imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png" // Default image for notices
+      imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png" // Default image for notices
     } as UpdateItem)) // Notices always shown
   ]
     // Allow items that are explicitly featured OR undefined (legacy/default), only filter out explicit false
@@ -195,7 +195,7 @@ export default async function Home() {
         data={{
           name: "Sanskar International Academy Republic Day 2026",
           description: "Official Republic Day 2026 celebration video of Sanskar International Academy, Khargone.",
-          thumbnailUrl: "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png", // Fallback to logo or generate a thumbnail if available
+          thumbnailUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png", // Fallback to logo or generate a thumbnail if available
           uploadDate: "2026-01-26T00:00:00Z",
           contentUrl: cmsData.hero.video,
           embedUrl: cmsData.hero.video

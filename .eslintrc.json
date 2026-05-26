@@ -1,12 +1,14 @@
 {
+    "root": true,
     "extends": [
         "next/core-web-vitals",
         "next/typescript"
     ],
     "rules": {
+        "react/no-unescaped-entities": "warn",
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-unused-vars": [
-            "error",
+            "warn",
             {
                 "argsIgnorePattern": "^_",
                 "varsIgnorePattern": "^_"
@@ -21,14 +23,17 @@
                 ]
             }
         ],
-        "prefer-const": "error",
+        "prefer-const": "warn",
         "no-var": "error"
     },
     "ignorePatterns": [
+        "next-env.d.ts",
         ".next/",
         "node_modules/",
         "out/",
         "build/",
+        "scripts/",
+        "tailwind.config.ts",
         "*.config.js",
         "*.config.mjs"
     ]

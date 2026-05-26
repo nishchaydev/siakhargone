@@ -70,7 +70,7 @@ export default function AcademicsPageClient({
     methodologyImage,
     infrastructureImage,
     infrastructurePhotos = [],
-    bannerImage = "https://res.cloudinary.com/dkits80xk/image/upload/v1770866540/ba5fa378-c98b-4e8f-a4ec-bd5db243929f.png"
+    bannerImage = "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770866540/ba5fa378-c98b-4e8f-a4ec-bd5db243929f.png"
 }: AcademicsPageClientProps) {
     return (
         <div className="bg-grain min-h-screen">

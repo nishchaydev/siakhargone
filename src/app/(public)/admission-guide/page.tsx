@@ -122,7 +122,7 @@ export default function AdmissionGuidePage() {
             <PageBanner
                 title="Admission Process Made Simple"
                 subtitle={`Step-by-step guide for ${schoolData.academicYear} admissions`}
-                image="https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
+                image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
             />
 
             <Section id="admission-steps" bgColor="bg-white">

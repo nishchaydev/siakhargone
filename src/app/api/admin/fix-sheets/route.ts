@@ -23,10 +23,11 @@ export async function POST() {
             message: "Database verification complete.",
             report
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         return NextResponse.json({
             success: false,
-            message: error.message
+            message: errorMessage
         }, { status: 500 });
     }
 }

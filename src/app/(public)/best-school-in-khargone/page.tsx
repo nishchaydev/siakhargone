@@ -124,8 +124,8 @@ export default function BestSchoolInKhargonePage() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     {[
                         { name: "Smart Classrooms", img: cloudinary.infrastructure.classrooms[0] },
-                        { name: "Science Labs", img: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349465/lab-biology-1_hz0ivq.webp" },
-                        { name: "Library", img: "https://res.cloudinary.com/dkits80xk/image/upload/v1765349462/infrastructure-library-1_cgdkdd.webp" },
+                        { name: "Science Labs", img: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349465/lab-biology-1_hz0ivq.webp" },
+                        { name: "Library", img: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765349462/infrastructure-library-1_cgdkdd.webp" },
                         { name: "Sports Complex", img: cloudinary.infrastructure.indoreGames[0] }
                     ].map((fac, idx) => (
                         <div key={idx} className="group">

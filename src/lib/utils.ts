@@ -9,7 +9,7 @@ export function parseDateString(dateStr: string): Date | null {
   if (!dateStr) return null;
 
   // Try standard constructor first
-  let date = new Date(dateStr);
+  const date = new Date(dateStr);
   if (!isNaN(date.getTime())) return date;
 
   // Try DD-MM-YYYY format (common in India/UK)

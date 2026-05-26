@@ -8,13 +8,14 @@ import Link from 'next/link';
 import { ArrowLeft, BookOpen, PenTool } from 'lucide-react';
 
 interface Props {
-    params: {
+    params: Promise<{
         classId: string;
-    };
+    }>;
 }
 
-export default function BookListPage({ params }: Props) {
-    const data = bookListsData[params.classId];
+export default async function BookListPage({ params }: Props) {
+    const { classId } = await params;
+    const data = bookListsData[classId];
 
     if (!data) {
         notFound();

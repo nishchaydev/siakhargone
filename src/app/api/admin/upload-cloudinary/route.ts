@@ -1,13 +1,6 @@
 
 import { NextResponse } from "next/server";
-import { v2 as cloudinary } from "cloudinary";
-
-// Configure Cloudinary
-cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+import { uploadBufferToCloudinary } from "@/lib/cloudinary-upload";
 
 
 export async function POST(req: Request) {
@@ -22,23 +15,8 @@ export async function POST(req: Request) {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
-        // Upload to Cloudinary
-        // We add 'upload_preset' to ensure it uses the same settings (public access) as the frontend uploads
-        const result: any = await new Promise((resolve, reject) => {
-            const uploadStream = cloudinary.uploader.upload_stream(
-                {
-                    upload_preset: "siakhargone_uploads", // Key fix: Use the preset!
-                    folder: "school_documents",
-                    resource_type: "auto",
-                    use_filename: true,
-                    unique_filename: true,
-                },
-                (error, result) => {
-                    if (error) reject(error);
-                    else resolve(result);
-                }
-            );
-            uploadStream.end(buffer);
+        const result = await uploadBufferToCloudinary(buffer, {
+            folder: "school_documents",
         });
 
         return NextResponse.json({
@@ -47,8 +25,9 @@ export async function POST(req: Request) {
             publicId: result.public_id
         });
 
-    } catch (error) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Cloudinary Upload Error:", error);
-        return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+        return NextResponse.json({ error: "Upload failed", details: errorMessage }, { status: 500 });
     }
 }

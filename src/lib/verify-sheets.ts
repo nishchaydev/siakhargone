@@ -44,9 +44,6 @@ export async function verifyAndFixSheets(): Promise<FixReport> {
             [SHEET_TAB_IDS.ADMISSIONS, ['id', 'student_name', 'grade', 'parent_phone', 'status', 'date']],
         ];
 
-        // 3. Check and Create
-        const requests: any[] = [];
-
         for (const [sheetName, headers] of requiredSheets) {
             if (!currentSheetTitles.includes(sheetName)) {
                 // Create missing sheet
@@ -78,8 +75,9 @@ export async function verifyAndFixSheets(): Promise<FixReport> {
                     });
 
                     report.fixed.push(`Created Sheet: ${sheetName} with headers`);
-                } catch (err: any) {
-                    report.errors.push(`Failed to create ${sheetName}: ${err.message}`);
+                } catch (err: unknown) {
+                    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+                    report.errors.push(`Failed to create ${sheetName}: ${errorMessage}`);
                 }
             } else {
                 // Sheet exists, check headers (optional, for now just ensuring existence)
@@ -87,8 +85,9 @@ export async function verifyAndFixSheets(): Promise<FixReport> {
             }
         }
 
-    } catch (error: any) {
-        report.errors.push(`General Error: ${error.message}`);
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
+        report.errors.push(`General Error: ${errorMessage}`);
     }
 
     return report;

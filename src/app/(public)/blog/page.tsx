@@ -15,7 +15,7 @@ export default function BlogIndexPage() {
             <PageBanner
                 title="SIA Insights"
                 subtitle="Expert Guidance on Education & Parenting"
-                image="https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png"
+                image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png"
             />
 
             <section className="section-xl bg-white">

@@ -32,7 +32,7 @@ const mukta = Mukta({
   variable: '--font-mukta',
 });
 
-const openGraphImage = 'https://res.cloudinary.com/dkits80xk/image/upload/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg';
+const openGraphImage = 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg';
 
 export function generateMetadata(): Metadata {
   const currentYear = new Date().getFullYear();
@@ -78,17 +78,17 @@ export function generateMetadata(): Metadata {
     classification: 'School', // Added classification
     icons: {
       icon: [
-        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_16,h_16,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '16x16', type: 'image/png' },
-        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_32,h_32,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '32x32', type: 'image/png' },
-        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_48,h_48,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '48x48', type: 'image/png' },
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_16,h_16,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '16x16', type: 'image/png' },
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_32,h_32,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '32x32', type: 'image/png' },
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_48,h_48,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '48x48', type: 'image/png' },
       ],
-      shortcut: 'https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png',
+      shortcut: 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png',
       apple: [
-        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '180x180', type: 'image/png' },
+        { url: 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png', sizes: '180x180', type: 'image/png' },
       ],
       other: {
         rel: 'apple-touch-icon-precomposed',
-        url: 'https://res.cloudinary.com/dkits80xk/image/upload/w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png',
+        url: 'https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_180,h_180,c_fill/v1768373239/school-logo_npmwwm.png',
       },
     },
     robots: {
@@ -152,7 +152,7 @@ export default function RootLayout({
               "name": schoolData.name,
               "alternateName": "SIA Khargone",
               "url": "https://siakhargone.in",
-              "logo": "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
+              "logo": "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png",
               "description": "One of the leading CBSE English-medium schools in Khargone, known for disciplined academics, modern infrastructure, and holistic student development.",
               "address": {
                 "@type": "PostalAddress",

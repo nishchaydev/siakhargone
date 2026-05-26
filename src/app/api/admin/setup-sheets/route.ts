@@ -85,8 +85,7 @@ export async function POST() {
         const existingSheets = meta.data.sheets || [];
         const existingTitles = existingSheets.map(s => s.properties?.title);
 
-        const requests: any[] = [];
-        const updateHeaderRequests: any[] = [];
+        const requests: { addSheet: { properties: { title: string } } }[] = [];
 
         // 2. Identify missing sheets
         for (const sheetDef of REQUIRED_SHEETS) {
@@ -112,7 +111,7 @@ export async function POST() {
                 spreadsheetId,
                 requestBody: { requests }
             });
-            console.log(`Created ${requests.length} new tabs.`);
+            console.warn(`Created ${requests.length} new tabs.`);
         }
 
         // 3. Update Headers (for ALL sheets, to ensure consistency or add missing columns)
@@ -184,8 +183,9 @@ export async function POST() {
             updates: updatesLog
         });
 
-    } catch (error) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Setup Sheets Error:", error);
-        return NextResponse.json({ error: "Failed to setup sheets" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to setup sheets", details: errorMessage }, { status: 500 });
     }
 }

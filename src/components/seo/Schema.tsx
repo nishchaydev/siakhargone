@@ -16,9 +16,9 @@ export default function Schema({ type, data }: SchemaProps) {
             "name": schoolData.fullName,
             "alternateName": schoolData.name,
             "url": "https://siakhargone.in",
-            "logo": "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
+            "logo": "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png",
             "image": [
-                "https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
+                "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
             ],
             "description": "One of the leading CBSE English-medium schools in Khargone, known for disciplined academics, modern infrastructure, and holistic student development.",
             "address": {
@@ -152,9 +152,9 @@ export default function Schema({ type, data }: SchemaProps) {
             "name": schoolData.fullName,
             "alternateName": schoolData.name,
             "url": "https://siakhargone.in",
-            "logo": "https://res.cloudinary.com/dkits80xk/image/upload/v1768373239/school-logo_npmwwm.png",
+            "logo": "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png",
             "image": [
-                "https://res.cloudinary.com/dkits80xk/image/upload/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
+                "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1765377520/Gemini_Generated_Image_q9u4r1q9u4r1q9u4_ukwf8a.png"
             ],
             "description": "One of the leading CBSE English-medium schools in Khargone, known for disciplined academics, modern infrastructure, and holistic student development.",
             "address": {

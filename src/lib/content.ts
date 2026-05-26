@@ -11,15 +11,15 @@ import {
 } from './static-data';
 
 // Stub for compatibility if anything imports it
-export async function readDocxAsText(relPath: string): Promise<string | null> {
+export async function readDocxAsText(_relPath: string): Promise<string | null> {
     return null;
 }
 
-export function listFolders(relDir: string) {
+export function listFolders(_relDir: string) {
     return [];
 }
 
-export function listFiles(relDir: string, exts?: string[], recursive?: boolean) {
+export function listFiles(_relDir: string, _exts?: string[], _recursive?: boolean) {
     return [];
 }
 
