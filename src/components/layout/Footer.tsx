@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { schoolData } from "@/data/schoolData";
 import dynamic from "next/dynamic";
 
@@ -12,16 +12,21 @@ const FooterMap = dynamic(() => import("@/components/common/FooterMap"), {
 });
 
 const footerVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: "easeOut",
-      staggerChildren: 0.2
+      staggerChildren: 0.15
     },
   },
+};
+
+const reducedFooterVariants = {
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0 },
 };
 
 const itemVariants = {
@@ -30,10 +35,11 @@ const itemVariants = {
 };
 
 export default function Footer() {
+  const reduce = useReducedMotion();
   return (
     <motion.footer
-      className="bg-navy pt-12" // Outer background
-      variants={footerVariants}
+      className="bg-navy pt-12"
+      variants={reduce ? reducedFooterVariants : footerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -64,9 +70,9 @@ export default function Footer() {
               </div>
 
               <div className="flex gap-4 pt-4">
-                <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Facebook className="h-6 w-6" /></a>
-                <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram profile" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Instagram className="h-6 w-6" /></a>
-                <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-all group scale-110"><Youtube className="h-6 w-6" /></a>
+                <a href={schoolData.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-colors duration-200 group scale-110"><Facebook className="h-6 w-6" /></a>
+                <a href={schoolData.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram profile" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-colors duration-200 group scale-110"><Instagram className="h-6 w-6" /></a>
+                <a href={schoolData.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel" className="p-3 rounded-full bg-white/10 text-gold hover:bg-gold hover:text-navy transition-colors duration-200 group scale-110"><Youtube className="h-6 w-6" /></a>
               </div>
             </div>
 

@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Quote } from "lucide-react";
 import { motion } from "framer-motion";
+import { useAccessibleAnimation } from "@/hooks/use-accessible-animation";
 import { schoolData } from "@/data/schoolData";
 
 export const PrincipalMessage = () => {
+  const { safeInitial, safeTransition } = useAccessibleAnimation();
   return (
     <Section id="principal-message" className="bg-white relative overflow-hidden py-12 md:py-16">
       {/* Background Decorative Elements */}
@@ -20,9 +22,9 @@ export const PrincipalMessage = () => {
       <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Image Side */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={safeInitial({ opacity: 0, x: -30 })}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={safeTransition({ duration: 0.5, ease: [0.23, 1, 0.32, 1] })}
           viewport={{ once: true }}
           className="relative"
         >
@@ -38,9 +40,9 @@ export const PrincipalMessage = () => {
           </div>
           {/* Floating Quote Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={safeInitial({ opacity: 0, y: 20 })}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={safeTransition({ delay: 0.2, duration: 0.4 })}
             viewport={{ once: true }}
             className="absolute -bottom-6 -right-6 md:right-0 bg-navy text-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block"
           >
@@ -53,9 +55,9 @@ export const PrincipalMessage = () => {
 
         {/* Text Side */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
+          initial={safeInitial({ opacity: 0, x: 30 })}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={safeTransition({ duration: 0.5, ease: [0.23, 1, 0.32, 1] })}
           viewport={{ once: true }}
           className="space-y-6"
         >
@@ -79,7 +81,7 @@ export const PrincipalMessage = () => {
             <Button asChild variant="secondary" size="lg">
               <Link href="/about#principal">Read Full Message</Link>
             </Button>
-            <div className="flex flex-col justify-center pl-4 border-l-4 border-gold">
+            <div className="flex flex-col justify-center pl-4 bg-gold/5 rounded-lg px-4 py-2">
               <span className="font-display font-bold text-navy text-lg">{schoolData.principal.name}</span>
               <span className="text-sm text-muted-foreground">{schoolData.principal.title || "Principal, SIA Khargone"}</span>
             </div>

@@ -6,6 +6,7 @@ import Image from "next/image";
 const schoolLogo = "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_200/v1768373239/school-logo_npmwwm.png";
 import { schoolData } from "@/data/schoolData";
 import * as React from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, Search, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,7 +39,7 @@ import type { NavItem } from "@/lib/definitions";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import TopBar from "./TopBar";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { ListItem } from "./ListItem";
@@ -180,29 +181,23 @@ const Header = () => {
     fetchNotices();
   }, []);
 
-  const lastScrollY = React.useRef(0);
+  const lastScrollY = useRef(0);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > 10) {
-        if (currentScrollY > lastScrollY.current + 10) {
-          setIsVisible(false);
-        } else if (currentScrollY < lastScrollY.current - 10) {
-          setIsVisible(true);
-        }
-      } else {
+  useMotionValueEvent(scrollY, "change", (currentScrollY) => {
+    if (currentScrollY > 10) {
+      if (currentScrollY > lastScrollY.current + 10) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current - 10) {
         setIsVisible(true);
       }
+    } else {
+      setIsVisible(true);
+    }
 
-      setIsScrolled(currentScrollY > 10);
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    setIsScrolled(currentScrollY > 10);
+    lastScrollY.current = currentScrollY;
+  });
 
 
   const activeSection = useActiveSection(

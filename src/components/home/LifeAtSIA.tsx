@@ -4,6 +4,7 @@
 import { Section } from "@/components/common/Section";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useAccessibleAnimation } from "@/hooks/use-accessible-animation";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,7 @@ interface LifeAtSIAProps {
 }
 
 export const LifeAtSIA = ({ images }: LifeAtSIAProps) => {
+    const { safeInitial, safeTransition } = useAccessibleAnimation();
     // Fallback to static if dynamic props not provided (or empty)
     const lifeImages = [
         {
@@ -74,9 +76,9 @@ export const LifeAtSIA = ({ images }: LifeAtSIAProps) => {
                     <motion.div
                         key={index}
                         className={`relative rounded-2xl overflow-hidden group ${img.size}`}
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={safeInitial({ opacity: 0, scale: 0.95 })}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
+                        transition={safeTransition({ delay: index * 0.08, duration: 0.4 })}
                         viewport={{ once: true }}
                     >
                         <Image

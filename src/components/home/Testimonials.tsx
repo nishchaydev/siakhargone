@@ -77,7 +77,7 @@ export function Testimonials({ testimonials, isLoading }: TestimonialsProps) {
               testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">
                   <div className="p-1 h-full">
-                    <div className="card-premium h-full transform transition-transform hover:scale-105 flex flex-col">
+                    <div className="card-premium h-full flex flex-col">
                       <div className="flex flex-col items-center justify-center p-8 text-center flex-grow">
                         <Quote className="w-8 h-8 text-primary/30 mb-4" />
                         <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>

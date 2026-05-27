@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
-import Preloader from "@/components/ui/Preloader";
+
 import { schoolData } from "@/data/schoolData";
 import Script from 'next/script';
 import UrgencyBanner from "@/components/common/UrgencyBanner";
@@ -139,7 +139,7 @@ export default function RootLayout({
           ></iframe>
         </noscript>
 
-        <Preloader />
+
         <UrgencyBanner />
         {children}
         <Toaster />

@@ -108,11 +108,11 @@
 
   /* Premium Card Style (Unified) */
   .card-premium {
-    @apply rounded-xl shadow-md bg-white border border-cardBorder overflow-hidden transition-all duration-300;
+    @apply rounded-xl shadow-md bg-white border border-cardBorder overflow-hidden transition-[transform,box-shadow] duration-200;
   }
 
   .card-premium:hover {
-    @apply translate-y-[-6px] shadow-lg;
+    @apply translate-y-[-2px] shadow-lg;
   }
 
   /* Hero Overlay */
@@ -151,11 +151,11 @@
 
   /* Micro-interactions */
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+    @apply transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-lg;
   }
 
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-[0_0_20px_rgba(212, 175, 55, 0.3)];
+    @apply transition-shadow duration-200 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)];
   }
 
   .btn-magnetic {

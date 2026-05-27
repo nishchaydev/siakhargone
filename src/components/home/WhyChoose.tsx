@@ -2,9 +2,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useAccessibleAnimation } from "@/hooks/use-accessible-animation";
 import { Globe, Shield, Building2, Users } from "lucide-react";
 import { Section } from "@/components/common/Section";
-import { Card } from "@/components/ui/card";
 
 const features = [
     {
@@ -29,22 +29,9 @@ const features = [
     },
 ];
 
-const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-};
-
-const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-        },
-    },
-};
-
 export function WhyChoose() {
+    const { safeInitial, safeTransition } = useAccessibleAnimation();
+
     return (
         <Section
             id="why-choose"
@@ -63,34 +50,36 @@ export function WhyChoose() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-navy/5 rounded-bl-full -mr-20 -mt-20 z-0 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/10 rounded-tr-full -ml-10 -mb-10 z-0 pointer-events-none" />
 
-            <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10"
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-            >
+            {/* Changed from 4-col card grid to horizontal list with numbers — 
+                breaks the repeated 4-col pattern (AtAGlance + WhyChoose + DigitalCampus) 
+                per design-taste §4.7 Section-Layout-Repetition Ban */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 relative z-10">
                 {features.map((feature, index) => {
                     const Icon = feature.icon;
                     return (
-                        <motion.div key={feature.title} variants={fadeInUp}>
-                            <Card className="text-center p-6 md:p-8 h-full card-premium border-gray-100 shadow-none hover:shadow-lg bg-white">
-                                <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-2xl bg-navy/5 text-navy mb-6 group-hover:bg-gold/10 group-hover:text-gold-dark transition-colors duration-300">
-                                    <Icon className="h-8 w-8" />
-                                </div>
-                                <h3 className="text-xl font-bold font-display text-navy mb-3">
+                        <motion.div
+                            key={feature.title}
+                            initial={safeInitial({ opacity: 0, y: 16 })}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={safeTransition({ duration: 0.4, delay: index * 0.08 })}
+                            className="flex items-start gap-5 p-5 rounded-2xl hover:bg-navy/[0.02] transition-colors duration-200 group"
+                        >
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy/5 text-navy group-hover:bg-gold/10 group-hover:text-gold-dark transition-colors duration-200">
+                                <Icon className="h-6 w-6" />
+                            </div>
+                            <div className="space-y-1">
+                                <h3 className="text-lg font-bold font-display text-navy leading-tight">
                                     {feature.title}
                                 </h3>
-                                <p className="text-muted-foreground leading-relaxed">
+                                <p className="text-muted-foreground leading-relaxed text-sm">
                                     {feature.description}
                                 </p>
-                            </Card>
+                            </div>
                         </motion.div>
                     );
                 })}
-            </motion.div>
-
-
+            </div>
         </Section>
     );
 }

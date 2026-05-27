@@ -2,11 +2,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useAccessibleAnimation } from "@/hooks/use-accessible-animation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Calendar, Phone } from "lucide-react";
 
 export function CTASection() {
+    const { safeInitial, safeTransition } = useAccessibleAnimation();
     return (
         <section className="py-24 md:py-32 relative overflow-hidden bg-navy">
             {/* Decorative Background Elements */}
@@ -18,30 +20,30 @@ export function CTASection() {
             <div className="container mx-auto max-w-5xl px-4 relative z-10 text-center">
                 <motion.h2
                     className="text-4xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6"
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={safeInitial({ opacity: 0, y: 20 })}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    transition={safeTransition({ duration: 0.5 })}
                 >
                     Ready to Join the SIA Family?
                 </motion.h2>
 
                 <motion.p
                     className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={safeInitial({ opacity: 0, y: 16 })}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={safeTransition({ duration: 0.5, delay: 0.1 })}
                 >
                     Admissions are open for the academic year 2026-27. Give your child the gift of world-class education rooted in values.
                 </motion.p>
 
                 <motion.div
                     className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={safeInitial({ opacity: 0, y: 16 })}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+                    transition={safeTransition({ duration: 0.5, delay: 0.2 })}
                 >
                     <Button asChild size="lg" className="w-full sm:w-auto text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
                         <Link href="/admissions">

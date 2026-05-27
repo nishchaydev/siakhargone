@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,7 +26,6 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ data, stats }: HeroSectionProps) {
-    // Fallback if no stats provided
     const displayStats = stats || [
         { value: "1100+", label: "Students" },
         { value: "50+", label: "Teachers" },
@@ -34,6 +33,7 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
         { value: "50+", label: "Awards" }
     ];
 
+    const reduce = useReducedMotion();
     const isExternal = (url: string) => url?.startsWith('http') || url?.startsWith('//');
 
     return (
@@ -108,9 +108,9 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     {/* Sanskrit Motto - Hidden on mobile to save space */}
                     {data.sanskrit && (
                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
+                            initial={reduce ? false : { opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
+                            transition={reduce ? { duration: 0 } : { duration: 0.5 }}
                             className="hidden md:block mb-4"
                         >
                             <span className="text-gold font-headline text-2xl md:text-3xl italic tracking-wide">
@@ -145,18 +145,18 @@ export default function HeroSection({ data, stats }: HeroSectionProps) {
                     </div>
 
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={reduce ? false : { opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.6 }}
+                        transition={reduce ? { duration: 0 } : { delay: 0.15, duration: 0.5 }}
                         className="text-sm md:text-xl text-white/90 max-w-3xl mx-auto mb-8 font-light leading-relaxed line-clamp-3 md:line-clamp-none drop-shadow-md"
                     >
                         {data.subtitle}
                     </motion.p>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={reduce ? false : { opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.6 }}
+                        transition={reduce ? { duration: 0 } : { delay: 0.3, duration: 0.5 }}
                         className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 relative z-50"
                     >
                         <Link
