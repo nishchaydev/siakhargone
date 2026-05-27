@@ -56,11 +56,16 @@ export default function ContactPageClient() {
 
     // Use internal API route
     try {
-      await fetch("/api/public/contact", {
+      const res = await fetch("/api/public/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submissionData),
       });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to send enquiry");
+      }
 
 
       // Success Feedback

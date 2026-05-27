@@ -104,21 +104,28 @@ export default function AdmissionsPageClient({
 
         try {
             // Use internal API route
-            await fetch("/api/public/admissions", {
+            const res = await fetch("/api/public/admissions", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
-        } catch (error) {
+
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                throw new Error(errorData.error || "Failed to submit admission enquiry");
+            }
+
+            setStep(5);
+            triggerConfetti();
+
+            // Track successful submission
+            trackAdmissionFormSubmit('online_enquiry');
+        } catch (error: any) {
             console.error("Error submitting form", error);
+            alert(error.message || "Something went wrong. Please try again or contact us directly.");
+        } finally {
+            setIsSubmitting(false);
         }
-
-        setIsSubmitting(false);
-        setStep(5);
-        triggerConfetti();
-
-        // Track successful submission
-        trackAdmissionFormSubmit('online_enquiry');
     };
 
     const nextStep = async () => {

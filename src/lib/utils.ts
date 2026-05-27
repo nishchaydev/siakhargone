@@ -71,8 +71,12 @@ export function optimizeCloudinaryUrl(url: string, width?: number): string {
           if (!existingTransform.includes("q_auto")) {
             existingTransform += ",q_auto";
           }
-          if (isValidWidth && validWidth !== undefined && !existingTransform.includes("w_")) {
-            existingTransform += `,w_${validWidth},c_limit`;
+          if (isValidWidth && validWidth !== undefined) {
+            if (existingTransform.includes("w_")) {
+              existingTransform = existingTransform.replace(/w_\d+/g, `w_${validWidth}`);
+            } else {
+              existingTransform += `,w_${validWidth},c_limit`;
+            }
           }
           pathParts[1] = existingTransform;
           pathAfterUpload = pathParts.join("/");

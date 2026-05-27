@@ -1,12 +1,6 @@
-"use client";
-
-// import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ExternalLink, CreditCard } from "lucide-react";
-import { motion } from "framer-motion";
-// import { tuitionFees, busFees, oneTimeFees } from "@/data/fees";
-// import { FeeCalculator } from "@/components/fees/FeeCalculator";
 
 export default function FeesPage() {
     /*
@@ -36,10 +30,9 @@ export default function FeesPage() {
 
                 {/* Action Card */}
                 <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="order-2 md:order-1"
+                    <div
+                        className="order-2 md:order-1 animate-fade-in-up"
+                        style={{ animationFillMode: "both" }}
                     >
                         <Card className="border-l-4 border-l-gold shadow-lg h-full">
                             <CardHeader>
@@ -64,12 +57,11 @@ export default function FeesPage() {
                                 </Button>
                             </CardContent>
                         </Card>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="order-1 md:order-2 space-y-4"
+                    <div
+                        className="order-1 md:order-2 space-y-4 animate-fade-in-up"
+                        style={{ animationDelay: "200ms", animationFillMode: "both" }}
                     >
                         <h3 className="text-2xl font-bold font-display text-navy">Why Pay Online?</h3>
                         <ul className="space-y-3">
@@ -80,7 +72,7 @@ export default function FeesPage() {
                                 </li>
                             ))}
                         </ul>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Fees Tabs */}

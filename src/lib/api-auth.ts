@@ -1,12 +1,30 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const ADMIN_AUTH_COOKIE = "admin_token";
-const ADMIN_AUTH_VALUE = "authorized";
+import { getIronSession, type SessionOptions } from "iron-session";
+
+export interface SessionData {
+  isLoggedIn?: boolean;
+}
+
+export const sessionOptions: SessionOptions = {
+  password: process.env.SESSION_SECRET || "fallback_session_secret_of_at_least_32_chars_long",
+  cookieName: "admin_token",
+  cookieOptions: {
+    secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
+    sameSite: "strict",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7 // 1 week
+  },
+};
+
 const DEBUG_KEY_HEADER = "x-debug-key";
 
-export function hasAdminSession(request: NextRequest): boolean {
-  return request.cookies.get(ADMIN_AUTH_COOKIE)?.value === ADMIN_AUTH_VALUE;
+export async function hasAdminSession(request: NextRequest): Promise<boolean> {
+  const res = new Response();
+  const session = await getIronSession<SessionData>(request, res, sessionOptions);
+  return session.isLoggedIn === true;
 }
 
 export function unauthorizedJson(message = "Unauthorized") {

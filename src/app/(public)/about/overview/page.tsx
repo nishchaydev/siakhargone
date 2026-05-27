@@ -3,6 +3,7 @@ import { loadAboutData } from '@/lib/content';
 import { AboutOverview } from '@/components/about/AboutOverview';
 import PageBanner from '@/components/common/PageBanner';
 import AdministrationNotice from '@/components/layout/AdministrationNotice';
+import { cloudinary } from '@/lib/cloudinary-images';
 
 export const metadata: Metadata = {
     title: 'About Us - Overview | SIA Khargone',
@@ -21,8 +22,8 @@ export const revalidate = 3600;
 
 export default async function AboutOverviewPage() {
     const aboutData = await loadAboutData();
-    // Static fallback since SiteAssets was removed
-    const bannerImage = "https://images.unsplash.com/photo-1541339907198-e031e787bf77?q=80&w=2070&auto=format&fit=crop";
+    // Use actual campus building photo
+    const bannerImage = cloudinary.infrastructure.building[0];
 
     const schoolImage = (aboutData && aboutData.schoolImage) ? {
         src: aboutData.schoolImage.src,

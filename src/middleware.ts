@@ -3,14 +3,14 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { canAccessDebugApi, hasAdminSession, forbiddenJson, unauthorizedJson } from "@/lib/api-auth";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
     const hostname = request.headers.get("host") || "";
     const pathname = request.nextUrl.pathname;
 
     if (pathname.startsWith("/api/admin")) {
         const isPublicAdminApi = pathname === "/api/admin/login" || pathname === "/api/admin/logout";
 
-        if (!isPublicAdminApi && !hasAdminSession(request)) {
+        if (!isPublicAdminApi && !(await hasAdminSession(request))) {
             return unauthorizedJson("Admin authentication required");
         }
     }
@@ -37,17 +37,17 @@ export function middleware(request: NextRequest) {
         }
 
         // B. Auth Check for CMS
-        const adminToken = request.cookies.get("admin_token");
+        const isAdmin = await hasAdminSession(request);
         const isLoginPage = pathname === "/login";
 
         // Exclude public static files if any (usually handled by matcher, but being safe)
         if (!pathname.includes(".")) {
             // Redirect unauthenticated to login
-            if (!adminToken && !isLoginPage) {
+            if (!isAdmin && !isLoginPage) {
                 return NextResponse.redirect(new URL("/login", request.url));
             }
             // Redirect authenticated away from login
-            if (adminToken && isLoginPage) {
+            if (isAdmin && isLoginPage) {
                 return NextResponse.redirect(new URL("/dashboard", request.url));
             }
         }
@@ -63,15 +63,15 @@ export function middleware(request: NextRequest) {
     // --- 2. Main Domain Logic ---
     // Protect the physical path if accessed directly (optional, but good for security)
     if (request.nextUrl.pathname.startsWith("/admin-school-portal")) {
-        const adminToken = request.cookies.get("admin_token");
+        const isAdmin = await hasAdminSession(request);
         if (request.nextUrl.pathname === "/admin-school-portal/login") {
-            if (adminToken) {
+            if (isAdmin) {
                 return NextResponse.redirect(new URL("/admin-school-portal/dashboard", request.url));
             }
             return NextResponse.next();
         }
         // Allow access to login page logic above, block everything else
-        if (!adminToken) {
+        if (!isAdmin) {
             return NextResponse.redirect(new URL("/admin-school-portal/login", request.url));
         }
     }

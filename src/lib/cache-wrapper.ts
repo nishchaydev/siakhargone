@@ -1,38 +1,31 @@
 
-interface CacheEntry<T> {
-    data: T;
-    expiresAt: number;
-}
+import { unstable_cache, revalidateTag } from "next/cache";
 
-const cache: Record<string, CacheEntry<unknown>> = {};
-const DEFAULT_TTL = 3600 * 1000; // 1 hour
+const DEFAULT_TTL = 3600 * 1000; // 1 hour in ms
 
 export async function getCachedData<T>(key: string, fetchFn: () => Promise<T>, ttl: number = DEFAULT_TTL): Promise<T> {
-    const now = Date.now();
-    const cached = cache[key];
+    // If TTL is >= 10000, assume it was specified in milliseconds and convert to seconds.
+    // Otherwise (e.g. 60, 30), assume it was already specified in seconds.
+    const revalidateSeconds = ttl >= 10000 ? Math.round(ttl / 1000) : ttl;
 
-    if (cached && cached.expiresAt > now) {
-        return cached.data as T;
-    }
-
-    try {
-        const data = await fetchFn();
-        cache[key] = { data, expiresAt: now + ttl };
-        return data;
-    } catch (error) {
-        console.error(`[Cache] Fetch failed for ${key}`, error);
-        if (cached) {
-            console.warn(`[Cache] Returning Stale Data for ${key}`);
-            return cached.data as T; // Return stale if possible
+    const cachedFn = unstable_cache(
+        async () => fetchFn(),
+        [key],
+        {
+            revalidate: revalidateSeconds,
+            tags: [key]
         }
-        throw error; // Propagate error if no cache
-    }
+    );
+
+    return cachedFn();
 }
 
 export async function invalidateCache(key: string): Promise<boolean> {
-    if (cache[key]) {
-        delete cache[key];
+    try {
+        revalidateTag(key);
         return true;
+    } catch (error) {
+        console.error(`[Cache] Invalidation failed for tag: ${key}`, error);
+        return false;
     }
-    return false;
 }

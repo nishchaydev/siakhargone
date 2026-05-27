@@ -1,9 +1,20 @@
 
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { getIronSession } from "iron-session";
+import { sessionOptions, type SessionData } from "@/lib/api-auth";
+import { limiter } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
     try {
+        // Rate Limiting (Max 5 attempts per minute per IP)
+        const ip = req.headers.get("x-forwarded-for") || "127.0.0.1";
+        try {
+            await limiter.check(5, ip);
+        } catch {
+            return NextResponse.json({ error: "Too Many Requests. Please try again in a minute." }, { status: 429 });
+        }
+
         const { password } = await req.json();
         const adminPassword = process.env.ADMIN_PASSWORD;
 
@@ -14,15 +25,9 @@ export async function POST(req: Request) {
 
         if (password === adminPassword) {
             const cookieStore = await cookies();
-
-            // Set Secure HttpOnly Cookie
-            cookieStore.set("admin_token", "authorized", {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite: "strict",
-                path: "/",
-                maxAge: 60 * 60 * 24 * 7 // 1 week
-            });
+            const session = await getIronSession<SessionData>(cookieStore, sessionOptions);
+            session.isLoggedIn = true;
+            await session.save();
 
             return NextResponse.json({ success: true });
         } else {

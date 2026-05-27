@@ -5,6 +5,7 @@ import { LeadershipMessage } from '@/components/about/LeadershipMessage';
 import { ManagementCommittee } from '@/components/about/ManagementCommittee';
 import { Section } from '@/components/common/Section';
 import PageBanner from '@/components/common/PageBanner';
+import { cloudinary } from '@/lib/cloudinary-images';
 
 export const metadata: Metadata = {
     title: 'Management & Committee | SIA Khargone',
@@ -24,7 +25,8 @@ export default async function ManagementPage() {
         image: directorMsg.image
     } : null;
 
-    const bannerImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop";
+    // Use actual campus building photo
+    const bannerImage = cloudinary.infrastructure.building[1];
 
     return (
         <div className="bg-grain min-h-screen">

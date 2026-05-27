@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface PageBannerProps {
@@ -14,7 +11,7 @@ interface PageBannerProps {
 export default function PageBanner({
     title,
     subtitle,
-    image = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop",
+    image = "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1765349456/infrastructure-building-1_gstqrx.webp",
     objectPosition = "center",
     objectFit = "cover"
 }: PageBannerProps) {
@@ -35,24 +32,20 @@ export default function PageBanner({
 
             {/* Content */}
             <div className="relative z-10 container mx-auto px-4 text-center">
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4"
+                <h1 
+                    className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4 animate-fade-in-up"
+                    style={{ animationFillMode: "both" }}
                 >
                     {title}
-                </motion.h1>
+                </h1>
 
                 {subtitle && (
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-lg md:text-xl text-gold/90 font-medium max-w-2xl mx-auto tracking-wide"
+                    <p 
+                        className="text-lg md:text-xl text-gold/90 font-medium max-w-2xl mx-auto tracking-wide animate-fade-in-up"
+                        style={{ animationDelay: "200ms", animationFillMode: "both" }}
                     >
                         {subtitle}
-                    </motion.p>
+                    </p>
                 )}
             </div>
         </div>
