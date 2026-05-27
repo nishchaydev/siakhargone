@@ -43,7 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/best-cbse-school-in-khargone',
         '/schools-in-khargone-guide',
         '/cbse-admission-in-khargone',
-        '/how-to-choose-school-in-khargone'
+        '/how-to-choose-school-in-khargone',
+        '/feedback',
+        '/testimonials',
+        '/student-strength',
+        '/certificates',
+        '/tour',
+        '/about'
     ];
 
     const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics'];

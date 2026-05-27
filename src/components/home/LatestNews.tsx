@@ -7,7 +7,7 @@ import { Calendar, ChevronRight, Trophy, Bell, Star, MapPin, AlertCircle } from 
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { formatDate } from "@/lib/utils";
+import { formatDate, optimizeCloudinaryUrl } from "@/lib/utils";
 
 import { useEffect, useState } from "react";
 import { getCMSNews, CMSNewsItem } from "@/lib/cms-fetch";
@@ -29,7 +29,7 @@ export const LatestNews = ({ initialNews = [] }: LatestNewsProps) => {
             date: item.date || "Today",
             title: item.title || "Latest Update",
             description: item.description || "",
-            imageUrl: item.imageUrl || null,
+            imageUrl: item.imageUrl ? optimizeCloudinaryUrl(item.imageUrl, 800) : null,
             icon: item.type === 'Event' ? Calendar : (item.type === 'Notice' ? AlertCircle : Bell),
             color: item.type === 'Event' ? "bg-orange-100 text-orange-700 border-orange-200" :
                 (item.type === 'Notice' ? "bg-red-100 text-red-700 border-red-200" : "bg-blue-50 text-blue-600 border-blue-100")

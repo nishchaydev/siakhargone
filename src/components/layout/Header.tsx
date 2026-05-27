@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 // import schoolLogo from "@/assets/school-logo.png";
-const schoolLogo = "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png";
+const schoolLogo = "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_200/v1768373239/school-logo_npmwwm.png";
 import { schoolData } from "@/data/schoolData";
 import * as React from "react";
 import { Menu, Search, Phone, MessageCircle } from "lucide-react";

@@ -16,7 +16,7 @@ export async function submitChatbotLead(data: {
             console.error("Missing Google Sheets ID");
             throw new Error("Missing Google Sheets ID");
         }
-        console.log("Submitting to sheet:", spreadsheetId);
+
 
         // Append to "Enquiries" sheet
         await sheets.spreadsheets.values.append({

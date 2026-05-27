@@ -1,5 +1,5 @@
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 import GalleryPageClient from "./GalleryPageClient";
 import { cloudinary } from "@/lib/cloudinary-images";

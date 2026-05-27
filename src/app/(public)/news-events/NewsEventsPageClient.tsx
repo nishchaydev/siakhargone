@@ -3,7 +3,7 @@
 import PageBanner from "@/components/common/PageBanner";
 import { Section } from "@/components/common/Section";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatDate } from "@/lib/utils";
+import { formatDate, optimizeCloudinaryUrl } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, ArrowRight, Image as ImageIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -72,7 +72,7 @@ export default function NewsEventsPageClient({ initialNews, initialEvents }: New
                                     <div className="relative h-48 w-full overflow-hidden">
                                         {news.imageUrl ? (
                                             <Image
-                                                src={news.imageUrl}
+                                                src={optimizeCloudinaryUrl(news.imageUrl, 800)}
                                                 alt={news.title}
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -141,7 +141,7 @@ export default function NewsEventsPageClient({ initialNews, initialEvents }: New
                                     <div className="relative h-48 w-full md:w-64 shrink-0 hidden sm:block">
                                         {event.imageUrl ? (
                                             <Image
-                                                src={event.imageUrl}
+                                                src={optimizeCloudinaryUrl(event.imageUrl, 800)}
                                                 alt={event.title}
                                                 fill
                                                 className="object-cover"
@@ -206,7 +206,7 @@ export default function NewsEventsPageClient({ initialNews, initialEvents }: New
                     <div className="relative h-64 w-full">
                         {selectedNews?.imageUrl ? (
                             <Image
-                                src={selectedNews.imageUrl}
+                                                                src={optimizeCloudinaryUrl(selectedNews.imageUrl, 1200)}
                                 alt={selectedNews?.title || "News"}
                                 fill
                                 className="object-cover"

@@ -7,7 +7,7 @@ import { cloudinary } from "@/lib/cloudinary-images";
 import { useScroll, useMotionValueEvent, motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
+import { cn, optimizeCloudinaryUrl } from "@/lib/utils";
 
 // Types
 import { GalleryImage } from "@/lib/definitions";
@@ -182,7 +182,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
                   onClick={() => setSelectedImage(image)}
                 >
                   <Image
-                    src={image.imageUrl}
+                    src={optimizeCloudinaryUrl(image.imageUrl, 800)}
                     alt={image.description || "Gallery Image"}
                     width={800}
                     height={1000}
@@ -247,7 +247,7 @@ export default function GalleryPageClient({ initialImages = [] }: GalleryPageCli
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={selectedImage.imageUrl}
+                src={optimizeCloudinaryUrl(selectedImage.imageUrl, 1920)}
                 alt={selectedImage.description || "Campus moment"}
                 fill
                 className="object-contain"

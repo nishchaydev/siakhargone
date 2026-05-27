@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { blogPosts } from "@/data/blogPosts";
 import PageBanner from "@/components/common/PageBanner";
+import { optimizeCloudinaryUrl } from "@/lib/utils";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function BlogIndexPage() {
             <PageBanner
                 title="SIA Insights"
                 subtitle="Expert Guidance on Education & Parenting"
-                image="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png"
+                image={optimizeCloudinaryUrl("https://res.cloudinary.com/dkits80xk/image/upload/v1770866540/ba5fa378-c98b-4e8f-a4ec-bd5db243929f.png", 1920)}
             />
 
             <section className="section-xl bg-white">

@@ -39,9 +39,8 @@ export async function GET() {
 
         return NextResponse.json({ data: validImages.reverse() });
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("API Gallery Fetch Error FULL:", error);
-        return NextResponse.json({ error: "Failed to fetch gallery", details: errorMessage }, { status: 500 });
+        return NextResponse.json({ error: "Failed to fetch gallery" }, { status: 500 });
     }
 }
 
@@ -90,9 +89,8 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error(error);
-        return NextResponse.json({ error: "Upload failed", details: errorMessage }, { status: 500 });
+        return NextResponse.json({ error: "Upload failed" }, { status: 500 });
     }
 }
 
@@ -115,8 +113,8 @@ export async function PUT(req: Request) {
 
         return NextResponse.json({ success: true });
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
-        return NextResponse.json({ error: "Failed to update gallery", details: errorMessage }, { status: 500 });
+        console.error("API Gallery Update Error:", error);
+        return NextResponse.json({ error: "Failed to update gallery" }, { status: 500 });
     }
 }
 
@@ -134,8 +132,7 @@ export async function DELETE(req: Request) {
         return NextResponse.json({ success: true });
 
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Gallery DELETE Error:", error);
-        return NextResponse.json({ error: "Failed to delete image", details: errorMessage }, { status: 500 });
+        return NextResponse.json({ error: "Failed to delete image" }, { status: 500 });
     }
 }

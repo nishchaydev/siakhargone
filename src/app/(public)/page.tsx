@@ -82,7 +82,7 @@ export default async function Home() {
       type: 'Notice',
       description: item.title || 'Important Notice',
       isFeatured: true,
-      imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png" // Default image for notices
+      imageUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_200/v1768373239/school-logo_npmwwm.png" // Default image for notices
     } as UpdateItem)) // Notices always shown
   ]
     // Allow items that are explicitly featured OR undefined (legacy/default), only filter out explicit false
@@ -142,7 +142,7 @@ export default async function Home() {
       title: "Sanskar International Academy",
       subtitle: "One of the most well-known and leading CBSE English-medium schools in Khargone, recognized for disciplined academics, modern infrastructure, and holistic student development.",
       sanskrit: "विद्या ददाति विनयम्",
-      video: "https://res.cloudinary.com/dkits80xk/video/upload/q_auto,vc_auto,so_4/v1775455678/YTDown.com_YouTube_Sanskar-International-Academy-Khargone-s_Media_uSbl_fXzLnI_002_720p_eupz2f.mp4", // User requested video
+      video: "https://www.youtube.com/watch?v=uSbl_fXzLnI", // User requested video
       grid: [
         cloudinary.infrastructure.building[0],
         cloudinary.infrastructure.classrooms[0],
@@ -195,7 +195,7 @@ export default async function Home() {
         data={{
           name: "Sanskar International Academy Republic Day 2026",
           description: "Official Republic Day 2026 celebration video of Sanskar International Academy, Khargone.",
-          thumbnailUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png", // Fallback to logo or generate a thumbnail if available
+          thumbnailUrl: "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_200/v1768373239/school-logo_npmwwm.png", // Fallback to logo or generate a thumbnail if available
           uploadDate: "2026-01-26T00:00:00Z",
           contentUrl: cmsData.hero.video,
           embedUrl: cmsData.hero.video

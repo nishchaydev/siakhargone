@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Join the team at Sanskar International Academy. Explore current job openings for teachers and staff. Apply online today.',
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
 export default async function CareersPage() {
   const careers = await getCareersService().catch(() => []);

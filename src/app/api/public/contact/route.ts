@@ -1,10 +1,43 @@
-
 import { NextResponse } from "next/server";
 import { getGoogleSheetsInstance, SHEET_TAB_IDS } from "@/lib/google-sheets";
+import { z } from "zod";
+
+const contactSchema = z.object({
+    name: z.string().min(2).max(100),
+    phone: z.string().regex(/^[0-9+\-\s()]{7,20}$/, "Invalid phone format"),
+    email: z.string().email("Invalid email format").optional().or(z.literal("")),
+    class: z.string().min(1, "Class is required"),
+    message: z.string().max(1000, "Message too long"),
+});
+
+function hasFormulaInjection(val: string): boolean {
+    const trimmed = val.trim();
+    return trimmed.startsWith("=") || trimmed.startsWith("+") || trimmed.startsWith("-") || trimmed.startsWith("@");
+}
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
+
+        // Zod validation
+        const parsed = contactSchema.safeParse(body);
+        if (!parsed.success) {
+            return NextResponse.json({ error: "Invalid input data", details: parsed.error.format() }, { status: 400 });
+        }
+
+        const data = parsed.data;
+
+        // Prevent formula injection
+        if (
+            hasFormulaInjection(data.name) ||
+            hasFormulaInjection(data.phone) ||
+            (data.email && hasFormulaInjection(data.email)) ||
+            hasFormulaInjection(data.class) ||
+            hasFormulaInjection(data.message)
+        ) {
+            return NextResponse.json({ error: "Invalid input: Formula injection characters detected." }, { status: 400 });
+        }
+
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
@@ -13,15 +46,12 @@ export async function POST(req: Request) {
         const date = new Date().toISOString();
         const status = "New";
 
-        // Map body fields to columns
-        // Header: ["Name", "Phone", "Email", "Class", "Message", "Date", "Status"]
-
         const row = [
-            body.name || "",
-            body.phone || "",
-            body.email || "",
-            body.class || "",
-            body.message || "",
+            data.name,
+            data.phone,
+            data.email || "",
+            data.class,
+            data.message,
             date,
             status
         ];

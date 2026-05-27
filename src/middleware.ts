@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     if (pathname.startsWith("/api/admin")) {
-        const isPublicAdminApi = pathname === "/api/admin/login" || pathname === "/api/admin/logout" || pathname === "/api/admin/seed-data";
+        const isPublicAdminApi = pathname === "/api/admin/login" || pathname === "/api/admin/logout";
 
         if (!isPublicAdminApi && !hasAdminSession(request)) {
             return unauthorizedJson("Admin authentication required");

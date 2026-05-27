@@ -1,5 +1,6 @@
-
-import { google } from 'googleapis';
+import { GoogleAuth } from 'google-auth-library';
+import { sheets } from '@googleapis/sheets';
+import { drive } from '@googleapis/drive';
 
 export async function getGoogleSheetsInstance() {
     if (
@@ -10,7 +11,7 @@ export async function getGoogleSheetsInstance() {
         throw new Error('Missing Google Service Account credentials');
     }
 
-    const auth = new google.auth.GoogleAuth({
+    const auth = new GoogleAuth({
         credentials: {
             client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
             private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
@@ -21,7 +22,7 @@ export async function getGoogleSheetsInstance() {
         ],
     });
 
-    return google.sheets({ version: 'v4', auth });
+    return sheets({ version: 'v4', auth });
 }
 
 export async function getGoogleDriveInstance() {
@@ -32,7 +33,7 @@ export async function getGoogleDriveInstance() {
         throw new Error('Missing Google Service Account credentials');
     }
 
-    const auth = new google.auth.GoogleAuth({
+    const auth = new GoogleAuth({
         credentials: {
             client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
             private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
@@ -43,7 +44,7 @@ export async function getGoogleDriveInstance() {
         ],
     });
 
-    return google.drive({ version: 'v3', auth });
+    return drive({ version: 'v3', auth });
 }
 
 export const SHEET_TAB_IDS = {

@@ -6,7 +6,7 @@ import { seedDataLogic } from '@/lib/seed-logic';
 export async function seedDataAction() {
     // 1. Validate Secret Key (Simple Server-Side Guard)
     const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY;
-    console.log("Seed action initiated by user.");
+
 
     if (process.env.NODE_ENV === 'production') {
         if (!ADMIN_SECRET) {

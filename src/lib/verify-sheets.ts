@@ -1,4 +1,5 @@
-import { google } from 'googleapis';
+import { GoogleAuth } from 'google-auth-library';
+import { sheets as googleSheets } from '@googleapis/sheets';
 import { SHEET_TAB_IDS } from './google-sheets'; // Import constants from existing file
 
 export type FixReport = {
@@ -15,7 +16,7 @@ export async function verifyAndFixSheets(): Promise<FixReport> {
         return report;
     }
 
-    const auth = new google.auth.GoogleAuth({
+    const auth = new GoogleAuth({
         credentials: {
             client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
             private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
@@ -23,7 +24,7 @@ export async function verifyAndFixSheets(): Promise<FixReport> {
         scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
-    const sheets = google.sheets({ version: 'v4', auth });
+    const sheets = googleSheets({ version: 'v4', auth });
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
     try {

@@ -40,7 +40,7 @@ export async function handleContactForm(
   }
 
   // Mock successful submission
-  console.log("Contact form submitted (Mock):", validatedFields.data);
+
 
   return {
     message: "Thank you for your message! We will get back to you shortly.",

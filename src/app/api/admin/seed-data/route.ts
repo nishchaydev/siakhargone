@@ -7,7 +7,12 @@ export async function GET(request: Request) {
         // Simple auth bypass using secret key from environment
         const url = new URL(request.url);
         const secretKey = url.searchParams.get('key');
-        const expectedKey = process.env.SEED_DATA_SECRET_KEY || 'sia_seed_2026';
+        const expectedKey = process.env.SEED_DATA_SECRET_KEY;
+
+        if (!expectedKey) {
+            console.error("SEED_DATA_SECRET_KEY is not set in environment variables");
+            return NextResponse.json({ success: false, error: 'Server Configuration Error' }, { status: 500 });
+        }
 
         if (secretKey !== expectedKey) {
             return NextResponse.json({ success: false, error: 'Unauthorized - Invalid or missing key parameter' }, { status: 401 });

@@ -41,7 +41,6 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const { admissionNo, tcNo, studentName, className, session, issueDate, pdfLink, dob } = await req.json();
-        console.log("TC POST Data:", { admissionNo, tcNo, studentName, pdfLink }); // Debug Log
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 
@@ -71,7 +70,6 @@ export async function POST(req: Request) {
 export async function PUT(req: Request) {
     try {
         const { id, admissionNo, tcNo, studentName, className, session, issueDate, pdfLink, status, dob } = await req.json();
-        console.log("TC PUT Data:", { id, admissionNo, pdfLink }); // Debug Log
         const sheets = await getGoogleSheetsInstance();
         const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
 

@@ -4,7 +4,6 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   images: {
-    unoptimized: true, // Temporary fix for deployment issues
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'firebasestorage.googleapis.com' },
@@ -25,7 +24,6 @@ const nextConfig = {
   },
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
-    NEXT_PUBLIC_CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
     NEXT_PUBLIC_CLOUDINARY_TC_CLOUD_NAME: process.env.CLOUDINARY_TC_CLOUD_NAME,
     NEXT_PUBLIC_CLOUDINARY_TC_UPLOAD_PRESET: process.env.CLOUDINARY_TC_UPLOAD_PRESET,

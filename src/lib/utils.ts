@@ -44,3 +44,50 @@ export function formatDate(dateStr: string): string {
     year: 'numeric'
   });
 }
+
+export function optimizeCloudinaryUrl(url: string, width?: number): string {
+  if (!url || typeof url !== 'string' || !url.includes("cloudinary.com")) return url;
+
+  const isValidWidth = typeof width === 'number' && Number.isFinite(width) && width > 0;
+  const validWidth = isValidWidth ? Math.round(width as number) : undefined;
+
+  const uploadPath = url.includes("/video/upload") ? "/video/upload" : "/image/upload";
+  if (url.includes(uploadPath)) {
+    const parts = url.split(uploadPath);
+    let pathAfterUpload = parts[1];
+
+    // If it starts with /v followed by digits, there are no transformations
+    const hasTransformations = !/^\/v\d+\//.test(pathAfterUpload);
+
+    if (hasTransformations) {
+      const pathParts = pathAfterUpload.split("/");
+      if (pathParts.length > 1) {
+        let existingTransform = pathParts[1];
+        if (existingTransform) {
+          // Insert/update f_auto, q_auto
+          if (!existingTransform.includes("f_auto")) {
+            existingTransform += ",f_auto";
+          }
+          if (!existingTransform.includes("q_auto")) {
+            existingTransform += ",q_auto";
+          }
+          if (isValidWidth && validWidth !== undefined && !existingTransform.includes("w_")) {
+            existingTransform += `,w_${validWidth},c_limit`;
+          }
+          pathParts[1] = existingTransform;
+          pathAfterUpload = pathParts.join("/");
+          return `${parts[0]}${uploadPath}${pathAfterUpload}`;
+        }
+      }
+      return url;
+    } else {
+      let transformationStr = "f_auto,q_auto";
+      if (isValidWidth && validWidth !== undefined) {
+        transformationStr += `,w_${validWidth},c_limit`;
+      }
+      return `${parts[0]}${uploadPath}/${transformationStr}${pathAfterUpload}`;
+    }
+  }
+
+  return url;
+}

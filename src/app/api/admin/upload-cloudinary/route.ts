@@ -29,9 +29,19 @@ export async function POST(req: Request) {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
-        const result = await uploadBufferToCloudinaryTC(buffer, {
+        const uploadOptions: any = {
             folder: targetFolder,
-        });
+        };
+
+        if (["gallery", "news", "events"].includes(targetFolder)) {
+            uploadOptions.transformation = [
+                { width: 1920, crop: "limit" },
+                { quality: "auto" },
+                { fetch_format: "webp" }
+            ];
+        }
+
+        const result = await uploadBufferToCloudinaryTC(buffer, uploadOptions);
 
         return NextResponse.json({
             success: true,
@@ -40,9 +50,8 @@ export async function POST(req: Request) {
         });
 
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Cloudinary Upload Error:", error);
-        return NextResponse.json({ error: "Upload failed", details: errorMessage }, { status: 500 });
+        return NextResponse.json({ error: "Upload failed" }, { status: 500 });
     }
 }
 

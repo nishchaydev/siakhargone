@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { cloudinary } from "@/lib/cloudinary-images";
 import Image from "next/image";
 
 export default function Preloader() {
@@ -34,7 +33,7 @@ export default function Preloader() {
                 className="relative w-32 h-32 md:w-40 md:h-40 mb-4"
             >
                 <Image
-                    src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1768373239/school-logo_npmwwm.png"
+                    src="https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_200/v1768373239/school-logo_npmwwm.png"
                     alt="SIA Loader"
                     fill
                     className="object-contain"

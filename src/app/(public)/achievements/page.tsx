@@ -3,8 +3,7 @@ import { sendErrorToMonitoring } from "@/lib/monitoring";
 import AchievementsPageClient from "./AchievementsPageClient";
 import { Metadata } from "next";
 
-export const revalidate = 60; // Revalidate every minute
-export const dynamic = 'force-dynamic';
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export const metadata: Metadata = {
     title: "Student Achievements & Awards | SIA Khargone",

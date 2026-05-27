@@ -12,11 +12,9 @@ export async function getCachedData<T>(key: string, fetchFn: () => Promise<T>, t
     const cached = cache[key];
 
     if (cached && cached.expiresAt > now) {
-        console.log(`[Cache] HIT for ${key}`);
         return cached.data as T;
     }
 
-    console.log(`[Cache] MISS for ${key}`);
     try {
         const data = await fetchFn();
         cache[key] = { data, expiresAt: now + ttl };
@@ -34,7 +32,6 @@ export async function getCachedData<T>(key: string, fetchFn: () => Promise<T>, t
 export async function invalidateCache(key: string): Promise<boolean> {
     if (cache[key]) {
         delete cache[key];
-        console.log(`[Cache] Invalidated ${key}`);
         return true;
     }
     return false;

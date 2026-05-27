@@ -31,8 +31,7 @@ export async function GET(req: Request) {
 
         if (!validation.success) {
             return NextResponse.json({
-                error: "Invalid input credentials",
-                details: validation.error.format()
+                error: "Invalid input credentials"
             }, { status: 400 });
         }
 

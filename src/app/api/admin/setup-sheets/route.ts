@@ -184,8 +184,7 @@ export async function POST() {
         });
 
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         console.error("Setup Sheets Error:", error);
-        return NextResponse.json({ error: "Failed to setup sheets", details: errorMessage }, { status: 500 });
+        return NextResponse.json({ error: "Failed to setup sheets" }, { status: 500 });
     }
 }

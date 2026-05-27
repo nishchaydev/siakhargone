@@ -1,4 +1,5 @@
-import { google } from 'googleapis';
+import { GoogleAuth } from 'google-auth-library';
+import { sheets as googleSheets } from '@googleapis/sheets';
 import { unstable_cache } from 'next/cache';
 
 // Re-use auth logic from the original file (or we could import it if we refactor)
@@ -13,7 +14,7 @@ const getAuth = () => {
         throw new Error('Missing Google Service Account credentials');
     }
 
-    return new google.auth.GoogleAuth({
+    return new GoogleAuth({
         credentials: {
             client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
             private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
@@ -37,7 +38,7 @@ export class SheetService {
 
         const fetchRows = async () => {
             const auth = getAuth();
-            const sheets = google.sheets({ version: 'v4', auth });
+            const sheets = googleSheets({ version: 'v4', auth });
 
             try {
                 const response = await sheets.spreadsheets.values.get({
@@ -67,7 +68,7 @@ export class SheetService {
         if (!this.spreadsheetId) throw new Error("Missing Google Sheet ID");
 
         const auth = getAuth();
-        const sheets = google.sheets({ version: 'v4', auth });
+        const sheets = googleSheets({ version: 'v4', auth });
 
         await sheets.spreadsheets.values.append({
             spreadsheetId: this.spreadsheetId,
@@ -86,7 +87,7 @@ export class SheetService {
         if (!this.spreadsheetId) throw new Error("Missing Google Sheet ID");
 
         const auth = getAuth();
-        const sheets = google.sheets({ version: 'v4', auth });
+        const sheets = googleSheets({ version: 'v4', auth });
 
         // 1. Get all data to find the row index (We can't use cache here, need fresh data)
         // fetching just column A to save bandwidth
@@ -141,7 +142,7 @@ export class SheetService {
         if (!this.spreadsheetId) throw new Error("Missing Google Sheet ID");
 
         const auth = getAuth();
-        const sheets = google.sheets({ version: 'v4', auth });
+        const sheets = googleSheets({ version: 'v4', auth });
 
         // 1. Find Row Index
         const response = await sheets.spreadsheets.values.get({

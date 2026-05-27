@@ -15,7 +15,7 @@ const heroImage = { imageUrl: cloudinary.infrastructure.building[1], description
 
 // getSiteAssets removed
 
-export const dynamic = 'force-dynamic';
+
 
 export default async function ContactPage() {
   // Static banner logic
