@@ -1,6 +1,14 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display, Mukta } from 'next/font/google';
 import './globals.css';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#1E3A8A',
+};
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
@@ -8,7 +16,7 @@ import Preloader from "@/components/ui/Preloader";
 import { schoolData } from "@/data/schoolData";
 import Script from 'next/script';
 import UrgencyBanner from "@/components/common/UrgencyBanner";
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 
 const inter = Inter({
@@ -113,16 +121,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfairDisplay.variable} ${mukta.variable} !scroll-smooth`}>
       <head>
-        {/* Google Search Console Verification - Replace YOUR_CODE_HERE with actual code */}
-        <meta name="google-site-verification" content={process.env.GOOGLE_SITE_VERIFICATION || "YOUR_CODE_HERE"} />
-        <meta name="theme-color" content="#1E3A8A" />
 
         {/* DNS Prefetch for Performance */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <GoogleTagManager gtmId="GTM-NMCF4P4" />
       </head>
 
@@ -142,18 +145,29 @@ export default function RootLayout({
         <Toaster />
         <SpeedInsights />
         <Analytics />
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+        {/* GA4 is handled via GTM container (GTM-NMCF4P4) — no separate gtag needed */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              "name": schoolData.name,
-              "alternateName": "SIA Khargone",
+              "@type": "School",
+              "@id": "https://siakhargone.in/#school",
+              "name": "Sanskar International Academy",
+              "alternateName": ["SIA Khargone", "SIA", "Sanskar International Academy Khargone"],
               "url": "https://siakhargone.in",
-              "logo": "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_200/v1768373239/school-logo_npmwwm.png",
-              "description": "One of the leading CBSE English-medium schools in Khargone, known for disciplined academics, modern infrastructure, and holistic student development.",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,w_200/v1768373239/school-logo_npmwwm.png",
+                "width": 200,
+                "height": 200
+              },
+              "image": [
+                "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto/v1770822827/SANSKAR_BULING_copy.jpg_m6avnd.jpg",
+                "https://res.cloudinary.com/dkits80xk/image/upload/f_auto,q_auto,c_scale,w_1920/v1765349456/infrastructure-building-1_gstqrx.webp"
+              ],
+              "description": "Sanskar International Academy (SIA) is one of the best CBSE English-medium schools in Khargone, Madhya Pradesh. Established in 2016, CBSE Affiliation No: 1031345. Offering education from Nursery to Class 12 with 1100+ students, 50+ teachers, modern smart classrooms, and comprehensive sports facilities on a 5-acre campus.",
+              "slogan": "विद्या ददाति विनयम् — Education bestows humility",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": schoolData.contact.address,
@@ -162,18 +176,88 @@ export default function RootLayout({
                 "postalCode": "451001",
                 "addressCountry": "IN"
               },
-              "foundingDate": schoolData.stats.established,
-              "knowsAbout": ["CBSE Curriculum", "Holistic Education", "Sports Academy", "Smart Classrooms"],
-              "telephone": schoolData.contact.phone[0],
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 21.82520,
+                "longitude": 75.61450
+              },
+              "hasMap": schoolData.contact.googleMapLink,
+              "foundingDate": "2016",
+              "numberOfStudents": 1100,
+              "numberOfEmployees": 50,
+              "educationalLevel": ["Nursery", "Kindergarten", "Primary School", "Middle School", "Secondary School", "Senior Secondary School"],
+              "knowsAbout": ["CBSE Curriculum", "NEP 2020", "English Medium Education", "Holistic Education", "Sports Academy", "Smart Classrooms", "AI Integrated Curriculum", "Digital Learning", "Competitive Exam Preparation"],
+              "knowsLanguage": ["en", "hi"],
+              "telephone": "+917049110104",
               "email": schoolData.contact.email,
               "priceRange": "₹₹",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": schoolData.contact.phone[1] || schoolData.contact.phone[0],
-                "contactType": "admissions",
-                "areaServed": "IN",
-                "availableLanguage": ["en", "hi"]
+              "currenciesAccepted": "INR",
+              "paymentAccepted": "Cash, Bank Transfer, Online Payment",
+              "areaServed": {
+                "@type": "City",
+                "name": "Khargone",
+                "containedInPlace": {
+                  "@type": "State",
+                  "name": "Madhya Pradesh",
+                  "containedInPlace": {
+                    "@type": "Country",
+                    "name": "India"
+                  }
+                }
               },
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "M/S Mahamana Markandey Education and Social Development Society",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Village Post Badgaon, Tehsil Gogawan",
+                  "addressLocality": "Khargone",
+                  "addressRegion": "Madhya Pradesh",
+                  "postalCode": "451001",
+                  "addressCountry": "IN"
+                }
+              },
+              "contactPoint": [
+                {
+                  "@type": "ContactPoint",
+                  "telephone": "+917049110104",
+                  "contactType": "admissions",
+                  "areaServed": "IN",
+                  "availableLanguage": ["English", "Hindi"]
+                },
+                {
+                  "@type": "ContactPoint",
+                  "telephone": "+917049110104",
+                  "contactType": "customer service",
+                  "areaServed": "IN",
+                  "availableLanguage": ["English", "Hindi"]
+                }
+              ],
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "08:00",
+                  "closes": "16:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": "Saturday",
+                  "opens": "08:00",
+                  "closes": "13:00"
+                }
+              ],
+              "hasCredential": {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "CBSE Affiliation",
+                "recognizedBy": {
+                  "@type": "Organization",
+                  "name": "Central Board of Secondary Education",
+                  "alternateName": "CBSE",
+                  "url": "https://www.cbse.gov.in"
+                }
+              },
+              "award": ["District Taekwondo Champions", "Featured in Dainik Bhaskar", "50+ Awards in Academics and Sports"],
               "sameAs": [
                 schoolData.social.facebook,
                 schoolData.social.instagram,

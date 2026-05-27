@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/about'
     ];
 
-    const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics'];
+    const HIGH_PRIORITY_ROUTES = ['/admissions', '/contact', '/careers', '/academics', '/fees', '/best-school-in-khargone', '/best-cbse-school-in-khargone', '/schools-in-khargone-guide', '/reviews', '/why-choose-sia', '/about'];
     const LOW_PRIORITY_ROUTES = ['/privacy', '/terms', '/mandatory-disclosure', '/tc'];
 
     const isTechnicalRoute = (route: string) => {

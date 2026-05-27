@@ -4,6 +4,7 @@ import ContactPageClient from './ContactPageClient';
 import { cloudinary } from '@/lib/cloudinary-images';
 import Image from 'next/image';
 import PageBanner from '@/components/common/PageBanner';
+import Schema from '@/components/seo/Schema';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Admissions & Enquiry',
@@ -23,6 +24,7 @@ export default async function ContactPage() {
 
   return (
     <>
+      <Schema type="Breadcrumb" data={{ items: [{ name: "Contact Us", url: "https://siakhargone.in/contact" }] }} />
       {/* Hero Section */}
       <PageBanner
         title="Contact Us"

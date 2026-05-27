@@ -30,6 +30,7 @@ const faqs = [
 export default async function AdmissionsPage() {
   return (
     <>
+      <Schema type="Breadcrumb" data={{ items: [{ name: "Admissions", url: "https://siakhargone.in/admissions" }] }} />
       <Schema type="FAQ" data={faqs} />
       <AdmissionsPageClient careerCounsellingImage={careerCounsellingImage} />
     </>

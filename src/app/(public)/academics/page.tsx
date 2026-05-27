@@ -87,6 +87,7 @@ export default async function AcademicsPage() {
 
   return (
     <div>
+      <Schema type="Breadcrumb" data={{ items: [{ name: "Academics", url: "https://siakhargone.in/academics" }] }} />
       <Schema type="FAQ" data={faqs} />
       <AcademicsPageClient
         infrastructureItems={infrastructureItems}
